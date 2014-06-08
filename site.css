@@ -1,0 +1,100 @@
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	background-color: #2b2b26;
+	color: #fefefe;
+	margin: 0;
+}
+
+body > header {
+	padding: 10px 5px 10px 5px;
+	background-color: #8a6c66;
+}
+body > header > h1 {
+	margin: 0;
+}
+
+body > section.mainContent {
+	padding: 0 5px 10px 5px;
+}
+
+body > footer {
+	padding: 10px 5px 10px 5px;
+	background-color: #8a6c46;
+}
+
+a {
+	color: #fff;
+}
+
+a:hover {
+	color: #333;
+	background-color: yellow;
+}
+
+#manualDrumButtons button {
+	background-color: #33FF00;
+	border-radius: 30px;
+	border: 5px solid #009900;
+	padding: 5px;
+	width: 100px;
+}
+
+#drumMachineButtons button {
+	background-color: #AA88FF;
+	border-radius: 15px;
+	border: 5px solid #556699;
+	padding: 10x;
+	width: 150px;
+	height: 50px;
+}
+
+#filterButtons button {
+	background-color: #DD3322;
+	border-radius: 30px;
+	border: 5px solid #EE9988;
+	padding: 5px;
+	width: 100px;
+}
+
+#oscillators button {
+	background-color: #1188FF;
+	border-radius: 30px;
+	border: 5px solid #1166CC;
+	padding: 5px;
+	width: 100px;
+}
+
+#micButtons button {
+	background-color: #BBCC00;
+	border-radius: 30px;
+	border: 5px solid #999911;
+	padding: 5px;
+	width: 100px;
+}
+
+#oscilloscopeMic canvas,
+#oscilloscopeOscillators canvas {
+	width: 450px;
+	height: 200px;
+	border: 10px solid #fff;
+	background-color: rgb(61, 122, 113)
+}
+
+/* stolen from http://webaudioapi.com/static/style.css */
+
+input[type='range'] {
+  -webkit-appearance: none;
+  background-color: gray;
+  height: 20px;
+  border-radius: 15px;
+  padding: 0 3px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-color: #444;
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
+}

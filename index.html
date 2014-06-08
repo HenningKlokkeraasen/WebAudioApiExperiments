@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Web Audio Experiments</title>
+	<link rel="stylesheet" href="site.css" />
+</head>
+<body>
+	<header>
+		<h1>Web Audio Experiments</h1>
+	</header>
+
+	<section class="mainContent">
+		<article>
+			<h2>History of audio on the web</h2>
+			<ol>
+				<li>Using &lt;bgsound&gt; or &lt;embed&gt; tags</li>
+				<li>Using Flash and other plugins</li>
+				<li>Using &lt;audio&gt; tag</li>
+			</ol>
+			<audio src="audiofiles/COWBELL2.mp3" controls></audio>
+		</article>
+
+		<article>
+			<h2>Using Web Audio API</h2>
+			<h3>Playing Audio Files</h3>
+			<span id="manualDrumButtons">
+				<button data-url="audiofiles/21KICK.mp3">Kick 1</button>
+				<button data-url="audiofiles/SNARE_2.WAV">Snare 1</button>
+				<button data-url="audiofiles/OPNHIHAT.WAV">Hi Hat 1</button>
+				<button data-url="audiofiles/ELDRUM44.WAV">Kick 2</button>
+				<button data-url="audiofiles/SNARE_3.WAV">Snare 2</button>
+				<button data-url="audiofiles/BIGHIHAT.WAV">Hi Hat 2</button>
+				<button data-url="audiofiles/BEEP1.WAV">Beep</button>
+				<button data-url="audiofiles/COWBELL2.mp3">Cowbell</button>
+				
+				<button data-url="audiofiles/flute.mp3">Flute</button>
+				<button data-url="audiofiles/g-piano4.mp3">Piano</button>
+				<button data-url="audiofiles/chimp.mp3">Chimp</button>
+			</span>
+		</article>
+
+		<article>
+			<h3>Timed Plays: Drum Machine</h3>
+			<span id="drumMachineButtons">
+				<button data-drumkitsequence="{
+					&quot;numberOfBars&quot; : 2,
+					&quot;ticksPerBar&quot; : 8,
+					&quot;tempoInBpm&quot; : 125,
+					&quot;drumSequences&quot; : [
+						{
+							&quot;bufferKey&quot;: &quot;audiofiles/21KICK.mp3&quot;,
+							&quot;beatList&quot;: [1, 5]
+						},
+						{
+							&quot;bufferKey&quot;: &quot;audiofiles/SNARE_2.WAV&quot;,
+							&quot;beatList&quot;: [3, 7]
+						},
+						{
+							&quot;bufferKey&quot;: &quot;audiofiles/OPNHIHAT.WAV&quot;,
+							&quot;beatList&quot;: [8]
+						}
+					]}">Basic</button>
+				<button data-drumkitsequence="{
+					&quot;numberOfBars&quot; : 2,
+					&quot;ticksPerBar&quot; : 8,
+					&quot;tempoInBpm&quot; : 100,
+					&quot;drumSequences&quot; : [
+						{
+							&quot;bufferKey&quot;: &quot;audiofiles/ELDRUM44.WAV&quot;,
+							&quot;beatList&quot;: [2, 3, 5, 7]
+						},
+						{
+							&quot;bufferKey&quot;: &quot;audiofiles/BIGHIHAT.WAV&quot;,
+							&quot;beatList&quot;: [1, 4, 8]
+						}
+					]}">Alternate</button>
+				<button data-drumkitsequence="{
+					&quot;numberOfBars&quot; : 4,
+					&quot;ticksPerBar&quot; : 8,
+					&quot;tempoInBpm&quot; : 140,
+					&quot;drumSequences&quot; : [
+						{
+							&quot;bufferKey&quot;: &quot;audiofiles/ELDRUM44.WAV&quot;,
+							&quot;beatList&quot;: [1, 3, 5, 7]
+						},
+						{
+							&quot;bufferKey&quot;: &quot;audiofiles/BEEP1.WAV&quot;,
+							&quot;beatList&quot;: [3.8, 6.8]
+						}
+					]}">Techno</button>
+				<button data-drumkitsequence="{
+					&quot;numberOfBars&quot; : 4,
+					&quot;ticksPerBar&quot; : 8,
+					&quot;tempoInBpm&quot; : 90,
+					&quot;drumSequences&quot; : [
+						{
+							&quot;bufferKey&quot;: &quot;audiofiles/ELDRUM44.WAV&quot;,
+							&quot;beatList&quot;: [1, 2.6, 4, 6]
+						},
+						{
+							&quot;bufferKey&quot;: &quot;audiofiles/SNARE_3.WAV&quot;,
+							&quot;beatList&quot;: [3, 7]
+						},
+						{
+							&quot;bufferKey&quot;: &quot;audiofiles/BIGHIHAT.WAV&quot;,
+							&quot;beatList&quot;: [8]
+						}
+					]}">Offbeat</button>
+				<button data-drumkitsequence="{
+					&quot;numberOfBars&quot; : 4,
+					&quot;ticksPerBar&quot; : 8,
+					&quot;tempoInBpm&quot; : 55,
+					&quot;drumSequences&quot; : [
+						{
+							&quot;bufferKey&quot;: &quot;audiofiles/COWBELL2.mp3&quot;,
+							&quot;beatList&quot;: [1, 2, 3, 4, 5, 6, 7, 7.5, 8.0, 8.3, 8.6]
+						}
+					]}">More...</button>
+			</span>
+		</article>
+
+		<article>
+			<h3>Looping, Filters</h3>
+			<span id="filterButtons">
+				<button data-url="audiofiles/flute.mp3">Flute</button>
+				<button data-url="audiofiles/g-piano4.mp3">Piano</button>
+				<button data-url="audiofiles/chimp.mp3">Chimp</button>
+				<br />
+				<input type="range" min="0" max="1" step="0.01" value="1" data-parameterType="frequency" /> Frequency
+				<br />
+				<input type="range" min="0" max="1" step="0.01" value="0" data-parameterType="quality" /> Quality
+			</span>
+		</article>
+
+		<article>
+			<h3>Oscillators and Oscilloscope</h3>
+			<span id="oscillators">
+				<!--Oscillator 1-->
+				<span class="oscillator">
+					<button>Oscillator 1</button>
+					<select>
+						<option value="sine">Sine</option>
+						<option value="triangle">Triangle</option>
+						<option value="sawtooth">Sawtooth</option>
+						<option value="square">Square</option>
+					</select>
+					<input type="range" min="20" max="2000" step="1" value="440" data-parameterType="frequency" /> Frequency
+					<input type="range" min="-100" max="100" step="5" value="0" data-parameterType="detune" /> Detune
+				</span>
+				<br />
+				<!--Oscillator 2-->
+				<span class="oscillator">
+					<button>Oscillator 2</button>
+					<select>
+						<option value="sine">Sine</option>
+						<option value="triangle" selected>Triangle</option>
+						<option value="sawtooth">Sawtooth</option>
+						<option value="square">Square</option>
+					</select>
+					<input type="range" min="20" max="2000" step="1" value="440" data-parameterType="frequency" /> Frequency
+					<input type="range" min="-100" max="100" step="5" value="0" data-parameterType="detune" /> Detune
+				</span>
+				<br />
+				<!--Oscillator 3-->
+				<span class="oscillator">
+					<button>Oscillator 3</button>
+					<select>
+						<option value="sine">Sine</option>
+						<option value="triangle">Triangle</option>
+						<option value="sawtooth" selected>Sawtooth</option>
+						<option value="square">Square</option>
+					</select>
+					<input type="range" min="20" max="2000" step="1" value="440" data-parameterType="frequency" /> Frequency
+					<input type="range" min="-100" max="100" step="5" value="0" data-parameterType="detune" /> Detune
+				</span>
+				<br />
+				<!--Oscillator 4-->
+				<span class="oscillator">
+					<button>Oscillator 4</button>
+					<select>
+						<option value="sine">Sine</option>
+						<option value="triangle">Triangle</option>
+						<option value="sawtooth">Sawtooth</option>
+						<option value="square" selected>Square</option>
+					</select>
+					<input type="range" min="20" max="2000" step="1" value="440" data-parameterType="frequency" /> Frequency
+					<input type="range" min="-100" max="100" step="5" value="0" data-parameterType="detune" /> Detune
+				</span>
+			</span>
+			<br />
+			<span id="oscilloscopeOscillators">
+				<canvas></canvas>
+			</span>
+		</article>
+
+		<article>
+			<h3>Microphone Input</h3>
+			<span id="micButtons">
+				<button>Mic</button>
+			</span>
+			<br /><br />
+			<span id="oscilloscopeMic">
+				<canvas></canvas>
+			</span>
+		</article>
+	</section>
+
+	<footer>
+		<p>A skunkworks project by <a href="http://henning.drmowinckel.com">Henning Klokkeråsen</a></p>
+		<p>Inspiration:</p>
+		<ul>
+			<li><a href="http://webaudioapi.com/">Web Audio API by Boris Smus</a></li>
+			<li>Sounds: <a href="http://soundjax.com/">Soundjax</a></li>
+		</ul>
+		Tech:
+		<ul>
+			<li>HTML5, CSS3, JavaScript</li>
+			<li>Javascript prototypes, callbacks, JSON, XHR, getUserMedia, requestAnimationFrame</li>
+			<li>jQuery</li>
+		</ul>
+	</footer>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="site.js"></script>
+	<script>
+		var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-11381673-2']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+  </script>
+</body>
+</html>
