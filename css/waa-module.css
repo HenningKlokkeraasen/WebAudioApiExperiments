@@ -1,0 +1,170 @@
+
+/* sound generation and modification modules */
+
+.moduleRow {
+}
+
+	.moduleRow>div {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+		.placeholderModule {
+			border: 2px solid transparent;
+			margin: 0 3px 3px 0;
+			padding: 3px;
+			min-width: 184px;
+			font-size: 0.8em;
+		}
+
+		.module {
+			border: 2px solid white;
+			display: inline-block;
+			margin: 0 3px 3px 0;
+			padding: 3px;
+			min-width: 184px;
+			font-size: 0.8em;
+			color: black;
+
+			/* default background color for modules */
+			background-color : rgb(247, 238, 209); /* off white */
+		}
+
+			.module header {
+				text-align: center;
+				font-size: 1.2em;
+			}
+
+			.module output {
+				vertical-align: super;
+				font-size: 0.8em;
+			}
+
+			.module fieldset {
+				border-color: white;
+			}
+
+				.module fieldset.verticalAligned {
+					display: inline-block;
+					vertical-align: top;
+				}
+
+				/* Style similar to the Schmidt analog synthesizer 
+					work in progress
+				*/
+
+				.module fieldset.schmidtAnalogSynth {
+					border-top: 6px solid white;
+					position: relative;
+					border-radius: 8px;
+					padding: 10px 0 3px 3px;
+				}
+
+					.module fieldset.schmidtAnalogSynth legend {
+						background-color: white;
+						margin: 0;
+						margin-top: 5px;
+						vertical-align: bottom;
+						position: absolute;
+						top: -11px;
+						border-radius: 0 0 4px 4px;
+						margin: 5px 0 0 8px;
+					}
+
+				/* END Style similar to the Schmidt analog synthesizer */
+
+			.module .sectionName {
+				text-align: center;
+				display: inline-block;
+				width: 100%;
+			}
+
+			.genericmodule {
+				background-color: rgb(247, 98, 247);
+			}
+
+			.oscillator {
+				background-color: rgb(247, 229, 98);
+			}
+
+			.gain {
+				background-color: rgb(247, 98, 128);
+			}
+
+			.filter {
+				/*background-color: rgb(247, 128, 98);*/
+				background-color : rgb(255, 142, 108);
+			}
+
+			.delay {
+				background-color: rgb(98, 247, 128);
+			}
+
+			.convolver {
+				background-color: rgb(247, 199, 98);
+			}
+
+			.compressor {
+				/*background-color: rgb(247, 98, 110);*/
+				background-color : rgb(241, 193, 9);
+			}
+
+			.audioContextDestination {
+				/*background-color: rgb(98, 134, 247);*/
+				background-color : rgb(136, 200, 122);
+			}
+
+			.mediastreammodule {
+				background-color: rgb(98, 199, 247);
+			}
+
+			.waveshapermodule {
+				background-color: rgb(98, 247, 193);
+			}
+
+			.fmomodule {
+				/*background-color: rgb(231, 231, 15);*/
+				background-color : rgb(252, 222, 46);
+			}
+
+			.voicemodule {
+				/*background-color: rgba(184, 148, 36, 0.59);*/
+				background-color : rgb(241, 106, 42);
+			}
+
+			.effectsmodule {
+				/*background-color: rgb(9, 163, 40);*/
+				background-color : rgb(148, 193, 196);
+			}
+
+			.mixermodule {
+				/*background-color: rgba(141, 36, 9, 0.77);*/
+				background-color : rgb(152, 219, 248);
+			}
+
+			.analysermodule {
+				/*background-color : rgb(121, 37, 54);*/
+				background-color : rgb(243, 220, 150); /* sand */
+			}
+
+			.sluttrinnmodule {
+				background-color: rgb(218, 57, 37);
+			}
+
+			.harmonicGenerator {
+				background-color : rgb(254, 222, 123); /* pale yellow */
+
+			}
+
+			.waveTableOsc {
+				background-color : rgb(247, 238, 209); /* off white */
+			}
+
+			.for-future-use {
+
+
+
+
+
+
+			}

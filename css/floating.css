@@ -1,0 +1,47 @@
+
+.analysersContainerFloating {
+	background-color: #2b2b26;
+}
+
+/* oscilloscope floating on the left */
+
+#oscilloscopeContainerFloating {
+	position: fixed;
+	width: 406px;
+}
+
+/* freq analyser floating on the left */
+
+#freqAnalyserContainerFloating {
+	position: fixed;
+	width: 406px;
+	top: 200px;
+}
+
+/* audio param modifiers floating on the right */
+
+#audioParamModiferContainerFloating {
+	position: fixed;
+	width: 406px;
+	right: 0;
+}
+
+/* legend floating on the right */
+
+#legendContainerFloating {
+	position: fixed;
+	width: 406px;
+	right: 0;
+	background-color: #2b2b26;
+	padding: 3px;
+}
+
+/* keyboard floating on the right */
+
+#keysLegendContainerFloating {
+	position: fixed;
+	width: 406px;
+	right: 0;
+	background-color: #2b2b26;
+	padding: 3px;
+}

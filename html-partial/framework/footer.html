@@ -1,0 +1,38 @@
+
+	<div>
+		<p>A skunkworks project by <a href="http://henning.drmowinckel.com">Henning Klokkeråsen</a></p>
+		<p>Inspiration and attribution:</p>
+		<ul>
+			<li><a href="http://webaudioapi.com/">Web Audio API by Boris Smus</a></li>
+			<li>Sounds: <a href="http://soundjax.com/">Soundjax</a></li>
+			<li>Impulse sounds for convolution: <a href="http://fokkie.home.xs4all.nl/IR.htm">Fokke van Saane</a></li>
+			<li>Slapback Delay: <a href="From http://www.html5rocks.com/en/tutorials/casestudies/jamwithchrome-audio/">Oskar Eriksson</a></li>
+			<li>Simple Reverb: <a href="https://github.com/web-audio-components/simple-reverb">Nick Thompson</a></li>
+			<li>Envelope Generator: <a href="http://blog.chrislowis.co.uk/2013/06/17/synthesis-web-audio-api-envelopes.html">Chris Lowis</a></li>
+			<li>Wave Shaper: <a href="http://stackoverflow.com/questions/22312841/waveshaper-node-in-webaudio-how-to-emulate-distortion">Kevin Ennis</a></li>
+			<li>Oscilloscope, frequency bars, pulse wave, MIDI, etc etc: <a href="http://webaudiodemos.appspot.com/">Chris Wilson</a></li>
+		</ul>
+		Tech:
+		<ul>
+			<li>Standards: HTML5, CSS3, JavaScript</li>
+			<li>HTML Imports</li>
+			<li>Javascript prototypes, callbacks, JSON</li>
+			<li>JS APis: Web Audio API, XHR, WebRTC (getUserMedia), requestAnimationFrame, canvas</li>
+			<li>JS Libs: jQuery, Handlebars.js</li>
+			<li>Tools: Sublime Text, Chrome dev tools</li>
+		</ul>
+	</div>
+
+<script>
+	// importDoc references this import's document
+	var importDoc = document.currentScript.ownerDocument;
+
+	// mainDoc references the main document (the page that's importing us)
+	var mainDoc = document;
+
+	// Grab the element from this import, clone it,
+	// and append it to the importing document.
+	var footer = mainDoc.querySelector('#pageFooter');
+	var el = importDoc.querySelector('div');
+	footer.appendChild(el.cloneNode(true));
+</script>

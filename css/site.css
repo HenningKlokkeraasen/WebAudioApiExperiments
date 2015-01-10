@@ -1,0 +1,58 @@
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	color: #fefefe;
+	background-color : rgb(254, 253, 199); /* cream */
+	margin: 0;
+}
+
+	body > header {
+		padding: 10px 5px 0 5px;
+		background-color : rgb(171, 221, 160); /* pale green */
+		color : #333;
+		padding-top: 1em; /* due to oscilloscopeContainerFloating */
+	}
+
+		body > header h1 {
+			margin: 0;
+		}
+
+		body > header a {
+			color : #333;
+		}
+
+	body > section#pageContent {
+		padding: 10px 5px 10px 5px;
+		background-color: #2b2b26;
+	}
+
+	body > footer {
+		padding: 10px 5px 10px 5px;
+		background-color: #8a6c46;
+	}
+
+	body > header,
+	body > section#pageContent,
+	body > footer {
+		/*Breakpoint-ish*/
+
+		/*width: 410px;*/
+		max-width: 1020px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+a {
+	color: #fff;
+}
+
+	a:hover {
+		color: #333;
+		background-color: yellow;
+	}
+
+/* make the patch cables go away when hovering patch holes,
+to ensure a patch hole can be clicked
+(instead of the cable capturing the click) */
+.hideMe {
+	visibility: hidden;
+}

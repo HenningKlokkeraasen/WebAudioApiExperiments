@@ -1,0 +1,50 @@
+
+	<!--Handlebars.js template for analyser (oscilloscope) module-->
+	<script id="analyserTemplate" type="text/x-handlebars-template">
+		<div class="module {{moduleCssClass}}">
+			<span class="dataContainer"></span>
+
+			<header>
+				<div style="margin: 0 0 5px 0;">{{moduleName}}</div>
+			</header>
+
+			{{#if hasStartButton}}
+			<fieldset>
+				<button>Start</button>
+			</fieldset>
+			{{/if}}
+			
+			{{!specific for analyser: canvas}}
+			<span class="oscilloscopeCanvasContainer">
+				<canvas></canvas>
+			</span>
+			<span class="freqSpectrumAnalyserCanvasContainer">
+				<canvas></canvas>
+			</span>
+
+			<fieldset class="connectors">
+				<legend>Connectors</legend>
+				{{#unless hasNoInputs}}
+					<div><div>In</div><div><span class="patchHole patchInput">&nbsp;</span></div></div>
+				{{/unless}}
+
+				{{#unless hasNoOutputs}}
+					<div><div>Out</div><div><span class="patchHole patchOutput">&nbsp;</span></div></div>
+				{{/unless}}
+			</fieldset>
+
+		</div>
+	</script>
+
+<script>
+	// importDoc references this import's document
+	var importDoc = document.currentScript.ownerDocument;
+
+	// mainDoc references the main document (the page that's importing us)
+	var mainDoc = document;
+
+	// Grab the element from this import, clone it,
+	// and append it to the importing document.
+	var el = importDoc.querySelector('#analyserTemplate');
+	mainDoc.body.appendChild(el.cloneNode(true));
+</script>

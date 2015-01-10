@@ -1,0 +1,121 @@
+
+	<!--Handlebars.js template for modules-->
+	<script id="moduleTemplate" type="text/x-handlebars-template">
+		<div class="module {{moduleCssClass}}">
+			<span class="dataContainer"></span>
+
+			<header>
+				<div style="margin: 0 0 5px 0;">{{moduleName}}</div>
+			</header>
+
+			{{#if hasStartButton}}
+			<fieldset>
+				<button>Start</button>
+			</fieldset>
+			{{/if}}
+			
+			{{#each sections}}
+
+			<fieldset {{#if ../renderSectionsVertically}}class="verticalAligned"{{/if}}>
+
+				{{#if sectionName}}
+					<legend>{{sectionName}}</legend>
+				{{/if}}
+
+				{{#each checkBoxes}}
+				<div>
+					<span title="{{type}}">{{label}}: </span> <input type="checkbox" data-parametertype="{{type}}" />
+				</div>
+				{{/each}}
+
+				{{#each radioButtonLists}}
+				<div>
+					<span title="{{type}}">{{label}}: </span>
+					{{#each radioButtons}}
+						<input 	type="radio" 
+								name="{{../rdoName}}" 
+								value="{{value}}" 
+								title="{{value}}" 
+								data-parametertype="{{../type}}" 
+								{{#if selected}}checked{{/if}}>
+									{{{name}}}					{{!--Note triple stash for rendering html entities on label--}}
+								</input>
+					{{/each}}
+				</div>
+				{{/each}}
+
+				{{#each selectLists}}
+				<div>
+					<span title="{{type}}">{{label}}: </span>
+					<select data-parametertype="{{type}}">
+					{{#each options}}
+						<option value="{{value}}" 
+							{{#if selected}}selected{{/if}} >
+							{{name}}
+						</option>
+					{{/each}}
+					</select>
+				</div>
+				{{/each}}
+
+				{{#each ranges}}
+				<div class="{{../rangeDisplayMode}}">
+					<span title="{{type}}" class="{{../rangeDisplayMode}}">{{label}} </span>
+					<input 	type="range" 
+							data-parametertype="{{type}}" 
+							min="{{min}}" 
+							max="{{max}}" 
+							value="{{value}}" 
+							step="{{step}}" 
+							name="{{name}}"
+							title="{{value}}"
+							class="{{../rangeDisplayMode}}" />
+					<output for="{{name}}" class="{{../rangeDisplayMode}}">{{value}}</output>
+					{{!--TODO <span class="patchHole patchParamInput">&nbsp;</span>--}}
+				</div>
+				{{/each}}
+
+			</fieldset>
+
+			{{/each}}
+
+			{{#if hiddenParameters}}
+			<fieldset>
+			{{#each hiddenParameters}}
+			<div>
+				<input	type="hidden"
+						data-parametertype="{{type}}"
+						name="{{name}}"
+						value="{{value}}" />
+			</div>
+			{{/each}}
+			</fieldset>
+			{{/if}}
+
+			<fieldset class="connectors">
+				<legend>Connectors</legend>
+				{{#unless hasNoInputs}}
+					<div><div>In</div><div><span class="patchHole patchInput">&nbsp;</span></div></div>
+				{{/unless}}
+
+				{{#unless hasNoOutputs}}
+					<div><div>Out</div><div><span class="patchHole patchOutput">&nbsp;</span></div></div>
+				{{/unless}}
+			</fieldset>
+
+			{{!TODO for modification modules: out <span class="patchHole patchParamOutput">&nbsp;</span>}}
+		</div>
+	</script>
+
+<script>
+	// importDoc references this import's document
+	var importDoc = document.currentScript.ownerDocument;
+
+	// mainDoc references the main document (the page that's importing us)
+	var mainDoc = document;
+
+	// Grab the element from this import, clone it,
+	// and append it to the importing document.
+	var el = importDoc.querySelector('#moduleTemplate');
+	mainDoc.body.appendChild(el.cloneNode(true));
+</script>

@@ -1,0 +1,11 @@
+.gear {
+	display: block !important;
+	background-color: #f9f9f9;
+	color: #030303;
+	margin: 0 0 4px 0;
+}
+
+div.gear > fieldset > div.moduleRow > div > div {
+		display: inline-block;
+		vertical-align: top;
+}

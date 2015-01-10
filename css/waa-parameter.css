@@ -1,0 +1,24 @@
+input.slider-vertical {
+	/* 
+		NB - NOT CROSS-BROWSER
+	*/
+	-webkit-appearance: slider-vertical;
+    -moz-transfrom: rotate(270deg);
+	height: 129px;
+	width: 21px;
+}
+
+div.slider-vertical {
+	display: inline-block;
+}
+
+span.slider-vertical {
+	display: block;
+	width: 21px;
+	text-align: center;
+}
+
+output.slider-vertical {
+	display: block;
+	width: 21px;
+}

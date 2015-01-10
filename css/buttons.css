@@ -1,0 +1,35 @@
+
+button {
+	border-radius: 30px;
+	padding: 5px;
+	width: 100px;
+	height: 50px;
+	margin: 3px;
+	font-size: 1.4em;
+}
+
+	#manualDrumButtons button {
+		background-color: #33FF00;
+		border: 5px solid #009900;
+
+		border-radius: 10px;
+		height: 75px;
+		width: 100px;
+	}
+
+	#drumMachineContainer button {
+		background-color: #AA88FF;
+		border: 5px solid #556699;
+	}
+
+	#filterButtons button {
+		background-color: #DD3322;
+		border: 5px solid #EE9988;
+	}
+
+	.module button {
+		background-color: #1188FF;
+		border: 5px solid #1166CC;
+		padding: 5px;
+		width: 100px;
+	}

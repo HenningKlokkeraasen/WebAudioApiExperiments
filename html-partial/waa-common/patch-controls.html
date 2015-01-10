@@ -1,0 +1,19 @@
+
+			<div>
+				<h4>Patch Controls</h4>
+
+				<div><input type="checkbox" id="showPatchCablesCheckbox" checked /> Show patch cables</div>
+			</div>
+
+<script>
+	// importDoc references this import's document
+	var importDoc = document.currentScript.ownerDocument;
+
+	// mainDoc references the main document (the page that's importing us)
+	var mainDoc = document;
+
+	// Grab the element from this import, clone it,
+	// and append it to the importing document.
+	var el = importDoc.querySelector('div');
+	mainDoc.querySelector("#patchCableControlContainer").appendChild(el.cloneNode(true));
+</script>

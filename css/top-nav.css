@@ -1,0 +1,53 @@
+
+/* first level */
+
+header#pageHeader nav ul {
+	text-align: left;
+	display: inline;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+	header#pageHeader nav ul li {
+		display: inline-block;
+		position: relative;
+		padding: 10px 5px 5px 0; /* needs paddng otherwise sublevels will not be shown */
+	}
+
+		header#pageHeader nav ul li a {
+			text-decoration: none;
+		}
+
+		header#pageHeader nav ul li:hover {
+			background-color: rgb(171, 221, 160);
+		}
+
+		/* second level */
+
+		header#pageHeader nav ul li ul {
+			padding: 0;
+			position: absolute;
+			top: 30px;
+			left: 0;
+			width: 150px;
+			display: none;
+			opacity: 0;
+			visibility: hidden;
+		}
+
+			header#pageHeader nav ul li ul li {
+				background: rgb(171, 221, 160);
+				display: block; 
+				color: #fff;
+				padding: 0;
+			}
+
+				header#pageHeader nav ul li ul li:hover {
+				}
+
+				header#pageHeader nav ul li:hover ul {
+					display: block;
+					opacity: 1;
+					visibility: visible;
+				}

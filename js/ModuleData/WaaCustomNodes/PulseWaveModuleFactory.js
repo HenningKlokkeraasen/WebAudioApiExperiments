@@ -1,0 +1,58 @@
+
+/*
+
+
+	Factory for oscillator modules
+
+
+*/
+
+PulseWaveModuleFactory.prototype = new OscillatorModuleFactory();
+PulseWaveModuleFactory.prototype.constructor = PulseWaveModuleFactory;
+
+function PulseWaveModuleFactory() {
+	this.moduleCssClass = '';
+	this.hasNoInputs = true;
+	this.hasStartButton = true;
+}
+PulseWaveModuleFactory.prototype.getModuleDefinition = function() {
+	return {	
+		handlebarsTemplateSelector : this.handlebarsTemplateSelector,
+		facade : PulseWaveFacade,
+		parameters : [
+			{ func : PulseWaveFacade.prototype.setFrequency, 	selector : 'input[data-parameterType="frequency"]',		ev : 'input'	},
+			{ func : PulseWaveFacade.prototype.setDetune, 		selector : 'input[data-parameterType="detune"]',		ev : 'input'	},
+			{ func : PulseWaveFacade.prototype.setPulseWidth, 	selector : 'input[data-parameterType="pulseWidth"]',		ev : 'input'	},
+			// { func : OscillatorFacade.prototype.setType, 		selector : 'input[data-parameterType="waveType"]',		ev : 'change'	}
+
+
+
+		]
+	};
+};
+// moduleData
+// 		name
+// 		shortName
+// 		f_params
+//			min
+//			max
+//			val
+//			stp
+// 		w_params
+//			indexChecked
+PulseWaveModuleFactory.prototype.getModule = function(moduleData) {
+	return this.getModuleBase({
+		name : moduleData.name, 
+        sections : [ {
+			ranges : [
+				this.getFrequencyParamObject(moduleData), 
+				this.getDetuneParamObject(moduleData.shortName),
+				{ label : 'P',	type : 'pulseWidth',		min : 0,		max : 100,		value: 50,		step : 1,		name : moduleData.shortName + 'pw'	}
+
+			]
+			// radioButtonLists : [
+			// 	this.getWaveTypeSelectObject1(moduleData.shortName, moduleData.w_params.indexChecked)
+
+			// ]
+    }]});
+};

@@ -1,0 +1,23 @@
+
+/* oscilloscope */
+
+.oscilloscopeCanvasContainer canvas,
+#oscilloscopeContainerFloating canvas,
+.freqAnalyserCanvasContainer canvas,
+#freqAnalyserContainerFloating canvas  {
+	width: 400px;
+	height: 180px;
+	border: 3px solid gray;
+    border-radius: 15px;
+}
+
+	.oscilloscopeCanvasContainer canvas,
+	#oscilloscopeContainerFloating canvas {
+		background-color: #004737; /*rgb(61, 122, 113)*/
+	}
+
+	.freqAnalyserCanvasContainer canvas,
+	#freqAnalyserContainerFloating canvas {
+		background-color: black;
+	}
+	

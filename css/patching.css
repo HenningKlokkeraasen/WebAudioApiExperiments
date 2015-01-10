@@ -1,0 +1,48 @@
+
+/* patching */
+
+.patchHole {
+	border-radius: 16px;
+	margin: 0;
+	padding: 0 5px 0 5px;
+	cursor: url('img/jack-cursor.png'), auto;
+	border: 3px solid silver;
+	background-color: black;
+}
+
+	.patchInput {
+	}
+
+	.patchOutput {
+	}
+
+	.patchParamInput {
+	}
+
+	.patchParamOutput {
+	}
+
+#patchCableContainer {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+
+	/* allows elements to not receive hover/click events, instead the event will occur on anything behind it. */
+	pointer-events: none;
+}
+	
+	#patchCableContainer canvas {
+		position: absolute;
+	}
+
+fieldset.connectors {
+	
+}
+	fieldset.connectors>div {
+		display: inline-block;
+		text-align: center;
+	}
+		fieldset.connectors>div>div {
+			margin: 0 5px 5px 0;
+		}

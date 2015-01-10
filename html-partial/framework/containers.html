@@ -1,0 +1,44 @@
+
+	<!--Container for patch cables (canvas elements that are positioned absolute in the pageX, pageY coordinate system-->
+	<div id="patchCableContainer"></div>
+
+<div class="analysersContainerFloating">
+	<!--Container for the oscilloscope, if the page width is larger than breakpointish width-->
+	<div id="oscilloscopeContainerFloating" class="hideMe"></div>
+	<div id="freqAnalyserContainerFloating" class="hideMe"></div>
+</div>
+	<!--Container for audio param, if the page width is larger than breakpointish width-->
+	<div id="audioParamModiferContainerFloating" class="hideMe"></div>
+
+	<!--Container for legend, if the page width is larger than breakpointish width-->
+	<div id="legendContainerFloating" class="hideMe"></div>
+
+	<!--Container for patch cable control-->
+	<!--<div id="patchCableControlContainerFloating"></div>-->
+
+<script>
+	// importDoc references this import's document
+	var importDoc = document.currentScript.ownerDocument;
+
+	// mainDoc references the main document (the page that's importing us)
+	var mainDoc = document;
+
+	// Grab the element from this import, clone it,
+	// and prepend it to the importing document.
+	// firstChild, reverse order...
+	var firstChild = mainDoc.body.firstChild;
+	
+	var selectors = [
+		//'#patchCableControlContainerFloating',
+		'#legendContainerFloating',
+		'#audioParamModiferContainerFloating',
+		'.analysersContainerFloating',
+		'#patchCableContainer',
+	];
+
+	selectors.forEach(function(selector) {
+		var el = importDoc.querySelector(selector);
+		mainDoc.body.insertBefore(el.cloneNode(true), firstChild);
+	});
+
+</script>

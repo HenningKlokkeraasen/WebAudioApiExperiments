@@ -1,0 +1,10 @@
+
+tr.whitekeys td {
+	background-color: white;
+	color: black;
+}
+
+tr.blackkeys td {
+	background-color: black;
+	color: white;
+}

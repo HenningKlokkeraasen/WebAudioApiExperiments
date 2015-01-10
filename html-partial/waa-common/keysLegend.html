@@ -1,0 +1,50 @@
+
+		<article>
+			<h3>Keyboard input</h3>
+			<table>
+				<tbody>
+					<tr class="blackkeys">
+						<td></td>
+						<td>w<br />=><br />C#</td>
+						<td>e<br />=><br />D#</td>
+						<td></td>
+						<td>t<br />=><br />F#</td>
+						<td>y<br />=><br />G#</td>
+						<td>u<br />=><br />A#</td>
+						<td></td>
+						<td>o<br />=><br />C#</td>
+						<td>p<br />=><br />D#</td>
+					</tr>
+					<tr class="whitekeys">
+						<td>a<br />=><br />C</td>
+						<td>s<br />=><br />D</td>
+						<td>d<br />=><br />E</td>
+						<td>f<br />=><br />F</td>
+						<td>g<br />=><br />G</td>
+						<td>h<br />=><br />A</td>
+						<td>j<br />=><br />B</td>
+						<td>k<br />=><br />C</td>
+						<td>l<br />=><br />D</td>
+					</tr>
+				</tbody>
+			</table>
+			<ul>
+				<li>0-8 (top row not numpad) changes octave (4 is default)</li>
+				<li>c,v,b,n switches wave type (sine, triangle, sawtooth, square respectively)</li>
+				<li>arrow up, arrow down bends / modulates pitch</li>
+				<li>0-9 (numpad not top row) changes which oscillator to control (0 means all)</li>
+			</ul>
+		</article>
+
+<script>
+	// importDoc references this import's document
+	var importDoc = document.currentScript.ownerDocument;
+
+	// mainDoc references the main document (the page that's importing us)
+	var mainDoc = document;
+
+	// Grab the element from this import, clone it,
+	// and append it to the importing document.
+	var el = importDoc.querySelector('article');
+	mainDoc.querySelector("#keysLegendContainer").appendChild(el.cloneNode(true));
+</script>
