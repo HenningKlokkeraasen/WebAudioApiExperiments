@@ -9,7 +9,7 @@
  
 App.prototype.shouldLoadImpulseBuffers = true;
 App.prototype.usesSynthAndKeyboard = true;
-App.prototype.moduleDatas = [
+App.prototype.rackData = [
 	// Modifiers
 	{
 		controller : GenericController,
@@ -39,12 +39,12 @@ App.prototype.moduleDatas = [
 	},
 ];
 
-App.prototype.moduleDatas.push(analyserModuleData);
-App.prototype.moduleDatas.push(convolverModuleData);
-App.prototype.moduleDatas.push(distortionModuleData);
-App.prototype.moduleDatas.push(slapbackDelayModuleData);
-App.prototype.moduleDatas.push(simpleReverbModuleData);
-App.prototype.moduleDatas.push(tremoloModuleData);
-App.prototype.moduleDatas.push(vcfModuleData);
-App.prototype.moduleDatas.push(channelStripModuleData);
-App.prototype.moduleDatas.push(sluttrinnModuleData);
+App.prototype.rackData.push(analyserModuleData);
+App.prototype.rackData.push(convolverModuleData);
+App.prototype.rackData.push(distortionModuleData);
+App.prototype.rackData.push(slapbackDelayModuleData);
+App.prototype.rackData.push(simpleReverbModuleData);
+App.prototype.rackData.push(tremoloModuleData);
+App.prototype.rackData.push(vcfModuleData);
+App.prototype.rackData.push(channelStripModuleData);
+App.prototype.rackData.push(sluttrinnModuleData);

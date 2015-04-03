@@ -2,10 +2,12 @@
 /* sound generation and modification modules */
 
 .moduleRow {
+	display: tablre-row;
+	margin: 0 0 4px 0;
 }
 
 	.moduleRow>div {
-		display: inline-block;
+		display: table-cell;
 		vertical-align: top;
 	}
 
@@ -22,9 +24,11 @@
 			display: inline-block;
 			margin: 0 3px 3px 0;
 			padding: 3px;
-			min-width: 184px;
+			width: 200px;
+			overflow: hidden;
 			font-size: 0.8em;
 			color: black;
+			height: 100%;
 
 			/* default background color for modules */
 			background-color : rgb(247, 238, 209); /* off white */
@@ -168,3 +172,8 @@
 
 
 			}
+
+.parameterLabel {
+	font-size: 0.8em;
+	vertical-align: text-top;
+}

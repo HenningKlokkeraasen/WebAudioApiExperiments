@@ -1,32 +1,32 @@
-// Analyser
-if (typeof AnalyserModuleFactory != 'undefined')
-	var analyserModuleData = {
-		controller : AnalyserController,
-		factory : AnalyserModuleFactory,
-		modules : [
-			{ name : 'Oscilloscope',		shortName : 'oscilloscope'																								}
-		]
-	};
+// // Analyser
+// if (typeof AnalyserModuleFactory != 'undefined')
+// 	var analyserModuleData = {
+// 		controller : AnalyserController,
+// 		factory : AnalyserModuleFactory,
+// 		modules : [
+// 			{ name : 'Oscilloscope',		shortName : 'oscilloscope'																								}
+// 		]
+// 	};
 
 	// Modifiers
 
-if (typeof ConvolverModuleFactory != 'undefined')
-	var convolverModuleData = {
-		controller : GenericController,
-		factory : ConvolverModuleFactory,
-		modules : [
-			{ name : 'Convolver 1',		shortName : 'convolver1',	/*impulseOptions : this.getImpulseOptions()*/ 														}
-		]
-	};
+// if (typeof ConvolverModuleFactory != 'undefined')
+// 	var convolverModuleData = {
+// 		controller : GenericController,
+// 		factory : ConvolverModuleFactory,
+// 		modules : [
+// 			{ name : 'Convolver 1',		shortName : 'convolver1',	/*impulseOptions : this.getImpulseOptions()*/ 														}
+// 		]
+// 	};
 
-if (typeof WaveShaperModuleFactory != 'undefined')
-	var distortionModuleData = {
-		controller : GenericController,
-		factory : WaveShaperModuleFactory,
-		modules : [
-			{ name: 'Distortion (Wave Shaper)', 		shortName : 'dist1'																							}
-		]
-	};
+// if (typeof WaveShaperModuleFactory != 'undefined')
+// 	var distortionModuleData = {
+// 		controller : GenericController,
+// 		factory : WaveShaperModuleFactory,
+// 		modules : [
+// 			{ name: 'Distortion (Wave Shaper)', 		shortName : 'dist1'																							}
+// 		]
+// 	};
 
 	// Custom modifiers
 

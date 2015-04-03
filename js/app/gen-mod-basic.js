@@ -9,7 +9,7 @@
  
 App.prototype.shouldLoadImpulseBuffers = true;
 
-App.prototype.moduleDatas = [
+App.prototype.rackData = [
 	// Audio Destination
 	{
 		controller : GenericController,
@@ -36,10 +36,10 @@ App.prototype.moduleDatas = [
 		controller : GenericController,
 		factory : GainModuleFactory,
 		modules : [
-			{ name : 'Amplify', 		shortName : 'gain1', 	g_params : { min :  1,	max : 6,	val:  1,	stp : 0.01 	} 										},
-			{ name : 'Reduce', 			shortName : 'gain2', 	g_params : { min :  0,	max : 1,	val: 0.5,	stp : 0.01 	}										},
-			{ name : 'Mute or Pass-through', shortName : 'gain3', 	g_params : { min :  0,	max : 1,val:  0,	stp : 1 	}										},
-			{ name : 'Invert', 			shortName : 'gain5', 	g_params : { min : -2,	max : 0,	val: -1,	stp : 0.01 	}										}
+			{ name : 'Gain 1: Amplify', 		shortName : 'gain1', 	g_params : { min :  1,	max : 6,	val:  1,	stp : 0.01 	} 										},
+			{ name : 'Gain 2: Reduce', 			shortName : 'gain2', 	g_params : { min :  0,	max : 1,	val: 0.5,	stp : 0.01 	}										},
+			{ name : 'Gain 3: Mute or Pass-through', shortName : 'gain3', 	g_params : { min :  0,	max : 1,val:  0,	stp : 1 	}										},
+			{ name : 'Gain 4: Invert', 			shortName : 'gain5', 	g_params : { min : -2,	max : 0,	val: -1,	stp : 0.01 	}										}
 		]
 	},
 	{
@@ -71,7 +71,7 @@ App.prototype.moduleDatas = [
 	},
 ];
 
-App.prototype.moduleDatas.push(analyserModuleData);
-App.prototype.moduleDatas.push(convolverModuleData);
-App.prototype.moduleDatas.push(distortionModuleData);
+App.prototype.rackData.push(analyserModuleData);
+App.prototype.rackData.push(convolverModuleData);
+App.prototype.rackData.push(distortionModuleData);
 

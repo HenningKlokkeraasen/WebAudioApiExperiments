@@ -9,7 +9,7 @@
  
 App.prototype.shouldLoadImpulseBuffers = false;
 
-App.prototype.moduleDatas = [
+App.prototype.rackData = [
 	// Oscillators
 	{
 		controller : OscillatorController,
@@ -39,5 +39,5 @@ App.prototype.moduleDatas = [
 	},
 ];
 
-App.prototype.moduleDatas.push(analyserModuleData);
-App.prototype.moduleDatas.push(sluttrinnModuleData);
+App.prototype.rackData.push(analyserModuleData);
+App.prototype.rackData.push(sluttrinnModuleData);

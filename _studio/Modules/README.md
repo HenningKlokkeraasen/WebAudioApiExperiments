@@ -1,0 +1,2 @@
+A "module" in this setup means a sound module; something based on the Web Audio API, that produces or modifies sound, and fits in a "rack".
+I.e. not a module in the context of AMD/require.js - although most sound modules is a 1:1 mapping to a module loaded into this app with require.js

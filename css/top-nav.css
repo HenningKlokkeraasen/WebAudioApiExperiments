@@ -1,4 +1,9 @@
 
+header#pageHeader nav {
+	padding: 0;
+	margin: 0;
+}
+
 /* first level */
 
 header#pageHeader nav ul {
@@ -7,12 +12,15 @@ header#pageHeader nav ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+
+	margin: -8px 0 -18px 0; /*compensate*/
 }
 
 	header#pageHeader nav ul li {
 		display: inline-block;
 		position: relative;
-		padding: 10px 5px 5px 0; /* needs paddng otherwise sublevels will not be shown */
+		padding: 8px 5px 5px 0; /* needs paddng otherwise sublevels will not be shown */
+		
 	}
 
 		header#pageHeader nav ul li a {

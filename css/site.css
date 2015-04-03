@@ -6,15 +6,11 @@ body {
 }
 
 	body > header {
-		padding: 10px 5px 0 5px;
+		padding: 2px 5px 0 5px;
 		background-color : rgb(171, 221, 160); /* pale green */
 		color : #333;
-		padding-top: 1em; /* due to oscilloscopeContainerFloating */
+		/*padding-top: 1em;  due to oscilloscopeContainerFloating */
 	}
-
-		body > header h1 {
-			margin: 0;
-		}
 
 		body > header a {
 			color : #333;
@@ -40,6 +36,18 @@ body {
 		margin-left: auto;
 		margin-right: auto;
 	}
+
+h1 {
+	margin: 0;
+	padding: 0;
+	font-size: 1.5em;
+}
+
+h2 {
+	margin: 0;
+	padding: 0;
+	font-size: 1.2em;
+}
 
 a {
 	color: #fff;
