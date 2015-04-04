@@ -24,13 +24,13 @@
 
 				{{#each checkBoxes}}
 				<div>
-					<span title="{{type}}">{{label}}: </span> <input type="checkbox" data-parametertype="{{type}}" />
+					<span title="{{type}}" class="parameterLabel ">{{label}}: </span> <input type="checkbox" data-parametertype="{{type}}" />
 				</div>
 				{{/each}}
 
 				{{#each radioButtonLists}}
 				<div>
-					<span title="{{type}}">{{label}}: </span>
+					<span title="{{type}}" class="parameterLabel ">{{label}}: </span>
 					{{#each radioButtons}}
 						<input 	type="radio" 
 								name="{{../rdoName}}" 
@@ -46,7 +46,7 @@
 
 				{{#each selectLists}}
 				<div>
-					<span title="{{type}}">{{label}}: </span>
+					<span title="{{type}}" class="parameterLabel ">{{label}}: </span>
 					<select data-parametertype="{{type}}">
 					{{#each options}}
 						<option value="{{value}}" 
@@ -60,7 +60,7 @@
 
 				{{#each ranges}}
 				<div class="{{../rangeDisplayMode}}">
-					<span title="{{type}}" class="{{../rangeDisplayMode}}">{{label}} </span>
+					<span title="{{type}}" class="parameterLabel {{../rangeDisplayMode}}">{{label}} </span>
 					<input 	type="range" 
 							data-parametertype="{{type}}" 
 							min="{{min}}" 

@@ -30,14 +30,14 @@
 
 	// Custom modifiers
 
-if (typeof SlapbackDelayModuleFactory != 'undefined')
-	var slapbackDelayModuleData = {
-		controller : GenericController,
-		factory : SlapbackDelayModuleFactory,
-		modules : [
-			{ name : 'Slapback Delay', shortName : 'slpbkdl1'																										}
-		]
-	};
+// if (typeof SlapbackDelayModuleFactory != 'undefined')
+// 	var slapbackDelayModuleData = {
+// 		controller : GenericController,
+// 		factory : SlapbackDelayModuleFactory,
+// 		modules : [
+// 			{ name : 'Slapback Delay', shortName : 'slpbkdl1'																										}
+// 		]
+// 	};
 
 if (typeof SimpleReverbModuleFactory != 'undefined')
 	var simpleReverbModuleData = {
