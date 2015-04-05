@@ -34,6 +34,21 @@
 	right: 0;
 	background-color: #2b2b26;
 	padding: 3px;
+	height: 250px;
+	overflow: auto;
+}
+
+/* patch show/hide floating on the right */
+
+#patchCableControlContainerFloating {
+	position: fixed;
+	width: 406px;
+	right: 0;
+	top: 260px;
+	background-color: #2b2b26;
+	padding: 3px;
+	height: 50px;
+	overflow: auto;
 }
 
 /* keyboard floating on the right */
@@ -42,6 +57,9 @@
 	position: fixed;
 	width: 406px;
 	right: 0;
+	top: 320px;
 	background-color: #2b2b26;
 	padding: 3px;
+	height: 300px;
+	overflow: auto;
 }

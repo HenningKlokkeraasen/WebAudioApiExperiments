@@ -6,10 +6,10 @@ define([
 	'/_studio/Modules/_GenericController.js',
 
 	// Data (model) for basic modules
-	'/_studio/Modules/CustomModifiers/Tremolo/TremoloModuleFactory.js',
+	'/_studio/Modules/CustomModifiers/WahWah/WahWahModuleFactory.js',
 
 	// Data store
-	'/_studio/Modules/CustomModifiers/Tremolo/TremoloModuleDataStore.js'
+	'/_studio/Modules/CustomModifiers/WahWah/WahWahModuleDataStore.js'
 	], function(Controller, ModuleFactory, DataStore) {
 		return { Controller: Controller, ModuleFactory: ModuleFactory, Modules : DataStore.Modules };
 	}

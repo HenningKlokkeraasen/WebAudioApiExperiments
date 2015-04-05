@@ -1,15 +1,15 @@
 define([
 	
-
+	
 
 	// Controllers: responsible for binding the view and model
-	'/_studio/Modules/_GenericController.js',
+	'/_studio/Modules/BasicWaa/Oscillator/OscillatorController.js',
 
 	// Data (model) for basic modules
-	'/_studio/Modules/CustomModifiers/Tremolo/TremoloModuleFactory.js',
+	'/_studio/Modules/CustomGenerators/FmOsc/FmOscModuleFactory.js',
 
 	// Data store
-	'/_studio/Modules/CustomModifiers/Tremolo/TremoloModuleDataStore.js'
+	'/_studio/Modules/CustomGenerators/FmOsc/FmOscModuleDataStore.js'
 	], function(Controller, ModuleFactory, DataStore) {
 		return { Controller: Controller, ModuleFactory: ModuleFactory, Modules : DataStore.Modules };
 	}

@@ -1,0 +1,42 @@
+define([], function() { return { Modules : 
+	[  
+	   {  
+	      name:'Oscillator with Vibrato',
+	      shortName:'fmo1',
+	      f_params:{  
+	         min:20,
+	         max:2000,
+	         val:440,
+	         stp:1
+	      },
+	      w_params:{  
+	         indexChecked:1
+	      },
+	      mod_freq_params:{
+	      	min:0,
+	      	max:20,
+	      	val:3.5,
+	      	stp:0.1
+	      }
+	   },
+	   {  
+	      name:'FM Oscillator',
+	      shortName:'fmo2',
+	      f_params:{  
+	         min:20,
+	         max:2000,
+	         val:440,
+	         stp:1
+	      },
+	      w_params:{  
+	         indexChecked:2
+	      },
+	      mod_freq_params:{
+	      	min:20,
+	      	max:20000,
+	      	val:500,
+	      	stp:1
+	      }
+	   }
+	]
+};});
