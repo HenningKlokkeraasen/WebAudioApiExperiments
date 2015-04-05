@@ -1,0 +1,38 @@
+Knob/dial alternatives
+ - jQuery Knob
+ - YUI Dial
+ - jqskin http://aikelab.net/websynth/
+
+Abbey Load
+ - http://stuartmemo.com/
+
+JavaScript
+ - mixins
+ - wrap library in anonymous self-executing function
+ - namespaces
+ - AMD
+
+ECMAScript 5
+ - strict mode
+ - get/set (properties)
+ - reflection
+ - Object.create
+
+ Future: ECMAScript 6 (Harmony)
+ - class
+ - <module>
+ - Promises
+
+ Future: ECMAScript 7
+ - Object.observe
+
+
+
+
+ IN USE
+
+ - JSON
+
+ ECMAScript 5
+ - Object.create
+ - Array.prototype.forEach

@@ -4,3 +4,9 @@ ga.txt
 js/vendor/*
 _thirdparty/*
 _backup/*
+
+_todo/img/*
+_todo/libs/*
+
+*.sublime-project
+*.sublime-workspace
