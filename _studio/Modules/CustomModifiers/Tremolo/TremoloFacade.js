@@ -2,14 +2,14 @@
     Web Audio API - custom nodes - Tremolo
 */
 define([
-    '/_WebAudioApiFacades/_FacadeBase2.js',
+    '/_studio/Modules/_FacadeBase.js',
     '/_studio/Modules/CustomGenerators/LFO/LfoFacade.js'
-	], function(FacadeBase2, LfoFacade) {
-		TremoloFacade.prototype = Object.create(FacadeBase2.prototype);
+	], function(FacadeBase, LfoFacade) {
+		TremoloFacade.prototype = Object.create(FacadeBase.prototype);
 		TremoloFacade.prototype.constructor = TremoloFacade;
 
 		function TremoloFacade(audioContext) {
-			FacadeBase2.call(this, audioContext); // base()
+			FacadeBase.call(this, audioContext); // base()
 
 			return this;
 		}

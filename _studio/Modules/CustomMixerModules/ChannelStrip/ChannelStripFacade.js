@@ -2,13 +2,13 @@
     Web Audio API - custom nodes - Mixer channel strip
 */
 define([
-    '/_WebAudioApiFacades/_FacadeBase2.js'
-    ], function(FacadeBase2) {
-        ChannelStripFacade.prototype = Object.create(FacadeBase2.prototype);
+    '/_studio/Modules/_FacadeBase.js'
+    ], function(FacadeBase) {
+        ChannelStripFacade.prototype = Object.create(FacadeBase.prototype);
         ChannelStripFacade.prototype.constructor = ChannelStripFacade;
 
         function ChannelStripFacade(audioContext) {
-            FacadeBase2.call(this, audioContext); // base()
+            FacadeBase.call(this, audioContext); // base()
 
             return this;
         }

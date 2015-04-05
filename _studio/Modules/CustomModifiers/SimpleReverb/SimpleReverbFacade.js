@@ -3,13 +3,13 @@
     From https://github.com/web-audio-components/simple-reverb
 */
 define([
-    '/_WebAudioApiFacades/_FacadeBase2.js'
-    ], function(FacadeBase2) {
-        SimpleReverbFacade.prototype = Object.create(FacadeBase2.prototype);
+    '/_studio/Modules/_FacadeBase.js'
+    ], function(FacadeBase) {
+        SimpleReverbFacade.prototype = Object.create(FacadeBase.prototype);
         SimpleReverbFacade.prototype.constructor = SimpleReverbFacade;
 
         function SimpleReverbFacade(audioContext) {
-            FacadeBase2.call(this, audioContext); // base()
+            FacadeBase.call(this, audioContext); // base()
             this._buildImpulse();
             return this;
         }

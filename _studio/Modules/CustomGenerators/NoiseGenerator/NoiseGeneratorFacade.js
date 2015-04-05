@@ -4,13 +4,13 @@
     https://medium.com/web-audio/you-dont-need-that-scriptprocessor-61a836e28b42
 */
 define([
-    '/_WebAudioApiFacades/_FacadeBase2.js',
-    ], function(FacadeBase2) {
-        NoiseGeneratorFacade.prototype = Object.create(FacadeBase2.prototype);
+    '/_studio/Modules/_FacadeBase.js'
+    ], function(FacadeBase) {
+        NoiseGeneratorFacade.prototype = Object.create(FacadeBase.prototype);
         NoiseGeneratorFacade.prototype.constructor = NoiseGeneratorFacade;
 
         function NoiseGeneratorFacade(audioContext) {
-            FacadeBase2.call(this, audioContext); // base()
+            FacadeBase.call(this, audioContext); // base()
         }
 
         // private

@@ -2,13 +2,13 @@
 	Web Audio API wrapper - stream, usually from mic (getUserMedia)
 */
 define([
-	'/_WebAudioApiFacades/_FacadeBase2.js'
-	], function(FacadeBase2) {
-		MediaStreamFacade.prototype = Object.create(FacadeBase2.prototype);
+	'/_studio/Modules/_FacadeBase.js'
+	], function(FacadeBase) {
+		MediaStreamFacade.prototype = Object.create(FacadeBase.prototype);
 		MediaStreamFacade.prototype.constructor = MediaStreamFacade;
 
 		function MediaStreamFacade(audioContext) {
-			FacadeBase2.call(this, audioContext); // base()
+			FacadeBase.call(this, audioContext); // base()
 
 			return this;
 		}

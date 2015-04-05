@@ -43,17 +43,18 @@ define([
 		//			max
 		//			val
 		//			stp
+		//		isModulatorLfo
 		FmOscModuleFactory.prototype.getModule = function(moduleData) {
 		    return this.getModuleBase({
 		        name : moduleData.name, 
-		        sections : [ { sectionName : 'Modulator (LFO)',
+		        sections : [ { sectionName : moduleData.isModulatorLfo ? 'LFO' : 'Modulator',
 					ranges : [
 						this.getModFreqParamObject(moduleData.shortName, moduleData.mod_freq_params),
 						this.getModGainParamObject(moduleData.shortName)
 					],
 					radioButtonLists : [
 						this.getModWaveTypeSelectObject(moduleData.shortName, 0)
-					] }, { sectionName : 'Carrier', 
+					] }, { sectionName : moduleData.isModulatorLfo ? 'Oscillator' : 'Carrier', 
 					ranges : [
 						this.getFrequencyParamObject(moduleData), 
 						this.getDetuneParamObject(moduleData.shortName)

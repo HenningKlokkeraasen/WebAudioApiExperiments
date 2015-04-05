@@ -2,15 +2,15 @@
     Web Audio API - custom nodes - wah-wah (filter sweep)
 */
 define([
-    '/_WebAudioApiFacades/_FacadeBase2.js',
+    '/_studio/Modules/_FacadeBase.js',
     '/_studio/Modules/BasicWaa/Filter/FilterFacade.js',
     '/_studio/Modules/CustomGenerators/LFO/LfoFacade.js'
-	], function(FacadeBase2, FilterFacade, LfoFacade) {
-		WahWahFacade.prototype = Object.create(FacadeBase2.prototype);
+	], function(FacadeBase, FilterFacade, LfoFacade) {
+		WahWahFacade.prototype = Object.create(FacadeBase.prototype);
 		WahWahFacade.prototype.constructor = WahWahFacade;
 
 		function WahWahFacade(audioContext) {
-			FacadeBase2.call(this, audioContext); // base()
+			FacadeBase.call(this, audioContext); // base()
 
 			return this;
 		}

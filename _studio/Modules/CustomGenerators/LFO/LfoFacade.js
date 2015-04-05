@@ -2,13 +2,13 @@
     Web Audio API - custom nodes - LFO (Low Frequency Oscillator)
 */
 define([
-    '/_WebAudioApiFacades/_FacadeBase2.js',
-    ], function(FacadeBase2) {
-        LfoFacade.prototype = Object.create(FacadeBase2.prototype);
+    '/_studio/Modules/_FacadeBase.js'
+    ], function(FacadeBase) {
+        LfoFacade.prototype = Object.create(FacadeBase.prototype);
         LfoFacade.prototype.constructor = LfoFacade;
 
         function LfoFacade(audioContext) {
-            FacadeBase2.call(this, audioContext); // base()
+            FacadeBase.call(this, audioContext); // base()
 
             return this;
         }

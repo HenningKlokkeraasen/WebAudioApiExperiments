@@ -18,7 +18,8 @@ define([
                 handlebarsTemplateSelector : this.handlebarsTemplateSelector,
                 facade : SlapbackDelayFacade,
                 parameters : [
-                    { func: SlapbackDelayFacade.prototype.setDelayTime, selector: 'input[data-parameterType="delayTime"]',      ev: 'input'     },
+                // delay shouldnt change continously. bind to change instead of input
+                    { func: SlapbackDelayFacade.prototype.setDelayTime, selector: 'input[data-parameterType="delayTime"]',      ev: 'change'     },
                     { func: SlapbackDelayFacade.prototype.setFeedback,  selector: 'input[data-parameterType="feedback"]',       ev: 'input'     },
                     { func: SlapbackDelayFacade.prototype.setWetLevel,  selector: 'input[data-parameterType="wetLevel"]',       ev: 'input'     }
                     

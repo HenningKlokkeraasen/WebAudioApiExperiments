@@ -2,22 +2,42 @@
 	Web Audio API wrapper - filter
 */
 define([
-	'/_WebAudioApiFacades/_FacadeBase.js'
-	], function() {
-		FilterFacade.prototype = new FacadeBase();
+	'/_studio/Modules/_FacadeBase.js'
+	], function(FacadeBase) {
+		FilterFacade.prototype = Object.create(FacadeBase.prototype); //new FacadeBase();
 		FilterFacade.prototype.constructor = FilterFacade;
 
 		function FilterFacade(audioContext) {
-			this.audioContext = audioContext;
-			this.node = audioContext.createBiquadFilter();
-
-
-
-
-
-
+			FacadeBase.call(this, audioContext); // base()
+			
 			return this;
 		}
+
+		// private
+		FilterFacade.prototype.initNodes = function() {
+		    this.input = this.audioContext.createBiquadFilter();
+		    this.output = this.input; // TODO verify
+
+
+
+		};
+
+		// private
+		FilterFacade.prototype.setDefaultValues = function() {
+
+
+
+		};
+
+		// private
+		FilterFacade.prototype.wireUp = function() {
+
+
+
+
+
+
+		};
 
 		FilterFacade.prototype.qualityMultiplier = 30; // todo parameterize
 

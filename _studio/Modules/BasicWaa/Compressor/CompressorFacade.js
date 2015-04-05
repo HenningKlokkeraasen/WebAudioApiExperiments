@@ -2,13 +2,13 @@
 	Web Audio API wrapper - Dynamics Compressor
 */
 define([
-	'/_WebAudioApiFacades/_FacadeBase2.js'
-	], function(FacadeBase2) {
-		CompressorFacade.prototype = Object.create(FacadeBase2.prototype);
+	'/_studio/Modules/_FacadeBase.js'
+	], function(FacadeBase) {
+		CompressorFacade.prototype = Object.create(FacadeBase.prototype);
 		CompressorFacade.prototype.constructor = CompressorFacade;
 
 		function CompressorFacade(audioContext) {
-			FacadeBase2.call(this, audioContext); // base()
+			FacadeBase.call(this, audioContext); // base()
 
 			return this;
 		}

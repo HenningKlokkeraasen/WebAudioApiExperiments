@@ -5,7 +5,7 @@ console.group();
 require.config({
 
 	// Force cache invalidation
-	urlArgs: "bust=v88",
+	urlArgs: "bust=v94",
 
     baseUrl: '/js', // relative to the html page loading this file?
     paths: {
@@ -20,17 +20,6 @@ require.config({
         // vendor: 'vendor',
         // facades: 'ApiFacades'
     },
-    // set dependencies for loading in order
-    shim: {
-    	'/_studio/load/browserApiFacades.js': {
-    		deps: ['/_studio/load/thirdpartylibs.js']
-    	},
-    	'/_studio/load/waa-base.js': {
-    		deps: ['/_studio/load/browserApiFacades.js']
-    	},
-    	
-    	
-    }
 });
 
 require(
@@ -40,7 +29,6 @@ require(
 		'/_studio/app/ArrayExtensions.js',
 
 		'/_studio/load/thirdpartylibs.js', // relative to the path of this file? or the html file loading this file?
-		'/_studio/load/browserApiFacades.js',
 		'/_studio/load/patching.js',
 		'/_studio/load/waa-base.js',
 		//'/_studio/load/waa-module-base.js',

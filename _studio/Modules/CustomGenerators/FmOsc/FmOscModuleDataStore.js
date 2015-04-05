@@ -17,7 +17,8 @@ define([], function() { return { Modules :
 	      	max:20,
 	      	val:3.5,
 	      	stp:0.1
-	      }
+	      },
+	      isModulatorLfo:true
 	   },
 	   {  
 	      name:'FM Oscillator',
@@ -33,10 +34,11 @@ define([], function() { return { Modules :
 	      },
 	      mod_freq_params:{
 	      	min:20,
-	      	max:20000,
-	      	val:500,
+	      	max:2000,
+	      	val:220,
 	      	stp:1
-	      }
+	      },
+	      isModulatorLfo:false
 	   }
 	]
 };});

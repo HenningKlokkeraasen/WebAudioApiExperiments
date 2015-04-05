@@ -2,15 +2,15 @@
     Web Audio API - custom nodes - Master Section (of a mixer)
 */
 define([
-    '/_WebAudioApiFacades/_FacadeBase2.js',
+	'/_studio/Modules/_FacadeBase.js',
     '/_studio/Modules/BasicWaa/Gain/GainFacade.js',
     '/_studio/Modules/BasicWaa/Compressor/CompressorFacade.js'
-	], function(FacadeBase2, GainFacade, CompressorFacade) {
-		MasterSectionFacade.prototype = Object.create(FacadeBase2.prototype);
+	], function(FacadeBase, GainFacade, CompressorFacade) {
+		MasterSectionFacade.prototype = Object.create(FacadeBase.prototype);
 		MasterSectionFacade.prototype.constructor = MasterSectionFacade;
 
 		function MasterSectionFacade(audioContext) {
-			FacadeBase2.call(this, audioContext); // base()
+			FacadeBase.call(this, audioContext); // base()
 
 			return this;
 		}

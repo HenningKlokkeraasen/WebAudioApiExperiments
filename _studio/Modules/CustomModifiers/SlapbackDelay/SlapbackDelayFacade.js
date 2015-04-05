@@ -3,13 +3,13 @@
     From http://www.html5rocks.com/en/tutorials/casestudies/jamwithchrome-audio/
 */
 define([
-    '/_WebAudioApiFacades/_FacadeBase2.js'
-    ], function(FacadeBase2) {
-        SlapbackDelayFacade.prototype = Object.create(FacadeBase2.prototype);
+    '/_studio/Modules/_FacadeBase.js'
+    ], function(FacadeBase) {
+        SlapbackDelayFacade.prototype = Object.create(FacadeBase.prototype);
         SlapbackDelayFacade.prototype.constructor = SlapbackDelayFacade;
 
         function SlapbackDelayFacade(audioContext) {
-            FacadeBase2.call(this, audioContext); // base()
+            FacadeBase.call(this, audioContext); // base()
 
             return this;
         }

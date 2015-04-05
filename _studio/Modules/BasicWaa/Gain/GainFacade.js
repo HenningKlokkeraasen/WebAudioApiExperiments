@@ -2,13 +2,13 @@
 	Web Audio API wrapper - Gain
 */
 define([
-	'/_WebAudioApiFacades/_FacadeBase2.js'
-	], function(FacadeBase2) {
-		GainFacade.prototype = Object.create(FacadeBase2.prototype);
+	'/_studio/Modules/_FacadeBase.js'
+	], function(FacadeBase) {
+		GainFacade.prototype = Object.create(FacadeBase.prototype);
 		GainFacade.prototype.constructor = GainFacade;
 
 		function GainFacade(audioContext) {
-		    FacadeBase2.call(this, audioContext); // base()
+		    FacadeBase.call(this, audioContext); // base()
 
 			return this;
 		}

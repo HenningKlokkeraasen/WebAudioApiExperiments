@@ -2,15 +2,15 @@
 	Web Audio API wrapper - Oscillator
 */
 define([
-	'/_WebAudioApiFacades/_FacadeBase2.js',
+	'/_studio/Modules/_FacadeBase.js',
 	'/_studio/Modules/BasicWaa/Gain/GainFacade.js'
-	], function(FacadeBase2, GainFacade) {
+	], function(FacadeBase, GainFacade) {
 		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////	
-		OscillatorFacade.prototype = Object.create(FacadeBase2.prototype); // new FacadeBase2();
+		OscillatorFacade.prototype = Object.create(FacadeBase.prototype); // new FacadeBase2();
 		OscillatorFacade.prototype.constructor = OscillatorFacade;
 
 		function OscillatorFacade(audioContext) {
-			FacadeBase2.call(this, audioContext); // base()
+			FacadeBase.call(this, audioContext); // base()
 			
 			return this;
 		};
