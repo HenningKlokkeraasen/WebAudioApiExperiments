@@ -1,0 +1,55 @@
+define([
+    '/_studio/Modules/_ModuleFactoryBase.js',
+    '/_studio/Modules/AudioFilePlayer/AudioFilePlayer/AudioFilePlayerFacade.js'
+    ], function(ModuleFactoryBase, AudioFilePlayerFacade) {
+        AudioFilePlayerModuleFactory.prototype = new ModuleFactoryBase();
+        AudioFilePlayerModuleFactory.prototype.constructor = AudioFilePlayerModuleFactory;
+
+        function AudioFilePlayerModuleFactory() {
+            this.moduleCssClass = 'wideModule audioBuffer';
+            this.hasNoInputs = true;
+            
+        }
+        AudioFilePlayerModuleFactory.prototype.getModuleDefinition = function() {
+            return {    
+                handlebarsTemplateSelector : this.handlebarsTemplateSelector,
+                facade : AudioFilePlayerFacade,
+                parameters : [
+
+
+
+
+
+
+                ]
+            };
+        };
+
+        AudioFilePlayerModuleFactory.prototype.getModule = function(moduleData) {
+            var module =  this.getModuleBase({
+                name : moduleData.name, 
+                sections : [ {
+                    buttons: this.getKeyValuePairsForButton(moduleData.audioFilePaths)
+            }]});
+            module.audioFilePaths = moduleData.audioFilePaths;
+            return module;
+        };
+
+        AudioFilePlayerModuleFactory.prototype.getKeyValuePairsForButton = function(audioFilePaths) {
+            var buttons = [];
+            audioFilePaths.forEach(function(filePath) {
+                var s = filePath.split('/');
+                var n = s[s.length - 1];
+                
+                var t = n.split('.');
+                var name = t[0];
+
+                // console.debug(filePath);
+                buttons.push( { buttonId : filePath, buttonName : name } );
+            });
+            return buttons;
+        };
+
+        return AudioFilePlayerModuleFactory;
+    }
+);

@@ -1,35 +1,27 @@
 
 button {
-	border-radius: 30px;
+	border-radius: 8px;
 	padding: 5px;
 	width: 100px;
 	height: 50px;
-	margin: 3px;
-	font-size: 1.4em;
+	margin: 4px 3px;
+	background-color: #1A1A1B;
+	border-bottom: 4px solid #263342;
+	border-right: none;
+	border-top: none;
+	border-left: 4px solid #263342;
+	color: wheat;
+
+	outline: 0;
 }
 
-	#manualDrumButtons button {
-		background-color: #33FF00;
-		border: 5px solid #009900;
+button:active, button.activeToGetTheSameEffectWhenTriggeredFromDom {
+	border-bottom: none;
+	border-right: 4px solid #263342;
+	border-top: 4px solid #263342;;
+	margin-top: 0;
+	border-left: none;
 
-		border-radius: 10px;
-		height: 75px;
-		width: 100px;
-	}
-
-	#drumMachineContainer button {
-		background-color: #AA88FF;
-		border: 5px solid #556699;
-	}
-
-	#filterButtons button {
-		background-color: #DD3322;
-		border: 5px solid #EE9988;
-	}
-
-	.module button {
-		background-color: #1188FF;
-		border: 5px solid #1166CC;
-		padding: 5px;
-		width: 100px;
-	}
+	position: relative;
+	bottom: -3px;
+}

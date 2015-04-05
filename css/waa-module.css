@@ -164,6 +164,10 @@
 				background-color : rgb(247, 238, 209); /* off white */
 			}
 
+			.audioBuffer {
+				background-color: rgb(255, 110, 92);
+			}
+
 			.for-future-use {
 
 
@@ -171,6 +175,10 @@
 
 
 
+			}
+
+			.wideModule {
+				width: 98%;
 			}
 
 .parameterLabel {

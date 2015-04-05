@@ -13,7 +13,7 @@
 				<button>Start</button>
 			</fieldset>
 			{{/if}}
-			
+
 			{{#each sections}}
 
 			<fieldset {{#if ../renderSectionsVertically}}class="verticalAligned"{{/if}}>
@@ -22,6 +22,10 @@
 					<legend>{{sectionName}}</legend>
 				{{/if}}
 
+				{{#each buttons}}
+				<button name="{{buttonId}}">{{buttonName}}</button>
+				{{/each}}
+				
 				{{#each checkBoxes}}
 				<div>
 					<span title="{{type}}" class="parameterLabel ">{{label}}: </span> <input type="checkbox" data-parametertype="{{type}}" />
