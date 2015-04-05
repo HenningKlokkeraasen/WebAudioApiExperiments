@@ -27,7 +27,7 @@ define([
 							{
 								controller : AudioFilePlayer.Controller,
 								factory : AudioFilePlayer.ModuleFactory,
-								modules : AudioFilePlayer.Modules
+								modules : AudioFilePlayer.Modules.getItemsByShortName('drumpads1')
 							},
 						]
 					},
