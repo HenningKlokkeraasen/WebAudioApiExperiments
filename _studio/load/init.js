@@ -5,7 +5,7 @@ console.group();
 require.config({
 
 	// Force cache invalidation
-	urlArgs: "bust=v70",
+	urlArgs: "bust=v77",
 
     baseUrl: '/js', // relative to the html page loading this file?
     paths: {

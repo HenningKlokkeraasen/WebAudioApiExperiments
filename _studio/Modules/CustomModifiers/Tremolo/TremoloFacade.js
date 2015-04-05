@@ -1,53 +1,66 @@
-
 /*
-
-
     Web Audio API - custom nodes - Tremolo
-    
-
 */
+define([
+    '/_WebAudioApiFacades/_FacadeBase2.js',
+    '/_studio/Modules/CustomGenerators/LFO/LfoFacade.js'
+	], function(FacadeBase2, LfoFacade) {
+		TremoloFacade.prototype = Object.create(FacadeBase2.prototype);
+		TremoloFacade.prototype.constructor = TremoloFacade;
 
-TremoloFacade.prototype = Object.create(FacadeBase2.prototype);
-TremoloFacade.prototype.constructor = TremoloFacade;
+		function TremoloFacade(audioContext) {
+			FacadeBase2.call(this, audioContext); // base()
 
-function TremoloFacade(audioContext) {
-	FacadeBase2.call(this, audioContext); // base()
+			return this;
+		}
 
-	return this;
-}
+		// private
+		TremoloFacade.prototype.initNodes = function() {
+			this.input = this.audioContext.createGain();
+			this.amplitudeGain = this.audioContext.createGain();
+			this.output = this.amplitudeGain; // TODO verify
+			this.lfoFacade = new LfoFacade(this.audioContext);
+			
 
-// private
-TremoloFacade.prototype.initNodes = function() {
-	this.input = this.audioContext.createGain();
-	this.output = this.input; // TODO verify
-	this.lfoFacade = new LfoFacade(this.audioContext);
+		};
 
-
-};
-
-// private
-TremoloFacade.prototype.setDefaultValues = function() {
-
-
-
-};
-
-// private
-TremoloFacade.prototype.wireUp = function() {
-	// let the gain AudioParam be controlled by an LFO
-	var amplitude = this.input.gain;
-	this.lfoFacade.control(amplitude);
+		// private
+		TremoloFacade.prototype.setDefaultValues = function() {
 
 
 
-};
+		};
 
-TremoloFacade.prototype.setLfoRate = function(value) {
-	this.lfoFacade.setFrequency(value);
-	return this;
-};
+		// private
+		TremoloFacade.prototype.wireUp = function() {
+			this.input.connect(this.amplitudeGain);
+			// let the gain AudioParam be controlled by an LFO
+			var amplitude = this.amplitudeGain.gain;
+			this.lfoFacade.control(amplitude);
 
-TremoloFacade.prototype.setLfoWaveType = function(type) {
-	this.lfoFacade.setType(type);
-	return this;
-};
+
+		};
+
+		TremoloFacade.prototype.setPreGain = function(value) {
+			this.input.gain.value = value;
+			return this;
+		};
+
+		TremoloFacade.prototype.setLfoRate = function(value) {
+			this.lfoFacade.setRate(value);
+			return this;
+		};
+
+        TremoloFacade.prototype.setLfoDepth = function(value) {
+            this.lfoFacade.setDepth(value);
+            return this;
+        };
+
+		TremoloFacade.prototype.setLfoWaveType = function(type) {
+			this.lfoFacade.setType(type);
+			return this;
+		};
+
+		return TremoloFacade;
+	}
+);
