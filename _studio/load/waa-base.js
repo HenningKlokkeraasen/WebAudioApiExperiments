@@ -1,6 +1,3 @@
-
-console.debug('in waa-base.js');
-
 require([
 	// Facades to the Web Audio API
 	//'/_WebAudioApiFacades/_FacadeBase.js',
@@ -20,6 +17,5 @@ require([
 	//'/_studio/app/app.js'
 	
 	], function() {
-		console.debug('dependencies for waa-base.js loaded');
 	}
 );

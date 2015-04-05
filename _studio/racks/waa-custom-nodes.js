@@ -39,10 +39,13 @@ define([
 						]
 					},
 
-					// Custom modifiers
+					// Modifiers
 
 					{
 						moduleCollections : [
+
+							// Custom modifiers
+
 							{
 								controller : SimpleReverb.Controller,
 								factory : SimpleReverb.ModuleFactory,
@@ -66,7 +69,7 @@ define([
 						]
 					},
 
-					// Custom Mixer
+					// Mixer
 
 					{
 						moduleCollections : [

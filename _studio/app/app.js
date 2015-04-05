@@ -77,6 +77,8 @@ define([
 			// finished initializing, notify others
 			//var isInitializedEvent = new CustomEvent('appIsInitialized', { detail : { instance : this } });
 			//document.dispatchEvent(isInitializedEvent);
+
+			console.log('all loaded');
 		};
 
 		App.prototype.continueLoading = function() {
