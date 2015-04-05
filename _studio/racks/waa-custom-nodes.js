@@ -5,75 +5,58 @@ define([
 
 	'/_studio/Modules/BasicWaa/Oscillator/Oscillator.js',
 
+	'/_studio/Modules/CustomGenerators/FmOsc/FmOsc.js',
+
 	'/_studio/Modules/CustomModifiers/SlapbackDelay/SlapbackDelay.js',
-	], function(AudioDestination, Analyser, Oscillator, SlapbackDelay) {
+	'/_studio/Modules/CustomModifiers/SimpleReverb/SimpleReverb.js',
+	'/_studio/Modules/CustomModifiers/Tremolo/Tremolo.js',
+	], function(AudioDestination, Analyser, Oscillator, FmOsc, SlapbackDelay, SimpleReverb, Tremolo) {
 		return {
 			title : 'Sound Generation and Modification',
 			description : 'Custom nodes',
 			rackData : {
 				rows : [
 
-					// TEMP
+					// Sound generators
 
 					{
 						moduleCollections : [
 							{
 								controller : Oscillator.Controller,
 								factory : Oscillator.ModuleFactory,
-								modules : [
-									{ name : 'Osc 1', 			shortName : 'osc1', 	f_params : { min : 20, 	max : 2000, val :  440, stp :  1 	}, 	w_params : { indexChecked : 0 } 	}
-								]
+								modules : Oscillator.Modules.getItemsByShortName('osc1')
+							},
+
+							// Custom generators
+
+							{
+								controller : FmOsc.Controller,	
+								factory : FmOsc.ModuleFactory,	
+								modules : FmOsc.Modules
 							},
 						]
 					},
-
-					// {
-					// 	moduleCollections : [
-					// 		// Custom oscillators
-					// 		{
-					// 			controller : OscillatorController,	
-					// 			factory : FmoModuleFactory,	
-					// 			modules : [
-					// 				{ name : 'FM Oscillator 1', 			shortName : 'fmo1', 		f_params : { min : 20, max : 2000, val :  440, stp :  1 },	w_params : { indexChecked : 1 } 	},
-					// 				{ name : 'FM Oscillator 2',			shortName : 'fmo2', 		f_params : { min : 20, max : 2000, val :  440, stp :  1 },	w_params : { indexChecked : 2 } 	}
-					// 			]	
-					// 		},
-					// 	]
-					// },
 					{
 						moduleCollections : [
 							// Custom modules
-							//tremoloModuleData,
+							{  
+							   controller : Tremolo.Controller,
+							   factory : Tremolo.ModuleFactory,
+							   modules : Tremolo.Modules
+							},
 							{
 								controller : SlapbackDelay.Controller,
 								factory : SlapbackDelay.ModuleFactory,
-								modules : [
-									{ name : 'Slapback Delay', shortName : 'slpbkdl1'																										}
-								]
+								modules : SlapbackDelay.Modules
 							},
-							// simpleReverbModuleData,
+							{
+								controller : SimpleReverb.Controller,
+								factory : SimpleReverb.ModuleFactory,
+								modules : SimpleReverb.Modules
+							},
 							// filterSweepModuleData,
 						]
 					},
-					// {
-					// 	moduleCollections : [
-					// 		// Modifiers
-					// 		{
-					// 			controller : GenericController,
-					// 			factory : FilterModuleFactory,
-					// 			modules : [
-					// 			    { name : 'Filter 1',		shortName : 'filter1',																	t_params : { indexChecked : 0 } 	},
-					// 			    { name : 'Filter 2',		shortName : 'filter2',																	t_params : { indexChecked : 1 } 	}
-					// 			]	
-					// 		},
-					// 	]
-					// },
-					// {
-					// 	moduleCollections : [
-					// 		convolverModuleData,
-					// 		distortionModuleData
-					// 	]
-					// },
 					// {
 					// 	moduleCollections : [
 					// 		channelStripModuleData
@@ -82,7 +65,6 @@ define([
 					// {
 					// 	moduleCollections : [
 					// 		sluttrinnModuleData,
-					// 		analyserModuleData
 					// 	]
 					// },
 
@@ -91,17 +73,13 @@ define([
 							{
 								controller : AudioDestination.Controller,
 								factory : AudioDestination.ModuleFactory,
-								modules : [
-									{ name : 'Speakers',			shortName : 'speakers'																									}
-								]
+								modules : AudioDestination.Modules
 							},
 
 							{
 								controller : Analyser.Controller,
 								factory : Analyser.ModuleFactory,
-								modules : [
-									{ name : 'Oscilloscope',		shortName : 'oscilloscope'																								}
-								]
+								modules : Analyser.Modules
 							}
 						]
 					}
