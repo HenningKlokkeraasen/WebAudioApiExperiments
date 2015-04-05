@@ -14,7 +14,10 @@
 	<div id="legendContainerFloating" class="hideMe"></div>
 
 	<!--Container for patch cable control-->
-	<!--<div id="patchCableControlContainerFloating"></div>-->
+	<div id="patchCableControlContainerFloating" class="hideMe"></div>
+
+	<!--Container for keys legend-->
+	<div id="keysLegendContainerFloating" class="hideMe"></div>
 
 <script>
 	// importDoc references this import's document
@@ -29,7 +32,8 @@
 	var firstChild = mainDoc.body.firstChild;
 	
 	var selectors = [
-		//'#patchCableControlContainerFloating',
+		'#keysLegendContainerFloating',
+		'#patchCableControlContainerFloating',
 		'#legendContainerFloating',
 		'#audioParamModiferContainerFloating',
 		'.analysersContainerFloating',

@@ -1,6 +1,4 @@
 define([
-	'/_studio/Modules/BasicWaa/AudioDestination/AudioDestination.js',
-
 	'/_studio/Modules/BasicWaa/Analyser/Analyser.js',
 
 	'/_studio/Modules/BasicWaa/Oscillator/Oscillator.js',
@@ -10,7 +8,11 @@ define([
 	'/_studio/Modules/CustomModifiers/SlapbackDelay/SlapbackDelay.js',
 	'/_studio/Modules/CustomModifiers/SimpleReverb/SimpleReverb.js',
 	'/_studio/Modules/CustomModifiers/Tremolo/Tremolo.js',
-	], function(AudioDestination, Analyser, Oscillator, FmOsc, SlapbackDelay, SimpleReverb, Tremolo) {
+	'/_studio/Modules/CustomModifiers/WahWah/WahWah.js',
+	
+	'/_studio/Modules/CustomMixerModules/ChannelStrip/ChannelStrip.js',
+	'/_studio/Modules/CustomMixerModules/MasterSection/MasterSection.js',
+	], function(Analyser, Oscillator, FmOsc, SlapbackDelay, SimpleReverb, Tremolo, WahWah, ChannelStrip, MasterSection) {
 		return {
 			title : 'Sound Generation and Modification',
 			description : 'Custom nodes',
@@ -36,44 +38,52 @@ define([
 							},
 						]
 					},
+
+					// Custom modifiers
+
 					{
 						moduleCollections : [
-							// Custom modules
-							{  
-							   controller : Tremolo.Controller,
-							   factory : Tremolo.ModuleFactory,
-							   modules : Tremolo.Modules
+							{
+								controller : SimpleReverb.Controller,
+								factory : SimpleReverb.ModuleFactory,
+								modules : SimpleReverb.Modules
 							},
 							{
 								controller : SlapbackDelay.Controller,
 								factory : SlapbackDelay.ModuleFactory,
 								modules : SlapbackDelay.Modules
 							},
-							{
-								controller : SimpleReverb.Controller,
-								factory : SimpleReverb.ModuleFactory,
-								modules : SimpleReverb.Modules
+							{  
+							   controller : Tremolo.Controller,
+							   factory : Tremolo.ModuleFactory,
+							   modules : Tremolo.Modules
 							},
-							// filterSweepModuleData,
+							{
+								controller : WahWah.Controller,
+								factory : WahWah.ModuleFactory,	
+								modules : WahWah.Modules
+							}
 						]
 					},
-					// {
-					// 	moduleCollections : [
-					// 		channelStripModuleData
-					// 	]
-					// },
-					// {
-					// 	moduleCollections : [
-					// 		sluttrinnModuleData,
-					// 	]
-					// },
+
+					// Custom Mixer
 
 					{
 						moduleCollections : [
 							{
-								controller : AudioDestination.Controller,
-								factory : AudioDestination.ModuleFactory,
-								modules : AudioDestination.Modules
+								controller : ChannelStrip.Controller,
+								factory : ChannelStrip.ModuleFactory,
+								modules : ChannelStrip.Modules
+							}
+						]
+					},
+
+					{
+						moduleCollections : [
+							{
+								controller : MasterSection.Controller,
+								factory : MasterSection.ModuleFactory,
+								modules : MasterSection.Modules
 							},
 
 							{

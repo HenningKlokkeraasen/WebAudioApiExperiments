@@ -119,7 +119,7 @@ define([
 		App.prototype.initSynthAndKeyboard = function() {
 			var synth = new Synthesizer(this.master.audioContext);
 			new KeyboardController(synth);
-			this.initKeysLegendFloatingLayout();
+			// this.initKeysLegendFloatingLayout();
 		};
 
 		App.prototype.initPatchCables = function() {
@@ -153,11 +153,12 @@ define([
 			new LayoutController('.freqSpectrumAnalyserCanvasContainer', '#freqAnalyserContainerFloating', '>canvas');
 			//new LayoutController('#audioParamModifierContainer', '#audioParamModiferContainerFloating', '>div');
 			new LayoutController('#legendContainer', '#legendContainerFloating', '>div');
-			new LayoutController('#patchCableControlContainer', '#legendContainerFloating', '>div');
+			new LayoutController('#patchCableControlContainer', '#patchCableControlContainerFloating', '>div');
+			new LayoutController('#keysLegendContainer', '#keysLegendContainerFloating', '>article');
 		};
 
 		App.prototype.initKeysLegendFloatingLayout = function() {
-			new LayoutController('#keysLegendContainer', '#legendContainerFloating', '>article');
+			// new LayoutController('#keysLegendContainer', '#legendContainerFloating', '>article');
 		};
 		//////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
 		return App;
