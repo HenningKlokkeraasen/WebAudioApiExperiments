@@ -11,7 +11,6 @@ define([
 	'/_studio/Modules/BasicWaa/WaveShaper/WaveShaper.js',
 	'/_studio/Modules/BasicWaa/Compressor/Compressor.js'
 	], function(AudioDestination, Analyser, Oscillator, Filter, Gain, Delay, Convolver, WaveShaper, Compressor) {
-
 		return {
 			title : 'Sound Generation and Modification',
 			description : 'This rack shows the basic built-in sound generation and modification nodes in the Web Audio API',

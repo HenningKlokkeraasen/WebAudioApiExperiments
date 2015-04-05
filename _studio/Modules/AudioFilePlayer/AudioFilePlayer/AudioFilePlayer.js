@@ -3,13 +3,13 @@ define([
 
 
 	// Controllers: responsible for binding the view and model
-	'/_studio/Modules/_AudioFileLoadingModuleController.js',
+	'/_studio/Modules/AudioFilePlayer/AudioFilePlayer/AudioFilePlayerController.js',
 
 	// Data (model) for basic modules
-	'/_studio/Modules/BasicWaa/Convolver/ConvolverModuleFactory.js',
+	'/_studio/Modules/AudioFilePlayer/AudioFilePlayer/AudioFilePlayerModuleFactory.js',
 
 	// Data store
-	'/_studio/Modules/BasicWaa/Convolver/ConvolverModuleDataStore.js'
+	'/_studio/Modules/AudioFilePlayer/AudioFilePlayer/AudioFilePlayerModuleDataStore.js'
 	], function(Controller, ModuleFactory, DataStore) {
 		return { Controller: Controller, ModuleFactory: ModuleFactory, Modules : DataStore.Modules };
 	}

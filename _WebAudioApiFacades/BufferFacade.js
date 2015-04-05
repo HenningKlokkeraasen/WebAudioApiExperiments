@@ -11,20 +11,20 @@ define([
 				console.error('XMLHttpRequest is NOT available')
 				return;
 			}
-			console.log('XMLHttpRequest is available');
+			//console.debug('XMLHttpRequest is available');
 
 			this.audioContext = audioContext;
 			this.buffers = {};
 		}
 
 		BufferFacade.prototype.bufferAudioFile = function(url) {
-			console.debug('bufferAudioFile for ' + url);
+			// console.debug('bufferAudioFile for ' + url);
 			// Get file as byte array asynchronously
 			this.xhrFacade.getArrayBuffer(url, this.onXhrSuccess, this.onXhrError, this);
 		};
 
 		BufferFacade.prototype.bufferAudioFiles = function(urls, callback) {
-			console.debug("Buffer - number of URLs: " + urls.length);
+			// console.debug("Buffer - number of URLs: " + urls.length);
 			this.callback = callback;
 			this.counter = 0;
 			this.numberOfUrls = urls.length;
@@ -35,7 +35,7 @@ define([
 		};
 
 		BufferFacade.prototype.onXhrSuccess = function(arrayBufferResponse, url) {
-			console.debug('xhr success for ' + url);
+			// console.debug('xhr success for ' + url);
 			var self = this;
 			// Decode asynchronously
 			// arrayBufferResponse should be an audio file
@@ -54,12 +54,12 @@ define([
 		};
 
 		BufferFacade.prototype.onDecodeSuccess = function(buffer, url) {
-			console.debug('Decode success for ' + url + ', has length', buffer.length);
+			// console.debug('Decode success for ' + url + ', has length', buffer.length);
 			this.buffers[url] = buffer;
 
 			this.counter++;
 			if (this.counter == this.numberOfUrls) {
-				console.log("Buffer - all files downloaded and decoded");
+				// console.debug("Buffer - all files downloaded and decoded");
 				this.callback(this.buffers);
 			}
 		};

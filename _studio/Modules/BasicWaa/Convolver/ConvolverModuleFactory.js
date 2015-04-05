@@ -2,7 +2,7 @@ define([
     '/_studio/Modules/_ModuleFactoryBase.js',
     '/_studio/Modules/BasicWaa/Convolver/ConvolverFacade.js'
     ], function(ModuleFactoryBase, ConvolverFacade) {
-        //////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
+        
         ConvolverModuleFactory.prototype = new ModuleFactoryBase();
         ConvolverModuleFactory.prototype.constructor = ConvolverModuleFactory;
 
@@ -47,16 +47,16 @@ define([
                     ],
                     
                     selectLists : [
-                        { label : 'I',	type : 'impulse', 		options: this.getKeyValuePairsForSelectListOptions(moduleData.impulseFilePaths) }
+                        { label : 'I',	type : 'impulse', 		options: this.getKeyValuePairsForSelectListOptions(moduleData.audioFilePaths) }
                     ]
             }]});
-            module.impulseFilePaths = moduleData.impulseFilePaths;
+            module.audioFilePaths = moduleData.audioFilePaths;
             return module;
         };
 
-        ConvolverModuleFactory.prototype.getKeyValuePairsForSelectListOptions = function(impulseFilePaths) {
+        ConvolverModuleFactory.prototype.getKeyValuePairsForSelectListOptions = function(audioFilePaths) {
             var impulseOptions = [];
-            impulseFilePaths.forEach(function(filePath) {
+            audioFilePaths.forEach(function(filePath) {
                 var s = filePath.split('/');
                 var name = s[s.length - 1];
                 console.debug(filePath);
@@ -65,7 +65,6 @@ define([
             return impulseOptions;
         };
 
-        //////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
         return ConvolverModuleFactory;
     }
 );

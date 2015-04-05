@@ -3,7 +3,7 @@ define([], function() { return { Modules :
 	   {  
 	      name:'Convolver',
 	      shortName:'convolver1',
-	      impulseFilePaths:[  
+	      audioFilePaths:[  
 	         '/audiofiles/impulses/FactoryHall/FactoryHall/FactoryHall.wav',
 	         '/audiofiles/impulses/FactoryHall/PaHornInHall/PaHornInHall.wav',
 	         '/audiofiles/impulses/ChurchSchellingwoude/ChurchSchellingwoude/Church.wav',
