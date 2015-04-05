@@ -1,4 +1,3 @@
-console.debug('in Gain.js');
 define([
 	
 
@@ -8,8 +7,10 @@ define([
 
 	// Data (model) for basic modules
 	'/_studio/Modules/BasicWaa/Gain/GainModuleFactory.js',
-	], function(Controller, ModuleFactory) {
-		console.debug('dependencies for Gain.js loaded');
-		return { Controller: Controller, ModuleFactory: ModuleFactory };
+
+	// Data store
+	'/_studio/Modules/BasicWaa/Gain/GainModuleDataStore.js'
+	], function(Controller, ModuleFactory, DataStore) {
+		return { Controller: Controller, ModuleFactory: ModuleFactory, Modules : DataStore.Modules };
 	}
 );

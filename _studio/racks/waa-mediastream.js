@@ -7,7 +7,8 @@ define([
 	], function(AudioDestination, Analyser, MediaStream) {
 		return {
 			title : 'Media Stream and Analyser',
-			description : 'Microphone and Oscilloscope',
+			description : 'This rack shows the built-in MediaStream and Analyser nodes in the Web Audio API, '
+				+ 'utilized to get audio from the device microphone, and displaying audio in an oscilloscope and frequency spectrum, respectively',
 			rackData : {
 				rows : [
 					{
@@ -16,9 +17,7 @@ define([
 							{
 								controller : MediaStream.Controller,
 								factory : MediaStream.ModuleFactory,
-								modules : [
-									{ name : 'Microphone'																																	}
-								]
+								modules : MediaStream.Modules
 							},
 					
 					// Output and analyse
@@ -26,17 +25,13 @@ define([
 							{
 								controller : AudioDestination.Controller,
 								factory : AudioDestination.ModuleFactory,
-								modules : [
-									{ name : 'Speakers',			shortName : 'speakers'																									}
-								]
+								modules : AudioDestination.Modules
 							},
 
 							{
 								controller : Analyser.Controller,
 								factory : Analyser.ModuleFactory,
-								modules : [
-									{ name : 'Oscilloscope',		shortName : 'oscilloscope'																								}
-								]
+								modules : Analyser.Modules
 							}
 						]
 					},

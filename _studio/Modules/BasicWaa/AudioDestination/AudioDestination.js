@@ -1,6 +1,5 @@
-console.debug('in AudioDestination.js');
 define([
-	// Facades to the Web Audio API basic nodes
+	
 	
 
 	// Controllers: responsible for binding the view and model
@@ -8,8 +7,10 @@ define([
 
 	// Data (model) for basic modules
 	'/_studio/Modules/BasicWaa/AudioDestination/AudioDestinationModuleFactory.js',
-	], function(Controller, ModuleFactory) {
-		console.debug('dependencies for AudioDestination.js loaded');		
-		return { Controller: Controller, ModuleFactory: ModuleFactory };
+
+	// Data store
+	'/_studio/Modules/BasicWaa/AudioDestination/AudioDestinationModuleDataStore.js'
+	], function(Controller, ModuleFactory, DataStore) {
+		return { Controller: Controller, ModuleFactory: ModuleFactory, Modules : DataStore.Modules };
 	}
 );

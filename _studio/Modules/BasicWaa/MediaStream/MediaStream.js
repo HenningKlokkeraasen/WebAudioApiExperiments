@@ -7,7 +7,10 @@ define([
 
 	// Data (model) for basic modules
 	'/_studio/Modules/BasicWaa/MediaStream/MediaStreamModuleFactory.js',
-	], function(Controller, ModuleFactory) {
-		return { Controller: Controller, ModuleFactory: ModuleFactory };
+
+	// Data store
+	'/_studio/Modules/BasicWaa/MediaStream/MediaStreamModuleDataStore.js'
+	], function(Controller, ModuleFactory, DataStore) {
+		return { Controller: Controller, ModuleFactory: ModuleFactory, Modules : DataStore.Modules };
 	}
 );

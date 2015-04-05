@@ -5,7 +5,7 @@ console.group();
 require.config({
 
 	// Force cache invalidation
-	urlArgs: "bust=v51",
+	urlArgs: "bust=v70",
 
     baseUrl: '/js', // relative to the html page loading this file?
     paths: {
@@ -36,6 +36,9 @@ require.config({
 require(
 	[
 		'/_studio/app/app.js',
+
+		'/_studio/app/ArrayExtensions.js',
+
 		'/_studio/load/thirdpartylibs.js', // relative to the path of this file? or the html file loading this file?
 		'/_studio/load/browserApiFacades.js',
 		'/_studio/load/patching.js',
@@ -56,17 +59,17 @@ require(
 
 		// Get the rackName
 		var rackName = QueryStringFacade.prototype.getParameterByName('rackName');
-		console.debug('Rack: ' + rackName);
-	    console.group();
+		//console.debug('Rack: ' + rackName);
+	    //console.group();
 
 		require(['/_studio/racks/' + rackName + '.js'], function(rack) {
-			console.groupEnd();
-			console.debug('rackName ' + rackName + ' has loaded');
-			console.debug(rack);
+			// console.groupEnd();
+			// console.debug('rackName ' + rackName + ' has loaded');
+			// console.debug(rack);
 			console.debug('all js required has been loaded. app is ready to be started');
 			
 			$(document).ready(function() {
-				console.debug('jquery says document is ready');
+				// console.debug('jquery says document is ready');
 
 				// Load App
 				var app = new App();
