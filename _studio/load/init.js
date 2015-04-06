@@ -1,6 +1,6 @@
 require.config({
 	// Force cache invalidation
-	urlArgs: "bust=v109",
+	urlArgs: "bust=v110",
 
     baseUrl: '/js', // relative to the html page loading this file?
     paths: {
@@ -16,13 +16,15 @@ require.config({
 require([
 		'/_studio/app/app.js',
 
+		'/_BrowserApiFacades/QueryStringFacade.js',
+
 		'/_studio/app/ArrayExtensions.js',
 		'/_studio/app/HamburgerMenu.js',
 
 		'/_studio/load/thirdpartylibs.js', // relative to the path of this file? or the html file loading this file?
 		'/_studio/load/patching.js',
 		'/_studio/load/waa-base.js',
-	], function(App) {
+	], function(App, QueryStringFacade) {
 	    //This function is called when the required scripts are loaded.
 	    //If a script calls define(), then this function is not fired until
 	    //the script's dependencies have loaded, and the named argument will hold

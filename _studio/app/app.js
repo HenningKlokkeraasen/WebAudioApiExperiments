@@ -2,23 +2,10 @@
 	App
 */
 define([
-	// Facades to browser APIs
-    '/_BrowserApiFacades/UserMediaFacade.js',
-	'/_BrowserApiFacades/SessionStorageFacade.js',
-	'/_BrowserApiFacades/QueryStringFacade.js',
-
 	'/_studio/app/ModuleRenderer.js'
 	], function(
-		UserMediaFacade,
-		SessionStorageFacade,
-		QueryStringFacade,
 		ModuleRenderer) {
-		// TODO STUFF NOT IN USE
-		//
-		// MASTER OUTPUT
-		//
-		//controller.render(mixerModuleDefinition, mixerModules);
-
+		// TODO
 		//
 		// CUSTOM MODIFIERS
 		//
@@ -27,7 +14,6 @@ define([
 		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
 		function App() {
 			this.xhrFacade = undefined;
-			this.sessionStorageFacade = undefined;
 			this.master = undefined;
 		}
 
@@ -35,17 +21,6 @@ define([
 			console.log('starting');
 
 
-			//
-			// SESSION STORAGE (HTML5 WEB STORAGE)
-			//
-
-			this.sessionStorageFacade = new SessionStorageFacade();
-			if (!this.sessionStorageFacade.sessionStorageIsAvailable) {
-				console.error('Session storage is NOT available');
-				return;
-			}
-			console.log('Session storage is available');
-			
 			//
 			// AUDIO CONTEXT - ENTRY POINT OF WEB AUDIO API
 			//

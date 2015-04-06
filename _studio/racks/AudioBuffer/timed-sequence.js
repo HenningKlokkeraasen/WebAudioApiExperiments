@@ -7,7 +7,7 @@ define([
 	], function(AudioDestination, Analyser, TimedSequencePlayer) {
 		return {
 			title : 'Playing audio files in timed sequences',
-			description : '...',
+			description : 'This demonstrates the timing in the Web Audio API',
 			rackData : {
 				rows : [
 
