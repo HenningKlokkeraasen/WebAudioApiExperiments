@@ -42,6 +42,8 @@ define([
 			this.facade = facade;
 			this.buttons = buttons;
 
+			var controller = this;
+
 			// var dataContainer = this.findTheDataContainer(div);
 
 			$(buttons).each(function(key, button) {
@@ -55,21 +57,51 @@ define([
 					// );
 					//console.log(facade);
 
-					facade.playSound($(this).attr('name'));
+					controller.playOrLoopOrStop(this);
 				});
 			});
 		}
 
+		AudioFilePlayerController.prototype.playOrLoopOrStop = function(button) {
+			var name = $(button).attr('name');
+			// var url = $(button).data('url');
+			// console.debug('name: ' + name + ' url: ' + url);
+			var facade = this.facade;
+			if (facade.isLooping()) {
+				if (!$(button).data('isPlaying')) {
+					var source = facade.playSoundLooped(name);
+					//console.log(source);
+					$(button).data('source', source);
+					$(button).data('isPlaying', true);
+				}
+				else{
+					facade.stopPlaying($(button).data('source'));
+					$(button).data('isPlaying', false);
+				}
+			} else {
+				if ($(button).data('isPlaying')) {
+					if ($(button).data('source'))
+						facade.stopPlaying($(button).data('source'));
+				}
+				var source = facade.playSound(name);
+				$(button).data('source', source);
+			}
+		};
+
 		AudioFilePlayerController.prototype.numberKeyPressed = function(key) {
 			var index = key - 1;
 			var button = this.buttons[index];
-			this.facade.playSound($(button).attr('name'));
+			if (!button)
+				return;
+			this.playOrLoopOrStop(button);
 			$(button).addClass('activeToGetTheSameEffectWhenTriggeredFromDom');
 		};
 
 		AudioFilePlayerController.prototype.numberKeyReleased = function(key) {
 			var index = key - 1;
 			var button = this.buttons[index];
+			if (!button)
+				return;
 			$(button).removeClass('activeToGetTheSameEffectWhenTriggeredFromDom');
 		};
 

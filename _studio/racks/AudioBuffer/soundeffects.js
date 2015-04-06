@@ -7,8 +7,7 @@ define([
 	], function(AudioDestination, Analyser, AudioFilePlayer) {
 		return {
 			title : 'Playing audio files',
-			description : 'A drum pad. The first 8 drums are triggered by keys 1-8 on top row of keyboard. '
-				+ 'Uses sounds from http://www.musicradar.com/news/tech/free-music-samples-download-loops-hits-and-multis-217833/65',
+			description : 'A sound effect pad. The first 8 drums are triggered by keys 1-8 on top row of keyboard. If in loop mode, press again to stop.',
 			rackData : {
 				rows : [
 
@@ -19,7 +18,7 @@ define([
 							{
 								controller : AudioFilePlayer.Controller,
 								factory : AudioFilePlayer.ModuleFactory,
-								modules : AudioFilePlayer.Modules.getItemsByShortName('drumpads3')
+								modules : AudioFilePlayer.Modules.getItemsByShortName('soundeffects')
 							},
 						]
 					},

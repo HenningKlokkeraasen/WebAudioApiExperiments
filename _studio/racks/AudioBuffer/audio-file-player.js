@@ -16,7 +16,7 @@ define([
 	], function(AudioDestination, Analyser, AudioFilePlayer) {
 		return {
 			title : 'Playing audio files',
-			description : 'A drum pad. The first 8 drums are triggered by keys 1-8 on top row of keyboard',
+			description : 'A drum pad. The first 8 drums are triggered by keys 1-8 on top row of keyboard. If in loop mode, press again to stop.',
 			rackData : {
 				rows : [
 
@@ -54,43 +54,6 @@ define([
 			},
 		};
 
-		// App.prototype.board = {
-		// 	isAudioBufferPage : true
-		// };
-
-		// App.prototype.loadSoundFiles = function() {
-		// 	console.log('load sound files');
-
-		// 	//
-		// 	// BUFFERER - DOWNLOAD AND DECODE SOUND FILES
-		// 	//
-
-		// 	this.bufferer = new BufferFacade(this.xhrFacade, this.master.audioContext);
-		// 	var sounds = [];
-		// 	$('#manualDrumButtons button').each(function() {
-		// 		sounds.push($(this).data('url'));
-		// 	});
-		// 	$('#filterButtons button').each(function() {
-		// 		sounds.push($(this).data('url'));
-		// 	});
-		// 	var all = sounds;
-
-		// 	var app = this;
-
-		// 	this.bufferer.bufferAudioFiles(all, 
-		// 		// callback
-		// 		function() {
-		// 			// Hold the buffers
-		// 			app.master.buffers = app.bufferer.buffers;
-		// 			delete app.bufferer;
-		// 			// carry on after all sounds are donwloaded and decoded
-		// 			app.carryOnAfterSoundFilesBuffered();
-		// 	});
-		// };
-
-		// App.prototype.carryOnAfterSoundFilesBuffered = function() {
-		// 	//console.log('carrying on');
-
 		// 	//
 		// 	// PLAYER
 		// 	//
@@ -98,14 +61,6 @@ define([
 		// 	this.player = new Player(this.master.audioContext, this.master.buffers);
 
 		// 	var app = this;
-
-		// 	// bind events - manual buttons
-		// 	$('#manualDrumButtons button').each(function() {
-		// 		$(this).bind('click',  function() {
-		// 			app.player.playSound($(this).data('url'));
-		// 			console.log($(this).data('url'));
-		// 		});
-		// 	})
 
 		// 	this.drumMachineController = new DrumMachineController(this.master, this.player, this.sessionStorageFacade);
 		// 	this.drumMachineController.render(drumMachineModuleDefinition, drumMachineModules);

@@ -15,7 +15,7 @@ define([
                 handlebarsTemplateSelector : this.handlebarsTemplateSelector,
                 facade : AudioFilePlayerFacade,
                 parameters : [
-
+                    { func: AudioFilePlayerFacade.prototype.setLoop,    selector: 'input[data-parameterType="loop"]',        ev: 'change'    }
 
 
 
@@ -29,7 +29,8 @@ define([
             var module =  this.getModuleBase({
                 name : moduleData.name, 
                 sections : [ {
-                    buttons: this.getKeyValuePairsForButton(moduleData.audioFilePaths)
+                    buttons: this.getKeyValuePairsForButton(moduleData.audioFilePaths),
+                    checkBoxes : [ { label : 'Loop',  type : 'loop' } ]
             }]});
             module.audioFilePaths = moduleData.audioFilePaths;
             return module;

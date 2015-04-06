@@ -24,7 +24,7 @@ define([
 
 		// private
 		AudioFilePlayerFacade.prototype.setDefaultValues = function() {
-
+			this._loop = false;
 
 
 		};
@@ -40,14 +40,18 @@ define([
 		};
 
 		AudioFilePlayerFacade.prototype.playSound = function(originalUrl) {
-			return this.playSoundTimed(originalUrl, 0);
+			return this.privatePlaySound(originalUrl);
 		}
 
 		AudioFilePlayerFacade.prototype.playSoundTimed = function(originalUrl, time) {
-			return this.playSoundLooped(originalUrl, false, time);
+			return this.privatePlaySound(originalUrl, false, time);
 		}
 
-		AudioFilePlayerFacade.prototype.playSoundLooped = function(originalUrl, loop, time) {
+		AudioFilePlayerFacade.prototype.playSoundLooped = function(originalUrl) {
+			return this.privatePlaySound(originalUrl, true);
+		}
+
+		AudioFilePlayerFacade.prototype.privatePlaySound = function(originalUrl, loop, time) {
 			var source = this.audioContext.createBufferSource();
 			source.buffer = this.buffers[originalUrl];
 
@@ -67,8 +71,23 @@ define([
 		  	return source;
 		}
 
+        AudioFilePlayerFacade.prototype.setLoop = function(value) {
+            // special case if value instead of checked property is sent
+            if (value == 'on')
+                value = false;
+
+            // console.debug('will loop? ' + value);
+            this._loop = value;
+            return this;
+        };
+
+        AudioFilePlayerFacade.prototype.isLooping = function() {
+        	return this._loop;
+        };
+
 		AudioFilePlayerFacade.prototype.stopPlaying = function(source) {
 			source.stop();
+			return source;
 		}
 
 		return AudioFilePlayerFacade;
