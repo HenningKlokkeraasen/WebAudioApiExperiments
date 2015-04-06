@@ -2,23 +2,23 @@ define([
 	'/_studio/Modules/BasicWaa/AudioDestination/AudioDestination.js',
 	
 	'/_studio/Modules/BasicWaa/Analyser/Analyser.js',
-
-	'/_studio/Modules/AudioFilePlayer/AudioFilePlayer/AudioFilePlayer.js'
-	], function(AudioDestination, Analyser, AudioFilePlayer) {
+	
+	'/_studio/Modules/AudioFilePlayer/TimedSequencePlayer/TimedSequencePlayer.js'
+	], function(AudioDestination, Analyser, TimedSequencePlayer) {
 		return {
-			title : 'Playing audio files',
-			description : 'A drum pad. The first 8 drums are triggered by keys 1-8 on top row of keyboard. If in loop mode, press again to stop.',
+			title : 'Playing audio files in timed sequences',
+			description : '...',
 			rackData : {
 				rows : [
 
-					// Audio file player
+					// TimedSequencePlayer
 
 					{
 						moduleCollections : [
 							{
-								controller : AudioFilePlayer.Controller,
-								factory : AudioFilePlayer.ModuleFactory,
-								modules : AudioFilePlayer.Modules.getItemsByShortName('drumpads1')
+								controller : TimedSequencePlayer.Controller,
+								factory : TimedSequencePlayer.ModuleFactory,
+								modules : TimedSequencePlayer.Modules
 							},
 						]
 					},
