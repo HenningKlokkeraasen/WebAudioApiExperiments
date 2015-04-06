@@ -1,4 +1,6 @@
 audiofiles/*
+!audiofiles/README.md
+
 css/img/jack.png
 ga.txt
 js/vendor/*
