@@ -13,7 +13,9 @@ define([
 	], function(AudioDestination, Analyser, Oscillator, Filter, Gain, Delay, Convolver, WaveShaper, Compressor) {
 		return {
 			title : 'Sound Generation and Modification',
-			description : 'This rack shows the basic built-in sound generation and modification nodes in the Web Audio API - with more modules for more pathc possibilities',
+			description : 'This rack shows the basic built-in sound generation and modification nodes in the Web Audio API - with more modules for more sound and patch possibilities.'
+				+ ' You can e.g. run three oscillators with the same wave type and frequencey, but two of them slightly detuned in opposite directions. '
+				+ ' Or two square waves with one slightly detuned to get pulse width modulation',
 			rackData : {
 				rows : [
 

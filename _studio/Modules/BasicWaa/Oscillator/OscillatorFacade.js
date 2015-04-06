@@ -5,7 +5,6 @@ define([
 	'/_studio/Modules/_FacadeBase.js',
 	'/_studio/Modules/BasicWaa/Gain/GainFacade.js'
 	], function(FacadeBase, GainFacade) {
-		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////	
 		OscillatorFacade.prototype = Object.create(FacadeBase.prototype); // new FacadeBase2();
 		OscillatorFacade.prototype.constructor = OscillatorFacade;
 
@@ -52,7 +51,7 @@ define([
 		};
 
 		OscillatorFacade.prototype.setDetune = function(semitone) {
-			this.input.detune.value = parseFloat(semitone) * 100;
+			this.input.detune.value = parseFloat(semitone); // * 100;
 			return this;
 		};
 
@@ -81,7 +80,7 @@ define([
 
 			return this;
 		};
-		//////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
+		
 		return OscillatorFacade;
 	}
 );
