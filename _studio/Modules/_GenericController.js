@@ -1,5 +1,7 @@
 define([
-	], function() {
+	'/_thirdparty/knob.js',
+	'/_studio/UiElements/Knobs/GreenKnob.js'
+	], function(JimKnopf, GreenKnob) {
 		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
 		function GenericController(master, patcher) {
 			this.master = master;
@@ -42,6 +44,8 @@ define([
 					controller.setupPatching(div, controller.patcher);
 
 					controller.bindControlsToParameters(div, definition.parameters);
+
+					controller.initKnobs(div);
 				});
 			});
 		};
@@ -144,6 +148,19 @@ define([
 						$(this).attr('title', this.value);
 					});
 				});
+			});
+		};
+
+		GenericController.prototype.initKnobs = function(div) {
+			// console.debug(div);
+			// console.debug($(div));
+			$(div).find('input[type="range"]').each(function(index, el) {
+				// console.debug('making knob for ');
+				// console.debug(el);
+				new JimKnopf.Knob(el, new GreenKnob());
+				el.addEventListener('Changed', function (e) {
+					console.debug("it changed");
+				}, false);
 			});
 		};
 		//////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////

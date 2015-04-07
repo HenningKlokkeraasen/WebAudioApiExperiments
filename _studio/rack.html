@@ -3,7 +3,20 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Web Audio API Experiments</title>
-	<link rel="import" href="/html-partial/head/stylesheets.html" />
+	
+
+	<link rel="stylesheet" href="/css/buttons.css" />
+	<link rel="stylesheet" href="/css/keys.css" />
+	<link rel="stylesheet" href="/css/floating.css" />
+	<link rel="stylesheet" href="/css/oscilloscope.css" />
+	<link rel="stylesheet" href="/css/patching.css" />
+	<link rel="stylesheet" href="/css/site.css" />
+	<link rel="stylesheet" href="/css/top-nav.css" />
+	<link rel="stylesheet" href="/css/waa-gear.css" />
+	<link rel="stylesheet" href="/css/waa-module.css" />
+	<link rel="stylesheet" href="/css/waa-parameter.css" />
+	<link rel="stylesheet" href="/css/UiElements/Knobs/greenKnob.css" />
+
     <!-- data-main attribute tells require.js to load
          load/init.js after require.js loads. -->
     <script data-main="load/init" src="/_thirdparty/require.js"></script>
@@ -118,6 +131,67 @@
 	<link rel="import" href="/html-partial/handlebars-templates/waa-gear.html" />
 	<link rel="import" href="/html-partial/handlebars-templates/waa-module.html" />
 	<link rel="import" href="/html-partial/handlebars-templates/waa-analyser.html" />
+
+
+
+<!-- TODO move -->
+<svg>
+    <filter id="dropshadow" height="150%" width="150%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+        <feOffset dx="0" dy="3" result="offsetblur"/>
+        <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+    </filter>
+    <filter id='inner-shadow'>
+
+        <!-- Shadow Offset -->
+        <feOffset
+                dx='0'
+                dy='5'
+                />
+
+        <!-- Shadow Blur -->
+        <feGaussianBlur
+                stdDeviation='5'
+                result='offset-blur'
+                />
+
+        <!-- Invert the drop shadow
+             to create an inner shadow -->
+        <feComposite
+                operator='out'
+                in='SourceGraphic'
+                in2='offset-blur'
+                result='inverse'
+                />
+
+        <!-- Color & Opacity -->
+        <feFlood
+                flood-color='black'
+                flood-opacity='0.75'
+                result='color'
+                />
+
+        <!-- Clip color inside shadow -->
+        <feComposite
+                operator='in'
+                in='color'
+                in2='inverse'
+                result='shadow'
+                />
+
+        <!-- Put shadow over original object -->
+        <feComposite
+                operator='over'
+                in='shadow'
+                in2='SourceGraphic'
+                />
+    </filter>
+</svg>
+
+
 
 
 </body>
