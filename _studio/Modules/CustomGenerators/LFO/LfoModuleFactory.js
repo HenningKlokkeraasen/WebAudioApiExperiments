@@ -47,7 +47,8 @@ define([
 					radioButtonLists : [
 						this.getWaveTypeSelectObject1(moduleData.shortName, moduleData.w_params.indexChecked)
 
-					]
+					],
+					rangeDisplayMode : 'knob'
 		    }]});
 		};
 

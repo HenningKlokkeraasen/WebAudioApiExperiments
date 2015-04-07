@@ -50,7 +50,8 @@ define([
                     
                     checkBoxes : [
                         { label : 'R',  type : 'reverse' }
-                    ]
+                    ],
+                    rangeDisplayMode : 'knob'
             }]});
         };
 

@@ -1,5 +1,7 @@
 define([
-	], function() {
+	'/_thirdparty/knob.js',
+	'/_studio/UiElements/Knobs/GreenKnob.js'
+	], function(JimKnopf, GreenKnob) {
 		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
 		function GenericController(master, patcher) {
 			this.master = master;
@@ -117,35 +119,64 @@ define([
 			var dataContainerSelector = GenericController.prototype.dataContainerSelector;
 			var facadeDataAttr = GenericController.prototype.facadeDataAttr;
 
+			var controller = this;
+
+
 			// user controls - go through each parameter
 			$.each(parameters, function(key, parameter) {
 				// find the element by the selector 
 				$(div).find(parameter.selector).each(function() {
+					var element = this;
 					// bind to the specified event
 					// bind to onInput to get mouseMove event (continous),
 					// bind to onChange to get mouseOut event
 					$(this).bind(parameter.ev,  function() {
 						// find the facade
-						var facadeInstance = $(this).parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
-						var value = this.value;
+						var facadeInstance = $(element).parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
 
-						// special case for checkboxes
-						if ($(this).attr('type') == 'checkbox') {
-							value = this.checked;
-						}
-
-						// call the function with the value of the element
-						// ensure the facade is this in the context
-						parameter.func.call(facadeInstance, value);
-
-						// also, update the output
-						if (this.name)
-							$('output[for=' + this.name + ']').text(this.value);
-						$(this).attr('title', this.value);
+						var value = element.value;
+						controller.callFacadeAndUpdateOutput(element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance);
 					});
+
+					// Convert input ranges to JimKnopf Knobs
+					if ($(this).hasClass('knob')) {
+						var knob = new JimKnopf.Knob(element, new GreenKnob(),
+						function(value) {
+							if (parameter.ev == 'change') {
+								// find the facade
+								var facadeInstance = $(element).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
+
+								controller.callFacadeAndUpdateOutput(element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance);
+							}
+						}, function(value) {
+							if (parameter.ev == 'input') {
+								// find the facade
+								var facadeInstance = $(element).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
+								
+								controller.callFacadeAndUpdateOutput(element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance);
+							}
+						});
+					}
 				});
 			});
 		};
+
+		GenericController.prototype.callFacadeAndUpdateOutput = function(element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance) {
+			// special case for checkboxes
+			if ($(element).attr('type') == 'checkbox') {
+				value = element.checked;
+			}
+
+			// call the function with the value of the element
+			// ensure the facade is this in the context
+			parameter.func.call(facadeInstance, value);
+
+			// also, update the output
+			if (element.name)
+				$('output[for=' + element.name + ']').text(element.value);
+			$(element).attr('title', element.value);
+		};
+
 		//////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
 		return GenericController;
 	}

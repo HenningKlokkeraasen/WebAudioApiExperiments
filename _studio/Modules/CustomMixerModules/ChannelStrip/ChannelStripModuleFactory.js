@@ -46,7 +46,7 @@ define([
                         { label : 'L',      type : 'left',      min : 0,    max : 1,    value: 1,   step : 0.1, name : moduleData.shortName + '_left'   },
                         { label : 'R',      type : 'right',     min : 0,    max : 1,    value: 1,   step : 0.1, name : moduleData.shortName + '_right'  },
                     ],
-
+                    rangeDisplayMode : 'knob'
                     
 
 

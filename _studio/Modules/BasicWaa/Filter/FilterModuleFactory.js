@@ -48,7 +48,8 @@ define([
 
                     selectLists : [
                         this.getFilterTypeSelectData('T', 'filterType', moduleData.t_params.indexChecked)
-                    ]
+                    ],
+                    rangeDisplayMode : 'knob'
             }]});
         };
         //////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////

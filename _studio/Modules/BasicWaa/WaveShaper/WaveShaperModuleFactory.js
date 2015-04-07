@@ -48,7 +48,8 @@ define([
 					radioButtonLists : [
 						this.getOversampleSelectObject(moduleData.shortName)
 
-					]
+					],
+					rangeDisplayMode : 'knob'
 		    }]});
 		};
 		WaveShaperModuleFactory.prototype.getOversampleSelectObject = function(shortName) {
