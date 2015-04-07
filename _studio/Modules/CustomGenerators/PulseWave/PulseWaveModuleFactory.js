@@ -44,14 +44,20 @@ define([
 		        sections : [ {
 					ranges : [
 						this.getFrequencyParamObject(moduleData), 
-						this.getDetuneParamObject(moduleData.shortName),
-						{ label : 'P',	type : 'pulseWidth',		min : 0,		max : 100,		value: 50,		step : 1,		name : moduleData.shortName + 'pw'	}
+						this.getDetuneParamObject(moduleData.shortName)
 
-					]
+					],
+					rangeDisplayMode : 'knob'
 					// radioButtonLists : [
 					// 	this.getWaveTypeSelectObject1(moduleData.shortName, moduleData.w_params.indexChecked)
 
 					// ]
+		    		}, {
+					ranges : [
+						{ label : 'P',	type : 'pulseWidth',		min : 0,		max : 100,		value: 50,		step : 1,		name : moduleData.shortName + 'pw'	}
+
+					],
+					rangeDisplayMode : 'slider-vertical'
 		    }]});
 		};
 

@@ -1,5 +1,5 @@
 .greenKnob rect {
-  fill: #57C7B6;
+  fill: #A64AA2;
 }
 
 .greenKnob g polygon {
@@ -7,8 +7,8 @@
 }
 
 .greenKnob circle {
-  fill: #256058;
-  stroke: #57C7B6;
+  fill: #232828;
+  stroke: #CCECE7;
   stroke-width: 2;
   filter: url(#dropshadow);
 }

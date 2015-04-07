@@ -44,8 +44,8 @@ define([
                         
 
 
-                    ]
-
+                    ],
+                    rangeDisplayMode : 'knob'
 
 
 

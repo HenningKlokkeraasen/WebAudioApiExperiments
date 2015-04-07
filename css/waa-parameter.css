@@ -22,3 +22,15 @@ output.slider-vertical {
 	display: block;
 	width: 21px;
 }
+
+
+
+
+div.knob {
+	display: inline-block;
+}
+
+/*dirty hack. only wanted for knobs*/
+* {
+	outline: none;
+}

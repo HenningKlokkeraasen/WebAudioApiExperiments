@@ -11,10 +11,12 @@ Add js libs:
 	/thirdparty/handlebars-v1.3.0.js
 	/thirdparty/require.js
 	/thirdparty/knob.js 				from https://github.com/eskimoblood/jim-knopf
-		wrap in
+		and forked to https://github.com/HenningKlokkeraasen/jim-knopf
+
+		should also be wrapped in
 		define([], function() { 
 			...
-		return { 'Knob' : Knob, 'Ui' : Ui }; });
+		return { 'Knob' : Knob, 'Ui' : Ui, ... }; });
 
-Status
+Status:
 Currently in the process of switching to require.js

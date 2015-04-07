@@ -47,8 +47,8 @@ define([
                         { label : 'F',  type : 'feedback',  min : 0,    max : 1,        value: 0.25,    step : 0.01,    name : moduleData.shortName + '_fb'         },
                         { label : 'W',  type : 'wetLevel',  min : 0,    max : 2,        value: 0.25,    step : 0.01,    name : moduleData.shortName + '_wl'         }
 
-                    ]
-
+                    ],
+                    rangeDisplayMode : 'knob'
 
 
 

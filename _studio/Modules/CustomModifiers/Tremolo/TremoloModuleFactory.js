@@ -43,7 +43,8 @@ define([
 		        sections : [ { sectionName : 'Input',
 					ranges : [
 						{ label : 'P', 	type : 'pregain', 	min : -2, 	max : 2,		value: 1,	 	step : 0.01,		name : moduleData.shortName + '_P'	}
-					]
+					],
+					rangeDisplayMode : 'knob'
 		    },{ sectionName : 'LFO',
 					ranges : [
 						{ label : 'R', 	type : 'lfo_rate', 	min : 0.1, 	max : 20,		value: 3.3,	 	step : 0.01,		name : moduleData.shortName + '_R'	},
@@ -51,7 +52,8 @@ define([
 					], 
 					radioButtonLists : [
 						this.getWaveTypeSelectObject('W', 'waveType', moduleData.shortName + 'wave', moduleData.w_params.indexChecked)
-					]
+					],
+					rangeDisplayMode : 'knob'
 		    }]});
 		};
 

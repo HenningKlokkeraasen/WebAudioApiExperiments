@@ -47,7 +47,8 @@ define([
 						this.getDetuneParamObject(moduleData.shortName),
 						
 
-					]
+					],
+					rangeDisplayMode : 'knob'
 					// radioButtonLists : [
 					// 	this.getWaveTypeSelectObject1(moduleData.shortName, moduleData.w_params.indexChecked)
 

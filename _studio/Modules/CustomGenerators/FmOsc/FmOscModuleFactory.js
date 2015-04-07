@@ -54,14 +54,17 @@ define([
 					],
 					radioButtonLists : [
 						this.getModWaveTypeSelectObject(moduleData.shortName, 0)
-					] }, { sectionName : moduleData.isModulatorLfo ? 'Oscillator' : 'Carrier', 
+					],
+					rangeDisplayMode : 'knob' 
+					}, { sectionName : moduleData.isModulatorLfo ? 'Oscillator' : 'Carrier', 
 					ranges : [
 						this.getFrequencyParamObject(moduleData), 
 						this.getDetuneParamObject(moduleData.shortName)
 					], 
 					radioButtonLists : [
 						this.getWaveTypeSelectObject1(moduleData.shortName, moduleData.w_params.indexChecked),
-					]
+					],
+					rangeDisplayMode : 'knob'
 		    }]});
 		};
 		FmOscModuleFactory.prototype.getModFreqParamObject = function(shortName, mod_freq_params) {

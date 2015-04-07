@@ -17,7 +17,7 @@ define([
 			}));
 
 			this.addComponent(new JimKnopf.Ui.Scale(this.merge(this.options, {
-			drawScale: false,
+			drawScale: true,
 			drawDial: false,
 			radius: this.width/2.6})));
 

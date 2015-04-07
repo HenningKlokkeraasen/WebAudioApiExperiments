@@ -44,14 +44,18 @@ define([
                 sections : [ { sectionName : 'Input',
                     ranges : [
                         { label : 'P',  type : 'pregain',   min : -2,   max : 2,        value: 1,       step : 0.01,        name : moduleData.shortName + '_P'  }
-                    ] }, { sectionName : 'LFO',
+                    ],
+                    rangeDisplayMode : 'knob'
+                    }, { sectionName : 'LFO',
                     ranges : [
                             { label : 'R',  type : 'lfo_rate',  min : 0,  max : 20,        value: 1.9,     step : 0.01,        name : moduleData.shortName + '_LR'    },
                             { label : 'D',  type : 'lfo_depth',  min : 0,    max : 500,      value: 280,     step : 1,           name : moduleData.shortName + '_LG'    }
                     ],
                     radioButtonLists : [
                         ModuleFactoryBase.prototype.getWaveTypeSelectObject('W', 'lfo_wavetype', moduleData.shortName + '_LW', 0)
-                    ] }, { sectionName : 'Filter',
+                    ],
+                    rangeDisplayMode : 'knob'
+                    }, { sectionName : 'Filter',
                     ranges : [
                         { label : 'F',  type : 'filter_f',     min : 0,    max : 1,    value: 0.5,    step : 0.01,    name : moduleData.shortName + '_f'  }, 
                         { label : 'Q',  type : 'filter_q',  min : 0,    max : 1,        value: 0.6,     step : 0.01,        name : moduleData.shortName + '_FQ'    }, 
@@ -59,7 +63,8 @@ define([
                     ], 
                     selectLists : [
                         ModuleFactoryBase.prototype.getFilterTypeSelectData('T', 'filterType', 0)
-                    ]
+                    ],
+                    rangeDisplayMode : 'knob'
             }]});
         };
 
