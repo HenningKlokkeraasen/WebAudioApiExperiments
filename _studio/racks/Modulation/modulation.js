@@ -2,11 +2,12 @@ define([
 	'/_studio/Modules/BasicWaa/Analyser/Analyser.js',
 	'/_studio/Modules/CustomMixerModules/MasterSection/MasterSection.js',
 
-	'/_studio/Modules/CustomGenerators/LFO/Lfo.js'
-	], function(Analyser, MasterSection, LFO) {
+	'/_studio/Modules/CustomGenerators/LFO/Lfo.js',
+	'/_studio/Modules/CustomTriggers/EnvelopeGenerator/EnvelopeGenerator.js'
+	], function(Analyser, MasterSection, LFO, EnvelopeGenerator) {
 		return {
-			title : 'Sound modulation',
-			description : 'This rack shows modulation',
+			title : 'Sound modulation and triggers (gates)',
+			description : 'This rack shows modulation and trigger nodes',
 			rackData : {
 				rows : [
 					// Sound generators
@@ -18,6 +19,12 @@ define([
 								factory : LFO.ModuleFactory,
 								modules : LFO.Modules
 							},
+
+							{
+								controller : EnvelopeGenerator.Controller,
+								factory : EnvelopeGenerator.ModuleFactory,
+								modules : EnvelopeGenerator.Modules
+							}
 						]
 					},
 

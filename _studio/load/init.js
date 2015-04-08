@@ -1,6 +1,6 @@
 require.config({
 	// Force cache invalidation
-	urlArgs: 'bust=v134',
+	urlArgs: 'bust=v135',
 
     baseUrl: '/js', // relative to the html page loading this file?
     paths: {
