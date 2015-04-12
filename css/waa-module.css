@@ -32,6 +32,11 @@
 
 			/* default background color for modules */
 			background-color : rgb(247, 238, 209); /* off white */
+
+			/*Vertical align connectors to bottom*/
+			/*Disabling this because it destroys knob.js*/
+			/*position: relative;
+			padding-bottom: 74px;*/
 		}
 
 			.module header {
@@ -76,6 +81,14 @@
 					}
 
 				/* END Style similar to the Schmidt analog synthesizer */
+
+				.module fieldset.connectors {
+					/*Vertical align connectors to bottom*/
+					/*Disabling this because it destroys knob.js*/
+					/*position: absolute;
+					bottom: 10px;
+					width: 175px;*/
+				}
 
 			.module .sectionName {
 				text-align: center;

@@ -12,3 +12,5 @@ _todo/libs/*
 
 *.sublime-project
 *.sublime-workspace
+
+web.config
