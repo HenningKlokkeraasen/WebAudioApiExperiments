@@ -1,13 +1,13 @@
 define([
-    '/_studio/Modules/_ModuleFactoryBase.js',
+    '/_studio/Modules/AudioFilePlayer/AudioFilePlayer/AudioFilePlayerModuleFactory.js',
     '/_studio/Modules/AudioFilePlayer/TimedSequencePlayer/TimedSequencePlayerFacade.js'
-    ], function(ModuleFactoryBase, TimedSequencePlayerFacade) {
-        TimedSequencePlayerModuleFactory.prototype = new ModuleFactoryBase();
+    ], function(AudioFilePlayerModuleFactory, TimedSequencePlayerFacade) {
+        TimedSequencePlayerModuleFactory.prototype = new AudioFilePlayerModuleFactory();
         TimedSequencePlayerModuleFactory.prototype.constructor = TimedSequencePlayerModuleFactory;
 
         function TimedSequencePlayerModuleFactory() {
-            this.moduleCssClass = 'wideModule audioBuffer';
-            this.hasNoInputs = true;
+            
+            
             
         }
         TimedSequencePlayerModuleFactory.prototype.getModuleDefinition = function() {

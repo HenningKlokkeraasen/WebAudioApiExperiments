@@ -9,9 +9,9 @@ define([
 		SuperSawModuleFactory.prototype.constructor = SuperSawModuleFactory;
 
 		function SuperSawModuleFactory() {
-			this.moduleCssClass = '';
-			this.hasNoInputs = true;
-			this.hasStartButton = true;
+
+
+
 		}
 		SuperSawModuleFactory.prototype.getModuleDefinition = function() {
 			return {	

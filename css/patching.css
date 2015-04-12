@@ -10,18 +10,6 @@
 	background-color: black;
 }
 
-	.patchInput {
-	}
-
-	.patchOutput {
-	}
-
-	.patchParamInput {
-	}
-
-	.patchParamOutput {
-	}
-
 #patchCableContainer {
 	position: absolute;
 	width: 100%;
@@ -37,7 +25,7 @@
 	}
 
 fieldset.connectors {
-	
+	font-size: 0.8em;
 }
 	fieldset.connectors>div {
 		display: inline-block;

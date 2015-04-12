@@ -9,9 +9,9 @@ define([
 		PulseWaveModuleFactory.prototype.constructor = PulseWaveModuleFactory;
 
 		function PulseWaveModuleFactory() {
-			this.moduleCssClass = '';
-			this.hasNoInputs = true;
-			this.hasStartButton = true;
+
+
+
 		}
 		PulseWaveModuleFactory.prototype.getModuleDefinition = function() {
 			return {	

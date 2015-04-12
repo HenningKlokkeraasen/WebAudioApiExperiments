@@ -2,13 +2,16 @@ define([
     '/_studio/Modules/_ModuleFactoryBase.js',
 	'/_studio/Modules/BasicWaa/Oscillator/OscillatorFacade.js'
     ], function(ModuleFactoryBase, OscillatorFacade) {
-        //////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
+
 		OscillatorModuleFactory.prototype = new ModuleFactoryBase();
 		OscillatorModuleFactory.prototype.constructor = OscillatorModuleFactory;
 
 		function OscillatorModuleFactory() {
 			this.moduleCssClass = 'oscillator';
-			this.hasNoInputs = true;
+			this.hasAudioIn = false;
+			this.hasTriggerIn = true;
+			this.hasControlIn = true;
+			this.hasControlOut = true;
 			this.hasStartButton = true;
 		}
 		OscillatorModuleFactory.prototype.getModuleDefinition = function() {
@@ -61,7 +64,7 @@ define([
 		OscillatorModuleFactory.prototype.getWaveTypeSelectObject1 = function(shortName, indexChecked) {
 			return this.getWaveTypeSelectObject('W', 'waveType', shortName + '_wave', indexChecked);
 		};
-        //////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
+
         return OscillatorModuleFactory;
     }
 );

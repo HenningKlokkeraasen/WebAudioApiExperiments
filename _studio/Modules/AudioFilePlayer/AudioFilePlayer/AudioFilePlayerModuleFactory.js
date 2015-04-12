@@ -7,7 +7,7 @@ define([
 
         function AudioFilePlayerModuleFactory() {
             this.moduleCssClass = 'wideModule audioBuffer';
-            this.hasNoInputs = true;
+            this.hasAudioIn = false;
             
         }
         AudioFilePlayerModuleFactory.prototype.getModuleDefinition = function() {

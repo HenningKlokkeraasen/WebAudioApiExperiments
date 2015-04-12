@@ -19,8 +19,8 @@ define([
             OscillatorFacade.prototype.initNodes.call(this); // base()
             
             
-            this.amount = this.output
-            
+            this.amount = new GainFacade(this.audioContext);
+            this.controlOut = this.amount.output;
         };
 
         // private
@@ -32,23 +32,28 @@ define([
 
         // private
         LfoFacade.prototype.wireUp = function() {
-            OscillatorFacade.prototype.wireUp.call(this); // base()
-
+            this.input.connect(this.amount.output);
+            this.amount.output.connect(this.output.output);
             
 
 
 
         };
 
-        LfoFacade.prototype.connect = function(destination) {
+        LfoFacade.prototype.connect = function(destination) {//TODO define what each facade have of connect, control and trigger
              // this.output.connect(destination);
             console.warn('LFO can not be connected to audio chain, only to parameters - see LfoFacade.prototype.control(audioParam)');
             return this;
         };
 
-        // connect to an audioParam (not an audioNode)
-        LfoFacade.prototype.control = function(audioParam) {
-            this.amount.connect(audioParam);
+        // connect to an audioParam (not an audioNode) moved to base class
+        // LfoFacade.prototype.control = function(audioParam) {
+        //     this.amount.connect(audioParam);
+        //     return this;
+        // };
+
+        LfoFacade.prototype.setShape = function(type) {
+            OscillatorFacade.prototype.setType.call(this, type);
             return this;
         };
 
@@ -60,12 +65,20 @@ define([
         };
 
         LfoFacade.prototype.setDepth = function(value) {
-            if (value > this.max_frequency)
-                value = this.max_frequency;
             this.amount.setGain(value);
             return this;
         };
 
+        LfoFacade.prototype.start = function() {
+            OscillatorFacade.prototype.start.call(this);
+            return this;
+        };
+
+        LfoFacade.prototype.stop = function() {
+            OscillatorFacade.prototype.stop.call(this);
+            return this;
+        };
+        
         LfoFacade.prototype.max_frequency = 20;
 
         return LfoFacade;

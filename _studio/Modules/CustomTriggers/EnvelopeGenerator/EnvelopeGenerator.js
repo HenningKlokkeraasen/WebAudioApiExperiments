@@ -3,7 +3,7 @@ define([
 	
 
 	// Controllers: responsible for binding the view and model
-	'/_studio/Modules/BasicWaa/Oscillator/OscillatorController.js',
+	'/_studio/Modules/CustomTriggers/EnvelopeGenerator/EnvelopeGeneratorController.js',
 
 	// Data (model) for basic modules
 	'/_studio/Modules/CustomTriggers/EnvelopeGenerator/EnvelopeGeneratorModuleFactory.js',

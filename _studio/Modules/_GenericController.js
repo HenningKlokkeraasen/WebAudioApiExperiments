@@ -8,10 +8,16 @@ define([
 			this.patcher = patcher;
 		}
 
-		GenericController.prototype.dataContainerSelector = 'span[class="dataContainer"]';
-		GenericController.prototype.patchInputSelector ='span[class="patchHole patchInput"]';
-		GenericController.prototype.patchOutputSelector = 'span[class="patchHole patchOutput"]';
-		GenericController.prototype.facadeDataAttr = 'facade';
+		GenericController.prototype = {
+			dataContainerSelector: 'span[class="dataContainer"]', // TODO use data- instead of class to identify
+			facadeDataAttr: 'facade',
+			audioInSelector: 'span[data-patch-type="audioIn"]',
+			audioOutSelector: 'span[data-patch-type="audioOut"]',
+			triggerInSelector: 'span[data-patch-type="triggerIn"]',
+			triggerOutSelector: 'span[data-patch-type="triggerOut"]',
+			controlInSelector: 'span[data-patch-type="controlIn"]',
+			controlOutSelector: 'span[data-patch-type="controlOut"]',
+		};
 
 		GenericController.prototype.render = function(definition, model, containerSelector) {
 			var controller = this;
@@ -41,7 +47,7 @@ define([
 
 					controller.initEachParameter(facadeInstance, definition.parameters, dataContainer);
 					
-					controller.setupPatching(div, controller.patcher);
+					controller.setupPatching(div, controller.patcher, facadeInstance);
 
 					controller.bindControlsToParameters(div, definition.parameters);
 				});
@@ -106,13 +112,14 @@ define([
 			});
 		};
 
-		GenericController.prototype.setupPatching = function(div, patcher) {
-			var patchInputSelector = GenericController.prototype.patchInputSelector;
-			var patchOutputSelector = GenericController.prototype.patchOutputSelector;
-			var dataContainerSelector = GenericController.prototype.dataContainerSelector;
-			var facadeDataAttr = GenericController.prototype.facadeDataAttr;
+		GenericController.prototype.setupPatching = function(div, patcher, facade) {
+			var dataContainerSelector = this.dataContainerSelector;
+			// var facadeDataAttr = this.facadeDataAttr;
+			// console.debug(facade);
 
-			PatchController.prototype.setupPatching(div, patchInputSelector, patchOutputSelector, dataContainerSelector, facadeDataAttr, patcher);
+			new PatchController().setupPatching(div, this.audioInSelector, this.audioOutSelector, dataContainerSelector, facade, facade.input, facade.output, facade.connect, patcher);
+			new PatchController().setupPatching(div, this.triggerInSelector, this.triggerOutSelector, dataContainerSelector, facade, facade.triggerIn, facade.triggerOut, facade.setTriggerFor, patcher);
+			new PatchController().setupPatching(div, this.controlInSelector, this.controlOutSelector, dataContainerSelector, facade, facade.controlIn, facade.controlOut, facade.control, patcher);
 		};
 
 		GenericController.prototype.bindControlsToParameters = function(div, parameters) {

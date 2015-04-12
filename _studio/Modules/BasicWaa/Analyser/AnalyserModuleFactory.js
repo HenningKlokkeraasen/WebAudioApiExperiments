@@ -9,7 +9,7 @@ define([
         function AnalyserModuleFactory() {
             this.handlebarsTemplateSelector = '#analyserTemplate'; // differs from norm
             this.moduleCssClass = 'analysermodule';
-            this.hasNoOutputs = true;
+            this.hasAudioOut = false;
             this.hasStartButton = true;
         }
         AnalyserModuleFactory.prototype.getModuleDefinition = function() {

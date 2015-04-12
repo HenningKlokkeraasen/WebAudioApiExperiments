@@ -9,6 +9,12 @@ define([], function() { return { Modules :
 	         val:5,
 	         stp:0.1
 	      },
+	      g_params:{  
+	         min:-200,
+	         max:200,
+	         val:1,
+	         stp:0.01
+	      },
 	      w_params:{  
 	         indexChecked:0
 	      }

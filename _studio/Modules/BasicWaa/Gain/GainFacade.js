@@ -17,8 +17,8 @@ define([
 		GainFacade.prototype.initNodes = function() {
 		    this.input = this.audioContext.createGain();
 		    this.output = this.input; // TODO verify
-
-
+			this.controlIn = this.input.gain;
+			this.triggerIn = this.input.gain;// TODO need separate nodes for control and trigger
 
 		};
 

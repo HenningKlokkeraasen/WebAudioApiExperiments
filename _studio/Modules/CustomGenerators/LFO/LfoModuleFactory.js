@@ -6,18 +6,18 @@ define([
 		LfoModuleFactory.prototype.constructor = LfoModuleFactory;
 
 		function LfoModuleFactory() {
-			this.moduleCssClass = 'oscillator';
-			this.hasNoInputs = true;
-			this.hasStartButton = true;
+			this.hasTriggerIn = false;
+			this.hasControlIn = false;
+			this.hasAudioOut = false;
 		}
 		LfoModuleFactory.prototype.getModuleDefinition = function() {
 			return {	
 				handlebarsTemplateSelector : this.handlebarsTemplateSelector,
 				facade : LfoFacade,
 				parameters : [
-					{ func : LfoFacade.prototype.setRate, 			selector : 'input[data-parameterType="frequency"]',		ev : 'input'	},
-					{ func : LfoFacade.prototype.setDetune, 		selector : 'input[data-parameterType="detune"]',		ev : 'input'	},
-					{ func : LfoFacade.prototype.setType, 			selector : 'input[data-parameterType="waveType"]',		ev : 'change'	}
+					{ func : LfoFacade.prototype.setRate, 			selector : 'input[data-parameterType="rate"]',			ev : 'input'	},
+					{ func : LfoFacade.prototype.setDepth, 			selector : 'input[data-parameterType="depth"]',			ev : 'input'	},
+					{ func : LfoFacade.prototype.setShape, 			selector : 'input[data-parameterType="shape"]',			ev : 'change'	}
 
 
 
@@ -39,13 +39,13 @@ define([
 				name : moduleData.name, 
 		        sections : [ {
 					ranges : [
-						this.getFrequencyParamObject(moduleData), 
-						this.getDetuneParamObject(moduleData.shortName)
+						this.getRangeControlData({ label : 'R',     type : 'rate',	params : moduleData.f_params,  name : moduleData.shortName + '_freq' }),
+						this.getRangeControlData({ label : 'D',     type : 'depth',      params : moduleData.g_params,  name : moduleData.shortName + '_gain' })
 
 
 					], 
 					radioButtonLists : [
-						this.getWaveTypeSelectObject1(moduleData.shortName, moduleData.w_params.indexChecked)
+						this.getWaveTypeSelectObject('S', 'shape', moduleData.shortName + '_shape', moduleData.w_params.indexChecked)
 
 					],
 					rangeDisplayMode : 'knob'
