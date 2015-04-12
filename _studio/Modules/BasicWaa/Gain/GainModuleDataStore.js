@@ -31,7 +31,7 @@ define([], function() { return { Modules :
 	      }
 	   },
 	   {  
-	      name:'Gain 3: Mute or Pass-through',
+	      name:'Gain 3: Mute / Pass-thru',
 	      shortName:'gain3',
 	      g_params:{  
 	         min:0,
