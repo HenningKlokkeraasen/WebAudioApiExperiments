@@ -43,7 +43,8 @@ define([
 					var dataContainer = controller.findTheDataContainer(div);
 					
 					var facadeInstance = controller.createFacadeInstance(definition.facade, controller.master.audioContext);
-
+					controller.facadeInstance = facadeInstance;
+					
 					controller.storeFacadeInDom(facadeInstance, dataContainer);
 
 					controller.initEachParameter(facadeInstance, definition.parameters, dataContainer);

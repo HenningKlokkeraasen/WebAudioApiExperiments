@@ -8,6 +8,10 @@
 				<div style="margin: 0 0 5px 0;">{{moduleName}}</div>
 			</header>
 
+			{{#if hasKeyboardInterface}}
+			<div id="keyboard"></div>
+			{{/if}}
+
 			{{#if hasStartButton}}
 			<fieldset>
 				<button>Start</button>

@@ -6,7 +6,7 @@ define([
 	'/_studio/Modules/BasicWaa/Filter/Filter.js',
 	'/_studio/Modules/BasicWaa/Gain/Gain.js',
 
-	'/_studio/Modules/CustomTriggers/EnvelopeGenerator/EnvelopeGenerator.js',
+	'/_studio/Modules/TriggerSources/EnvelopeGenerator/EnvelopeGenerator.js',
 	'/_studio/Modules/CustomModulators/LFO/Lfo.js',
 	'/_studio/Modules/CustomModulators/ModulatorAudibleRange/ModulatorAudibleRange.js'
 	], function(Analyser, MasterSection, Oscillator, Filter, Gain, EnvelopeGenerator, LFO, ModulatorAudibleRange) {

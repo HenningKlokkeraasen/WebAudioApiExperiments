@@ -8,7 +8,7 @@ define([
 	'/_studio/Modules/BasicWaa/Gain/Gain.js',
 
 	'/_studio/Modules/CustomModulators/LFO/Lfo.js',
-	'/_studio/Modules/CustomTriggers/EnvelopeGenerator/EnvelopeGenerator.js'
+	'/_studio/Modules/TriggerSources/EnvelopeGenerator/EnvelopeGenerator.js'
 	], function(Analyser, MasterSection, MediaStream, Oscillator, Gain, LFO, EnvelopeGenerator) {
 		return {
 			title : 'One of each type',

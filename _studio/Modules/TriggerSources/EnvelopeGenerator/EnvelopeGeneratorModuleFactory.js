@@ -3,7 +3,7 @@
 */
 define([
     '/_studio/Modules/_ModuleFactoryBase.js',
-	'/_studio/Modules/CustomTriggers/EnvelopeGenerator/EnvelopeGeneratorFacade.js'
+	'/_studio/Modules/TriggerSources/EnvelopeGenerator/EnvelopeGeneratorFacade.js'
     ], function(ModuleFactoryBase, EnvelopeGeneratorFacade) {
 		EnvelopeGeneratorModuleFactory.prototype = new ModuleFactoryBase();
 		EnvelopeGeneratorModuleFactory.prototype.constructor = EnvelopeGeneratorModuleFactory;

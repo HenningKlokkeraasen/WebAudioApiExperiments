@@ -1,3 +1,5 @@
+// TODO enable triggering from qwerty hancock to eg
+
 /*
     Web Audio API - custom nodes - Envelope Generator
     From http://blog.chrislowis.co.uk/2013/06/17/synthesis-web-audio-api-envelopes.html
