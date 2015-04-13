@@ -42,10 +42,7 @@ define([
 					
 					var dataContainer = controller.findTheDataContainer(div);
 					
-					if (definition.doNotCreateFacadeInstance)
-						var facadeInstance = controller.master;
-					else
-						var facadeInstance = controller.createFacadeInstance(definition.facade, controller.master.audioContext);
+					var facadeInstance = controller.createFacadeInstance(definition.facade, controller.master.audioContext);
 
 					controller.storeFacadeInDom(facadeInstance, dataContainer);
 

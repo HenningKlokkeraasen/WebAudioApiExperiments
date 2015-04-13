@@ -18,6 +18,7 @@ define([
 		    this.input = this.audioContext.createGain();
 		    this.output = this.audioContext.createGain();
 			this.controlIn = this.input.gain;
+			this.triggerIn = this.output.gain;// a separate node needed to both control and trigger at the same time
 
 		};
 
@@ -27,10 +28,10 @@ define([
 
 
 		};
-			this.input.connect(this.output);
+
 		// private
 		GainFacade.prototype.wireUp = function() {
-
+			this.input.connect(this.output);
 
 
 

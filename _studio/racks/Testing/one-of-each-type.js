@@ -1,6 +1,6 @@
 define([
 	'/_studio/Modules/BasicWaa/Analyser/Analyser.js',
-	'/_studio/Modules/CustomMixerModules/MasterSection/MasterSection.js',
+	'/_studio/Modules/Composite/MasterSection/MasterSection.js',
 
 	'/_studio/Modules/BasicWaa/MediaStream/MediaStream.js',
 

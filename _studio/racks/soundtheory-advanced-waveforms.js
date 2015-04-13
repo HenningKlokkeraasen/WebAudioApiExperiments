@@ -1,9 +1,9 @@
 define([
 	'/_studio/Modules/BasicWaa/Analyser/Analyser.js',
-	'/_studio/Modules/CustomMixerModules/MasterSection/MasterSection.js',
-	'/_studio/Modules/CustomGenerators/NoiseGenerator/NoiseGenerator.js',
-	'/_studio/Modules/CustomGenerators/PulseWave/PulseWave.js',
-	'/_studio/Modules/CustomGenerators/SuperSaw/SuperSaw.js',
+	'/_studio/Modules/Composite/MasterSection/MasterSection.js',
+	'/_studio/Modules/Specialized/NoiseGenerator/NoiseGenerator.js',
+	'/_studio/Modules/Specialized/PulseWave/PulseWave.js',
+	'/_studio/Modules/Specialized/SuperSaw/SuperSaw.js',
 	], function(Analyser, MasterSection, NoiseGenerator, PulseWave, SuperSaw) {
 		return {
 			title : 'Advanced wave forms',

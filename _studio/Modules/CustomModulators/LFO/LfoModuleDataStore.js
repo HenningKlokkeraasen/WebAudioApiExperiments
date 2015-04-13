@@ -5,7 +5,7 @@ define([], function() { return { Modules :
 	      shortName:'lfo1',
 	      f_params:{  
 	         min:0,
-	         max:24,
+	         max:20,
 	         val:5,
 	         stp:0.1
 	      },
@@ -24,7 +24,7 @@ define([], function() { return { Modules :
 	      shortName:'lfo2',
 	      f_params:{  
 	         min:0,
-	         max:24,
+	         max:20,
 	         val:5,
 	         stp:0.1
 	      },
@@ -43,7 +43,7 @@ define([], function() { return { Modules :
 	      shortName:'lfo3',
 	      f_params:{  
 	         min:0,
-	         max:24,
+	         max:20,
 	         val:5,
 	         stp:0.1
 	      },
