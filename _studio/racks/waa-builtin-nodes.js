@@ -26,7 +26,7 @@ define([
 							{
 								controller : Oscillator.Controller,
 								factory : Oscillator.ModuleFactory,
-								modules : Oscillator.Modules
+								modules : Oscillator.Modules.getItemsByShortName('osc1', 'osc2', 'osc3', 'osc4')
 							},
 						]
 					},
@@ -38,7 +38,7 @@ define([
 							{
 								controller : Filter.Controller,
 								factory : Filter.ModuleFactory,
-								modules : Filter.Modules
+								modules : Filter.Modules.getItemsByShortName('filter1', 'filter2', 'filter3', 'filter4')
 							},
 						]
 					},

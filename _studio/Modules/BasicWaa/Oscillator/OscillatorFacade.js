@@ -20,7 +20,8 @@ define([
 			// create a gain node as the output
 			// this will be what is used for connections
 			this.output = new GainFacade(this.audioContext);
-
+			this.controlIn = this.input.frequency;
+			this.controlOut = this.output.output;
 		};
 
 		// private

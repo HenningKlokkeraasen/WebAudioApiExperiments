@@ -3,14 +3,17 @@
 */
 define([
     '/_studio/Modules/_ModuleFactoryBase.js',
-	'/_studio/Modules/CustomGenerators/LFO/LfoFacade.js'
+	'/_studio/Modules/CustomTriggers/EnvelopeGenerator/EnvelopeGeneratorFacade.js'
     ], function(ModuleFactoryBase, EnvelopeGeneratorFacade) {
 		EnvelopeGeneratorModuleFactory.prototype = new ModuleFactoryBase();
 		EnvelopeGeneratorModuleFactory.prototype.constructor = EnvelopeGeneratorModuleFactory;
 
 		function EnvelopeGeneratorModuleFactory() {
 			this.moduleCssClass = 'genericmodule';
-			this.hasNoInputs = true;
+			this.hasAudioIn = false;
+			this.hasAudioOut = false;
+			this.hasTriggerIn = true;
+			this.hasTriggerOut = true;
 			this.hasStartButton = true;
 		}
 		EnvelopeGeneratorModuleFactory.prototype.getModuleDefinition = function() {

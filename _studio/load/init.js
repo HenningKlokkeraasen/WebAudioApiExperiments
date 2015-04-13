@@ -1,6 +1,6 @@
 require.config({
 	// Force cache invalidation
-	urlArgs: 'bust=v137',
+	urlArgs: "bust=" + (new Date()).getTime(),
 
     baseUrl: '/js', // relative to the html page loading this file?
     paths: {
@@ -17,7 +17,11 @@ require([
 
 		'/_studio/load/thirdpartylibs.js', // relative to the path of this file? or the html file loading this file?
 		'/_studio/load/patching.js',
-		'/_studio/load/waa-base.js',
+
+		'/_studio/app/LayoutController.js',
+		'/_studio/app/_TemplateLoader.js',
+
+		'/_WebAudioApiFacades/AudioContextFacade.js',
 	], function(App, QueryStringFacade) {
 	    // console.debug('dependencies for app has loaded');
 

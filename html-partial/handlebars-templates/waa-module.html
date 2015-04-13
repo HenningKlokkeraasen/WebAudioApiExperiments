@@ -73,17 +73,18 @@
 							step="{{step}}" 
 							name="{{name}}"
 							title="{{value}}"
-							class="{{../rangeDisplayMode}}"
 
-							{{!-- for JimKnopf Knobs. TODO parameterize--}}
-							data-width="50"
-							data-height="50"
-							data-angleOffset="220"
-							data-angleRange="280"
+							{{#ifCond ../rangeDisplayMode "knob"}}
+								data-width="50"
+								data-height="50"
+								data-angleOffset="220"
+								data-angleRange="280"
+							{{/ifCond}}
 
-							 />
+							class="{{../rangeDisplayMode}}"							 />
+
 					<output for="{{name}}" class="{{../rangeDisplayMode}}">{{value}}</output>
-					{{!--TODO <span class="patchHole patchParamInput">&nbsp;</span>--}}
+					
 				</div>
 				{{/each}}
 
@@ -106,16 +107,30 @@
 
 			<fieldset class="connectors">
 				<legend>Connectors</legend>
-				{{#unless hasNoInputs}}
-					<div><div>In</div><div><span class="patchHole patchInput">&nbsp;</span></div></div>
-				{{/unless}}
+				{{#if hasTriggerIn}}
+					<div><div>Trigger<br/>In</div><div><span class="patchHole " data-patch-type="triggerIn">&nbsp;</span></div></div>
+				{{/if}}
 
-				{{#unless hasNoOutputs}}
-					<div><div>Out</div><div><span class="patchHole patchOutput">&nbsp;</span></div></div>
-				{{/unless}}
+				{{#if hasTriggerOut}}
+					<div><div>Trigger<br/>Out</div><div><span class="patchHole " data-patch-type="triggerOut">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasControlIn}}
+					<div><div>Control<br/>In</div><div><span class="patchHole " data-patch-type="controlIn">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasControlOut}}
+					<div><div>Control<br/>Out</div><div><span class="patchHole " data-patch-type="controlOut">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasAudioIn}}
+					<div><div>Audio<br/>In</div><div><span class="patchHole " data-patch-type="audioIn">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasAudioOut}}
+					<div><div>Audio<br/>Out</div><div><span class="patchHole " data-patch-type="audioOut">&nbsp;</span></div></div>
+				{{/if}}
 			</fieldset>
-
-			{{!TODO for modification modules: out <span class="patchHole patchParamOutput">&nbsp;</span>}}
 		</div>
 	</script>
 

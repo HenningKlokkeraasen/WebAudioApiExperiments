@@ -7,7 +7,7 @@ define([
 			this.node = audioContext.createAnalyser(); // Note spelling of Analyser
 			this.isStopped = true;
 
-
+			this.input = this.node;
 
 
 			return this;

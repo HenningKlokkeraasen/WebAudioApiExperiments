@@ -40,11 +40,11 @@ define([
 
         };
 
-        // connect to an audioParam (not an audioNode)
-        EnvelopeGeneratorFacade.prototype.control = function(audioParam) {
-            this.audioParam = audioParam;
-            return this;
-        };
+        // connect to an audioParam (not an audioNode) moved to base note renamed to setTriggerFor
+        // EnvelopeGeneratorFacade.prototype.control = function(audioParam) {
+        //     this.audioParam = audioParam;
+        //     return this;
+        // };
 
         EnvelopeGeneratorFacade.prototype.gateOn = function() {
             this.trigger();
@@ -80,12 +80,14 @@ define([
         // private
         //
 
+        // TODO Support more than going from 0-1. now it will only work for gains
+
         EnvelopeGeneratorFacade.prototype.trigger = function() {
             var now = this.getCurrentTimeAndCancelScheduledValuesAndSetValue();
 
             // ATTACK
-            this.audioParam.linearRampToValueAtTime(1.0, now + this.attackTime);
-            ////this.audioParam.setTargetAtTime(1.0, now, this.attackTime);
+            this.triggerOut.linearRampToValueAtTime(1.0, now + this.attackTime);
+            ////this.triggerOut.setTargetAtTime(1.0, now, this.attackTime);
 
             // DECAY to SUSTAIN LEVEL
             var sustainLevel = this.sustainLevel;
@@ -94,13 +96,13 @@ define([
 
             
 
-            ////this.audioParam.exponentialRampToValueAtTime(sustainLevel, now + this.attackTime + this.decayTime);
-            ////this.audioParam.setTargetAtTime(sustainLevel, now + this.attackTime, this.decayTime);
-            this.audioParam.linearRampToValueAtTime(sustainLevel, (now + this.attackTime + this.decayTime));
-            ////this.audioParam.setValueAtTime(sustainLevel, now + this.attackTime + this.decayTime);
+            ////this.triggerOut.exponentialRampToValueAtTime(sustainLevel, now + this.attackTime + this.decayTime);
+            ////this.triggerOut.setTargetAtTime(sustainLevel, now + this.attackTime, this.decayTime);
+            this.triggerOut.linearRampToValueAtTime(sustainLevel, (now + this.attackTime + this.decayTime));
+            ////this.triggerOut.setValueAtTime(sustainLevel, now + this.attackTime + this.decayTime);
 
             if (this.sustainLevel == 0)
-                this.audioParam.setValueAtTime(0, now + this.attackTime + this.decayTime);
+                this.triggerOut.setValueAtTime(0, now + this.attackTime + this.decayTime);
 
         };
 
@@ -108,17 +110,17 @@ define([
             var now = this.getCurrentTimeAndCancelScheduledValuesAndSetValue();
 
             // RELEASE
-            this.audioParam.setTargetAtTime(0.0, now, this.releaseTime);
-            ////this.audioParam.linearRampToValueAtTime(0.0, now + this.releaseTime);
+            this.triggerOut.setTargetAtTime(0.0, now, this.releaseTime);
+            ////this.triggerOut.linearRampToValueAtTime(0.0, now + this.releaseTime);
         };
 
         EnvelopeGeneratorFacade.prototype.getCurrentTimeAndCancelScheduledValuesAndSetValue = function() {
             var now = this.audioContext.currentTime;
 
-            this.audioParam.cancelScheduledValues(now);
+            this.triggerOut.cancelScheduledValues(now);
             
             // Anchor beginning of ramp at current value.
-            this.audioParam.setValueAtTime(this.audioParam.value, now);
+            this.triggerOut.setValueAtTime(this.triggerOut.value, now);
 
             return now;
         };

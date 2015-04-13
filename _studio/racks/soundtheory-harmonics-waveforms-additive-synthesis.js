@@ -1,8 +1,8 @@
 define([
 	'/_studio/Modules/BasicWaa/Analyser/Analyser.js',
-	'/_studio/Modules/CustomMixerModules/MasterSection/MasterSection.js',
+	'/_studio/Modules/Composite/MasterSection/MasterSection.js',
 
-	'/_studio/Modules/CustomGenerators/HarmonicGenerator/HarmonicGenerator.js'
+	'/_studio/Modules/Specialized/HarmonicGenerator/HarmonicGenerator.js'
 	], function(Analyser, MasterSection, HarmonicGenerator) {
 		return {
 			title : 'Harmonics / Additive synthesis',

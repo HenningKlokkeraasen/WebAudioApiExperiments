@@ -8,8 +8,8 @@ define([
 
         function GainModuleFactory() {
             this.moduleCssClass = 'gain';
-            
-            
+            this.hasTriggerIn = true;
+            this.hasControlIn = true;
         }
         GainModuleFactory.prototype.getModuleDefinition = function() {
             return {    

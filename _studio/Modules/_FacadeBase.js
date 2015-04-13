@@ -11,13 +11,23 @@ define([
 			this.wireUp();
 
 			// backwards compatability
-			this.node = this.input; // TODO verify
+			this.node = this.input; // TODO remove
 			
 			return this;
 		};
 
 		FacadeBase.prototype.connect = function(destination) {
-			this.output.connect(destination);
+			if (destination instanceof AudioNode) {
+				// audio graph
+				this.output.connect(destination);
+			} else {
+				console.group();
+				console.warn('destination is not an AudioNode. destination is:');
+				console.warn(destination);
+				console.warn('this is a/an');
+				console.warn(this);
+				console.groupEnd();
+			}
 			return this;
 		};
 
@@ -25,11 +35,56 @@ define([
 			this.output.disconnect(0); // disconnects to all destinations (?)
 		    return this;
 		};
+
+		FacadeBase.prototype.control = function(destination) {
+			if (destination instanceof AudioParam) {
+				// control graph
+				this.controlOut.connect(destination);
+			} else {
+				console.group();
+				console.warn('destination is not an AudioParam. destination is:');
+				console.warn(destination);
+				console.warn('this is a/an');
+				console.warn(this);
+				console.groupEnd();
+			}
+		    return this;
+		};
+
+		FacadeBase.prototype.uncontrol = function() {
+			this.controlOut.disconnect(0); // disconnects to all destinations (?)
+		    return this;
+		};
+
+		FacadeBase.prototype.setTriggerFor = function(destination) {
+			if (destination instanceof AudioParam) {
+				// set trigger
+				this.controlOut = destination;
+			} else {
+				console.group();
+				console.warn('destination is not an AudioParam. destination is:');
+				console.warn(destination);
+				console.warn('this is a/an');
+				console.warn(this);
+				console.groupEnd();
+			}
+			this.triggerOut = destination;
+		    return this;
+		};
+
+		FacadeBase.prototype.unsetTriggerFor = function() {
+			// not implemented TODO
+		    return this;
+		};
+
+		FacadeBase.prototype.input = undefined; // TODO rename to audioIn
+		FacadeBase.prototype.output = undefined; // TODO rename to audioOut
+		FacadeBase.prototype.controlIn = undefined;
+		FacadeBase.prototype.controlOut = undefined;
+		FacadeBase.prototype.triggerIn = undefined;
+		FacadeBase.prototype.triggerOut = undefined;
+
 		/*
-		FacadeBase.prototype.input = undefined;
-
-		FacadeBase.prototype.output = undefined;
-
 		FacadeBase.prototype.initNodes = function() { };
 		FacadeBase.prototype.setDefaultValues = function() { };
 		FacadeBase.prototype.wireUp = function() { };

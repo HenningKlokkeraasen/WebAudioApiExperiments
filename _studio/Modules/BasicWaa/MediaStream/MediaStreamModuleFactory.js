@@ -8,7 +8,7 @@ define([
 
 		function MediaStreamModuleFactory() {
 			this.moduleCssClass = 'mediastreammodule';
-			this.hasNoInputs = true;
+			this.hasAudioIn = false;
 			this.hasStartButton = true;
 		}
 		MediaStreamModuleFactory.prototype.getModuleDefinition = function() {

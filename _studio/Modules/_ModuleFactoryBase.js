@@ -4,9 +4,13 @@ define([
 		function ModuleFactoryBase() {
 			this.handlebarsTemplateSelector = '#moduleTemplate';
 			this.moduleCssClass = '';
-			this.hasNoInputs = false;
 			this.hasStartButton = false;
-			this.hasNoOutputs = false;
+			this.hasAudioIn = true;
+			this.hasAudioOut = true;
+			this.hasTriggerIn = false;
+			this.hasTriggerOut = false;
+			this.hasControlIn = false;
+			this.hasControlOut = false;
 			this.renderSectionsVertically = false;
 		}
 
@@ -21,9 +25,13 @@ define([
 			return { 
 				moduleName : moduleData.name,
 				moduleCssClass : this.moduleCssClass,
-				hasNoInputs : this.hasNoInputs,
 				hasStartButton : this.hasStartButton,
-				hasNoOutputs : this.hasNoOutputs,
+				hasAudioIn : this.hasAudioIn,
+				hasAudioOut : this.hasAudioOut,
+				hasTriggerIn : this.hasTriggerIn,
+				hasTriggerOut : this.hasTriggerOut,
+				hasControlIn : this.hasControlIn,
+				hasControlOut : this.hasControlOut,
 				sections : moduleData.sections,
 				renderSectionsVertically : this.renderSectionsVertically,
 				hiddenParameters : moduleData.hiddenParameters
