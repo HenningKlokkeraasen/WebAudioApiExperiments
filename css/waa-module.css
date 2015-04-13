@@ -191,7 +191,8 @@
 			}
 
 			.wideModule {
-				width: 100%;
+				/*TODO rename to 3U since it takes up three rack units*/
+				width: 626px; /*TODO not responsive*/
 			}
 
 .parameterLabel {

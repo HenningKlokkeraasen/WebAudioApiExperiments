@@ -5,6 +5,7 @@ define([
 			this.handlebarsTemplateSelector = '#moduleTemplate';
 			this.moduleCssClass = '';
 			this.hasStartButton = false;
+			this.hasKeyboardInterface = false;
 			this.hasAudioIn = true;
 			this.hasAudioOut = true;
 			this.hasTriggerIn = false;
@@ -26,6 +27,7 @@ define([
 				moduleName : moduleData.name,
 				moduleCssClass : this.moduleCssClass,
 				hasStartButton : this.hasStartButton,
+				hasKeyboardInterface : this.hasKeyboardInterface,
 				hasAudioIn : this.hasAudioIn,
 				hasAudioOut : this.hasAudioOut,
 				hasTriggerIn : this.hasTriggerIn,
