@@ -49,6 +49,16 @@ define([], function() { return { Modules :
 	         val:-1,
 	         stp:0.01
 	      }
+	   },
+	   {  
+	      name:'Amp',
+	      shortName:'gain5',
+	      g_params:{  
+	         min:0,
+	         max:1,
+	         val:1,
+	         stp:0.01
+	      }
 	   }
 	]	
 };});

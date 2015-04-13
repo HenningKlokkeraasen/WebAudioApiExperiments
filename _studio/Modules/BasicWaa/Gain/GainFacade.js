@@ -16,9 +16,8 @@ define([
 		// private
 		GainFacade.prototype.initNodes = function() {
 		    this.input = this.audioContext.createGain();
-		    this.output = this.input; // TODO verify
+		    this.output = this.audioContext.createGain();
 			this.controlIn = this.input.gain;
-			this.triggerIn = this.input.gain;// TODO need separate nodes for control and trigger
 
 		};
 
@@ -28,7 +27,7 @@ define([
 
 
 		};
-
+			this.input.connect(this.output);
 		// private
 		GainFacade.prototype.wireUp = function() {
 
@@ -41,6 +40,7 @@ define([
 
 		GainFacade.prototype.setGain = function(value) {
 			this.input.gain.value = value;
+			this.output.gain.value = value;
 			return this;
 		}
 

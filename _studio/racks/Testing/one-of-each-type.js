@@ -7,12 +7,12 @@ define([
 	'/_studio/Modules/BasicWaa/Oscillator/Oscillator.js',
 	'/_studio/Modules/BasicWaa/Gain/Gain.js',
 
-	'/_studio/Modules/CustomGenerators/LFO/Lfo.js',
+	'/_studio/Modules/CustomModulators/LFO/Lfo.js',
 	'/_studio/Modules/CustomTriggers/EnvelopeGenerator/EnvelopeGenerator.js'
 	], function(Analyser, MasterSection, MediaStream, Oscillator, Gain, LFO, EnvelopeGenerator) {
 		return {
-			title : 'Sound modulation and triggers (gates)',
-			description : 'This rack shows modulation and trigger nodes',
+			title : 'One of each type',
+			description : '...of connection combination (audio in/out, trigger (gate) in/out, control (cv) in/out)',
 			rackData : {
 				rows : [
 
@@ -65,7 +65,7 @@ define([
 							{
 								controller : LFO.Controller,
 								factory : LFO.ModuleFactory,
-								modules : LFO.Modules
+								modules : LFO.Modules.getItemsByShortName('lfo1')
 							},
 
 							// Triggers

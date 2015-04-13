@@ -107,14 +107,6 @@
 
 			<fieldset class="connectors">
 				<legend>Connectors</legend>
-				{{#if hasAudioIn}}
-					<div><div>Audio<br/>In</div><div><span class="patchHole " data-patch-type="audioIn">&nbsp;</span></div></div>
-				{{/if}}
-
-				{{#if hasAudioOut}}
-					<div><div>Audio<br/>Out</div><div><span class="patchHole " data-patch-type="audioOut">&nbsp;</span></div></div>
-				{{/if}}
-
 				{{#if hasTriggerIn}}
 					<div><div>Trigger<br/>In</div><div><span class="patchHole " data-patch-type="triggerIn">&nbsp;</span></div></div>
 				{{/if}}
@@ -129,6 +121,14 @@
 
 				{{#if hasControlOut}}
 					<div><div>Control<br/>Out</div><div><span class="patchHole " data-patch-type="controlOut">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasAudioIn}}
+					<div><div>Audio<br/>In</div><div><span class="patchHole " data-patch-type="audioIn">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasAudioOut}}
+					<div><div>Audio<br/>Out</div><div><span class="patchHole " data-patch-type="audioOut">&nbsp;</span></div></div>
 				{{/if}}
 			</fieldset>
 		</div>

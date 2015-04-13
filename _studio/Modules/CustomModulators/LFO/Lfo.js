@@ -6,10 +6,10 @@ define([
 	'/_studio/Modules/BasicWaa/Oscillator/OscillatorController.js',
 
 	// Data (model) for basic modules
-	'/_studio/Modules/CustomGenerators/LFO/LfoModuleFactory.js',
+	'/_studio/Modules/CustomModulators/LFO/LfoModuleFactory.js',
 
 	// Data store
-	'/_studio/Modules/CustomGenerators/LFO/LfoModuleDataStore.js'
+	'/_studio/Modules/CustomModulators/LFO/LfoModuleDataStore.js'
 	], function(Controller, ModuleFactory, DataStore) {
 		return { Controller: Controller, ModuleFactory: ModuleFactory, Modules : DataStore.Modules };
 	}

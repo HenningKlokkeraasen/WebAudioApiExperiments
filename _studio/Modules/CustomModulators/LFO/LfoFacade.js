@@ -58,7 +58,8 @@ define([
         };
 
         LfoFacade.prototype.setRate = function(value) {
-            if (value > this.max_frequency)
+            // console.debug('actsAsModulatorInAudibleRange: ' + this.actsAsModulatorInAudibleRange);
+            if (value > this.max_frequency && !this.actsAsModulatorInAudibleRange)
                 value = this.max_frequency;
             OscillatorFacade.prototype.setFrequency.call(this, value); // base()
             return this;
@@ -80,6 +81,7 @@ define([
         };
         
         LfoFacade.prototype.max_frequency = 20;
+        LfoFacade.prototype.actsAsModulatorInAudibleRange = false;
 
         return LfoFacade;
     }

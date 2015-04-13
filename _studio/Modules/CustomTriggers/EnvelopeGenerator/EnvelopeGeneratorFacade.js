@@ -80,6 +80,8 @@ define([
         // private
         //
 
+        // TODO Support more than going from 0-1. now it will only work for gains
+
         EnvelopeGeneratorFacade.prototype.trigger = function() {
             var now = this.getCurrentTimeAndCancelScheduledValuesAndSetValue();
 

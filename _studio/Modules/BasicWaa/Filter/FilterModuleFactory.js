@@ -8,8 +8,8 @@ define([
 
         function FilterModuleFactory() {
             this.moduleCssClass = 'filter';
-            
-            
+            this.hasTriggerIn = true;
+            this.hasControlIn = true;
         }
         FilterModuleFactory.prototype.getModuleDefinition = function() {
             return {    

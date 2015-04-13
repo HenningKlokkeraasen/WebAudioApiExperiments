@@ -17,8 +17,8 @@ define([
 		FilterFacade.prototype.initNodes = function() {
 		    this.input = this.audioContext.createBiquadFilter();
 		    this.output = this.input; // TODO verify
-
-
+			this.controlIn = this.input.frequency;
+			this.triggerIn = this.input.frequency;
 
 		};
 

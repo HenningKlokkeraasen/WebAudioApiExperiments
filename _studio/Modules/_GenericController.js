@@ -6,6 +6,10 @@ define([
 		function GenericController(master, patcher) {
 			this.master = master;
 			this.patcher = patcher;
+
+			this.audioPatchController = new PatchController();
+			this.triggerPatchController = new PatchController();
+			this.controlPatchController = new PatchController();
 		}
 
 		GenericController.prototype = {
@@ -117,9 +121,9 @@ define([
 			// var facadeDataAttr = this.facadeDataAttr;
 			// console.debug(facade);
 
-			new PatchController().setupPatching(div, this.audioInSelector, this.audioOutSelector, dataContainerSelector, facade, facade.input, facade.output, facade.connect, patcher);
-			new PatchController().setupPatching(div, this.triggerInSelector, this.triggerOutSelector, dataContainerSelector, facade, facade.triggerIn, facade.triggerOut, facade.setTriggerFor, patcher);
-			new PatchController().setupPatching(div, this.controlInSelector, this.controlOutSelector, dataContainerSelector, facade, facade.controlIn, facade.controlOut, facade.control, patcher);
+			this.audioPatchController.setupPatching(div, this.audioInSelector, this.audioOutSelector, dataContainerSelector, facade, facade.input, facade.output, facade.connect, patcher);
+			this.triggerPatchController.setupPatching(div, this.triggerInSelector, this.triggerOutSelector, dataContainerSelector, facade, facade.triggerIn, facade.triggerOut, facade.setTriggerFor, patcher);
+			this.controlPatchController.setupPatching(div, this.controlInSelector, this.controlOutSelector, dataContainerSelector, facade, facade.controlIn, facade.controlOut, facade.control, patcher);
 		};
 
 		GenericController.prototype.bindControlsToParameters = function(div, parameters) {

@@ -27,6 +27,13 @@ define([], function() { return { Modules :
 	      t_params:{  
 	         indexChecked:3
 	      }
+	   },
+	   {  
+	      name:'Filter',
+	      shortName:'filter5',
+	      t_params:{  
+	         indexChecked:0
+	      }
 	   }
 	]
 };});

@@ -1,13 +1,12 @@
 define([
     '/_studio/Modules/BasicWaa/Oscillator/OscillatorModuleFactory.js',
-	'/_studio/Modules/CustomGenerators/LFO/LfoFacade.js'
+	'/_studio/Modules/CustomModulators/LFO/LfoFacade.js'
     ], function(OscillatorModuleFactory, LfoFacade) {
 		LfoModuleFactory.prototype = new OscillatorModuleFactory();
 		LfoModuleFactory.prototype.constructor = LfoModuleFactory;
 
 		function LfoModuleFactory() {
 			this.hasTriggerIn = false;
-			this.hasControlIn = false;
 			this.hasAudioOut = false;
 		}
 		LfoModuleFactory.prototype.getModuleDefinition = function() {
