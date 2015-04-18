@@ -21,10 +21,10 @@ define([
 
 					$(button).text('Stop');
 
-					facade.gateOn();
+					facade.initGateOn();
 				}
 				else {
-					facade.gateOff();
+					facade.initGateOff();
 					$(dataContainer).data('isPlaying', false);
 					$(button).text('Start');
 				}

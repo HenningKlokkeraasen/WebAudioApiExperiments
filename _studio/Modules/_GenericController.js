@@ -120,7 +120,7 @@ define([
 			// console.debug(facade);
 
 			this.audioPatchController.setupPatching(div, this.audioInSelector, this.audioOutSelector, dataContainerSelector, facade, facade.input, facade.output, facade.connect, patcher);
-			this.triggerPatchController.setupPatching(div, this.triggerInSelector, this.triggerOutSelector, dataContainerSelector, facade, facade.triggerIn, facade.triggerOut, facade.setTriggerFor, patcher);
+			this.triggerPatchController.setupPatching(div, this.triggerInSelector, this.triggerOutSelector, dataContainerSelector, facade, facade, facade, facade.setTriggerFor, patcher);
 			this.controlPatchController.setupPatching(div, this.controlInSelector, this.controlOutSelector, dataContainerSelector, facade, facade.controlIn, facade.controlOut, facade.control, patcher);
 		};
 

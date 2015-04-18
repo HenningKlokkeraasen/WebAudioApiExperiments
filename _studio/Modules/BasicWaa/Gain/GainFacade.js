@@ -2,23 +2,25 @@
 	Web Audio API wrapper - Gain
 */
 define([
-	'/_studio/Modules/_FacadeBase.js'
-	], function(FacadeBase) {
+	'/_studio/Modules/_FacadeBase.js',
+	'/_studio/Modules/_Mixins/ICanBeTriggered.js'
+	], function(FacadeBase, ICanBeTriggered) {
 		GainFacade.prototype = Object.create(FacadeBase.prototype);
 		GainFacade.prototype.constructor = GainFacade;
 
 		function GainFacade(audioContext) {
 		    FacadeBase.call(this, audioContext); // base()
+			ICanBeTriggered.call(this);
 
 			return this;
 		}
+
 
 		// private
 		GainFacade.prototype.initNodes = function() {
 		    this.input = this.audioContext.createGain();
 		    this.output = this.audioContext.createGain();
 			this.controlIn = this.input.gain;
-			this.triggerIn = this.output.gain;// a separate node needed to both control and trigger at the same time
 
 		};
 
@@ -41,9 +43,29 @@ define([
 
 		GainFacade.prototype.setGain = function(value) {
 			this.input.gain.value = value;
-			this.output.gain.value = value;
+			// this.output.gain.value = value;
 			return this;
-		}
+		};
+
+		//region iCanBeTriggered
+		GainFacade.prototype.gateOn = function(callback, originator) {
+			// console.debug('output.gain.value before is ' + this.output.gain.value);
+			// this.output.gain.value = 1;
+			// console.debug('output.gain.value after is ' + this.output.gain.value);
+			// console.debug('in GainFacade.gateOn, callback is ');
+			// console.debug(callback);
+			callback.call(originator, this.output.gain);
+		};
+
+		GainFacade.prototype.gateOff = function(callback, originator) {
+			// console.debug('output.gain.value before is ' + this.output.gain.value);
+			// this.output.gain.value = 0;
+			// console.debug('output.gain.value after is ' + this.output.gain.value);
+			// console.debug('in GainFacade.gateOff, callback is ');
+			// console.debug(callback);
+			callback.call(originator, this.output.gain);
+		};
+		//endregion iCanBeTriggered
 
 		return GainFacade;
 	}

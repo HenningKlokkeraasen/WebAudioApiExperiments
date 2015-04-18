@@ -1,24 +1,29 @@
-// TODO enable triggering from qwerty hancock to eg
-
 /*
     Web Audio API - custom nodes - Envelope Generator
     From http://blog.chrislowis.co.uk/2013/06/17/synthesis-web-audio-api-envelopes.html
 */
 define([
-    '/_studio/Modules/_FacadeBase.js'
-    ], function(FacadeBase) {
+    '/_studio/Modules/_FacadeBase.js',
+    '/_studio/Modules/_Mixins/ICanTrigger.js',
+    '/_studio/Modules/_Mixins/ICanBeTriggered.js'
+    ], function(FacadeBase, ICanTrigger, ICanBeTriggered) {
         EnvelopeGeneratorFacade.prototype = Object.create(FacadeBase.prototype);
         EnvelopeGeneratorFacade.prototype.constructor = EnvelopeGeneratorFacade;
 
         function EnvelopeGeneratorFacade(audioContext) {
             FacadeBase.call(this, audioContext); // base()
+            ICanTrigger.call(this);
+            ICanBeTriggered.call(this);
+
+            this.gateOnCallback = this.initiateTriggering;
+            this.gateOffCallback = this.initiateReleasing;
 
             return this;
         }
 
         // private
         EnvelopeGeneratorFacade.prototype.initNodes = function() {
-
+            this.controlIn = this.audioContext.createGain();
 
 
 
@@ -27,7 +32,7 @@ define([
 
         // private
         EnvelopeGeneratorFacade.prototype.setDefaultValues = function() {
-
+            this.controlIn.gain.value = 0;
 
 
         };
@@ -48,14 +53,12 @@ define([
         //     return this;
         // };
 
-        EnvelopeGeneratorFacade.prototype.gateOn = function() {
+        EnvelopeGeneratorFacade.prototype.initGateOn = function() {
             this.trigger();
-            return this;
         };
 
-        EnvelopeGeneratorFacade.prototype.gateOff = function() {
+        EnvelopeGeneratorFacade.prototype.initGateOff = function() {
             this.release();
-            return this;
         };
 
         EnvelopeGeneratorFacade.prototype.setAttackTime = function(value) {
@@ -84,11 +87,12 @@ define([
 
         // TODO Support more than going from 0-1. now it will only work for gains
 
-        EnvelopeGeneratorFacade.prototype.trigger = function() {
-            var now = this.getCurrentTimeAndCancelScheduledValuesAndSetValue();
+        EnvelopeGeneratorFacade.prototype.initiateTriggering = function(audioParam) {
+            // console.debug(this);
+            var now = this.getCurrentTimeAndCancelScheduledValuesAndSetValue(audioParam);
 
             // ATTACK
-            this.triggerOut.linearRampToValueAtTime(1.0, now + this.attackTime);
+            audioParam.linearRampToValueAtTime(1.0, now + this.attackTime);
             ////this.triggerOut.setTargetAtTime(1.0, now, this.attackTime);
 
             // DECAY to SUSTAIN LEVEL
@@ -100,7 +104,7 @@ define([
 
             ////this.triggerOut.exponentialRampToValueAtTime(sustainLevel, now + this.attackTime + this.decayTime);
             ////this.triggerOut.setTargetAtTime(sustainLevel, now + this.attackTime, this.decayTime);
-            this.triggerOut.linearRampToValueAtTime(sustainLevel, (now + this.attackTime + this.decayTime));
+            audioParam.linearRampToValueAtTime(sustainLevel, (now + this.attackTime + this.decayTime));
             ////this.triggerOut.setValueAtTime(sustainLevel, now + this.attackTime + this.decayTime);
 
             if (this.sustainLevel == 0)
@@ -108,24 +112,39 @@ define([
 
         };
 
-        EnvelopeGeneratorFacade.prototype.release = function() {
-            var now = this.getCurrentTimeAndCancelScheduledValuesAndSetValue();
+        EnvelopeGeneratorFacade.prototype.initiateReleasing = function(audioParam) {
+            // console.debug(this);
+            var now = this.getCurrentTimeAndCancelScheduledValuesAndSetValue(audioParam);
 
             // RELEASE
-            this.triggerOut.setTargetAtTime(0.0, now, this.releaseTime);
+            audioParam.setTargetAtTime(0.0, now, this.releaseTime);
             ////this.triggerOut.linearRampToValueAtTime(0.0, now + this.releaseTime);
         };
 
-        EnvelopeGeneratorFacade.prototype.getCurrentTimeAndCancelScheduledValuesAndSetValue = function() {
+        EnvelopeGeneratorFacade.prototype.getCurrentTimeAndCancelScheduledValuesAndSetValue = function(audioParam) {
             var now = this.audioContext.currentTime;
 
-            this.triggerOut.cancelScheduledValues(now);
+            audioParam.cancelScheduledValues(now);
             
             // Anchor beginning of ramp at current value.
-            this.triggerOut.setValueAtTime(this.triggerOut.value, now);
+            audioParam.setValueAtTime(audioParam.value, now);
 
             return now;
         };
+
+        //region iCanBeTriggered
+        EnvelopeGeneratorFacade.prototype.gateOn = function(callback, originator) {
+            this.trigger();
+            // this.initiateTriggering();
+            callback.call(originator, this.controlIn.gain);
+        };
+
+        EnvelopeGeneratorFacade.prototype.gateOff = function(callback, originator) {
+            this.release();
+            // this.initiateReleasing();
+            callback(originator, this.controlIn.gain);
+        };
+        //endregion iCanBeTriggered
 
         return EnvelopeGeneratorFacade;
     }

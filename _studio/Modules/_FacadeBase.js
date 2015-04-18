@@ -12,7 +12,7 @@ define([
 
 			// backwards compatability
 			this.node = this.input; // TODO remove
-			
+
 			return this;
 		};
 
@@ -56,33 +56,10 @@ define([
 		    return this;
 		};
 
-		FacadeBase.prototype.setTriggerFor = function(destination) {
-			if (destination instanceof AudioParam) {
-				// set trigger
-				this.controlOut = destination;
-			} else {
-				console.group();
-				console.warn('destination is not an AudioParam. destination is:');
-				console.warn(destination);
-				console.warn('this is a/an');
-				console.warn(this);
-				console.groupEnd();
-			}
-			this.triggerOut = destination;
-		    return this;
-		};
-
-		FacadeBase.prototype.unsetTriggerFor = function() {
-			// not implemented TODO
-		    return this;
-		};
-
 		FacadeBase.prototype.input = undefined; // TODO rename to audioIn
 		FacadeBase.prototype.output = undefined; // TODO rename to audioOut
 		FacadeBase.prototype.controlIn = undefined;
 		FacadeBase.prototype.controlOut = undefined;
-		FacadeBase.prototype.triggerIn = undefined;
-		FacadeBase.prototype.triggerOut = undefined;
 
 		/*
 		FacadeBase.prototype.initNodes = function() { };

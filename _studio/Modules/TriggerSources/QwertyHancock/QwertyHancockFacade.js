@@ -1,19 +1,21 @@
-// TODO enable triggering from qwerty hancock to eg
-
 /*
 	Web Audio API wrapper - Gain
 */
 define([
-	'/_studio/Modules/_FacadeBase.js'
-	], function(FacadeBase) {
+	'/_studio/Modules/_FacadeBase.js',
+    '/_studio/Modules/_Mixins/ICanTrigger.js',
+	], function(FacadeBase, ICanTrigger) {
 		QwertyHancockFacade.prototype = Object.create(FacadeBase.prototype);
 		QwertyHancockFacade.prototype.constructor = QwertyHancockFacade;
 
 		function QwertyHancockFacade(audioContext) {
-		    FacadeBase.call(this, audioContext); // base()
+			FacadeBase.call(this, audioContext); // base()
+			ICanTrigger.call(this);
 
 		    this.controlDestinations = [];
-		    this.triggerDestinations = [];
+
+            this.gateOnCallback = this.initiateTriggering;
+            this.gateOffCallback = this.initiateReleasing;
 
 			return this;
 		}
@@ -49,12 +51,7 @@ define([
 			return this;
 		};
 
-		QwertyHancockFacade.prototype.setTriggerFor = function(destination) {
-			this.triggerDestinations.push(destination);
-		    return this;
-		};
-
-		QwertyHancockFacade.prototype.setKeyboard = function(keyboard) {
+		QwertyHancockFacade.prototype.initKeyboard = function(keyboard) {
 			
 			var facade = this;
 
@@ -73,22 +70,24 @@ define([
 					destination.value = frequency; // hack? will only work for oscillators
 				});
 
-				facade.triggerDestinations.forEach(function(destination){
-					destination.value = 1; // gateOn	TODO will only work for gain nodes
-				});
-			    
+				facade.trigger();
 			};
 
 			keyboard.keyUp = function (note, frequency) {
 
 				// console.debug('gate off');
 
-				facade.triggerDestinations.forEach(function(destination){
-					destination.value = 0; // gateOff	TODO will only work for gain nodes
-				});
-			    
+				facade.release();
 			};
 		};
+
+        QwertyHancockFacade.prototype.initiateTriggering = function(audioParam) {
+            audioParam.value = 1;
+        };
+
+        QwertyHancockFacade.prototype.initiateReleasing = function(audioParam) {
+            audioParam.value = 0;
+        };
 
 		return QwertyHancockFacade;
 	}
