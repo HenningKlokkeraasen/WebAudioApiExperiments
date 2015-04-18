@@ -7,11 +7,12 @@ define([
 		OscillatorModuleFactory.prototype.constructor = OscillatorModuleFactory;
 
 		function OscillatorModuleFactory() {
+			// console.debug('ctor for OscillatorModuleFactory');
 			this.moduleCssClass = 'oscillator';
 			this.hasAudioIn = false;
 			this.hasTriggerIn = true;
 			this.hasControlIn = true;
-			this.hasControlOut = true;
+			// this.hasControlOut = true;
 			this.hasStartButton = true;
 		}
 		OscillatorModuleFactory.prototype.getModuleDefinition = function() {

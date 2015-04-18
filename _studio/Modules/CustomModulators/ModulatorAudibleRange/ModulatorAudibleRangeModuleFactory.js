@@ -7,6 +7,7 @@ define([
 
 		function ModulatorAudibleRangeModuleFactory() {
 			LfoModuleFactory.call(this);
+			this.moduleCssClass = 'marmodule';
 			// this.hasAudioOut = true;TODO enable to also output audio
 		}
 
@@ -34,9 +35,9 @@ define([
 		//			stp
 		// 		w_params
 		//			indexChecked
-		ModulatorAudibleRangeModuleFactory.prototype.getModule = function(moduleData) {
-			return LfoModuleFactory.prototype.getModule(moduleData);
-		};
+		// ModulatorAudibleRangeModuleFactory.prototype.getModule = function(moduleData) {
+		// 	return LfoModuleFactory.prototype.getModule(moduleData);
+		// };
 
         return ModulatorAudibleRangeModuleFactory;
     }

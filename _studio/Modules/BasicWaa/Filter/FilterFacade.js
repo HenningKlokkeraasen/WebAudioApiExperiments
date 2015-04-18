@@ -2,13 +2,15 @@
 	Web Audio API wrapper - filter
 */
 define([
-	'/_studio/Modules/_FacadeBase.js'
-	], function(FacadeBase) {
+	'/_studio/Modules/_FacadeBase.js',
+	'/_studio/Modules/_Mixins/ICanBeTriggered.js'
+	], function(FacadeBase, ICanBeTriggered) {
 		FilterFacade.prototype = Object.create(FacadeBase.prototype); //new FacadeBase();
 		FilterFacade.prototype.constructor = FilterFacade;
 
 		function FilterFacade(audioContext) {
 			FacadeBase.call(this, audioContext); // base()
+			ICanBeTriggered.call(this);
 			
 			return this;
 		}
@@ -18,7 +20,6 @@ define([
 		    this.input = this.audioContext.createBiquadFilter();
 		    this.output = this.input; // TODO verify
 			this.controlIn = this.input.frequency;
-			this.triggerIn = this.input.frequency;
 
 		};
 
@@ -88,6 +89,16 @@ define([
 			this.node.gain.value = value;
 			return this;
 		};
+
+		//region iCanBeTriggered
+		FilterFacade.prototype.gateOn = function(callback, originator) {
+			callback.call(originator, this.node.frequency, this.node.frequency.value, 40);
+		};
+
+		FilterFacade.prototype.gateOff = function(callback, originator) {
+			callback.call(originator, this.node.frequency, 40);
+		};
+		//endregion iCanBeTriggered
 
 		return FilterFacade;
 	}

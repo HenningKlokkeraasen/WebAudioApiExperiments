@@ -6,7 +6,11 @@ define([
 		LfoModuleFactory.prototype.constructor = LfoModuleFactory;
 
 		function LfoModuleFactory() {
+			// console.debug('ctor for LfoModuleFactory');
+			OscillatorModuleFactory.call(this);
+			this.moduleCssClass = 'lfomodule';
 			this.hasTriggerIn = false;
+			this.hasControlOut = true; //TODO is this implemented?
 			this.hasAudioOut = false;
 		}
 		LfoModuleFactory.prototype.getModuleDefinition = function() {

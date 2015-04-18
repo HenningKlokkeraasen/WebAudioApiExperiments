@@ -73,7 +73,7 @@ define([
 							{
 								controller : EnvelopeGenerator.Controller,
 								factory : EnvelopeGenerator.ModuleFactory,
-								modules : EnvelopeGenerator.Modules
+								modules : EnvelopeGenerator.Modules.getItemsByShortName('eg1')
 							}
 						]
 					}

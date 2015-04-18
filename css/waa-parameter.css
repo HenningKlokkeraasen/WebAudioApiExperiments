@@ -1,5 +1,5 @@
 /********************************************Style slider input range thumb***********************************************/
-input[type=range]::-webkit-slider-thumb {
+/*input[type=range]::-webkit-slider-thumb {
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   border: 1px solid #ece2e6;
   background: #141212;
@@ -16,7 +16,7 @@ input[type=range]::-ms-thumb {
   border: 1px solid #ece2e6;
   background: #141212;
   cursor: pointer;
-}
+}*/
 /********************************************Style slider-vertical**********************************************/
 input[type=range].slider-vertical {
 	/* 
@@ -37,7 +37,7 @@ span.slider-vertical {
 }
 output.slider-vertical {
 	display: block;
-	width: 21px;
+	/*width: 21px;*/
 }
 /********************************************Style shadow slider***********************************************/
 input[type=range].shadowrange {

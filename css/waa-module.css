@@ -190,6 +190,18 @@
 
 			}
 
+			.lfomodule {
+				background-color: rgb(119, 152, 128);
+			}
+
+			.marmodule {
+				background-color: rgb(181, 207, 120);
+			}
+
+			.egmodule {
+				background-color: rgb(152, 119, 152);
+			}
+
 			.wideModule {
 				/*TODO rename to 3U since it takes up three rack units*/
 				width: 626px; /*TODO not responsive*/
@@ -198,4 +210,14 @@
 .parameterLabel {
 	font-size: 0.8em;
 	vertical-align: text-top;
+}
+
+
+output {
+	background: black;
+	color: lime;
+	border-radius: 5px;
+	/*padding: 0 0 0 2px;*/
+	text-align: center;
+	display: block;
 }

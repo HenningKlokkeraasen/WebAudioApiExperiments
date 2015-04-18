@@ -84,15 +84,15 @@ define([
         //
         // private
         //
-
-        // TODO Support more than going from 0-1. now it will only work for gains
-
-        EnvelopeGeneratorFacade.prototype.initiateTriggering = function(audioParam) {
+        EnvelopeGeneratorFacade.prototype.initiateTriggering = function(audioParam, rampUpToValue, rampDownToValue, overrideSustainLevel) {
             // console.debug(this);
             var now = this.getCurrentTimeAndCancelScheduledValuesAndSetValue(audioParam);
 
+            if (overrideSustainLevel)
+                this.sustainLevel = overrideSustainLevel;
+
             // ATTACK
-            audioParam.linearRampToValueAtTime(1.0, now + this.attackTime);
+            audioParam.linearRampToValueAtTime(rampUpToValue, now + this.attackTime);
             ////this.triggerOut.setTargetAtTime(1.0, now, this.attackTime);
 
             // DECAY to SUSTAIN LEVEL
@@ -108,16 +108,16 @@ define([
             ////this.triggerOut.setValueAtTime(sustainLevel, now + this.attackTime + this.decayTime);
 
             if (this.sustainLevel == 0)
-                this.triggerOut.setValueAtTime(0, now + this.attackTime + this.decayTime);
+                audioParam.setValueAtTime(rampDownToValue, now + this.attackTime + this.decayTime);
 
         };
 
-        EnvelopeGeneratorFacade.prototype.initiateReleasing = function(audioParam) {
+        EnvelopeGeneratorFacade.prototype.initiateReleasing = function(audioParam, rampDownToValue) {
             // console.debug(this);
             var now = this.getCurrentTimeAndCancelScheduledValuesAndSetValue(audioParam);
 
             // RELEASE
-            audioParam.setTargetAtTime(0.0, now, this.releaseTime);
+            audioParam.setTargetAtTime(rampDownToValue, now, this.releaseTime);
             ////this.triggerOut.linearRampToValueAtTime(0.0, now + this.releaseTime);
         };
 
