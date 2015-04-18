@@ -44,9 +44,16 @@
 				font-size: 1.2em;
 			}
 
-			.module output {
-				vertical-align: super;
+			.module output,
+			.module div#keyboardNoteInput  {
+				/*vertical-align: super;*/
 				font-size: 0.8em;
+				background: black;
+				color: lime;
+				border-radius: 5px;
+				/*padding: 0 0 0 2px;*/
+				text-align: center;
+				display: block;
 			}
 
 			.module fieldset {
@@ -210,14 +217,4 @@
 .parameterLabel {
 	font-size: 0.8em;
 	vertical-align: text-top;
-}
-
-
-output {
-	background: black;
-	color: lime;
-	border-radius: 5px;
-	/*padding: 0 0 0 2px;*/
-	text-align: center;
-	display: block;
 }

@@ -9,13 +9,17 @@
 			</header>
 
 			{{#if hasKeyboardInterface}}
-			<div id="keyboard"></div>
+				<fieldset>
+					<div id="keyboard"></div>
+					<div>&nbsp;</div>
+					<div id="keyboardNoteInput">&nbsp;</div>
+				</fieldset>
 			{{/if}}
 
 			{{#if hasStartButton}}
-			<fieldset>
-				<button>Start</button>
-			</fieldset>
+				<fieldset>
+					<button>Start</button>
+				</fieldset>
 			{{/if}}
 
 			{{#each sections}}

@@ -51,15 +51,16 @@ define([
 			return this;
 		};
 
-		QwertyHancockFacade.prototype.initKeyboard = function(keyboard) {
-			
+		QwertyHancockFacade.prototype.initKeyboard = function(keyboard, outputForNoteNode) {
 			var facade = this;
+			this.outputForNoteNode = outputForNoteNode;
 
 			keyboard.keyDown = function (note, frequency) {
 
 				// console.debug('gate on');
-				console.log(note);
+				// console.debug(note);
 				// console.debug(frequency);
+				facade.outputForNoteNode.textContent = note; // dirty DOM hack, TODO facade should not know about DOM
 
 				facade.controlDestinations.forEach(function(destination) {
 

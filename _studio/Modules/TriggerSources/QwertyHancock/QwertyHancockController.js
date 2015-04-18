@@ -24,7 +24,7 @@ define([
                  hoverColour: '#f3e939'
             });
 
-			this.facadeInstance.initKeyboard(keyboard);
+			this.facadeInstance.initKeyboard(keyboard, document.getElementById('keyboardNoteInput'));
 		};
 
 		return QwertyHancockController;
