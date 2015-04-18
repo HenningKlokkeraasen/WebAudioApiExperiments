@@ -85,7 +85,40 @@
 								data-angleRange="280"
 							{{/ifCond}}
 
+							list="{{name}}_datalist" 
+
 							class="{{../rangeDisplayMode}}"							 />
+
+					{{#ifCond ../rangeDisplayMode "slider-vertical"}}
+						{{!--tick marks--}}
+						<datalist id="{{name}}_datalist">
+							<option>{{min}}</option>
+							<option>{{#percentage min max 10}}{{/percentage}}</option>
+							<option>{{#percentage min max 20}}{{/percentage}}</option>
+							<option>{{#percentage min max 30}}{{/percentage}}</option>
+							<option>{{#percentage min max 40}}{{/percentage}}</option>
+							<option>{{#percentage min max 50}}{{/percentage}}</option>
+							<option>{{#percentage min max 60}}{{/percentage}}</option>
+							<option>{{#percentage min max 70}}{{/percentage}}</option>
+							<option>{{#percentage min max 80}}{{/percentage}}</option>
+							<option>{{#percentage min max 90}}{{/percentage}}</option>
+							<option>{{max}}</option>
+						</datalist>
+
+						{{!--A second range input, for styling purposes only
+							since the datalist renders ticks on one side of the range input only,
+							this second range input is used to get tick marks on the other side--}}
+						<input 	type="range" 
+								name="{{name}}_shadowrange"
+								min="{{min}}" 
+								max="{{max}}" 
+								value="{{value}}" 
+								step="{{step}}" 
+
+								list="{{name}}_datalist" 
+
+								class="{{../../rangeDisplayMode}} shadowrange"							 />
+					{{/ifCond}}
 
 					<output for="{{name}}" class="{{../rangeDisplayMode}}">{{value}}</output>
 					
