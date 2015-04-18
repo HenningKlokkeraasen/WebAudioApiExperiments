@@ -3,14 +3,16 @@
 */
 define([
 	'/_studio/Modules/_FacadeBase.js',
-	'/_studio/Modules/_Mixins/ICanBeTriggered.js'
-	], function(FacadeBase, ICanBeTriggered) {
+	'/_studio/Modules/_Mixins/ICanBeTriggered.js',
+	'/_studio/Modules/_Mixins/ICanBeAudioParamControlled.js'
+	], function(FacadeBase, ICanBeTriggered, ICanBeAudioParamControlled) {
 		FilterFacade.prototype = Object.create(FacadeBase.prototype); //new FacadeBase();
 		FilterFacade.prototype.constructor = FilterFacade;
 
 		function FilterFacade(audioContext) {
 			FacadeBase.call(this, audioContext); // base()
 			ICanBeTriggered.call(this);
+			ICanBeAudioParamControlled.call(this);
 			
 			return this;
 		}

@@ -3,13 +3,15 @@
 */
 define([
     '/_studio/Modules/BasicWaa/Oscillator/OscillatorFacade.js',
-    '/_studio/Modules/BasicWaa/Gain/GainFacade.js'
-    ], function(OscillatorFacade, GainFacade) {
+    '/_studio/Modules/BasicWaa/Gain/GainFacade.js',
+    '/_studio/Modules/_Mixins/ICanControlAudioParam.js'
+    ], function(OscillatorFacade, GainFacade, ICanControlAudioParam) {
         LfoFacade.prototype = Object.create(OscillatorFacade.prototype);
         LfoFacade.prototype.constructor = LfoFacade;
 
         function LfoFacade(audioContext) {
             OscillatorFacade.call(this, audioContext); // base()
+            ICanControlAudioParam.call(this);
 
             return this;
         }
@@ -19,8 +21,8 @@ define([
             OscillatorFacade.prototype.initNodes.call(this); // base()
             
             
-            this.amount = new GainFacade(this.audioContext);
-            this.controlOut = this.amount.output;
+            this.amount = this.audioContext.createGain();
+            this.controlOut = this.amount;
         };
 
         // private
@@ -32,8 +34,7 @@ define([
 
         // private
         LfoFacade.prototype.wireUp = function() {
-            this.input.connect(this.amount.output);
-            this.amount.output.connect(this.output.output);
+            this.input.connect(this.amount);
             
 
 
@@ -66,7 +67,8 @@ define([
         };
 
         LfoFacade.prototype.setDepth = function(value) {
-            this.amount.setGain(value);
+            // console.debug('LFO depth set to ' + value);
+            this.amount.gain.value = value;
             return this;
         };
 

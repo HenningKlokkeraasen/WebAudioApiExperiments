@@ -4,14 +4,16 @@
 define([
 	'/_studio/Modules/_FacadeBase.js',
 	'/_studio/Modules/BasicWaa/Gain/GainFacade.js',
-	'/_studio/Modules/_Mixins/ICanBeTriggered.js'
-	], function(FacadeBase, GainFacade, ICanBeTriggered) {
+	'/_studio/Modules/_Mixins/ICanBeTriggered.js',
+	'/_studio/Modules/_Mixins/ICanBeAudioParamControlled.js'
+	], function(FacadeBase, GainFacade, ICanBeTriggered, ICanBeAudioParamControlled) {
 		OscillatorFacade.prototype = Object.create(FacadeBase.prototype); // new FacadeBase2();
 		OscillatorFacade.prototype.constructor = OscillatorFacade;
 
 		function OscillatorFacade(audioContext) {
 			FacadeBase.call(this, audioContext); // base()
 			ICanBeTriggered.call(this);
+			ICanBeAudioParamControlled.call(this);
 			
 			return this;
 		};
