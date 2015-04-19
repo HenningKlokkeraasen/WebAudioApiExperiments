@@ -22,7 +22,7 @@ define([
                 handlebarsTemplateSelector : this.handlebarsTemplateSelector,
                 facade : QwertyHancockFacade,
                 parameters : [
-                    
+                    { func: QwertyHancockFacade.prototype.setOctave, selector: 'input[data-parameterType="octave"]',      ev: 'input'     },
                 
 
                     
@@ -44,19 +44,19 @@ define([
         QwertyHancockModuleFactory.prototype.getModule = function(moduleData) {
             return this.getModuleBase({
                 name : moduleData.name, 
-                sections : [ 
-                    
+                sections : [ {
+                    ranges : [
+                        { label : 'Octave',  type : 'octave',     min : 0,    max : 8,    value: 4,    step : 1,    name : moduleData.shortName + '_f'  }
+                        
+
+
+                    ],
+                    rangeDisplayMode : 'knob'
 
 
 
 
-              
-
-
-
-
-
-            ]});
+            }]});
         };
 
         return QwertyHancockModuleFactory;
