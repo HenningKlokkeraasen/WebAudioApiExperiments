@@ -18,7 +18,6 @@ function AudioContextFacade() {
 		this.WebAudioApiIsEnabled = true;
 		this.audioContext = new window.audioContext();
 		this.buffers = {}; // used for files
-		this.node = this.audioContext.destination; // used for patching
 	}
 	else {
 		this.WebAudioApiIsEnabled = false;

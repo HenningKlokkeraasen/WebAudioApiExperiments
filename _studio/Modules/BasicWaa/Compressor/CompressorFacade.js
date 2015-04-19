@@ -40,32 +40,32 @@ define([
 		};
 
 		CompressorFacade.prototype.setThreshold = function(value) {
-			this.node.threshold.value = value;
+			this.input.threshold.value = value;
 			return this;
 		}
 
 		CompressorFacade.prototype.setKnee = function(value) {
-			this.node.knee.value = value;
+			this.input.knee.value = value;
 			return this;
 		}
 
 		CompressorFacade.prototype.setRatio = function(value) {
-			this.node.ratio.value = value;
+			this.input.ratio.value = value;
 			return this;
 		}
 
 		CompressorFacade.prototype.setReduction = function(value) {
-			this.node.reduction.value = value;
+			this.input.reduction.value = value;
 			return this;
 		}
 
 		CompressorFacade.prototype.setAttack = function(value) {
-			this.node.attack.value = value;
+			this.input.attack.value = value;
 			return this;
 		}
 
 		CompressorFacade.prototype.setRelease = function(value) {
-			this.node.release.value = value;
+			this.input.release.value = value;
 			return this;
 		}
 

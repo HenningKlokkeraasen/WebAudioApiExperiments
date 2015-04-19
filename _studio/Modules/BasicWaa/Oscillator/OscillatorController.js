@@ -17,12 +17,12 @@ define([
 				if (!$(dataContainer).data('isPlaying')) {
 
 					// Start playing
-					console.log("Oscillator of wave " + 
-						facade.node.type + 
-						" starts playing at " +
-						facade.node.frequency.value +
-						"Hz, with detune " +
-						facade.node.detune.value);
+					// console.log("Oscillator of wave " + 
+					// 	facade.input.type + 
+					// 	" starts playing at " +
+					// 	facade.input.frequency.value +
+					// 	"Hz, with detune " +
+					// 	facade.input.detune.value);
 					//console.log(facade);
 					$(dataContainer).data('isPlaying', true);
 

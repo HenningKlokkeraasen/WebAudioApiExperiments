@@ -40,7 +40,7 @@ define([
 		};
 
 		DelayFacade.prototype.setDelayTime = function(value) {
-			this.node.delayTime.value = value;
+			this.input.delayTime.value = value;
 			return this;
 		}
 

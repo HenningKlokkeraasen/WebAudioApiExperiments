@@ -20,7 +20,7 @@ define([
 			this.input = this.audioContext.createGain();
 			this.filterFacade = new FilterFacade(this.audioContext);
 			// this.input = this.filterFacade.node;
-			this.output = this.filterFacade.node; // TODO verify
+			this.output = this.filterFacade.output; // TODO verify
 			this.lfoFacade = new LfoFacade(this.audioContext);
 			this.lfoGain = this.audioContext.createGain();
 		};
@@ -36,8 +36,8 @@ define([
 			this.input.connect(this.output);
 		    // let the cutoff frequency AudioParam be controlled by an LFO
 		    // Use a gain to increase intensity/amount
-			this.lfoFacade.node.connect(this.lfoGain);
-			var freq = this.filterFacade.node.frequency;
+			this.lfoFacade.output.connect(this.lfoGain);
+			var freq = this.filterFacade.output.frequency;
 			this.lfoGain.connect(freq);
 		};
 

@@ -21,7 +21,6 @@ define([
 				this.oscillators[i] = this.audioContext.createOscillator();
 				this.gains[i] = this.audioContext.createGain();
 			}
-			// for backwards comp: this.node = this.input
 			this.input = this.oscillators[0]
 		};
 

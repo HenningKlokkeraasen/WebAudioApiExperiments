@@ -42,7 +42,7 @@ define([
 		ConvolverFacade.prototype.setImpulse = function(bufferIndex) {
 			// Set the impulse response buffer
 			var impulseBuffer = this.buffers[bufferIndex];
-			this.node.buffer = impulseBuffer;
+			this.input.buffer = impulseBuffer;
 			return this;
 		};
 

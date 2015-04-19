@@ -45,12 +45,12 @@ define([
 		FilterFacade.prototype.qualityMultiplier = 30; // todo parameterize
 
 		FilterFacade.prototype.setType = function(type) {
-			this.node.type = type;
+			this.input.type = type;
 			return this;
 		};
 
 		FilterFacade.prototype.setFrequencyByAbsoluteValue = function(value) {
-			this.node.frequency.value = value;
+			this.input.frequency.value = value;
 			return this;
 		};
 
@@ -74,7 +74,7 @@ define([
 			// Get back to the frequency value between min and max
 			var freq = maxValue * multiplier;
 			//console.log("Filter: scaler " + scalerValue + ", gives frequency " + freq);
-			this.node.frequency.value = freq;
+			this.input.frequency.value = freq;
 			return this;
 		};
 
@@ -83,22 +83,22 @@ define([
 			//	this.node.type +
 			//	" will change quality scaler to " +
 			//	value)
-			this.node.Q.value = value * this.qualityMultiplier;
+			this.input.Q.value = value * this.qualityMultiplier;
 			return this;
 		};
 
 		FilterFacade.prototype.setGain = function(value) {
-			this.node.gain.value = value;
+			this.input.gain.value = value;
 			return this;
 		};
 
 		//region iCanBeTriggered
 		FilterFacade.prototype.gateOn = function(callback, originator) {
-			callback.call(originator, this.node.frequency, this.node.frequency.value, 40);
+			callback.call(originator, this.input.frequency, this.input.frequency.value, 40);
 		};
 
 		FilterFacade.prototype.gateOff = function(callback, originator) {
-			callback.call(originator, this.node.frequency, 40);
+			callback.call(originator, this.input.frequency, 40);
 		};
 		//endregion iCanBeTriggered
 
