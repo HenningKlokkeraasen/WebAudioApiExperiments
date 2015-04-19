@@ -20,7 +20,7 @@ define([
 	'/_studio/Modules/TriggerSources/QwertyHancock/QwertyHancock.js'
 	], function(Analyser, MasterSection, Oscillator, Filter, Gain, Convolver, WaveShaper, SlapbackDelay, SimpleReverb, ChannelStrip, LFO, ModulatorAudibleRange, EnvelopeGenerator, QwertyHancock) {
 		return {
-			title : 'Modular synth',
+			title : 'Modular synth - large',
 			description : 'Fully functional (but primitive), monophonic, monotimbral, modular synthesizer based on Web Audio API.',
 			rackData : {
 				rows : [

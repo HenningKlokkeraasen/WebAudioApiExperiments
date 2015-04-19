@@ -9,8 +9,8 @@ define([
 	'/_studio/Modules/TriggerSources/QwertyHancock/QwertyHancock.js'
 	], function(Analyser, MasterSection, Oscillator, Gain, EnvelopeGenerator, QwertyHancock) {
 		return {
-			title : 'qwerty hancock',
-			description : '',
+			title : 'Modular synth - small',
+			description : 'Fully functional (but primitive), monophonic, monotimbral, modular synthesizer based on Web Audio API.',
 			rackData : {
 				rows : [
 					{

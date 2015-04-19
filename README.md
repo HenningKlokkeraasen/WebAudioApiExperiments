@@ -33,4 +33,4 @@ Add js libs:
 		};});
 
 Status:
-Currently in the process of switching to require.js
+Good

@@ -25,13 +25,13 @@ PatchController.prototype.setupPatching = function(containerElement, patchInputS
 					// var facade = $(self).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
 					facadeConnectFunc.call(facade, destination);
 					
-					console.log('Patching');
-					console.group();
-					console.log('From:');
-					console.log(facade); //console.log(facade.node);
-					console.log('To:')
-					console.log(destination);
-					console.groupEnd()
+					// console.log('Patching');
+					// console.group();
+					// console.log('From:');
+					// console.log(facade); //console.log(facade.node);
+					// console.log('To:')
+					// console.log(destination);
+					// console.groupEnd()
 
 					PatchCableController.prototype.drawPatchCable(patcher.sourceCoordinates, patcher.destinationCoordinates);//TODO keep coordinates in this class
 					patcher.reset();
