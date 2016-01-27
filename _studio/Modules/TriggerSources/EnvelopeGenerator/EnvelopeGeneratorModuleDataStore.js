@@ -6,26 +6,26 @@ define([], function() { return { Modules :
 	      a_params:{  
 	         min:0,
 	         max:3,
-	         val:0.2,
-	         stp:0.1
+	         val:0.12,
+	         stp:0.01
 	      },
 	      d_params:{  
 	         min:0,
 	         max:3,
-	         val:0.7,
-	         stp:0.1
+	         val:0.3,
+	         stp:0.01
 	      },
 	      s_params:{  
 	         min:0,
 	         max:1,
-	         val:0.6,
-	         stp:0.1
+	         val:0.4,
+	         stp:0.01
 	      },
 	      r_params:{  
 	         min:0,
 	         max:3,
 	         val:0.1,
-	         stp:0.1
+	         stp:0.01
 	     }
 	   },
 
@@ -35,14 +35,14 @@ define([], function() { return { Modules :
 	      a_params:{  
 	         min:0,
 	         max:3,
-	         val:0.2,
-	         stp:0.1
+	         val:0.02,
+	         stp:0.01
 	      },
 	      d_params:{  
 	         min:0,
 	         max:3,
-	         val:0.7,
-	         stp:0.1
+	         val:0.1,
+	         stp:0.01
 	      }
 	   },
 
@@ -52,26 +52,26 @@ define([], function() { return { Modules :
 	      a_params:{  
 	         min:0,
 	         max:3,
-	         val:0.2,
-	         stp:0.1
+	         val:0.12,
+	         stp:0.01
 	      },
 	      d_params:{  
 	         min:0,
 	         max:3,
 	         val:0.7,
-	         stp:0.1
+	         stp:0.01
 	      },
 	      s_params:{  
 	         min:40,
 	         max:5000,
-	         val:350,
+	         val:1750,
 	         stp:1
 	      },
 	      r_params:{  
 	         min:0,
 	         max:3,
 	         val:0.1,
-	         stp:0.1
+	         stp:0.01
 	     }
 	   },
 
@@ -81,26 +81,26 @@ define([], function() { return { Modules :
 	      a_params:{  
 	         min:0,
 	         max:3,
-	         val:0.2,
-	         stp:0.1
+	         val:0.12,
+	         stp:0.01
 	      },
-	      d_params:{  
+	      d_params:{   
 	         min:0,
 	         max:3,
 	         val:0.7,
-	         stp:0.1
+	         stp:0.01
 	      },
 	      s_params:{  
 	         min:0,
 	         max:1,
-	         val:0.6,
-	         stp:0.1
+	         val:0.4,
+	         stp:0.01
 	      },
 	      r_params:{  
 	         min:0,
 	         max:3,
 	         val:0.1,
-	         stp:0.1
+	         stp:0.01
 	     }
 	   }
 	]
