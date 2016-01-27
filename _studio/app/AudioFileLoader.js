@@ -3,9 +3,9 @@ define([
 	'/_WebAudioApiFacades/BufferFacade.js'
 	], function(BufferFacade) {
 		function AudioFileLoader() {
-			this.loadImpulseBuffers = function(audioContext, filePaths, callback) {
-				console.debug('load filePaths');
-				console.debug(filePaths);
+			this.loadAudioFilesIntoBuffers = function(audioContext, filePaths, callback) {
+				// console.debug('load filePaths');
+				// console.debug(filePaths);
 
 				var bufferer = new BufferFacade(audioContext);
 				

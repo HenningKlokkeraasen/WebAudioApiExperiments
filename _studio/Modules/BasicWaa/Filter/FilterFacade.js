@@ -2,32 +2,55 @@
 	Web Audio API wrapper - filter
 */
 define([
-	'/_WebAudioApiFacades/_FacadeBase.js'
-	], function() {
-		FilterFacade.prototype = new FacadeBase();
+	'/_studio/Modules/_FacadeBase.js',
+	'/_studio/Modules/_Mixins/ICanBeTriggered.js',
+	'/_studio/Modules/_Mixins/ICanBeAudioParamControlled.js'
+	], function(FacadeBase, ICanBeTriggered, ICanBeAudioParamControlled) {
+		FilterFacade.prototype = Object.create(FacadeBase.prototype); //new FacadeBase();
 		FilterFacade.prototype.constructor = FilterFacade;
 
 		function FilterFacade(audioContext) {
-			this.audioContext = audioContext;
-			this.node = audioContext.createBiquadFilter();
-
-
-
-
-
-
+			FacadeBase.call(this, audioContext); // base()
+			ICanBeTriggered.call(this);
+			ICanBeAudioParamControlled.call(this);
+			
 			return this;
 		}
+
+		// private
+		FilterFacade.prototype.initNodes = function() {
+		    this.input = this.audioContext.createBiquadFilter();
+		    this.output = this.input; // TODO verify
+			this.controlIn = this.input.frequency;
+
+		};
+
+		// private
+		FilterFacade.prototype.setDefaultValues = function() {
+
+
+
+		};
+
+		// private
+		FilterFacade.prototype.wireUp = function() {
+
+
+
+
+
+
+		};
 
 		FilterFacade.prototype.qualityMultiplier = 30; // todo parameterize
 
 		FilterFacade.prototype.setType = function(type) {
-			this.node.type = type;
+			this.input.type = type;
 			return this;
 		};
 
 		FilterFacade.prototype.setFrequencyByAbsoluteValue = function(value) {
-			this.node.frequency.value = value;
+			this.input.frequency.value = value;
 			return this;
 		};
 
@@ -51,7 +74,7 @@ define([
 			// Get back to the frequency value between min and max
 			var freq = maxValue * multiplier;
 			//console.log("Filter: scaler " + scalerValue + ", gives frequency " + freq);
-			this.node.frequency.value = freq;
+			this.input.frequency.value = freq;
 			return this;
 		};
 
@@ -60,14 +83,24 @@ define([
 			//	this.node.type +
 			//	" will change quality scaler to " +
 			//	value)
-			this.node.Q.value = value * this.qualityMultiplier;
+			this.input.Q.value = value * this.qualityMultiplier;
 			return this;
 		};
 
 		FilterFacade.prototype.setGain = function(value) {
-			this.node.gain.value = value;
+			this.input.gain.value = value;
 			return this;
 		};
+
+		//region iCanBeTriggered
+		FilterFacade.prototype.gateOn = function(callback, originator) {
+			callback.call(originator, this.input.frequency, this.input.frequency.value, 40);
+		};
+
+		FilterFacade.prototype.gateOff = function(callback, originator) {
+			callback.call(originator, this.input.frequency, 40);
+		};
+		//endregion iCanBeTriggered
 
 		return FilterFacade;
 	}

@@ -2,15 +2,18 @@
 	Web Audio API wrapper - Oscillator
 */
 define([
-	'/_WebAudioApiFacades/_FacadeBase2.js',
-	'/_studio/Modules/BasicWaa/Gain/GainFacade.js'
-	], function(FacadeBase2, GainFacade) {
-		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////	
-		OscillatorFacade.prototype = Object.create(FacadeBase2.prototype); // new FacadeBase2();
+	'/_studio/Modules/_FacadeBase.js',
+	'/_studio/Modules/BasicWaa/Gain/GainFacade.js',
+	'/_studio/Modules/_Mixins/ICanBeTriggered.js',
+	'/_studio/Modules/_Mixins/ICanBeAudioParamControlled.js'
+	], function(FacadeBase, GainFacade, ICanBeTriggered, ICanBeAudioParamControlled) {
+		OscillatorFacade.prototype = Object.create(FacadeBase.prototype); // new FacadeBase2();
 		OscillatorFacade.prototype.constructor = OscillatorFacade;
 
 		function OscillatorFacade(audioContext) {
-			FacadeBase2.call(this, audioContext); // base()
+			FacadeBase.call(this, audioContext); // base()
+			ICanBeTriggered.call(this);
+			ICanBeAudioParamControlled.call(this);
 			
 			return this;
 		};
@@ -21,7 +24,8 @@ define([
 			// create a gain node as the output
 			// this will be what is used for connections
 			this.output = new GainFacade(this.audioContext);
-
+			this.controlIn = this.input.frequency;
+			// this.controlOut = this.output.output;
 		};
 
 		// private
@@ -52,7 +56,7 @@ define([
 		};
 
 		OscillatorFacade.prototype.setDetune = function(semitone) {
-			this.input.detune.value = parseFloat(semitone) * 100;
+			this.input.detune.value = parseFloat(semitone); // * 100;
 			return this;
 		};
 
@@ -81,7 +85,25 @@ define([
 
 			return this;
 		};
-		//////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
+		
+		//region iCanBeTriggered
+		OscillatorFacade.prototype.gateOn = function(callback, originator) {
+			// set the value of the frequency AudioParam down,
+			// it will be picked up in the EG,
+			// set the ramp up to value higher than the original frequency,
+			// use the sustainLevelOverride param to the EG to go back down 
+			// to the original frequency
+			var originalValue = this.input.frequency.value;
+			this.input.frequency.value = originalValue / 2; //TODO verify
+			var rampUpToValue = originalValue * 2; // TODO verify
+			callback.call(originator, this.input.frequency, rampUpToValue, 20, originalValue);
+		};
+
+		OscillatorFacade.prototype.gateOff = function(callback, originator) {
+			// callback.call(originator, this.input.frequency, 40);
+		};
+		//endregion iCanBeTriggered
+
 		return OscillatorFacade;
 	}
 );

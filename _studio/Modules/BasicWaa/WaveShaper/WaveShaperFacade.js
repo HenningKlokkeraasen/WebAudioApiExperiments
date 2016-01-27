@@ -3,13 +3,13 @@
 	http://stackoverflow.com/questions/22312841/waveshaper-node-in-webaudio-how-to-emulate-distortion
 */
 define([
-	'/_WebAudioApiFacades/_FacadeBase2.js'
-	], function(FacadeBase2) {
-		WaveShaperFacade.prototype = Object.create(FacadeBase2.prototype);
+	'/_studio/Modules/_FacadeBase.js'
+	], function(FacadeBase) {
+		WaveShaperFacade.prototype = Object.create(FacadeBase.prototype);
 		WaveShaperFacade.prototype.constructor = WaveShaperFacade;
 
 		function WaveShaperFacade(audioContext) {
-		    FacadeBase2.call(this, audioContext); // base()
+		    FacadeBase.call(this, audioContext); // base()
 
 			return this;
 		}

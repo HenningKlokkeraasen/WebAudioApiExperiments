@@ -16,7 +16,8 @@ define([
                 handlebarsTemplateSelector : this.handlebarsTemplateSelector,
                 facade : DelayFacade,
                 parameters : [
-        			{ func : DelayFacade.prototype.setDelayTime, 	selector : 'input[data-parameterType="delayTime"]',			ev : 'input'    }
+                // delay shouldnt change continously. bind to change instead of input
+        			{ func : DelayFacade.prototype.setDelayTime, 	selector : 'input[data-parameterType="delayTime"]',			ev : 'change'    }
                 
 
                     
@@ -44,8 +45,8 @@ define([
                         
 
 
-                    ]
-
+                    ],
+                    rangeDisplayMode : 'knob'
 
 
 

@@ -1,4 +1,4 @@
-
+<!-- TODO reuse waa-module.html -->
 	<!--Handlebars.js template for analyser (oscilloscope) module-->
 	<script id="analyserTemplate" type="text/x-handlebars-template">
 		<div class="module {{moduleCssClass}}">
@@ -24,13 +24,29 @@
 
 			<fieldset class="connectors">
 				<legend>Connectors</legend>
-				{{#unless hasNoInputs}}
-					<div><div>In</div><div><span class="patchHole patchInput">&nbsp;</span></div></div>
-				{{/unless}}
+				{{#if hasAudioIn}}
+					<div><div>Audio<br/>In</div><div><span class="patchHole " data-patch-type="audioIn">&nbsp;</span></div></div>
+				{{/if}}
 
-				{{#unless hasNoOutputs}}
-					<div><div>Out</div><div><span class="patchHole patchOutput">&nbsp;</span></div></div>
-				{{/unless}}
+				{{#if hasAudioOut}}
+					<div><div>Audio<br/>Out</div><div><span class="patchHole " data-patch-type="audioOut">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasTriggerIn}}
+					<div><div>Trigger<br/>In</div><div><span class="patchHole " data-patch-type="triggerIn">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasTriggerOut}}
+					<div><div>Trigger<br/>Out</div><div><span class="patchHole " data-patch-type="triggerOut">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasControlIn}}
+					<div><div>Control<br/>In</div><div><span class="patchHole " data-patch-type="controlIn">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasControlOut}}
+					<div><div>Control<br/>Out</div><div><span class="patchHole " data-patch-type="controlOut">&nbsp;</span></div></div>
+				{{/if}}
 			</fieldset>
 
 		</div>

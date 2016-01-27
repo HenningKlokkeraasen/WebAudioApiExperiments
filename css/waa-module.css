@@ -32,6 +32,11 @@
 
 			/* default background color for modules */
 			background-color : rgb(247, 238, 209); /* off white */
+
+			/*Vertical align connectors to bottom*/
+			/*Disabling this because it destroys knob.js*/
+			/*position: relative;
+			padding-bottom: 74px;*/
 		}
 
 			.module header {
@@ -39,9 +44,16 @@
 				font-size: 1.2em;
 			}
 
-			.module output {
-				vertical-align: super;
+			.module output,
+			.module div#keyboardNoteInput  {
+				/*vertical-align: super;*/
 				font-size: 0.8em;
+				background: black;
+				color: lime;
+				border-radius: 5px;
+				/*padding: 0 0 0 2px;*/
+				text-align: center;
+				display: block;
 			}
 
 			.module fieldset {
@@ -76,6 +88,14 @@
 					}
 
 				/* END Style similar to the Schmidt analog synthesizer */
+
+				.module fieldset.connectors {
+					/*Vertical align connectors to bottom*/
+					/*Disabling this because it destroys knob.js*/
+					/*position: absolute;
+					bottom: 10px;
+					width: 175px;*/
+				}
 
 			.module .sectionName {
 				text-align: center;
@@ -151,7 +171,7 @@
 				background-color : rgb(243, 220, 150); /* sand */
 			}
 
-			.sluttrinnmodule {
+			.mastersectionmodule {
 				background-color: rgb(218, 57, 37);
 			}
 
@@ -164,6 +184,10 @@
 				background-color : rgb(247, 238, 209); /* off white */
 			}
 
+			.audioBuffer {
+				background-color: rgb(255, 110, 92);
+			}
+
 			.for-future-use {
 
 
@@ -171,6 +195,23 @@
 
 
 
+			}
+
+			.lfomodule {
+				background-color: rgb(119, 152, 128);
+			}
+
+			.marmodule {
+				background-color: rgb(181, 207, 120);
+			}
+
+			.egmodule {
+				background-color: rgb(152, 119, 152);
+			}
+
+			.wideModule {
+				/*TODO rename to 3U since it takes up three rack units*/
+				width: 626px; /*TODO not responsive*/
 			}
 
 .parameterLabel {

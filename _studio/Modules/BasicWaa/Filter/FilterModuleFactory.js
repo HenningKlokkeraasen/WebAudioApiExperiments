@@ -8,8 +8,8 @@ define([
 
         function FilterModuleFactory() {
             this.moduleCssClass = 'filter';
-            
-            
+            this.hasTriggerIn = true;
+            this.hasControlIn = true;
         }
         FilterModuleFactory.prototype.getModuleDefinition = function() {
             return {    
@@ -48,7 +48,8 @@ define([
 
                     selectLists : [
                         this.getFilterTypeSelectData('T', 'filterType', moduleData.t_params.indexChecked)
-                    ]
+                    ],
+                    rangeDisplayMode : 'knob'
             }]});
         };
         //////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////

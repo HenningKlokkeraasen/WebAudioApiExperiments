@@ -2,13 +2,13 @@
 	Web Audio API wrapper - Delay
 */
 define([
-	'/_WebAudioApiFacades/_FacadeBase2.js'
-	], function(FacadeBase2) {
-		DelayFacade.prototype = Object.create(FacadeBase2.prototype);
+	'/_studio/Modules/_FacadeBase.js'
+	], function(FacadeBase) {
+		DelayFacade.prototype = Object.create(FacadeBase.prototype);
 		DelayFacade.prototype.constructor = DelayFacade;
 
 		function DelayFacade(audioContext) {
-		    FacadeBase2.call(this, audioContext); // base()
+		    FacadeBase.call(this, audioContext); // base()
 
 			return this;
 		}
@@ -40,7 +40,7 @@ define([
 		};
 
 		DelayFacade.prototype.setDelayTime = function(value) {
-			this.node.delayTime.value = value;
+			this.input.delayTime.value = value;
 			return this;
 		}
 

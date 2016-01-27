@@ -1,0 +1,107 @@
+define([], function() { return { Modules : 
+	[  
+	   {  
+	      name:'Envelope Generator',
+	      shortName:'eg1',
+	      a_params:{  
+	         min:0,
+	         max:3,
+	         val:0.2,
+	         stp:0.1
+	      },
+	      d_params:{  
+	         min:0,
+	         max:3,
+	         val:0.7,
+	         stp:0.1
+	      },
+	      s_params:{  
+	         min:0,
+	         max:1,
+	         val:0.6,
+	         stp:0.1
+	      },
+	      r_params:{  
+	         min:0,
+	         max:3,
+	         val:0.1,
+	         stp:0.1
+	     }
+	   },
+
+	   {  
+	      name:'Env Gen Osc',
+	      shortName:'eg2',
+	      a_params:{  
+	         min:0,
+	         max:3,
+	         val:0.2,
+	         stp:0.1
+	      },
+	      d_params:{  
+	         min:0,
+	         max:3,
+	         val:0.7,
+	         stp:0.1
+	      }
+	   },
+
+	   {  
+	      name:'Env Gen Filter',
+	      shortName:'eg3',
+	      a_params:{  
+	         min:0,
+	         max:3,
+	         val:0.2,
+	         stp:0.1
+	      },
+	      d_params:{  
+	         min:0,
+	         max:3,
+	         val:0.7,
+	         stp:0.1
+	      },
+	      s_params:{  
+	         min:40,
+	         max:5000,
+	         val:350,
+	         stp:1
+	      },
+	      r_params:{  
+	         min:0,
+	         max:3,
+	         val:0.1,
+	         stp:0.1
+	     }
+	   },
+
+	   {  
+	      name:'Env Gen Amp',
+	      shortName:'eg4',
+	      a_params:{  
+	         min:0,
+	         max:3,
+	         val:0.2,
+	         stp:0.1
+	      },
+	      d_params:{  
+	         min:0,
+	         max:3,
+	         val:0.7,
+	         stp:0.1
+	      },
+	      s_params:{  
+	         min:0,
+	         max:1,
+	         val:0.6,
+	         stp:0.1
+	      },
+	      r_params:{  
+	         min:0,
+	         max:3,
+	         val:0.1,
+	         stp:0.1
+	     }
+	   }
+	]
+};});

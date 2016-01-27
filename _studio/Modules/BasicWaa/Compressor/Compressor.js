@@ -1,4 +1,3 @@
-console.debug('in Compressor.js');
 define([
 	
 
@@ -8,8 +7,10 @@ define([
 
 	// Data (model) for basic modules
 	'/_studio/Modules/BasicWaa/Compressor/CompressorModuleFactory.js',
-	], function(Controller, ModuleFactory) {
-		console.debug('dependencies for Compressor.js loaded');
-		return { Controller: Controller, ModuleFactory: ModuleFactory };
+
+	// Data store
+	'/_studio/Modules/BasicWaa/Compressor/CompressorModuleDataStore.js'
+	], function(Controller, ModuleFactory, DataStore) {
+		return { Controller: Controller, ModuleFactory: ModuleFactory, Modules : DataStore.Modules };
 	}
 );

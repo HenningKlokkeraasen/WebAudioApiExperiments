@@ -10,7 +10,16 @@
 function PatchController() {
 }
 
-PatchController.prototype.setupPatching = function(containerElement, patchInputSelector, patchOutputSelector, dataContainerSelector, facadeDataAttr, patcher) {
+PatchController.prototype.setupPatching = function(
+    containerElement, 
+    patchInputSelector, 
+    patchOutputSelector, 
+    dataContainerSelector, 
+    facade, 
+    facadeInput, 
+    facadeOutput, 
+    facadeConnectFunc, 
+    patcher) {	//facadeDataAttr
 	if (patchOutputSelector != undefined) {
 		// Clicking an ouput: call the patcher with an anonymous function
 		// as the callback that the patcher will call when an input has been clicked
@@ -22,15 +31,18 @@ PatchController.prototype.setupPatching = function(containerElement, patchInputS
 				patcher.reset();
 				patcher.setSource(coordinates, function(destination) {
 					// in the callback: get the facade, have it connect to the destination node
-					var facade = $(self).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
-					facade.connect(destination);
+					// var facade = $(self).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
+					facadeConnectFunc.call(facade, destination);
 					
-					console.log('Patching. From: ');
-					console.log(facade.output); //console.log(facade.node);
-					console.log('To: ')
-					console.log(destination);
+					// console.log('Patching');
+					// console.group();
+					// console.log('From:');
+					// console.log(facade); //console.log(facade.node);
+					// console.log('To:')
+					// console.log(destination);
+					// console.groupEnd()
 
-					PatchCableController.prototype.drawPatchCable(patcher.sourceCoordinates, patcher.destinationCoordinates);
+					PatchCableController.prototype.drawPatchCable(patcher.sourceCoordinates, patcher.destinationCoordinates);//TODO keep coordinates in this class
 					patcher.reset();
 				});
 			});
@@ -42,8 +54,8 @@ PatchController.prototype.setupPatching = function(containerElement, patchInputS
 		$(containerElement).find(patchInputSelector).each(function() {
 			$(this).bind('click', function(e) {
 				var coordinates = { x: e.pageX, y: e.pageY };
-				var facade = $(this).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
-				patcher.setDestination(coordinates, facade.node);
+				// var facade = $(this).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
+				patcher.setDestination(coordinates, facadeInput);
 			});
 		});
 	}

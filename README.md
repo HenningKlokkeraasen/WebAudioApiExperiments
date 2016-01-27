@@ -1,15 +1,49 @@
-WebAudioApiExperiments
+Web Audio API Experiments
 ======================
 
-Web Audio API Experiments
+Some experiments with the Web Audio API and Web MIDI API.
+Goals:
+ - See and hear different sound waves
+ - Subtractive synthesis
+ - Additive synthesis
+ - FM synthesis
+ - Build synth modules such as VCOs, VCFs, VCFs, LFOs, Envelope Generators, CV and Gate trigger via Web MIDI
+ - Build WAA versions of classic synths such as Minimoog, TR-808, Jupiter-8
+ - Build WAA versions of sounds and effects such as Reverb, Vocoder, SuperSaw, PWM, Tremolo, Vibrato, Flanger
 
+Running this requires a browser that supports Web Audio API and Web MIDI API.
 
 Requirements:
 
 Add js libs:
-/js/vendor/jquery-2.1.1.min.js
-/js/vendor/handlebars-v1.3.0.js
-/js/vendor/require.js
-/js/vendor/order.js
 
-I think I was in the process of switching to require.js last time I worked on this.
+-	/thirdparty/jquery-2.1.1.min.js
+-	/thirdparty/handlebars-v1.3.0.js
+-	/thirdparty/require.js
+-	/thirdparty/qwerty-hancock.js
+-	/thirdparty/knob.js 				
+
+knob.js sourced from https://github.com/eskimoblood/jim-knopf
+and forked to https://github.com/HenningKlokkeraasen/jim-knopf
+with some improvements
+
+Add this to the start of knob.js
+        
+		define([], function() { 
+
+Add this to the end of knob.js
+
+		return {
+		  'Knob':Knob,
+		  'Ui':Ui,
+		  'Ui.Pointer':Ui.Pointer,
+		  'Ui.Arc':Ui.Arc,
+		  'Ui.Scale':Ui.Scale,
+		  'Ui.Text':Ui.Text,
+		  'Ui.El':Ui.El,
+		  'Ui.El.Triangle':Ui.El.Triangle,
+		  'Ui.El.Rect':Ui.El.Rect,
+		  'Ui.El.Circle':Ui.El.Circle,
+		  'Ui.El.Text':Ui.El.Text,
+		  'Ui.El.Arc':Ui.El.Arc
+		};});

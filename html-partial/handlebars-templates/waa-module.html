@@ -8,12 +8,20 @@
 				<div style="margin: 0 0 5px 0;">{{moduleName}}</div>
 			</header>
 
-			{{#if hasStartButton}}
-			<fieldset>
-				<button>Start</button>
-			</fieldset>
+			{{#if hasKeyboardInterface}}
+				<fieldset>
+					<div id="keyboard"></div>
+					<div>&nbsp;</div>
+					<div id="keyboardNoteInput">&nbsp;</div>
+				</fieldset>
 			{{/if}}
-			
+
+			{{#if hasStartButton}}
+				<fieldset>
+					<button>Start</button>
+				</fieldset>
+			{{/if}}
+
 			{{#each sections}}
 
 			<fieldset {{#if ../renderSectionsVertically}}class="verticalAligned"{{/if}}>
@@ -22,6 +30,10 @@
 					<legend>{{sectionName}}</legend>
 				{{/if}}
 
+				{{#each buttons}}
+				<button name="{{buttonId}}">{{buttonName}}</button>
+				{{/each}}
+				
 				{{#each checkBoxes}}
 				<div>
 					<span title="{{type}}" class="parameterLabel ">{{label}}: </span> <input type="checkbox" data-parametertype="{{type}}" />
@@ -69,9 +81,51 @@
 							step="{{step}}" 
 							name="{{name}}"
 							title="{{value}}"
-							class="{{../rangeDisplayMode}}" />
+
+							{{#ifCond ../rangeDisplayMode "knob"}}
+								data-width="50"
+								data-height="50"
+								data-angleOffset="220"
+								data-angleRange="280"
+							{{/ifCond}}
+
+							list="{{name}}_datalist" 
+
+							class="{{../rangeDisplayMode}}"							 />
+
+					{{#ifCond ../rangeDisplayMode "slider-vertical"}}
+						{{!--tick marks--}}
+						<datalist id="{{name}}_datalist">
+							<option>{{min}}</option>
+							<option>{{#percentage min max 10}}{{/percentage}}</option>
+							<option>{{#percentage min max 20}}{{/percentage}}</option>
+							<option>{{#percentage min max 30}}{{/percentage}}</option>
+							<option>{{#percentage min max 40}}{{/percentage}}</option>
+							<option>{{#percentage min max 50}}{{/percentage}}</option>
+							<option>{{#percentage min max 60}}{{/percentage}}</option>
+							<option>{{#percentage min max 70}}{{/percentage}}</option>
+							<option>{{#percentage min max 80}}{{/percentage}}</option>
+							<option>{{#percentage min max 90}}{{/percentage}}</option>
+							<option>{{max}}</option>
+						</datalist>
+
+						{{!--A second range input, for styling purposes only
+							since the datalist renders ticks on one side of the range input only,
+							this second range input is used to get tick marks on the other side--}}
+						<input 	type="range" 
+								name="{{name}}_shadowrange"
+								min="{{min}}" 
+								max="{{max}}" 
+								value="{{value}}" 
+								step="{{step}}" 
+
+								list="{{name}}_datalist" 
+
+								class="{{../../rangeDisplayMode}} shadowrange"							 />
+					{{/ifCond}}
+
 					<output for="{{name}}" class="{{../rangeDisplayMode}}">{{value}}</output>
-					{{!--TODO <span class="patchHole patchParamInput">&nbsp;</span>--}}
+					
 				</div>
 				{{/each}}
 
@@ -94,16 +148,30 @@
 
 			<fieldset class="connectors">
 				<legend>Connectors</legend>
-				{{#unless hasNoInputs}}
-					<div><div>In</div><div><span class="patchHole patchInput">&nbsp;</span></div></div>
-				{{/unless}}
+				{{#if hasTriggerIn}}
+					<div><div>Trigger<br/>In</div><div><span class="patchHole " data-patch-type="triggerIn">&nbsp;</span></div></div>
+				{{/if}}
 
-				{{#unless hasNoOutputs}}
-					<div><div>Out</div><div><span class="patchHole patchOutput">&nbsp;</span></div></div>
-				{{/unless}}
+				{{#if hasTriggerOut}}
+					<div><div>Trigger<br/>Out</div><div><span class="patchHole " data-patch-type="triggerOut">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasControlIn}}
+					<div><div>Control<br/>In</div><div><span class="patchHole " data-patch-type="controlIn">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasControlOut}}
+					<div><div>Control<br/>Out</div><div><span class="patchHole " data-patch-type="controlOut">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasAudioIn}}
+					<div><div>Audio<br/>In</div><div><span class="patchHole " data-patch-type="audioIn">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasAudioOut}}
+					<div><div>Audio<br/>Out</div><div><span class="patchHole " data-patch-type="audioOut">&nbsp;</span></div></div>
+				{{/if}}
 			</fieldset>
-
-			{{!TODO for modification modules: out <span class="patchHole patchParamOutput">&nbsp;</span>}}
 		</div>
 	</script>
 

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+    <div id="cleanKeyboard"></div>
+    <div id="organ"></div>
+    <div id="piano"></div>
+    <div id="harpsichord"></div>
+    <div id="crazy"></div>
+    <script src="libs/qwerty-hancock.js"></script>
+    <script>
+
+        // Styling for various keyboard types
+        var ebony = '#0F0B19';
+        var ivory = '#FFFFF0';
+        var kbdStyles = {
+            cleanKeyboard : { whiteKeyColour : 'white',     blackKeyColour : 'black',   borderColour : 'black' },
+            organ :         { whiteKeyColour : 'black',     blackKeyColour : 'white',   borderColour : 'white' },
+            piano :         { whiteKeyColour : ivory,       blackKeyColour : ebony,     borderColour : 'black' },
+            harpsichord :   { whiteKeyColour : ebony,       blackKeyColour : ivory,     borderColour : 'white' },
+            crazy :         { whiteKeyColour : 'orange',    blackKeyColour : 'pink',     borderColour : 'black' }
+        };
+
+        renderKeyboardAndBind('cleanKeyboard', kbdStyles['cleanKeyboard']);
+        renderKeyboardAndBind('organ', kbdStyles['organ']);
+        renderKeyboardAndBind('piano', kbdStyles['piano']);
+        renderKeyboardAndBind('harpsichord', kbdStyles['harpsichord']);
+        renderKeyboardAndBind('crazy', kbdStyles['crazy']);
+
+        function renderKeyboardAndBind(id, kbdStyle) {
+
+            // http://stuartmemo.com/qwerty-hancock/
+
+            var keyboard = new QwertyHancock({
+                id: id,
+                width: 620,
+                height: 150,
+                octaves: 3,
+                startNote: 'A3',
+                whiteKeyColour: kbdStyle.whiteKeyColour,
+                blackKeyColour: kbdStyle.blackKeyColour,
+                hoverColour: '#f3e939',
+                borderColour: kbdStyle.borderColour
+            });
+
+            keyboard.keyDown = function (note, frequency) {
+                console.log('qwerty-hancock keyDown note ' + note + ' frequency ' + frequency);
+            };
+
+            keyboard.keyUp = function (note, frequency) {
+                console.log('qwerty-hancock keyUp note ' + note + ' frequency ' + frequency)
+            };
+        }
+
+    </script>
+</body>
+</html>

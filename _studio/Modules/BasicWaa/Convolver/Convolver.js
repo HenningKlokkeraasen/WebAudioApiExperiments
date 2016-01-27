@@ -1,15 +1,16 @@
-console.debug('in Convolver.js');
 define([
 	
 
 
 	// Controllers: responsible for binding the view and model
-	'/_studio/Modules/BasicWaa/Convolver/ConvolverController.js',
+	'/_studio/Modules/_AudioFileLoadingModuleController.js',
 
 	// Data (model) for basic modules
 	'/_studio/Modules/BasicWaa/Convolver/ConvolverModuleFactory.js',
-	], function(Controller, ModuleFactory) {
-		console.debug('dependencies for Convolver.js loaded');
-		return { Controller: Controller, ModuleFactory: ModuleFactory };
+
+	// Data store
+	'/_studio/Modules/BasicWaa/Convolver/ConvolverModuleDataStore.js'
+	], function(Controller, ModuleFactory, DataStore) {
+		return { Controller: Controller, ModuleFactory: ModuleFactory, Modules : DataStore.Modules };
 	}
 );

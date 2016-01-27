@@ -2,13 +2,17 @@ define([
     '/_studio/Modules/_ModuleFactoryBase.js',
 	'/_studio/Modules/BasicWaa/Oscillator/OscillatorFacade.js'
     ], function(ModuleFactoryBase, OscillatorFacade) {
-        //////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
+
 		OscillatorModuleFactory.prototype = new ModuleFactoryBase();
 		OscillatorModuleFactory.prototype.constructor = OscillatorModuleFactory;
 
 		function OscillatorModuleFactory() {
+			// console.debug('ctor for OscillatorModuleFactory');
 			this.moduleCssClass = 'oscillator';
-			this.hasNoInputs = true;
+			this.hasAudioIn = false;
+			this.hasTriggerIn = true;
+			this.hasControlIn = true;
+			// this.hasControlOut = true;
 			this.hasStartButton = true;
 		}
 		OscillatorModuleFactory.prototype.getModuleDefinition = function() {
@@ -48,19 +52,20 @@ define([
 					radioButtonLists : [
 						this.getWaveTypeSelectObject1(moduleData.shortName, moduleData.w_params.indexChecked)
 
-					]
+					],
+					rangeDisplayMode : 'knob'
 		    }]});
 		};
 		OscillatorModuleFactory.prototype.getFrequencyParamObject = function(moduleData) {
 		    return this.getRangeControlData({ label : 'F',     type : 'frequency',	params : moduleData.f_params,  name : moduleData.shortName + '_freq' });
 		};
 		OscillatorModuleFactory.prototype.getDetuneParamObject = function(shortName) {
-			return	{ label : 'D',	type : 'detune',		min : -100,		max : 100,		value: 0,		step : 5,		name : shortName + '_detune'	};
+			return	{ label : 'D',	type : 'detune',		min : -100,		max : 100,		value: 0,		step : 1,		name : shortName + '_detune'	};
 		};
 		OscillatorModuleFactory.prototype.getWaveTypeSelectObject1 = function(shortName, indexChecked) {
 			return this.getWaveTypeSelectObject('W', 'waveType', shortName + '_wave', indexChecked);
 		};
-        //////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
+
         return OscillatorModuleFactory;
     }
 );

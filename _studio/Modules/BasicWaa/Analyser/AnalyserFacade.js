@@ -4,7 +4,7 @@
 define([
 	], function() {
 		function AnalyserFacade(audioContext) {
-			this.node = audioContext.createAnalyser(); // Note spelling of Analyser
+			this.input = audioContext.createAnalyser(); // Note spelling of Analyser
 			this.isStopped = true;
 
 
@@ -18,8 +18,8 @@ define([
 			console.log('connecting input to oscilloscope');
 			
 			// Connect graph
-			this.oscilloscope.init(this.node);
-			this.freqSpectrumAnalyser.init(this.node);
+			this.oscilloscope.init(this.input);
+			this.freqSpectrumAnalyser.init(this.input);
 
 
 
@@ -29,7 +29,7 @@ define([
 
 		AnalyserFacade.prototype.stop = function() {
 			this.isStopped = true;
-			this.node.disconnect(); // todo
+			this.input.disconnect(); // todo
 			this.oscilloscope.stop();
 			this.freqSpectrumAnalyser.stop();
 			return this;
@@ -37,7 +37,7 @@ define([
 
 		//TODO move to base class
 		AnalyserFacade.prototype.connect = function(destination) {
-			this.node.connect(destination);
+			this.input.connect(destination);
 			return this;
 		}
 

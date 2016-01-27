@@ -1,0 +1,37 @@
+
+<template>
+	<input type="range" />
+	<input type="range" />
+</template>
+
+
+
+<script>
+(function() {
+	// Grab our template full of slider markup and styles
+	var tmpl = document.querySelector('template');
+
+	// Creates an object based in the HTML Element prototype
+	var element = Object.create(HTMLElement.prototype);
+
+	// Fires when an instance of the element is created
+	element.createdCallback = function() {
+		// Shadow DOM
+		var root = this.createShadowRoot();
+		root.appendChild(document.importNode(tmpl.content, true));
+	};
+
+	// Fires when an instance was inserted into the document
+	element.attachedCallback = function() {};
+
+	// Fires when an instance was removed from the document
+	element.detachedCallback = function() {};
+
+	// Fires when an attribute was added, removed, or updated
+	element.attributeChangedCallback = function(attr, oldVal, newVal) {};
+
+	document.registerElement('vertical-slider', {
+		prototype: element
+	});
+}());
+</script>
