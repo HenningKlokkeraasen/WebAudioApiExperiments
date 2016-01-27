@@ -2,12 +2,17 @@ Web Audio API Experiments
 ======================
 
 Some experiments with the Web Audio API and Web MIDI API.
+
 Goals:
+
  - See and hear different sound waves
  - Subtractive synthesis
  - Additive synthesis
  - FM synthesis
- - Build synth modules such as VCOs, VCFs, VCFs, LFOs, Envelope Generators, CV and Gate trigger via Web MIDI
+ - Build synth modules such as VCOs, VCFs, VCFs, LFOs, Envelope Generators
+ - Gate trigger to start EGs via computer keyboard, Web MIDI and step sequencer
+ - CV to set oscillator frequency (noteon, noteoff) from the same, and modulate osc frequency, filter cutoff and amp gain with LFOs
+ - Patching
  - Build WAA versions of classic synths such as Minimoog, TR-808, Jupiter-8
  - Build WAA versions of sounds and effects such as Reverb, Vocoder, SuperSaw, PWM, Tremolo, Vibrato, Flanger
 
