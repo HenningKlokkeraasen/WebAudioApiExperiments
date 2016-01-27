@@ -10,7 +10,16 @@
 function PatchController() {
 }
 
-PatchController.prototype.setupPatching = function(containerElement, patchInputSelector, patchOutputSelector, dataContainerSelector, facade, facadeInput, facadeOutput, facadeConnectFunc, patcher) {	//facadeDataAttr
+PatchController.prototype.setupPatching = function(
+    containerElement, 
+    patchInputSelector, 
+    patchOutputSelector, 
+    dataContainerSelector, 
+    facade, 
+    facadeInput, 
+    facadeOutput, 
+    facadeConnectFunc, 
+    patcher) {	//facadeDataAttr
 	if (patchOutputSelector != undefined) {
 		// Clicking an ouput: call the patcher with an anonymous function
 		// as the callback that the patcher will call when an input has been clicked

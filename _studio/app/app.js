@@ -2,9 +2,9 @@
 	App
 */
 define([
-	'/_studio/app/ModuleRenderer.js'
+    '/_studio/app/RackRenderer.js'
 	], function(
-		ModuleRenderer) {
+		RackRenderer) {
 		function App() {
 			this.xhrFacade = undefined;
 			this.master = undefined;
@@ -24,49 +24,19 @@ define([
 			console.log('Web Audio is available');
 			//console.log(this.master.audioContext);
 
-			this.loadRack();
+			this.initPatcher();
+            
+			new RackRenderer().loadRack(this.board, this.master, this.patcher);
 
+			this.initPatchCables();
+
+			this.initFloatingLayouts();
+            
 			// finished initializing, notify others
 			//var isInitializedEvent = new CustomEvent('appIsInitialized', { detail : { instance : this } });
 			//document.dispatchEvent(isInitializedEvent);
 
 			console.log('all loaded');
-		};
-
-		App.prototype.loadRack = function() {
-			this.loadModules();
-
-			// TODO
-			if (this.board.usesSynthAndKeyboard)
-				this.initSynthAndKeyboard();
-		};
-
-		App.prototype.loadModules = function() {
-			document.querySelector('#boardTitle').innerText = this.board.title;
-			document.querySelector('#boardDescription').innerText = this.board.description;
-
-			// console.log('loading modules');
-
-			this.initPatcher();
-			
-			var rackData = this.board.rackData;
-			if (rackData == undefined) {
-				console.error('No rackData found');
-				return;
-			}
-
-			new ModuleRenderer(this).renderModules(rackData);
-
-			this.initPatchCables();
-
-			this.initFloatingLayouts();
-		};
-
-		// TODO
-		App.prototype.initSynthAndKeyboard = function() {
-			var synth = new Synthesizer(this.master.audioContext);
-			new KeyboardController(synth);
-			// this.initKeysLegendFloatingLayout();
 		};
 
 		App.prototype.initPatchCables = function() {

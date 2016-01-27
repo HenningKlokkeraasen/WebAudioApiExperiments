@@ -1,14 +1,13 @@
 define([
 	], function() {
-		function ModuleRenderer(app) {
-			this.app = app;
+		function ModuleRenderer(master, patcher) {
+			this.master = master;
+            this.patcher = patcher;
 		}
 
 		ModuleRenderer.prototype.renderModules = function(rackData) {
 			var moduleTopContainerElem = document.querySelector('#moduleTopContainer');
 			this.cellCounter = 0;
-
-			this.app = this.app;
 
 			var self = this;
 
@@ -66,7 +65,7 @@ define([
 			modules.push(factory.getModule(module));
 
 			// Create instance of the controller specified
-			var controller = new moduleData.controller(this.app.master, this.app.patcher);
+			var controller = new moduleData.controller(this.master, this.patcher);
 
 			// render module
 			controller.render(factory.getModuleDefinition(), modules, containerSelector);
