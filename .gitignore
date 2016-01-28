@@ -14,3 +14,5 @@ _todo/libs/*
 *.sublime-workspace
 
 web.config
+
+.vscode/*

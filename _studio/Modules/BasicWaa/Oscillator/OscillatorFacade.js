@@ -23,21 +23,21 @@ define([
 			this.input = this.audioContext.createOscillator();
 			// create a gain node as the output
 			// this will be what is used for connections
-			this.output = new GainFacade(this.audioContext);
+			this.output = this.audioContext.createGain();
 			this.controlIn = this.input.frequency;
 			// this.controlOut = this.output.output;
 		};
 
 		// private
 		OscillatorFacade.prototype.setDefaultValues = function() {
-			this.input.start(0);
-			this.output.setGain(0);
-
+			//this.input.start(0);
+			this.output.gain.value = 0;
+			this.hasBeenStartedOnce = false;
 		};
 
 		// private
 		OscillatorFacade.prototype.wireUp = function() {
-			this.input.connect(this.output.output);
+			this.input.connect(this.output);
 
 
 
@@ -66,8 +66,12 @@ define([
 		};
 
 		OscillatorFacade.prototype.start = function() {
-			//this.input.start(0);
-			this.output.setGain(1);
+			if (!this.hasBeenStartedOnce)
+			{
+				this.input.start(0);
+				this.hasBeenStartedOnce = true;
+			}
+			this.output.gain.value = 1;
 			return this;
 		};
 
@@ -77,7 +81,7 @@ define([
 			// When an oscillator has stopped, it can not be started again. Create a new one ready to go.
 			//this.node = this.audioContext.createOscillator();
 			
-			this.output.setGain(0);
+			this.output.gain.value = 0;
 
 			// create a gain node as the output
 			// this will be what is used for connections
