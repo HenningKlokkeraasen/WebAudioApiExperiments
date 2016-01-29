@@ -1,6 +1,11 @@
 /*
     Web Audio API - custom nodes - Envelope Generator
     From http://blog.chrislowis.co.uk/2013/06/17/synthesis-web-audio-api-envelopes.html
+	
+	// TODO add UI to control wether attack, decay and release should be linear, exponential or logarithmic
+	
+	// TODO re-trigger
+	
 */
 define([
     '/_studio/Modules/_FacadeBase.js',
@@ -86,13 +91,21 @@ define([
         //
         EnvelopeGeneratorFacade.prototype.initiateTriggering = function(audioParam, rampUpToValue, rampDownToValue, overrideSustainLevel) {
             // console.debug(this);
+			
+			// Ensure not exactly 0 values, they dont work so good
+			if (rampUpToValue === 0)
+				rampUpToValue = 0.0001; // TODO what if it is supposed to be a negative value?
+				
+			if (rampDownToValue === 0)
+				rampDownToValue = 0.0001; // TODO what if it is supposed to be a negative value?
+			
             var now = this.getCurrentTimeAndCancelScheduledValuesAndSetValue(audioParam);
 
             if (overrideSustainLevel)
                 this.sustainLevel = overrideSustainLevel;
 
             // ATTACK
-            audioParam.linearRampToValueAtTime(rampUpToValue, now + this.attackTime);
+            audioParam.linearRampToValueAtTime(rampUpToValue, (now + this.attackTime));
             ////this.triggerOut.setTargetAtTime(1.0, now, this.attackTime);
 
             // DECAY to SUSTAIN LEVEL
@@ -111,23 +124,47 @@ define([
                 audioParam.setValueAtTime(rampDownToValue, now + this.attackTime + this.decayTime);
 
         };
-
+		 
         EnvelopeGeneratorFacade.prototype.initiateReleasing = function(audioParam, rampDownToValue) {
-            // console.debug(this);
-            var now = this.getCurrentTimeAndCancelScheduledValuesAndSetValue(audioParam);
+            // console.debug(audioParam);
+			
+            // var now = this.getCurrentTimeAndCancelScheduledValuesAtTime(audioParam, this.releaseTime);
+			var now = this.audioContext.currentTime;
+			audioParam.cancelScheduledValues(now);
+			// var value = audioParam.value;
+			
+			// TODO truncate attack (required as linearRamp is removed by cancelScheduledValues)
 
+			audioParam.setValueAtTime(audioParam.value, (now + 0.0001));
+			
             // RELEASE
-            audioParam.setTargetAtTime(rampDownToValue, now, this.releaseTime);
-            ////this.triggerOut.linearRampToValueAtTime(0.0, now + this.releaseTime);
+            // audioParam.setTargetAtTime(rampDownToValue, now, this.releaseTime);
+			audioParam.linearRampToValueAtTime(rampDownToValue, (now + 0.0001 + this.releaseTime));	
+			
+			// audioParam.cancelScheduledValues(now + this.releaseTime);
         };
 
         EnvelopeGeneratorFacade.prototype.getCurrentTimeAndCancelScheduledValuesAndSetValue = function(audioParam) {
+            var now = this.getCurrentTimeAndCancelScheduledValues(audioParam);
+
+            // Anchor beginning of ramp at current value.
+            audioParam.setValueAtTime(audioParam.value, now);
+
+            return now;
+        };
+
+        EnvelopeGeneratorFacade.prototype.getCurrentTimeAndCancelScheduledValues = function(audioParam) {
             var now = this.audioContext.currentTime;
 
             audioParam.cancelScheduledValues(now);
-            
-            // Anchor beginning of ramp at current value.
-            audioParam.setValueAtTime(audioParam.value, now);
+
+            return now;
+        };
+
+        EnvelopeGeneratorFacade.prototype.getCurrentTimeAndCancelScheduledValuesAtTime = function(audioParam, time) {
+            var now = this.audioContext.currentTime;
+
+            audioParam.cancelScheduledValues(time);
 
             return now;
         };

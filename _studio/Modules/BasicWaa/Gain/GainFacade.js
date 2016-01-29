@@ -55,7 +55,7 @@ define([
 			// console.debug('output.gain.value after is ' + this.output.gain.value);
 			// console.debug('in GainFacade.gateOn, callback is ');
 			// console.debug(callback);
-			callback.call(originator, this.output.gain, 1, 0);
+			callback.call(originator, this.output.gain, 1, 0.0001);
 		};
 
 		GainFacade.prototype.gateOff = function(callback, originator) {
@@ -64,7 +64,7 @@ define([
 			// console.debug('output.gain.value after is ' + this.output.gain.value);
 			// console.debug('in GainFacade.gateOff, callback is ');
 			// console.debug(callback);
-			callback.call(originator, this.output.gain, 0);
+			callback.call(originator, this.output.gain, 0.0001);
 		};
 		//endregion iCanBeTriggered
 
