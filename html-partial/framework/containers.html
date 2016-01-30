@@ -2,23 +2,6 @@
 	<!--Container for patch cables (canvas elements that are positioned absolute in the pageX, pageY coordinate system-->
 	<div id="patchCableContainer"></div>
 
-<div class="analysersContainerFloating">
-	<!--Container for the oscilloscope, if the page width is larger than breakpointish width-->
-	<div id="oscilloscopeContainerFloating" class="hideMe"></div>
-	<div id="freqAnalyserContainerFloating" class="hideMe"></div>
-</div>
-	<!--Container for audio param, if the page width is larger than breakpointish width-->
-	<div id="audioParamModiferContainerFloating" class="hideMe"></div>
-
-	<!--Container for legend, if the page width is larger than breakpointish width-->
-	<div id="legendContainerFloating" class="hideMe"></div>
-
-	<!--Container for patch cable control-->
-	<div id="patchCableControlContainerFloating" class="hideMe"></div>
-
-	<!--Container for keys legend-->
-	<div id="keysLegendContainerFloating" class="hideMe"></div>
-
 <script>
 	// importDoc references this import's document
 	var importDoc = document.currentScript.ownerDocument;
@@ -32,11 +15,6 @@
 	var firstChild = mainDoc.body.firstChild;
 	
 	var selectors = [
-		'#keysLegendContainerFloating',
-		'#patchCableControlContainerFloating',
-		'#legendContainerFloating',
-		'#audioParamModiferContainerFloating',
-		'.analysersContainerFloating',
 		'#patchCableContainer',
 	];
 

@@ -21,12 +21,8 @@ define([
 								controller : HarmonicGenerator.Controller,
 								factory : HarmonicGenerator.ModuleFactory,
 								modules : HarmonicGenerator.Modules
-							}
-						]
-					},
-
-					{
-						moduleCollections : [
+							},
+							
 							{
 								controller : MasterSection.Controller,
 								factory : MasterSection.ModuleFactory,

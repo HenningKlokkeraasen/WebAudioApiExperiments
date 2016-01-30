@@ -10,7 +10,7 @@ define([
         WebMidiInputModuleFactory.prototype.constructor = WebMidiInputModuleFactory;
 
         function WebMidiInputModuleFactory() {
-            // this.moduleCssClass = 'wideModule';
+            // this.moduleCssClass = 'module-3u';
             this.hasAudioIn = false;
             this.hasAudioOut = false;
             this.hasTriggerOut = true;

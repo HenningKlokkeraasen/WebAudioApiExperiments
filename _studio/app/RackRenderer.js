@@ -35,7 +35,6 @@ define([
 		RackRenderer.prototype.initSynthAndKeyboard = function(audioContext) {
 			var synth = new Synthesizer(audioContext);
 			new KeyboardController(synth);
-			// this.initKeysLegendFloatingLayout();
 		};
 
 		return RackRenderer;

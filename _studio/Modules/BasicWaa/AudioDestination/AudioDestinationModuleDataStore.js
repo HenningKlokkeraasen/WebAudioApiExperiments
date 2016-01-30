@@ -1,7 +1,7 @@
 define([], function() { return { Modules : 
 	[  
 	   {  
-	      name:'Speakers',
+	      name:'Audio Destination',
 	      shortName:'audiodestination1'
 	   }
 	]

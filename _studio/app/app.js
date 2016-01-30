@@ -29,8 +29,6 @@ define([
 			new RackRenderer().loadRack(this.board, this.master, this.patcher);
 
 			this.initPatchCables();
-
-			this.initFloatingLayouts();
             
 			// finished initializing, notify others
 			//var isInitializedEvent = new CustomEvent('appIsInitialized', { detail : { instance : this } });
@@ -55,19 +53,6 @@ define([
 			// The Patcher represents the Audio Graph
 			// TODO improve
 			this.patcher = new Patcher();
-		};
-
-		App.prototype.initFloatingLayouts = function() {
-			new LayoutController('.oscilloscopeCanvasContainer', '#oscilloscopeContainerFloating', '>canvas');
-			new LayoutController('.freqSpectrumAnalyserCanvasContainer', '#freqAnalyserContainerFloating', '>canvas');
-			//new LayoutController('#audioParamModifierContainer', '#audioParamModiferContainerFloating', '>div');
-			new LayoutController('#legendContainer', '#legendContainerFloating', '>div');
-			new LayoutController('#patchCableControlContainer', '#patchCableControlContainerFloating', '>div');
-			new LayoutController('#keysLegendContainer', '#keysLegendContainerFloating', '>article');
-		};
-
-		App.prototype.initKeysLegendFloatingLayout = function() {
-			// new LayoutController('#keysLegendContainer', '#legendContainerFloating', '>article');
 		};
 
 		return App;

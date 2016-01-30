@@ -10,14 +10,14 @@
 function PatchCableController() {
 }
 
-PatchCableController.prototype.drawPatchCable = function(sourceCoordinates, destinationCoordinates) {
+PatchCableController.prototype.drawPatchCable = function(sourceCoordinates, destinationCoordinates, typeOfPatch) {
 	var container = document.getElementById('patchCableContainer');
 	var canvas = document.createElement('canvas');
 	container.appendChild(canvas);
 
 	var context = canvas.getContext('2d');
 
-	var cableColor = this.getRandomColor();
+	var cableColor = this.getColorForTypeOfPatch(typeOfPatch);
 
 	var margin = 10;
 
@@ -99,19 +99,29 @@ PatchCableController.prototype.drawPatchCable = function(sourceCoordinates, dest
 	//this.drawCableBezier() TODO
 }
 
-PatchCableController.prototype.getRandomColor = function() {
-	var r = this.getRandomRgbValue();
-	var g = this.getRandomRgbValue();
-	var b = this.getRandomRgbValue();
-	return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+PatchCableController.prototype.getColorForTypeOfPatch = function(typeOfPatch) {
+	if (typeOfPatch == 'audio')
+		return '#D53734';
+	if (typeOfPatch == 'control')
+		return '#2B4689';
+	if (typeOfPatch == 'trigger')
+		return '#1E926F';
+	return 'black';
 }
 
-PatchCableController.prototype.getRandomRgbValue = function() {
-	var min = 0;
-	var max = 255;
-	var randomFloatingPointNumber = Math.random() * (max - min) + min;
-	return Math.floor(randomFloatingPointNumber);
-}
+// PatchCableController.prototype.getRandomColor = function() {
+// 	var r = this.getRandomRgbValue();
+// 	var g = this.getRandomRgbValue();
+// 	var b = this.getRandomRgbValue();
+// 	return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+// }
+
+// PatchCableController.prototype.getRandomRgbValue = function() {
+// 	var min = 0;
+// 	var max = 255;
+// 	var randomFloatingPointNumber = Math.random() * (max - min) + min;
+// 	return Math.floor(randomFloatingPointNumber);
+// }
 
 PatchCableController.prototype.drawConnector = function(context, x, y, cableColor) {
 	var radius = 6;

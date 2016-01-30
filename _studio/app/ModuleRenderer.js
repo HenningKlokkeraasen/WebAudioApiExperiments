@@ -117,7 +117,8 @@ define([
 						from.facadeInstance, 
 						input, 
 						connectFunc, 
-						patcher);
+						patcher,
+						type);
 				}
 			});
 			

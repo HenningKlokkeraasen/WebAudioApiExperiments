@@ -208,10 +208,17 @@
 			.egmodule {
 				background-color: rgb(152, 119, 152);
 			}
+			
+			.module-2u {
+				width: 413px; /*TODO not responsive*/
+			}
 
-			.wideModule {
-				/*TODO rename to 3U since it takes up three rack units*/
+			.module-3u {
 				width: 626px; /*TODO not responsive*/
+			}
+
+			.module-4u {
+				width: 839px; /*TODO not responsive*/
 			}
 
 .parameterLabel {

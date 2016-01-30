@@ -21,8 +21,8 @@ PatchController.prototype.setupPatching = function(
 			$(this).bind('click', function(e) {
 				var self = this;
 				var coordinates = { x: e.pageX, y: e.pageY };
-				
-				PatchController.prototype.patchFrom(coordinates, facade, facadeConnectFunc, patcher);
+				var typeOfPatch = self.attributes['data-patch-type'].value.replace('Out', '');
+				PatchController.prototype.patchFrom(coordinates, facade, facadeConnectFunc, patcher, typeOfPatch);
 			});
 		});
 	}
@@ -45,27 +45,28 @@ PatchController.prototype.patch = function(
     facade, 
     facadeInput, 
     facadeConnectFunc, 
-    patcher) {
-	PatchController.prototype.patchFrom(fromCoordinates, facade, facadeConnectFunc, patcher);
+    patcher,
+	typeOfPatch) {
+	PatchController.prototype.patchFrom(fromCoordinates, facade, facadeConnectFunc, patcher, typeOfPatch);
 	PatchController.prototype.patchTo(toCoordinates, facadeInput, patcher);
 }
 
-PatchController.prototype.patchFrom = function(coordinates, facade, facadeConnectFunc, patcher) {
+PatchController.prototype.patchFrom = function(coordinates, facade, facadeConnectFunc, patcher, typeOfPatch) {
 	patcher.reset();
 	patcher.setSource(coordinates, function(destination) {
 		// in the callback: get the facade, have it connect to the destination node
 		// var facade = $(self).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
 		facadeConnectFunc.call(facade, destination);
 		
-		console.log('Patching');
-		console.group();
-		console.log('From:');
-		console.log(facade); //console.log(facade.node);
-		console.log('To:')
-		console.log(destination);
-		console.groupEnd()
+		// console.log('Patching');
+		// console.group();
+		// console.log('From:');
+		// console.log(facade); //console.log(facade.node);
+		// console.log('To:')
+		// console.log(destination);
+		// console.groupEnd()
 
-		PatchCableController.prototype.drawPatchCable(patcher.sourceCoordinates, patcher.destinationCoordinates);//TODO keep coordinates in this class
+		PatchCableController.prototype.drawPatchCable(patcher.sourceCoordinates, patcher.destinationCoordinates, typeOfPatch);//TODO keep coordinates in this class
 		patcher.reset();
 	});
 }

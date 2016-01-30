@@ -86,7 +86,7 @@ Oscilloscope.prototype.drawXAxisLines = function(context) {
 
 	context.strokeStyle = "red";
 	context.lineWidth = 1;
-	context.fillStyle="#004737";
+	context.fillStyle="#1BADAD";
 	context.fillRect(0,0,this.canvasWidth, this.canvasHeight);
 	context.beginPath();
 	context.moveTo(0,0);
