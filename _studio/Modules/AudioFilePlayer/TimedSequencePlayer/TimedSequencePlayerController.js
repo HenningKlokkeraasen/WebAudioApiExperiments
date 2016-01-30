@@ -8,11 +8,11 @@ define([
 			AudioFilePlayerController.call(this, master, patcher); // base()
 		}
 
-		TimedSequencePlayerController.prototype.render = function(definition, model, containerSelector) {
+		TimedSequencePlayerController.prototype.render = function(definition, model, containerSelector, callback) {
 			modules = model;
 			this.sequences = modules.map(function(module){ return module.sequences; });
 			// console.debug(this.sequences);
-			AudioFilePlayerController.prototype.render.call(this, definition, model, containerSelector); //  = base.render()
+			AudioFilePlayerController.prototype.render.call(this, definition, model, containerSelector, callback); //  = base.render()
 		};
 
 		TimedSequencePlayerController.prototype.createFacadeInstance = function(facade, audioContext) {
@@ -25,8 +25,8 @@ define([
 		};
 
 		// called after base class callbacks are done
-		TimedSequencePlayerController.prototype.readyToContinueRendering = function() {
-			AudioFilePlayerController.prototype.readyToContinueRendering.call(this); //  = base.readyToContinueRendering()
+		TimedSequencePlayerController.prototype.readyToContinueRendering = function(renderedModules, callback) {
+			AudioFilePlayerController.prototype.readyToContinueRendering.call(this, renderedModules, callback); //  = base.readyToContinueRendering()
 		};
 
 		TimedSequencePlayerController.prototype.bindButtons = function(buttons, div) {

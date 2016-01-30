@@ -10,14 +10,14 @@ define([
 			AudioFileLoadingModuleController.call(this, master, patcher);
 		}
 
-		AudioFilePlayerController.prototype.render = function(definition, model, containerSelector) {
+		AudioFilePlayerController.prototype.render = function(definition, model, containerSelector, callback) {
 			this.containerSelector = containerSelector;
 
-			AudioFileLoadingModuleController.prototype.render.call(this, definition, model, containerSelector); //  = base.render()
+			AudioFileLoadingModuleController.prototype.render.call(this, definition, model, containerSelector, callback); //  = base.render()
 		};
 
 		// called after base class callbacks are done
-		AudioFilePlayerController.prototype.readyToContinueRendering = function() {
+		AudioFilePlayerController.prototype.readyToContinueRendering = function(renderedModules, callback) {
 			var controller = this;
 
 			// Go through each of the modules in the container
@@ -29,8 +29,10 @@ define([
 				var buttons = controller.findTheButtons(moduleDiv);
 				controller.bindButtons(buttons, moduleDiv);
 			});
+			
+			callback(renderedModules);
 		};
-
+		
 		AudioFilePlayerController.prototype.findTheButtons = function(div) {
 			var buttonSelector = 'button';
 			return $(div).find(buttonSelector);

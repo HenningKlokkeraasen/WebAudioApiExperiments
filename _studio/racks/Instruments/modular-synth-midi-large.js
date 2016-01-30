@@ -27,6 +27,13 @@ define([
 					{
 						moduleCollections : [
 
+
+							{
+								controller : WebMidiInput.Controller,
+								factory : WebMidiInput.ModuleFactory,
+								modules : WebMidiInput.Modules
+							},
+							
 							// LFO
 
 							{
@@ -34,49 +41,7 @@ define([
 								factory : LFO.ModuleFactory,
 								modules : LFO.Modules.getItemsByShortName('lfo1')
 							},
-
-							{
-								controller : WebMidiInput.Controller,
-								factory : WebMidiInput.ModuleFactory,
-								modules : WebMidiInput.Modules
-							},
-
-						]
-					},
-
-					{
-						moduleCollections : [
-
-							// LFO
-
-							{
-								controller : LFO.Controller,
-								factory : LFO.ModuleFactory,
-								modules : LFO.Modules.getItemsByShortName('lfo2')
-							},
-
-							// EG
-
-							{
-								controller : EnvelopeGenerator.Controller,
-								factory : EnvelopeGenerator.ModuleFactory,
-								modules : EnvelopeGenerator.Modules.getItemsByShortName('eg2', 'eg3', 'eg4')
-							}
-
-						]
-					},
-
-					{
-						moduleCollections : [
-
-							// Modulator audible range
-
-							{
-								controller : ModulatorAudibleRange.Controller,
-								factory : ModulatorAudibleRange.ModuleFactory,
-								modules : ModulatorAudibleRange.Modules.getItemsByShortName('mar1')
-							},
-
+							
 							// Sound generator
 
 							{
@@ -98,15 +63,46 @@ define([
 								factory : Gain.ModuleFactory,
 								modules : Gain.Modules.getItemsByShortName('gain5')
 							},
+							
+							{
+								controller : Analyser.Controller,
+								factory : Analyser.ModuleFactory,
+								modules : Analyser.Modules
+							},
+							
 
 						]
 					},
 
-					// Modifiers
-
 					{
 						moduleCollections : [
 
+							// Modulator audible range
+
+							{
+								controller : ModulatorAudibleRange.Controller,
+								factory : ModulatorAudibleRange.ModuleFactory,
+								modules : ModulatorAudibleRange.Modules.getItemsByShortName('mar1')
+							},
+							
+							// LFO
+
+							{
+								controller : LFO.Controller,
+								factory : LFO.ModuleFactory,
+								modules : LFO.Modules.getItemsByShortName('lfo2')
+							},
+
+							// EG
+
+							{
+								controller : EnvelopeGenerator.Controller,
+								factory : EnvelopeGenerator.ModuleFactory,
+								modules : EnvelopeGenerator.Modules.getItemsByShortName('eg2', 'eg3', 'eg4')
+							},
+
+							// Modifiers
+							
 							{
 								controller : Convolver.Controller,
 								factory : Convolver.ModuleFactory,
@@ -131,6 +127,7 @@ define([
 								modules : SlapbackDelay.Modules
 							},
 							
+
 						]
 					},
 
@@ -140,20 +137,15 @@ define([
 							{
 								controller : ChannelStrip.Controller,
 								factory : ChannelStrip.ModuleFactory,
-								modules : ChannelStrip.Modules.getItemsByShortName('ch1', 'ch2')
+								modules : ChannelStrip.Modules.getItemsByShortName('ch1', 'ch2', 'ch3', 'ch4')
 							},
-
+							
 							{
 								controller : MasterSection.Controller,
 								factory : MasterSection.ModuleFactory,
 								modules : MasterSection.Modules
 							},
 
-							{
-								controller : Analyser.Controller,
-								factory : Analyser.ModuleFactory,
-								modules : Analyser.Modules
-							},
 						]
 					}
 				],

@@ -2,22 +2,18 @@
 /* oscilloscope */
 
 .oscilloscopeCanvasContainer canvas,
-#oscilloscopeContainerFloating canvas,
-.freqAnalyserCanvasContainer canvas,
-#freqAnalyserContainerFloating canvas  {
+.freqSpectrumAnalyserCanvasContainer canvas  {
 	width: 400px;
 	height: 180px;
 	border: 3px solid gray;
-    border-radius: 15px;
+    border-radius: 3px;
 }
 
-	.oscilloscopeCanvasContainer canvas,
-	#oscilloscopeContainerFloating canvas {
-		background-color: #004737; /*rgb(61, 122, 113)*/
+	.oscilloscopeCanvasContainer canvas {
+		background-color: #1BADAD; /*rgb(61, 122, 113)*/
 	}
 
-	.freqAnalyserCanvasContainer canvas,
-	#freqAnalyserContainerFloating canvas {
-		background-color: black;
+	.freqSpectrumAnalyserCanvasContainer canvas {
+		background-color: #1E2123;
 	}
 	

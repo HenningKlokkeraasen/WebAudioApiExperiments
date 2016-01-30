@@ -82,9 +82,12 @@ define([
 		};
 
 		PulseWaveFacade.prototype.setPulseWidth = function(percentage) {
+			if (percentage === undefined)
+				return;
 			var min = 0;
 			var max = 1 / this.saw1.frequency.value; // period of the wave
 			var pw = max / 100 * parseInt(percentage);
+			
 			this.dutyCycle.delayTime.value = pw;
 			// console.debug(percentage);
 			// console.debug(max);

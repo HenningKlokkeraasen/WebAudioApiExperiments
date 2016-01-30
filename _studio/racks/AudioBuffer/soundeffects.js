@@ -41,6 +41,19 @@ define([
 							}
 						]
 					},
+				],
+				
+				patches : [
+					{
+						from : 'soundeffects',
+						to: 'audiodestination1',
+						type: 'audio'
+					},
+					{
+						from: 'soundeffects',
+						to: 'analyser1',
+						type: 'audio'
+					}
 				]
 			},
 		};

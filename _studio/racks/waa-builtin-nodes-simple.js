@@ -46,11 +46,7 @@ define([
 								factory : Delay.ModuleFactory,
 								modules : Delay.Modules.getItemsByShortName('delay1')
 							},
-						]
-					},
-
-					{
-						moduleCollections : [
+							
 							{
 								controller : Convolver.Controller,
 								factory : Convolver.ModuleFactory,
@@ -66,19 +62,19 @@ define([
 					
 					{
 						moduleCollections : [
+,
 							{
 								controller : Compressor.Controller,
 								factory : Compressor.ModuleFactory,
 								modules : Compressor.Modules
 							},
-
-					// Output and analyse
-
 							{
 								controller : AudioDestination.Controller,
 								factory : AudioDestination.ModuleFactory,
 								modules : AudioDestination.Modules
 							},
+					// Output and analyse
+
 
 							{
 								controller : Analyser.Controller,
@@ -123,9 +119,16 @@ define([
 					},
 					{
 						from : 'convolver1',
-						to : 'audiodestination1',
+						to : 'compressor1',
 						type : 'audio'
 					},
+					
+					// Analyser
+					{
+						from: 'compressor1',
+						to : 'analyser1',
+						type: 'audio'
+					}
 				]
 			}
 		};

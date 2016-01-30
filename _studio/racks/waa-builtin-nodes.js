@@ -19,22 +19,16 @@ define([
 			rackData : {
 				rows : [
 
-					// Sound generators
 
 					{
+					// Sound generators
 						moduleCollections : [
 							{
 								controller : Oscillator.Controller,
 								factory : Oscillator.ModuleFactory,
 								modules : Oscillator.Modules.getItemsByShortName('osc1', 'osc2', 'osc3', 'osc4')
 							},
-						]
-					},
-
 					// Sound processors and modifiers
-
-					{
-						moduleCollections : [
 							{
 								controller : Filter.Controller,
 								factory : Filter.ModuleFactory,
@@ -50,11 +44,6 @@ define([
 								factory : Gain.ModuleFactory,
 								modules : Gain.Modules.getItemsByShortName('gain1', 'gain2', 'gain3', 'gain4')
 							},
-						]
-					},
-
-					{
-						moduleCollections : [
 							{
 								controller : Delay.Controller,
 								factory : Delay.ModuleFactory,
@@ -74,22 +63,12 @@ define([
 								controller : WaveShaper.Controller,
 								factory : WaveShaper.ModuleFactory,
 								modules : WaveShaper.Modules
-							}
-						]
-					},
-
-					{
-						moduleCollections : [
+							},
 							{
 								controller : Compressor.Controller,
 								factory : Compressor.ModuleFactory,
 								modules : Compressor.Modules
-							},
-						]
-					},
-
-					{
-						moduleCollections : [
+							},,
 							{
 								controller : AudioDestination.Controller,
 								factory : AudioDestination.ModuleFactory,

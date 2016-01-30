@@ -41,6 +41,19 @@ define([
 							}
 						]
 					},
+				],
+				
+				patches : [
+					{
+						from : 'drumpads3',
+						to: 'audiodestination1',
+						type: 'audio'
+					},
+					{
+						from: 'drumpads3',
+						to: 'analyser1',
+						type: 'audio'
+					}
 				]
 			},
 		};

@@ -34,3 +34,27 @@ fieldset.connectors {
 		fieldset.connectors>div>div {
 			margin: 0 5px 5px 0;
 		}
+		
+.audioPatch {
+	background-color: #D53734;
+	border: 1px solid #D53734;
+	margin: 4px;
+	padding: 3px;
+	border-radius: 4px;
+}
+
+.triggerPatch {
+	background-color: #1E926F;
+	border: 1px solid #1E926F;
+	margin: 4px;
+	padding: 3px;
+	border-radius: 4px;
+}
+
+.controlPatch {
+	background-color: #2B4689;
+	border: 1px solid #2B4689;
+	margin: 4px;
+	padding: 3px;
+	border-radius: 4px;
+}

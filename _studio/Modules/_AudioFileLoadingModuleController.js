@@ -33,8 +33,15 @@ define([
         	// TODO support more than one module, currently all modules will have the same buffer []
         	// TODO support more than one module, currently all modules will be rendered when the first module's files have been downloaded
         	this.buffers = audioBuffers;
-        	GenericController.prototype.render.call(this, definition, model, containerSelector, callback); //  = base.render()
+			var self = this;
+        	GenericController.prototype.render.call(this, definition, model, containerSelector, function(renderedModules) {
+				self.readyToContinueRendering(renderedModules, callback);
+				}); //  = base.render()
         }
+		
+		AudioFileLoadingModuleController.prototype.readyToContinueRendering = function(renderedModules, callback) {
+			callback(renderedModules);
+		};
 
 		AudioFileLoadingModuleController.prototype.createFacadeInstance = function(facade, audioContext) {
 			// console.debug('AudioFileLoadingModuleController buffers:');
