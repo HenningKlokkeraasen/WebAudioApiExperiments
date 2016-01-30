@@ -8,7 +8,7 @@ define([
 
         function AnalyserModuleFactory() {
             this.handlebarsTemplateSelector = '#analyserTemplate'; // differs from norm
-            this.moduleCssClass = 'module-4u analysermodule';
+            this.moduleCssClass = 'module-2u analysermodule';
             this.hasAudioOut = false;
             this.hasStartButton = true;
         }
@@ -30,14 +30,14 @@ define([
         //      name
         //      shortName
         //
-        //
-        //
+        //		hasOscilloscope
+        //		hasFsa
         //
         //
         //
         //
         AnalyserModuleFactory.prototype.getModule = function(moduleData) {
-            return this.getModuleBase({
+            var module = this.getModuleBase({
                 name : moduleData.name, 
 				shortName : moduleData.shortName,
 				
@@ -48,10 +48,10 @@ define([
 
 
 
-
-
-
             });
+			module.hasOscilloscope = moduleData.hasOscilloscope;
+			module.hasFsa = moduleData.hasFsa;
+			return module;
         };
         //////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
         return AnalyserModuleFactory;

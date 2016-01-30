@@ -15,12 +15,18 @@
 			{{/if}}
 			
 			{{!specific for analyser: canvas}}
+			
+			{{#if hasOscilloscope}}
 			<span class="oscilloscopeCanvasContainer">
 				<canvas></canvas>
 			</span>
+			{{/if}}
+			
+			{{#if hasFsa}}
 			<span class="freqSpectrumAnalyserCanvasContainer">
 				<canvas></canvas>
 			</span>
+			{{/if}}
 
 			<fieldset class="connectors">
 				<legend>Connectors</legend>

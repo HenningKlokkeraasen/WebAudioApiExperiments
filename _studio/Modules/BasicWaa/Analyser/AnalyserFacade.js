@@ -18,10 +18,10 @@ define([
 			console.log('connecting input to oscilloscope');
 			
 			// Connect graph
-			this.oscilloscope.init(this.input);
-			this.freqSpectrumAnalyser.init(this.input);
-
-
+			if (this.oscilloscope != undefined)
+				this.oscilloscope.init(this.input);
+			if (this.freqSpectrumAnalyser != undefined)
+				this.freqSpectrumAnalyser.init(this.input);
 
 
 			return this;
@@ -30,8 +30,10 @@ define([
 		AnalyserFacade.prototype.stop = function() {
 			this.isStopped = true;
 			this.input.disconnect(); // todo
-			this.oscilloscope.stop();
-			this.freqSpectrumAnalyser.stop();
+			if (this.oscilloscope != undefined)
+				this.oscilloscope.stop();
+			if (this.freqSpectrumAnalyser != undefined)
+				this.freqSpectrumAnalyser.stop();
 			return this;
 		}
 

@@ -128,6 +128,11 @@ define([
 						from: 'compressor1',
 						to : 'analyser1',
 						type: 'audio'
+					},
+					{
+						from: 'compressor1',
+						to : 'analyser2',
+						type: 'audio'
 					}
 				]
 			}

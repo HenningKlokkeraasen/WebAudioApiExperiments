@@ -55,8 +55,10 @@ define([
 
 				// specific for AnalyserController
 				// init canvas
-				controller.initCanvasForOscilloscope(div);
-				controller.initCanvasForFreqSpectrumAnalyser(div);
+				if (model[0].hasOscilloscope)
+					controller.initCanvasForOscilloscope(div);
+				if (model[0].hasFsa)
+					controller.initCanvasForFreqSpectrumAnalyser(div);
 			});
 		};
 
