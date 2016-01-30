@@ -41,6 +41,7 @@ define([
         WahWahModuleFactory.prototype.getModule = function(moduleData) {
             return this.getModuleBase({
                 name : moduleData.name, 
+				shortName : moduleData.shortName,
                 sections : [ { sectionName : 'Input',
                     ranges : [
                         { label : 'P',  type : 'pregain',   min : -2,   max : 2,        value: 1,       step : 0.01,        name : moduleData.shortName + '_P'  }

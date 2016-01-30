@@ -9,8 +9,8 @@ define([
 			GenericController.call(this, master, patcher);
 		}
 
-		WebMidiInputController.prototype.render = function(definition, model, containerSelector) {
-			GenericController.prototype.render.call(this, definition, model, containerSelector); //  = base.render()
+		WebMidiInputController.prototype.render = function(definition, model, containerSelector, callback) {
+			GenericController.prototype.render.call(this, definition, model, containerSelector, callback); //  = base.render()
 
 			this.facadeInstance.initKeyboard(document.getElementById('keyboardNoteInput'));
 		};

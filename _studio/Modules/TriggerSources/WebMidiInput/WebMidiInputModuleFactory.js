@@ -44,6 +44,7 @@ define([
         WebMidiInputModuleFactory.prototype.getModule = function(moduleData) {
             return this.getModuleBase({
                 name : moduleData.name, 
+				shortName : moduleData.shortName,
                 sections : [
 
 

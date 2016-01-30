@@ -40,6 +40,7 @@ define([
         ChannelStripModuleFactory.prototype.getModule = function(moduleData) {
             return this.getModuleBase({
                 name : moduleData.name, 
+				shortName : moduleData.shortName,
                 sections : [ {
                     ranges : [
                         { label : 'G',      type : 'gain',      min : 0,    max : 2,    value: 1,   step : 0.1, name : moduleData.shortName + '_gain'   },

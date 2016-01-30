@@ -47,6 +47,7 @@ define([
 		FmOscModuleFactory.prototype.getModule = function(moduleData) {
 		    return this.getModuleBase({
 		        name : moduleData.name, 
+				shortName : moduleData.shortName,
 		        sections : [ { sectionName : moduleData.isModulatorLfo ? 'LFO' : 'Modulator',
 					ranges : [
 						this.getModFreqParamObject(moduleData.shortName, moduleData.mod_freq_params),

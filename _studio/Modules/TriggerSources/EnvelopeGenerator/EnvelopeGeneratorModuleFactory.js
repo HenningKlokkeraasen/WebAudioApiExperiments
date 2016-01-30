@@ -62,6 +62,7 @@ define([
 
 			return this.getModuleBase({
 				name : moduleData.name, 
+				shortName : moduleData.shortName,
 		        sections : [ {
 					ranges : ranges,
 					rangeDisplayMode : 'slider-vertical'

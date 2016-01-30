@@ -23,7 +23,7 @@ define([
 			controlOutSelector: 'span[data-patch-type="controlOut"]',
 		};
 
-		GenericController.prototype.render = function(definition, model, containerSelector) {
+		GenericController.prototype.render = function(definition, model, containerSelector, callback) {
 			var controller = this;
 
 			var foundElementsCount = $(containerSelector).length;
@@ -31,6 +31,8 @@ define([
 				console.error('Could not find element with selector ' + containerSelector);
 			if (foundElementsCount > 1)
 				console.warn('More than one element with selector ' + containerSelector);
+				
+			var renderedModules = new Array();
 
 			TemplateLoader.prototype.loadTemplateWithHandlebars(containerSelector, definition.handlebarsTemplateSelector, model, function() {
 				// callback
@@ -52,7 +54,17 @@ define([
 					controller.setupPatching(div, controller.patcher, facadeInstance);
 
 					controller.bindControlsToParameters(div, definition.parameters);
+
+					renderedModules.push(
+						{
+							containerSelector : containerSelector,
+							facadeInstance: facadeInstance,
+							module : model[0] // TODO why is this input an array when it is only 1 element
+						}
+					);
 				});
+				
+				callback(renderedModules);
 			});
 		};
 

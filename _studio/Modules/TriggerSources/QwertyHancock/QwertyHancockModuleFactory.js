@@ -44,6 +44,7 @@ define([
         QwertyHancockModuleFactory.prototype.getModule = function(moduleData) {
             return this.getModuleBase({
                 name : moduleData.name, 
+				shortName : moduleData.shortName,
                 sections : [ {
                     ranges : [
                         { label : 'Octave',  type : 'octave',     min : 0,    max : 8,    value: 4,    step : 1,    name : moduleData.shortName + '_f'  }

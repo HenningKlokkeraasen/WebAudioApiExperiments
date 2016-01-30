@@ -27,7 +27,8 @@ define([
 
         AudioFilePlayerModuleFactory.prototype.getModule = function(moduleData) {
             var module =  this.getModuleBase({
-                name : moduleData.name, 
+                name : moduleData.name,
+				shortName : moduleData.shortName,
                 sections : [ {
                     buttons: this.getKeyValuePairsForButton(moduleData.audioFilePaths),
                     checkBoxes : [ { label : 'Loop',  type : 'loop' } ]

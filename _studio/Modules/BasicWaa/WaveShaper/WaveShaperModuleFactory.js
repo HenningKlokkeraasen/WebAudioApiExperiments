@@ -38,6 +38,7 @@ define([
 		WaveShaperModuleFactory.prototype.getModule = function(moduleData) {
 			return this.getModuleBase({
 				name : moduleData.name, 
+				shortName : moduleData.shortName,
 		        sections : [ {
 					ranges : [
 						{ label : 'A',	type : 'amount',		min : 0,		max : 100,		value: 50,		step : 1,		name : moduleData.shortName + '_amount'	}

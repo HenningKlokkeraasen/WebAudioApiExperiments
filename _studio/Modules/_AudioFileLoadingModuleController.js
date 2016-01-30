@@ -10,33 +10,30 @@ define([
 			this.buffers = undefined;
 		}
 
-		AudioFileLoadingModuleController.prototype.render = function(definition, model, containerSelector) {
+		AudioFileLoadingModuleController.prototype.render = function(definition, model, containerSelector, callback) {
 			var self = this;
-			model.forEach(function(module){
+			model.forEach(function(module) {
 				// console.debug(module.audioFilePaths);
-				self.loadFilesIntoAudioBuffers(module.audioFilePaths, definition, model, containerSelector);
+				self.loadFilesIntoAudioBuffers(module.audioFilePaths, definition, model, containerSelector, callback);
 			});
 		};
 
-		AudioFileLoadingModuleController.prototype.loadFilesIntoAudioBuffers = function(audioFilePaths, definition, model, containerSelector) {
+		AudioFileLoadingModuleController.prototype.loadFilesIntoAudioBuffers = function(audioFilePaths, definition, model, containerSelector, callback) {
             var self = this;
             new AudioFileLoader().loadAudioFilesIntoBuffers(this.master.audioContext, audioFilePaths,
-                // callback
-                function(buffers){
-                	self.filesHaveBeenLoaded(buffers, definition, model, containerSelector);
+                function(buffers) {
+                	self.filesHaveBeenLoaded(buffers, definition, model, containerSelector, callback);
                 });
         };
 
-        AudioFileLoadingModuleController.prototype.filesHaveBeenLoaded = function(audioBuffers, definition, model, containerSelector){
+        AudioFileLoadingModuleController.prototype.filesHaveBeenLoaded = function(audioBuffers, definition, model, containerSelector, callback) {
 			// console.debug('AudioFileLoadingModuleController: audio files have loaded');
             // console.debug(audioBuffers);
 
         	// TODO support more than one module, currently all modules will have the same buffer []
         	// TODO support more than one module, currently all modules will be rendered when the first module's files have been downloaded
         	this.buffers = audioBuffers;
-        	GenericController.prototype.render.call(this, definition, model, containerSelector); //  = base.render()
-
-        	this.readyToContinueRendering();
+        	GenericController.prototype.render.call(this, definition, model, containerSelector, callback); //  = base.render()
         }
 
 		AudioFileLoadingModuleController.prototype.createFacadeInstance = function(facade, audioContext) {
@@ -46,10 +43,6 @@ define([
 			var facadeInstance = new facade(audioContext, this.buffers);
 			
 			return facadeInstance;
-		};
-
-		AudioFileLoadingModuleController.prototype.readyToContinueRendering = function() {
-			
 		};
 
 		return AudioFileLoadingModuleController;

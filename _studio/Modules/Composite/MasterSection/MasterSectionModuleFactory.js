@@ -40,6 +40,7 @@ define([
         MasterSectionModuleFactory.prototype.getModule = function(moduleData) {
             return this.getModuleBase({
                 name : moduleData.name, 
+				shortName : moduleData.shortName,
                 sections : [ { sectionName : 'Input',
                     ranges : [
                         { label : 'I',  type : 'input_trim',          min : 0,    max : 1,    value: 1,       step : 0.1,    name : moduleData.shortName + '_gain' }

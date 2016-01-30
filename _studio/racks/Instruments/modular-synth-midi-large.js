@@ -156,6 +156,55 @@ define([
 							},
 						]
 					}
+				],
+				patches : [
+					// Main audio route
+					{
+						from : 'osc5',
+						to : 'filter5',
+						type : 'audio'
+					},
+					{
+						from : 'filter5',
+						to : 'gain5',
+						type : 'audio'
+					},
+					{
+						from : 'gain5',
+						to : 'ch1',
+						type : 'audio'
+					},
+					{
+						from : 'ch1',
+						to : 'masterSection1',
+						type : 'audio'
+					},
+					
+					// Trigger / gate
+					{
+						from : 'webmidi1',
+						to : 'eg4',
+						type: 'trigger'
+					},
+					{
+						from : 'eg4',
+						to : 'gain5',
+						type: 'trigger'
+					},
+					
+					// Pitch / control / noteOn, noteOff
+					{
+						from: 'webmidi1',
+						to: 'osc5',
+						type: 'control'
+					},
+					
+					// Modulation
+					{
+						from: 'lfo2',
+						to: 'osc5',
+						type: 'control'
+					}
 				]
 			},
 		};

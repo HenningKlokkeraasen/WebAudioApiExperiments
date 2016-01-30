@@ -40,6 +40,7 @@ define([
 		LfoModuleFactory.prototype.getModule = function(moduleData) {
 			return this.getModuleBase({
 				name : moduleData.name, 
+				shortName : moduleData.shortName,
 		        sections : [ {
 					ranges : [
 						this.getRangeControlData({ label : 'R',     type : 'rate',	params : moduleData.f_params,  name : moduleData.shortName + '_freq' }),

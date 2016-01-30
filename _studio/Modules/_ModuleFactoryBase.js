@@ -25,6 +25,7 @@ define([
 		ModuleFactoryBase.prototype.getModuleBase = function(moduleData) {
 			return { 
 				moduleName : moduleData.name,
+				shortName: moduleData.shortName,
 				moduleCssClass : this.moduleCssClass,
 				hasStartButton : this.hasStartButton,
 				hasKeyboardInterface : this.hasKeyboardInterface,
