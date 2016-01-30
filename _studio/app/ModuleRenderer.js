@@ -11,10 +11,17 @@ define([
 		ModuleRenderer.prototype.renderModules = function(rackData) {
 			var moduleTopContainerElem = document.querySelector('#moduleTopContainer');
 			this.cellCounter = 0;
-
+			
+			this.renderGear(rackData, moduleTopContainer);
+			
+			this.modulesToLoadCount = this.countTheNumberOfModulesToLoad(rackData);
+			
+			this.renderRack(rackData, moduleTopContainer);
+		};
+		
+		ModuleRenderer.prototype.renderGear = function(rackData, moduleTopContainer) {
 			var self = this;
-
-			// Gear
+			// TODO is this used yet, does this work?
 			if (rackData.gear != undefined) {
 				var gearCounter = 0;
 				rackData.gear.forEach(function(gear) {
@@ -37,20 +44,12 @@ define([
 					});
 				});
 			}
-			
-			var moduleCount = 0;
-			rackData.rows.forEach(function(row) {
-				row.moduleCollections.forEach(function(moduleData) {
-					moduleCount += moduleData.modules.length;
-				});
-			});
-			this.modulesToLoadCount = moduleCount;
-
-			// Rows
+		}
+		
+		ModuleRenderer.prototype.renderRack = function(rackData, moduleTopContainer) {
+			var self = this;
 			rackData.rows.forEach(function(row) {
 				var rowElem = self.createRowElemAndAddToContainer(moduleTopContainer);
-
-				// Modules
 				row.moduleCollections.forEach(function(moduleData) {
 					moduleData.modules.forEach(function(module) {
 						self.renderCellAndModule(module, rowElem, moduleData, function(facades) {
@@ -59,7 +58,7 @@ define([
 					});
 				});
 			});
-		};
+		}
 		
 		ModuleRenderer.prototype.logIfAllModulesHaveBeenRendered = function(facades) {
 			var f = this.facades;
@@ -70,6 +69,16 @@ define([
 			if (this.modulesLoadedCount === this.modulesToLoadCount) {
 				console.table(f);
 			}
+		}
+		
+		ModuleRenderer.prototype.countTheNumberOfModulesToLoad = function(rackData) {
+			var moduleCount = 0;
+			rackData.rows.forEach(function(row) {
+				row.moduleCollections.forEach(function(moduleData) {
+					moduleCount += moduleData.modules.length;
+				});
+			});
+			return moduleCount;
 		}
 
 		ModuleRenderer.prototype.renderCellAndModule = function(module, moduleContainer, moduleData, callback) {
