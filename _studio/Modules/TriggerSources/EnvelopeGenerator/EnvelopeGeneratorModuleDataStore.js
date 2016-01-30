@@ -81,7 +81,7 @@ define([], function() { return { Modules :
 	      a_params:{  
 	         min:0,
 	         max:3,
-	         val:0.12,
+	         val:0.01,
 	         stp:0.01
 	      },
 	      d_params:{   
@@ -99,7 +99,7 @@ define([], function() { return { Modules :
 	      r_params:{  
 	         min:0,
 	         max:3,
-	         val:0.1,
+	         val:0.01,
 	         stp:0.01
 	     }
 	   }

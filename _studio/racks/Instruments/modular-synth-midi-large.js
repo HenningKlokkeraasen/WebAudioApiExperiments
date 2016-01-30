@@ -196,6 +196,13 @@ define([
 						from: 'lfo2',
 						to: 'osc5',
 						type: 'control'
+					},
+					
+					// visual
+					{
+						from: 'masterSection1',
+						to: 'analyser1',
+						type: 'audio'
 					}
 				]
 			},

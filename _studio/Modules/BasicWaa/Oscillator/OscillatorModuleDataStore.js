@@ -62,7 +62,7 @@ define([], function() { return { Modules :
 	         stp:1
 	      },
 	      w_params:{  
-	         indexChecked:0
+	         indexChecked:2
 	      }
 	   },
 	]
