@@ -9,8 +9,8 @@ define([
 			GenericController.call(this, master, patcher);
 		}
 
-		ButtonTriggeredModuleController.prototype.render = function(definition, model, containerSelector) {
-			GenericController.prototype.render.call(this, definition, model, containerSelector); //  = base.render()
+		ButtonTriggeredModuleController.prototype.render = function(definition, model, containerSelector, callback) {
+			GenericController.prototype.render.call(this, definition, model, containerSelector, callback); //  = base.render()
 
 			var controller = this;
 			// Go through each of the modules in the container

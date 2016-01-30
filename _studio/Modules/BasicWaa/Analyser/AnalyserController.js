@@ -45,8 +45,8 @@ define([
 		}
 
 		// override
-		AnalyserController.prototype.render = function(definition, model, containerSelector) {
-			ButtonTriggeredModuleController.prototype.render.call(this, definition, model, containerSelector); //  = base.render()
+		AnalyserController.prototype.render = function(definition, model, containerSelector, callback) {
+			ButtonTriggeredModuleController.prototype.render.call(this, definition, model, containerSelector, callback); //  = base.render()
 
 			var controller = this;
 			// Go through each of the modules in the container

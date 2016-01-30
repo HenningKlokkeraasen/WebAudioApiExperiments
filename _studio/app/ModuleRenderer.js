@@ -3,6 +3,9 @@ define([
 		function ModuleRenderer(master, patcher) {
 			this.master = master;
             this.patcher = patcher;
+			this.facades = new Array();
+			this.modulesToLoadCount = 0;
+			this.modulesLoadedCount = 0;
 		}
 
 		ModuleRenderer.prototype.renderModules = function(rackData) {
@@ -34,6 +37,14 @@ define([
 					});
 				});
 			}
+			
+			var moduleCount = 0;
+			rackData.rows.forEach(function(row) {
+				row.moduleCollections.forEach(function(moduleData) {
+					moduleCount += moduleData.modules.length;
+				});
+			});
+			this.modulesToLoadCount = moduleCount;
 
 			// Rows
 			rackData.rows.forEach(function(row) {
@@ -42,13 +53,26 @@ define([
 				// Modules
 				row.moduleCollections.forEach(function(moduleData) {
 					moduleData.modules.forEach(function(module) {
-						self.renderCellAndModule(module, rowElem, moduleData);
+						self.renderCellAndModule(module, rowElem, moduleData, function(facades) {
+							self.logIfAllModulesHaveBeenRendered(facades);
+						});
 					});
 				});
 			});
 		};
+		
+		ModuleRenderer.prototype.logIfAllModulesHaveBeenRendered = function(facades) {
+			var f = this.facades;
+			facades.forEach(function(facade, index, arr) {
+				f.push(facade);
+			});
+			this.modulesLoadedCount += facades.length;
+			if (this.modulesLoadedCount === this.modulesToLoadCount) {
+				console.table(f);
+			}
+		}
 
-		ModuleRenderer.prototype.renderCellAndModule = function(module, moduleContainer, moduleData) {
+		ModuleRenderer.prototype.renderCellAndModule = function(module, moduleContainer, moduleData, callback) {
 			var cellElem = document.createElement('div');
 			cellElem.id = 'moduleCell' + this.cellCounter++;
 			moduleContainer.appendChild(cellElem);
@@ -68,7 +92,7 @@ define([
 			var controller = new moduleData.controller(this.master, this.patcher);
 
 			// render module
-			controller.render(factory.getModuleDefinition(), modules, containerSelector);
+			controller.render(factory.getModuleDefinition(), modules, containerSelector, callback);
 		};
 
 		ModuleRenderer.prototype.createRowElemAndAddToContainer = function(moduleTopContainerElem, id) {
