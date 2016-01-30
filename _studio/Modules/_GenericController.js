@@ -32,7 +32,7 @@ define([
 			if (foundElementsCount > 1)
 				console.warn('More than one element with selector ' + containerSelector);
 				
-			var facades = new Array();
+			var renderedModules = new Array();
 
 			TemplateLoader.prototype.loadTemplateWithHandlebars(containerSelector, definition.handlebarsTemplateSelector, model, function() {
 				// callback
@@ -54,11 +54,17 @@ define([
 					controller.setupPatching(div, controller.patcher, facadeInstance);
 
 					controller.bindControlsToParameters(div, definition.parameters);
-					
-					facades.push(facadeInstance);
+
+					renderedModules.push(
+						{
+							containerSelector : containerSelector,
+							facadeInstance: facadeInstance,
+							module : model[0] // TODO why is this input an array when it is only 1 element
+						}
+					);
 				});
 				
-				callback(facades);
+				callback(renderedModules);
 			});
 		};
 

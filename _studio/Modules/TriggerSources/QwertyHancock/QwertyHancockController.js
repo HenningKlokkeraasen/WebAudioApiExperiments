@@ -10,8 +10,8 @@ define([
 			GenericController.call(this, master, patcher);
 		}
 
-		QwertyHancockController.prototype.render = function(definition, model, containerSelector) {
-			GenericController.prototype.render.call(this, definition, model, containerSelector); //  = base.render()
+		QwertyHancockController.prototype.render = function(definition, model, containerSelector, callback) {
+			GenericController.prototype.render.call(this, definition, model, containerSelector, callback); //  = base.render()
 
 			var keyboard = new QwertyHancock({
                  id: 'keyboard',//TODO let the value be a property of model and set by the factory with value in data store

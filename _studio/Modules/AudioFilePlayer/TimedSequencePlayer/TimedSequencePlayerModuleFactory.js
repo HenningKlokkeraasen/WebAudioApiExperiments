@@ -28,6 +28,7 @@ define([
         TimedSequencePlayerModuleFactory.prototype.getModule = function(moduleData) {
             var module =  this.getModuleBase({
                 name : moduleData.name, 
+				shortName : moduleData.shortName,
                 sections : [ {
                     buttons: this.getKeyValuePairsForButton(moduleData.sequences)
             }]});

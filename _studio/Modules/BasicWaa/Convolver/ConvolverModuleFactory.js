@@ -38,6 +38,7 @@ define([
         ConvolverModuleFactory.prototype.getModule = function(moduleData) {
             var module =  this.getModuleBase({
                 name : moduleData.name, 
+				shortName : moduleData.shortName,
                 sections : [ {
                     
 

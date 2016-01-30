@@ -43,6 +43,7 @@ VcfModuleFactory.prototype.getModuleDefinition = function() {
 VcfModuleFactory.prototype.getModule = function(moduleData) {
     return this.getModuleBase({
         name : moduleData.name, 
+				shortName : moduleData.shortName,
         sections : [ { sectionName : 'Filter',
             ranges : [
                 { label : 'F',  type : 'filter_f',     min : 0,    max : 1,    value: 0.75,    step : 0.01,    name : moduleData.shortName + '_f'  }, 

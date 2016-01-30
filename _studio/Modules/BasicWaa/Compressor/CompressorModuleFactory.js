@@ -38,6 +38,7 @@ define([
         CompressorModuleFactory.prototype.getModule = function(moduleData) {
             return this.getModuleBase({
                 name : moduleData.name, 
+				shortName : moduleData.shortName,
                 sections : [ {
                     ranges : [
                 		{ label : 'T',	type : 'threshold',		min : -100,	max : 0,	value: -24,		step : 1, 		name : moduleData.shortName + '_thresh'	},

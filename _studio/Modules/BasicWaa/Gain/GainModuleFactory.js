@@ -38,6 +38,7 @@ define([
         GainModuleFactory.prototype.getModule = function(moduleData) {
             return this.getModuleBase({
                 name : moduleData.name, 
+				shortName : moduleData.shortName,
                 sections : [ {
                     ranges : [
                         this.getRangeControlData({ label : 'G',     type : 'gain',      params : moduleData.g_params,  name : moduleData.shortName + '_gain' })

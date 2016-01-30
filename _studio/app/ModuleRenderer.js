@@ -3,7 +3,7 @@ define([
 		function ModuleRenderer(master, patcher) {
 			this.master = master;
             this.patcher = patcher;
-			this.facades = new Array();
+			this.renderedModules = new Array();
 			this.modulesToLoadCount = 0;
 			this.modulesLoadedCount = 0;
 		}
@@ -11,6 +11,7 @@ define([
 		ModuleRenderer.prototype.renderModules = function(rackData) {
 			var moduleTopContainerElem = document.querySelector('#moduleTopContainer');
 			this.cellCounter = 0;
+			this.rackData = rackData;
 			
 			this.renderGear(rackData, moduleTopContainer);
 			
@@ -52,25 +53,111 @@ define([
 				var rowElem = self.createRowElemAndAddToContainer(moduleTopContainer);
 				row.moduleCollections.forEach(function(moduleData) {
 					moduleData.modules.forEach(function(module) {
-						self.renderCellAndModule(module, rowElem, moduleData, function(facades) {
-							self.logIfAllModulesHaveBeenRendered(facades);
+						self.renderCellAndModule(module, rowElem, moduleData, function(renderedModules) {
+							self.continueAfterAllModulesAreRendered(renderedModules);
 						});
 					});
 				});
 			});
 		}
 		
-		ModuleRenderer.prototype.logIfAllModulesHaveBeenRendered = function(facades) {
-			var f = this.facades;
-			facades.forEach(function(facade, index, arr) {
-				f.push(facade);
+		ModuleRenderer.prototype.continueAfterAllModulesAreRendered = function(renderedModules) {
+			var rm = this.renderedModules;
+			renderedModules.forEach(function(renderedModule, index, arr) {
+				rm.push(renderedModule);
 			});
-			this.modulesLoadedCount += facades.length;
+			this.modulesLoadedCount += renderedModules.length;
 			if (this.modulesLoadedCount === this.modulesToLoadCount) {
-				console.table(f);
+				this.renderPatches(rm);
 			}
 		}
 		
+		ModuleRenderer.prototype.renderPatches = function(rm) {
+			var self = this;
+			
+			var patches = this.rackData.patches;
+			if (patches === undefined)
+				return;
+			
+			// console.table(rm);
+			
+			var patcher = new Patcher();
+			
+			patches.forEach(function(patch) {
+				// console.log(patch.from + ' - ' + patch.to);
+				var from = undefined;
+				var to = undefined; 
+				rm.forEach(function(rm) {
+					// console.log(rm.module.shortName);
+					if (rm.module.shortName == patch.from)
+						from = rm;
+					if (rm.module.shortName == patch.to)
+						to = rm;
+				});
+				
+				if (from != undefined && to != undefined) {
+					var type = patch.type;
+					var input = type === 'audio'
+						? to.facadeInstance.input
+						: type === 'trigger'
+							? to.facadeInstance
+							: type === 'control'
+								? to.facadeInstance.controlIn
+								: undefined;
+					var connectFunc = type === 'audio'
+						? from.facadeInstance.connect
+						: type === 'trigger'
+							? from.facadeInstance.setTriggerFor
+							: type === 'control'
+								? from.facadeInstance.control
+								: undefined;
+					var fromCoordinates = self.getCoordinates(from.containerSelector, '[data-patch-type=' + type + 'Out]');
+					var toCoordinates = self.getCoordinates(to.containerSelector, '[data-patch-type=' + type + 'In]');
+					PatchController.prototype.patch(fromCoordinates, toCoordinates, 
+						from.facadeInstance, 
+						input, 
+						connectFunc, 
+						patcher);
+				}
+			});
+			
+			// console.log(patches);
+			// here is some more stuff we can with patches, like starting oscillators and setting values
+			// this.facades[0].connect(this.facades[1].input);
+			// this.facades[1].connect(this.facades[2].input);
+			// this.facades[2].connect(this.facades[6].input);
+			// this.facades[0].start();
+			// this.facades[0].setType('sawtooth');
+			// this.facades[0].setFrequency(260);
+			// this.facades[1].setFrequencyByAbsoluteValue(3000);
+			// this.facades[1].setQuality(0.6);
+			// this.facades[2].setGain(0.1);
+			// var osc = this.facades[0];
+			// setTimeout(function() {
+			// 	osc.stop()
+			// }, 2000);
+			
+			// rm.forEach(function(rm) {
+			// 	console.log(rm.module.shortName);
+			// });
+		}
+		
+		// TODO move this function somewhere better
+		ModuleRenderer.prototype.getCoordinates = function(firstSelector, secondSelector) {
+			var element = $(firstSelector).find(secondSelector)[0];
+			var rect = element.getBoundingClientRect();			
+			// console.log(element);
+			// console.log(rect.top, rect.right, rect.bottom, rect.left);
+			// console.log(rect);
+			var width = rect.right - rect.left;
+			var height = rect.top - rect.bottom;
+			var halfWidth = width / 2;
+			var halfHeight = height / 2;
+			var x = rect.left + halfWidth;
+			var y = rect.bottom + halfHeight;
+			return { x: x, y: y };
+		}
+				
 		ModuleRenderer.prototype.countTheNumberOfModulesToLoad = function(rackData) {
 			var moduleCount = 0;
 			rackData.rows.forEach(function(row) {

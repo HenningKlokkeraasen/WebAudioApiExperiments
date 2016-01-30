@@ -65,6 +65,38 @@ define([
 							},
 						]
 					}
+				],
+				patches : [
+					// Main audio route
+					{
+						from : 'osc5',
+						to : 'gain5',
+						type : 'audio'
+					},
+					{
+						from : 'gain5',
+						to : 'masterSection1',
+						type : 'audio'
+					},
+					
+					// Trigger / gate
+					{
+						from : 'webmidi1',
+						to : 'eg1',
+						type: 'trigger'
+					},
+					{
+						from : 'eg1',
+						to : 'gain5',
+						type: 'trigger'
+					},
+					
+					// Pitch / control / noteOn, noteOff
+					{
+						from: 'webmidi1',
+						to: 'osc5',
+						type: 'control'
+					}
 				]
 			},
 		};

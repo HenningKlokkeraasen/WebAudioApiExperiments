@@ -40,6 +40,7 @@ define([
         SimpleReverbModuleFactory.prototype.getModule = function(moduleData) {
             return this.getModuleBase({
                 name : moduleData.name, 
+				shortName : moduleData.shortName,
                 sections : [ {
                     ranges : [
                         { label : 'S',  type : 'seconds',   min : 0.1,    max : 5,      value: 1,       step : 0.1,       name : moduleData.shortName + '_s'      }, 

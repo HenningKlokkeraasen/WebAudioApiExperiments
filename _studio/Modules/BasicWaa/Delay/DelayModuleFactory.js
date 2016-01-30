@@ -38,7 +38,8 @@ define([
         //  
         DelayModuleFactory.prototype.getModule = function(moduleData) {
             return this.getModuleBase({
-                name : moduleData.name, 
+                name : moduleData.name,
+				shortName : moduleData.shortName, 
                 sections : [ {
                     ranges : [
                         this.getRangeControlData({ label : 'D',     type : 'delayTime',	params : moduleData.d_params,  name : moduleData.shortName + '_delay' })

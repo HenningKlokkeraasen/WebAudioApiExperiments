@@ -41,6 +41,7 @@ define([
         AudioDestinationModuleFactory.prototype.getModule = function(moduleData) {
             return this.getModuleBase({
                 name : moduleData.name, 
+				shortName : moduleData.shortName,
 
 
 

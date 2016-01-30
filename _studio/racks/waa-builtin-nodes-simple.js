@@ -87,8 +87,47 @@ define([
 							}
 						]
 					},
+				],
+				patches : [
+					// Main audio route
+					{
+						from : 'osc1',
+						to : 'filter1',
+						type : 'audio'
+					},
+					{
+						from : 'filter1',
+						to : 'gain0',
+						type : 'audio'
+					},
+					{
+						from : 'gain0',
+						to : 'compressor1',
+						type : 'audio'
+					},
+					{
+						from : 'compressor1',
+						to : 'audiodestination1',
+						type : 'audio'
+					},
+					// An additional route with delay and convolver
+					{
+						from : 'gain0',
+						to : 'delay1',
+						type : 'audio'
+					},
+					{
+						from : 'delay1',
+						to : 'convolver1',
+						type : 'audio'
+					},
+					{
+						from : 'convolver1',
+						to : 'audiodestination1',
+						type : 'audio'
+					},
 				]
-			},
+			}
 		};
 	}
 );
