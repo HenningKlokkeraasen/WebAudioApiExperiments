@@ -1,5 +1,6 @@
 define([
-	], function() {
+	'/_Patching/PatchRenderer.js'
+	], function(PatchRenderer) {
 		function ModuleRenderer(master, patcher) {
 			this.master = master;
             this.patcher = patcher;
@@ -15,8 +16,14 @@ define([
 			
 			this.renderGear(rackData, moduleTopContainer);
 			
-			this.modulesToLoadCount = this.countTheNumberOfModulesToLoad(rackData);
+			this.modulesToLoadCount = this.countTheNumberOfModulesToLoadV2(rackData);
 			
+			// DEPRECATED TODO REMOVE WHEN ALL RACKS MOVED TO V2
+			this.modulesToLoadCount += this.countTheNumberOfModulesToLoad(rackData);
+			
+			this.renderRackV2(rackData, moduleTopContainer);
+			
+			// DEPRECATED TODO REMOVE WHEN ALL RACKS MOVED TO V2
 			this.renderRack(rackData, moduleTopContainer);
 		};
 		
@@ -47,17 +54,37 @@ define([
 			}
 		}
 		
+		ModuleRenderer.prototype.renderRackV2 = function(rackData, moduleTopContainer) {
+			var self = this;
+			rackData.rows.forEach(function(row) {
+				var rowElem = self.createRowElemAndAddToContainer(moduleTopContainer);
+				if (row.modules != undefined)
+					row.modules.forEach(function(moduleData) {
+						// var mother = moduleData.moduleMother;
+						// var id = moduleData.id;
+						// console.log(moduleData);
+						// moduleData.modules.forEach(function(module) {
+							self.renderCellAndModuleV2(rowElem, moduleData, function(renderedModules) {
+								self.continueAfterAllModulesAreRendered(renderedModules);
+							});
+						// });
+					});
+			});
+		}
+		
+		// DEPRECATED TODO REMOVE WHEN ALL RACKS MOVED TO V2
 		ModuleRenderer.prototype.renderRack = function(rackData, moduleTopContainer) {
 			var self = this;
 			rackData.rows.forEach(function(row) {
 				var rowElem = self.createRowElemAndAddToContainer(moduleTopContainer);
-				row.moduleCollections.forEach(function(moduleData) {
-					moduleData.modules.forEach(function(module) {
-						self.renderCellAndModule(module, rowElem, moduleData, function(renderedModules) {
-							self.continueAfterAllModulesAreRendered(renderedModules);
+				if (row.moduleCollections != undefined)
+					row.moduleCollections.forEach(function(moduleData) {
+						moduleData.modules.forEach(function(module) {
+							self.renderCellAndModule(module, rowElem, moduleData, function(renderedModules) {
+								self.continueAfterAllModulesAreRendered(renderedModules);
+							});
 						});
 					});
-				});
 			});
 		}
 		
@@ -68,107 +95,57 @@ define([
 			});
 			this.modulesLoadedCount += renderedModules.length;
 			if (this.modulesLoadedCount === this.modulesToLoadCount) {
-				this.renderPatches(rm);
+				new PatchRenderer().renderPatches(rm, this.rackData.patches);
 			}
 		}
 		
-		ModuleRenderer.prototype.renderPatches = function(rm) {
-			var self = this;
-			
-			var patches = this.rackData.patches;
-			if (patches === undefined)
-				return;
-			
-			// console.table(rm);
-			
-			var patcher = new Patcher();
-			
-			patches.forEach(function(patch) {
-				// console.log(patch.from + ' - ' + patch.to);
-				var from = undefined;
-				var to = undefined; 
-				rm.forEach(function(rm) {
-					// console.log(rm.module.shortName);
-					if (rm.module.shortName == patch.from)
-						from = rm;
-					if (rm.module.shortName == patch.to)
-						to = rm;
-				});
-				
-				if (from != undefined && to != undefined) {
-					var type = patch.type;
-					var input = type === 'audio'
-						? to.facadeInstance.input
-						: type === 'trigger'
-							? to.facadeInstance
-							: type === 'control'
-								? to.facadeInstance.controlIn
-								: undefined;
-					var connectFunc = type === 'audio'
-						? from.facadeInstance.connect
-						: type === 'trigger'
-							? from.facadeInstance.setTriggerFor
-							: type === 'control'
-								? from.facadeInstance.control
-								: undefined;
-					var fromCoordinates = self.getCoordinates(from.containerSelector, '[data-patch-type=' + type + 'Out]');
-					var toCoordinates = self.getCoordinates(to.containerSelector, '[data-patch-type=' + type + 'In]');
-					PatchController.prototype.patch(fromCoordinates, toCoordinates, 
-						from.facadeInstance, 
-						input, 
-						connectFunc, 
-						patcher,
-						type);
-				}
-			});
-			
-			// console.log(patches);
-			// here is some more stuff we can with patches, like starting oscillators and setting values
-			// this.facades[0].connect(this.facades[1].input);
-			// this.facades[1].connect(this.facades[2].input);
-			// this.facades[2].connect(this.facades[6].input);
-			// this.facades[0].start();
-			// this.facades[0].setType('sawtooth');
-			// this.facades[0].setFrequency(260);
-			// this.facades[1].setFrequencyByAbsoluteValue(3000);
-			// this.facades[1].setQuality(0.6);
-			// this.facades[2].setGain(0.1);
-			// var osc = this.facades[0];
-			// setTimeout(function() {
-			// 	osc.stop()
-			// }, 2000);
-			
-			// rm.forEach(function(rm) {
-			// 	console.log(rm.module.shortName);
-			// });
-		}
-		
-		// TODO move this function somewhere better
-		ModuleRenderer.prototype.getCoordinates = function(firstSelector, secondSelector) {
-			var element = $(firstSelector).find(secondSelector)[0];
-			var rect = element.getBoundingClientRect();			
-			// console.log(element);
-			// console.log(rect.top, rect.right, rect.bottom, rect.left);
-			// console.log(rect);
-			var width = rect.right - rect.left;
-			var height = rect.top - rect.bottom;
-			var halfWidth = width / 2;
-			var halfHeight = height / 2;
-			var x = rect.left + halfWidth;
-			var y = rect.bottom + halfHeight;
-			return { x: x, y: y };
-		}
-				
-		ModuleRenderer.prototype.countTheNumberOfModulesToLoad = function(rackData) {
+		ModuleRenderer.prototype.countTheNumberOfModulesToLoadV2 = function(rackData) {
 			var moduleCount = 0;
 			rackData.rows.forEach(function(row) {
-				row.moduleCollections.forEach(function(moduleData) {
-					moduleCount += moduleData.modules.length;
-				});
+				if (row.modules != undefined)
+					moduleCount += row.modules.length;
 			});
 			return moduleCount;
 		}
 
+		// DEPRECATED TODO REMOVE WHEN ALL RACKS MOVED TO V2
+		ModuleRenderer.prototype.countTheNumberOfModulesToLoad = function(rackData) {
+			var moduleCount = 0;
+			rackData.rows.forEach(function(row) {
+				if (row.moduleCollections != undefined)
+					row.moduleCollections.forEach(function(moduleData) {
+						moduleCount += moduleData.modules.length;
+					});
+			});
+			return moduleCount;
+		}
+
+		ModuleRenderer.prototype.renderCellAndModuleV2 = function(moduleContainer, moduleData, callback) {
+			var cellElem = document.createElement('div');
+			cellElem.id = 'moduleCell' + this.cellCounter++;
+			moduleContainer.appendChild(cellElem);
+
+			// HTML will be generated by Handlebars in controller.render
+			var containerSelector = '#' + cellElem.id;
+
+			var modules = [];
+
+			// Create instance of the factory specified
+			var factory = new moduleData.moduleMother.ModuleFactory();
+
+			// Create a module instance with the moduleData
+			var module = moduleData.moduleMother.Modules.getItemsByShortName(moduleData.id)[0];
+			// console.log(module);
+			modules.push(factory.getModule(module));
+
+			// Create instance of the controller specified
+			var controller = new moduleData.moduleMother.Controller(this.master, this.patcher);
+
+			// render module
+			controller.render(factory.getModuleDefinition(), modules, containerSelector, callback);
+		};
+		
+		// DEPRECATED TODO REMOVE WHEN ALL RACKS MOVED TO V2
 		ModuleRenderer.prototype.renderCellAndModule = function(module, moduleContainer, moduleData, callback) {
 			var cellElem = document.createElement('div');
 			cellElem.id = 'moduleCell' + this.cellCounter++;

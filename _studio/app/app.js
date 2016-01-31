@@ -2,15 +2,17 @@
 	App
 */
 define([
-    '/_studio/app/RackRenderer.js'
+    '/_studio/app/RackRenderer.js',
+	'/_Patching/Patcher.js'
 	], function(
-		RackRenderer) {
+		RackRenderer,
+		Patcher) {
 		function App() {
 			this.xhrFacade = undefined;
 			this.master = undefined;
 		}
 
-		App.prototype.init = function() {
+		App.prototype.init = function(board) {
 			console.log('starting');
 
 			//
@@ -26,7 +28,7 @@ define([
 
 			this.initPatcher();
             
-			new RackRenderer().loadRack(this.board, this.master, this.patcher);
+			new RackRenderer().loadRack(board, this.master, this.patcher);
 
 			this.initPatchCables();
             

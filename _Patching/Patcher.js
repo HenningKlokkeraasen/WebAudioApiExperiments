@@ -1,14 +1,9 @@
-
+define([], function() {
 /*
-
-
 	Patcher
-
-
 */
 
 function Patcher() {
-	return this;
 }
 
 Patcher.prototype.setSource = function(coordinates, callback) {
@@ -28,3 +23,6 @@ Patcher.prototype.reset = function() {
 	this.destinationCoordinates = null;
 	this.callback = null;
 }
+	
+return Patcher;
+});

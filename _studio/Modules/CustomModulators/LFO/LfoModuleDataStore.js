@@ -12,7 +12,7 @@ define([], function() { return { Modules :
 	      g_params:{  
 	         min:-200,
 	         max:200,
-	         val:1,
+	         val:30,
 	         stp:0.01
 	      },
 	      w_params:{  

@@ -31,8 +31,7 @@ require([
 			
 			$(document).ready(function() {
 				var app = new App();
-				app.board = rack;
-				app.init();
+				app.init(rack);
 			});
 		    
 		},

@@ -16,72 +16,23 @@ define([
 			description : 'This rack shows the basic built-in sound generation and modification nodes in the Web Audio API',
 			rackData : {
 				rows : [
-
-					// Sound generators
-
 					{
-						moduleCollections : [
-							{
-								controller : Oscillator.Controller,
-								factory : Oscillator.ModuleFactory,
-								modules : Oscillator.Modules.getItemsByShortName('osc1')
-							},
-
-					// Sound processors and modifiers
-
-							{
-								controller : Filter.Controller,
-								factory : Filter.ModuleFactory,
-								modules : Filter.Modules.getItemsByShortName('filter1')
-							},
-
-							{
-								controller : Gain.Controller,
-								factory : Gain.ModuleFactory,
-								modules : Gain.Modules.getItemsByShortName('gain0')
-							},
-
-							{
-								controller : Delay.Controller,
-								factory : Delay.ModuleFactory,
-								modules : Delay.Modules.getItemsByShortName('delay1')
-							},
-							
-							{
-								controller : Convolver.Controller,
-								factory : Convolver.ModuleFactory,
-								modules : Convolver.Modules
-							},
-							{
-								controller : WaveShaper.Controller,
-								factory : WaveShaper.ModuleFactory,
-								modules : WaveShaper.Modules
-							}
+						modules : [
+							{ moduleMother: Oscillator, id: 'osc1' },
+							{ moduleMother: Filter, id: 'filter1' },
+							{ moduleMother: Gain, id: 'gain0' },
+							{ moduleMother: Delay, id: 'delay1' },
+							{ moduleMother: Convolver, id: 'convolver1' },
+							{ moduleMother: WaveShaper, id: 'wsdist1' }
 						]
 					},
-					
 					{
-						moduleCollections : [
-,
-							{
-								controller : Compressor.Controller,
-								factory : Compressor.ModuleFactory,
-								modules : Compressor.Modules
-							},
-							{
-								controller : AudioDestination.Controller,
-								factory : AudioDestination.ModuleFactory,
-								modules : AudioDestination.Modules
-							},
-					// Output and analyse
-
-
-							{
-								controller : Analyser.Controller,
-								factory : Analyser.ModuleFactory,
-								modules : Analyser.Modules
-							}
-						]
+						modules: [
+							{ moduleMother: Compressor, id: 'compressor1' },
+							{ moduleMother: AudioDestination, id: 'audiodestination1' },
+							{ moduleMother: Analyser, id: 'analyser1' },
+							{ moduleMother: Analyser, id: 'analyser2' }
+						],
 					},
 				],
 				patches : [
