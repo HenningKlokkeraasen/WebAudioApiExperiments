@@ -2,7 +2,7 @@ define([], function() { return { Modules :
 	[  
 	   {  
 	      name:'Pulse Wave',
-	      shortName:'pw1',
+	      shortName:'pulsewave1',
 	      f_params:{  
 	         min:20,
 	         max:2000,

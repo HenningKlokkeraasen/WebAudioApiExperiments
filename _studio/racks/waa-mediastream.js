@@ -12,27 +12,11 @@ define([
 			rackData : {
 				rows : [
 					{
-						moduleCollections : [
-							// Media Stream
-							{
-								controller : MediaStream.Controller,
-								factory : MediaStream.ModuleFactory,
-								modules : MediaStream.Modules
-							},
-					
-					// Output and analyse
-
-							{
-								controller : AudioDestination.Controller,
-								factory : AudioDestination.ModuleFactory,
-								modules : AudioDestination.Modules
-							},
-
-							{
-								controller : Analyser.Controller,
-								factory : Analyser.ModuleFactory,
-								modules : Analyser.Modules
-							}
+						modules: [
+							{ moduleMother: MediaStream, id: 'mediastream1' },
+							{ moduleMother: AudioDestination, id: 'audiodestination1' },
+							{ moduleMother: Analyser, id: 'analyser1' },
+							{ moduleMother: Analyser, id: 'analyser2' }
 						]
 					},
 				]

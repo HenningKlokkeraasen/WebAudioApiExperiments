@@ -9,33 +9,19 @@ define([
 			description : 'Add harmonics to a single sine wave, in various algorithms, results in sawtooth, square and triangle waves',
 			rackData : {
 				rows : [
-
-					// Sound generators
-
 					{
-						moduleCollections : [
-
-							// Custom generators
-
-							{
-								controller : HarmonicGenerator.Controller,
-								factory : HarmonicGenerator.ModuleFactory,
-								modules : HarmonicGenerator.Modules
-							},
-							
-							{
-								controller : MasterSection.Controller,
-								factory : MasterSection.ModuleFactory,
-								modules : MasterSection.Modules
-							},
-
-							{
-								controller : Analyser.Controller,
-								factory : Analyser.ModuleFactory,
-								modules : Analyser.Modules
-							}
+						modules: [
+							{ moduleMother: HarmonicGenerator, id: 'harmgen1' },
+							{ moduleMother: MasterSection, id: 'masterSection1' },
+							{ moduleMother: Analyser, id: 'analyser1' },
+							{ moduleMother: Analyser, id: 'analyser2' }
 						]
 					}
+				],
+				patches: [ 
+					{ from: 'harmgen1', to: 'masterSection1', type: 'audio' },
+					{ from: 'masterSection1', to: 'analyser1', type: 'audio' },
+					{ from: 'masterSection1', to: 'analyser2', type: 'audio' },
 				]
 			}
 		};
