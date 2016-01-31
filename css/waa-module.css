@@ -225,3 +225,7 @@
 	font-size: 0.8em;
 	vertical-align: text-top;
 }
+
+ .module fieldset span {
+	font-size: 0.8em;
+}

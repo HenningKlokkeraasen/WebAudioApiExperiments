@@ -15,3 +15,13 @@ Array.prototype.getItemsByShortName = function() {
 	// The filter() method creates a new array with all elements that pass the test implemented by the provided function.
 	return this.filter(function(item) { return arrayOfValuesToFilterOn.indexOf(item.shortName) > -1 ? true : false; } )
 };
+
+Array.prototype.add = function(elem) {
+	this.push(elem);
+}
+Array.prototype.addRange = function(arr) {
+	var that = this;
+	arr.forEach(function(elem) {
+		that.push(elem);
+	});
+}

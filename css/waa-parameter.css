@@ -57,6 +57,9 @@ input[type=range].shadowrange {
 div.knob {
 	display: inline-block;
 }
+	div.knob > div {
+		margin: auto;
+	}
 
 /*dirty hack. only wanted for knobs*/
 * {
