@@ -10,52 +10,25 @@ define([
 			description : 'A sound effect pad. The first 8 drums are triggered by keys 1-8 on top row of keyboard. If in loop mode, press again to stop.',
 			rackData : {
 				rows : [
-
-					// Audio file player
-
 					{
-						moduleCollections : [
-							{
-								controller : AudioFilePlayer.Controller,
-								factory : AudioFilePlayer.ModuleFactory,
-								modules : AudioFilePlayer.Modules.getItemsByShortName('soundeffects')
-							},
+						modules: [
+							{ moduleMother: AudioFilePlayer, id: 'soundeffects' }
 						]
 					},
-
 					{
-						moduleCollections : [
-
-					// Output and analyse
-
-							{
-								controller : AudioDestination.Controller,
-								factory : AudioDestination.ModuleFactory,
-								modules : AudioDestination.Modules
-							},
-
-							{
-								controller : Analyser.Controller,
-								factory : Analyser.ModuleFactory,
-								modules : Analyser.Modules
-							}
+						modules: [
+							{ moduleMother: AudioDestination, id: 'audiodestination1' },
+							{ moduleMother: Analyser, id: 'analyser1' },
+							{ moduleMother: Analyser, id: 'analyser2' }
 						]
 					},
 				],
-				
 				patches : [
-					{
-						from : 'soundeffects',
-						to: 'audiodestination1',
-						type: 'audio'
-					},
-					{
-						from: 'soundeffects',
-						to: 'analyser1',
-						type: 'audio'
-					}
+					{ from : 'soundeffects', to: 'audiodestination1', type: 'audio' },
+					{ from: 'soundeffects', to: 'analyser1', type: 'audio' },
+					{ from: 'soundeffects', to: 'analyser2', type: 'audio' }
 				]
-			},
+			}
 		};
 	}
 );

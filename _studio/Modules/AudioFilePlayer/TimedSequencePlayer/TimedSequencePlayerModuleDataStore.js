@@ -94,7 +94,7 @@ define([], function() { return { Modules :
 				},
 
 				{
-					sequenceName:'More...',
+					sequenceName:'More Cowbell',
 					sequenceData:{
 						numberOfBars : 4,
 						ticksPerBar : 8,
@@ -103,6 +103,25 @@ define([], function() { return { Modules :
 							{
 								bufferKey: '/audiofiles/drumsounds/COWBELL2.mp3',
 								beatList: [1, 2, 3, 4, 5, 6, 7, 7.5, 8.0, 8.3, 8.6]
+							}
+						]
+					}
+				},
+				
+				{
+					sequenceName:'Blast Beat',
+					sequenceData:{
+						numberOfBars : 8,
+						ticksPerBar : 8,
+						tempoInBpm : 280,
+						drumSequences : [
+							{
+								bufferKey: '/audiofiles/drumsounds/21KICK.mp3',
+								beatList: [1, 3, 5, 7, 9, 11, 13, 15 ]
+							},
+							{
+								bufferKey: '/audiofiles/drumsounds/SNARE_2.WAV',
+								beatList: [2, 4, 6, 8, 10, 12, 14, 16]
 							}
 						]
 					}

@@ -10,50 +10,23 @@ define([
 			description : 'This demonstrates the timing in the Web Audio API',
 			rackData : {
 				rows : [
-
-					// TimedSequencePlayer
-
 					{
-						moduleCollections : [
-							{
-								controller : TimedSequencePlayer.Controller,
-								factory : TimedSequencePlayer.ModuleFactory,
-								modules : TimedSequencePlayer.Modules
-							},
+						modules: [
+							{ moduleMother: TimedSequencePlayer, id: 'drumsequences1' }
 						]
 					},
-
 					{
-						moduleCollections : [
-
-					// Output and analyse
-
-							{
-								controller : AudioDestination.Controller,
-								factory : AudioDestination.ModuleFactory,
-								modules : AudioDestination.Modules
-							},
-
-							{
-								controller : Analyser.Controller,
-								factory : Analyser.ModuleFactory,
-								modules : Analyser.Modules
-							}
+						modules: [
+							{ moduleMother: AudioDestination, id: 'audiodestination1' },
+							{ moduleMother: Analyser, id: 'analyser1' },
+							{ moduleMother: Analyser, id: 'analyser2' }
 						]
 					},
 				],
-				
 				patches : [
-					{
-						from : 'drumsequences1',
-						to: 'audiodestination1',
-						type: 'audio'
-					},
-					{
-						from: 'drumsequences1',
-						to: 'analyser1',
-						type: 'audio'
-					}
+					{ from : 'drumsequences1', to: 'audiodestination1', type: 'audio' },
+					{ from: 'drumsequences1', to: 'analyser1', type: 'audio' },
+					{ from: 'drumsequences1', to: 'analyser2', type: 'audio' }
 				]
 			},
 		};
