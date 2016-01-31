@@ -3,100 +3,53 @@ define([
 	'/_studio/Modules/Composite/MasterSection/MasterSection.js',
 
 	'/_studio/Modules/BasicWaa/Oscillator/Oscillator.js',
+	'/_studio/Modules/BasicWaa/Filter/Filter.js',
 	'/_studio/Modules/BasicWaa/Gain/Gain.js',
 
 	'/_studio/Modules/TriggerSources/EnvelopeGenerator/EnvelopeGenerator.js',
 	'/_studio/Modules/TriggerSources/WebMidiInput/WebMidiInput.js'
-	], function(Analyser, MasterSection, Oscillator, Gain, EnvelopeGenerator, WebMidiInput) {
+	], function(Analyser, MasterSection, Oscillator, Filter, Gain, EnvelopeGenerator, WebMidiInput) {
 		return {
 			title : 'Modular synth - small',
 			description : 'Fully functional (but primitive), monophonic, monotimbral, modular synthesizer based on Web Audio API.',
 			rackData : {
 				rows : [
 					{
-						moduleCollections : [
-
-							// Triggers
-
-							{
-								controller : WebMidiInput.Controller,
-								factory : WebMidiInput.ModuleFactory,
-								modules : WebMidiInput.Modules
-							},
-
-							{
-								controller : EnvelopeGenerator.Controller,
-								factory : EnvelopeGenerator.ModuleFactory,
-								modules : EnvelopeGenerator.Modules.getItemsByShortName('eg1')
-							}
-
-						]
+						modules : [
+							{ moduleMother: WebMidiInput, id:  'webmidi1' },
+							{ moduleMother: EnvelopeGenerator, id: 'eg1' },
+							{ moduleMother: MasterSection, id: 'masterSection1' },
+							{ moduleMother: Analyser, id: 'analyser1' }
+						],
 					},
-
 					{
-						moduleCollections : [
-
-							// Sound generators
-
-							{
-								controller : Oscillator.Controller,
-								factory : Oscillator.ModuleFactory,
-								modules : Oscillator.Modules.getItemsByShortName('osc5')
-							},
-
-							// Sound processors and modifiers
-
-							{
-								controller : Gain.Controller,
-								factory : Gain.ModuleFactory,
-								modules : Gain.Modules.getItemsByShortName('gain5')
-							},
-							
-							{
-								controller : MasterSection.Controller,
-								factory : MasterSection.ModuleFactory,
-								modules : MasterSection.Modules
-							},
-
-							{
-								controller : Analyser.Controller,
-								factory : Analyser.ModuleFactory,
-								modules : Analyser.Modules
-							},
+						modules: [
+							{ moduleMother: Oscillator, id: 'osc5' },
+							{ moduleMother: Filter, id: 'filter5' },
+							{ moduleMother: Gain, id: 'gain5' },
+							{ moduleMother: Analyser, id: 'analyser2' }
 						]
 					}
 				],
 				patches : [
 					// Main audio route
-					{
-						from : 'osc5',
-						to : 'gain5',
-						type : 'audio'
-					},
-					{
-						from : 'gain5',
-						to : 'masterSection1',
-						type : 'audio'
-					},
+					{ from : 'osc5', to : 'filter5', type : 'audio' },
+					{ from : 'filter5', to : 'gain5', type : 'audio' },
+					{ from : 'gain5', to : 'masterSection1', type : 'audio' },
 					
 					// Trigger / gate
-					{
-						from : 'webmidi1',
-						to : 'eg1',
-						type: 'trigger'
-					},
-					{
-						from : 'eg1',
-						to : 'gain5',
-						type: 'trigger'
-					},
+					{ from : 'webmidi1', to : 'eg1', type: 'trigger' },
+					{ from : 'eg1', to : 'gain5', type: 'trigger' },
 					
 					// Pitch / control / noteOn, noteOff
-					{
-						from: 'webmidi1',
-						to: 'osc5',
-						type: 'control'
-					}
+					{ from: 'webmidi1', to: 'osc5', type: 'control' },
+					
+					// Modulation
+					{ from: 'lfo2', to: 'osc5', type: 'control' },
+					
+					// visual
+					{ from: 'masterSection1', to: 'analyser1', type: 'audio' },
+					{ from: 'masterSection1', to: 'analyser2', type: 'audio' }
 				]
 			},
 		};

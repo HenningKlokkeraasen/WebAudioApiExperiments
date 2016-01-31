@@ -25,185 +25,59 @@ define([
 			rackData : {
 				rows : [
 					{
-						moduleCollections : [
-
-
-							{
-								controller : WebMidiInput.Controller,
-								factory : WebMidiInput.ModuleFactory,
-								modules : WebMidiInput.Modules
-							},
-							
-							// LFO
-
-							{
-								controller : LFO.Controller,
-								factory : LFO.ModuleFactory,
-								modules : LFO.Modules.getItemsByShortName('lfo1')
-							},
-							
-							// Sound generator
-
-							{
-								controller : Oscillator.Controller,
-								factory : Oscillator.ModuleFactory,
-								modules : Oscillator.Modules.getItemsByShortName('osc5')
-							},
-
-							// Sound processors and modifiers
-
-							{
-								controller : Filter.Controller,
-								factory : Filter.ModuleFactory,
-								modules : Filter.Modules.getItemsByShortName('filter5')
-							},
-
-							{
-								controller : Gain.Controller,
-								factory : Gain.ModuleFactory,
-								modules : Gain.Modules.getItemsByShortName('gain5')
-							},
-							
-							{
-								controller : Analyser.Controller,
-								factory : Analyser.ModuleFactory,
-								modules : Analyser.Modules
-							},
-							
-
+						modules : [
+							{ moduleMother: WebMidiInput, id:  'webmidi1' },
+							{ moduleMother: LFO, id: 'lfo1' },
+							{ moduleMother: Oscillator, id: 'osc5' },
+							{ moduleMother: Filter, id: 'filter5' },
+							{ moduleMother: Gain, id: 'gain5' },
+							{ moduleMother: Analyser, id: 'analyser1' },
+							{ moduleMother: Analyser, id: 'analyser2' }
+						],
+					},
+					{
+						modules: [
+							{ moduleMother: ModulatorAudibleRange, id: 'mar1' },
+							{ moduleMother: LFO, id: 'lfo2' },
+							{ moduleMother: EnvelopeGenerator, id: 'eg2' },
+							{ moduleMother: EnvelopeGenerator, id: 'eg3' },
+							{ moduleMother: EnvelopeGenerator, id: 'eg4' },
+							{ moduleMother: Convolver, id: 'convolver1' },
+							{ moduleMother: WaveShaper, id: 'wsdist1' },
+							{ moduleMother: SimpleReverb, id: 'smplrev1' },
+							{ moduleMother: SlapbackDelay, id: 'slpbkdl1' }
 						]
 					},
-
 					{
-						moduleCollections : [
-
-							// Modulator audible range
-
-							{
-								controller : ModulatorAudibleRange.Controller,
-								factory : ModulatorAudibleRange.ModuleFactory,
-								modules : ModulatorAudibleRange.Modules.getItemsByShortName('mar1')
-							},
-							
-							// LFO
-
-							{
-								controller : LFO.Controller,
-								factory : LFO.ModuleFactory,
-								modules : LFO.Modules.getItemsByShortName('lfo2')
-							},
-
-							// EG
-
-							{
-								controller : EnvelopeGenerator.Controller,
-								factory : EnvelopeGenerator.ModuleFactory,
-								modules : EnvelopeGenerator.Modules.getItemsByShortName('eg2', 'eg3', 'eg4')
-							},
-
-							// Modifiers
-							
-							{
-								controller : Convolver.Controller,
-								factory : Convolver.ModuleFactory,
-								modules : Convolver.Modules
-							},
-							{
-								controller : WaveShaper.Controller,
-								factory : WaveShaper.ModuleFactory,
-								modules : WaveShaper.Modules
-							},
-
-							// Custom modifiers
-
-							{
-								controller : SimpleReverb.Controller,
-								factory : SimpleReverb.ModuleFactory,
-								modules : SimpleReverb.Modules
-							},
-							{
-								controller : SlapbackDelay.Controller,
-								factory : SlapbackDelay.ModuleFactory,
-								modules : SlapbackDelay.Modules
-							},
-							
-
-						]
-					},
-
-					{
-						moduleCollections : [
-
-							{
-								controller : ChannelStrip.Controller,
-								factory : ChannelStrip.ModuleFactory,
-								modules : ChannelStrip.Modules.getItemsByShortName('ch1', 'ch2', 'ch3', 'ch4')
-							},
-							
-							{
-								controller : MasterSection.Controller,
-								factory : MasterSection.ModuleFactory,
-								modules : MasterSection.Modules
-							},
-
+						modules: [
+							{ moduleMother: ChannelStrip, id: 'ch1' },
+							{ moduleMother: ChannelStrip, id: 'ch2' },
+							{ moduleMother: ChannelStrip, id: 'ch3' },
+							{ moduleMother: ChannelStrip, id: 'ch4' },
+							{ moduleMother: MasterSection, id: 'masterSection1' }
 						]
 					}
 				],
 				patches : [
 					// Main audio route
-					{
-						from : 'osc5',
-						to : 'filter5',
-						type : 'audio'
-					},
-					{
-						from : 'filter5',
-						to : 'gain5',
-						type : 'audio'
-					},
-					{
-						from : 'gain5',
-						to : 'ch1',
-						type : 'audio'
-					},
-					{
-						from : 'ch1',
-						to : 'masterSection1',
-						type : 'audio'
-					},
+					{ from : 'osc5', to : 'filter5', type : 'audio' },
+					{ from : 'filter5', to : 'gain5', type : 'audio' },
+					{ from : 'gain5', to : 'ch1', type : 'audio' },
+					{ from : 'ch1', to : 'masterSection1', type : 'audio' },
 					
 					// Trigger / gate
-					{
-						from : 'webmidi1',
-						to : 'eg4',
-						type: 'trigger'
-					},
-					{
-						from : 'eg4',
-						to : 'gain5',
-						type: 'trigger'
-					},
+					{ from : 'webmidi1', to : 'eg4', type: 'trigger' },
+					{ from : 'eg4', to : 'gain5', type: 'trigger' },
 					
 					// Pitch / control / noteOn, noteOff
-					{
-						from: 'webmidi1',
-						to: 'osc5',
-						type: 'control'
-					},
+					{ from: 'webmidi1', to: 'osc5', type: 'control' },
 					
 					// Modulation
-					{
-						from: 'lfo2',
-						to: 'osc5',
-						type: 'control'
-					},
+					{ from: 'lfo2', to: 'osc5', type: 'control' },
 					
 					// visual
-					{
-						from: 'masterSection1',
-						to: 'analyser1',
-						type: 'audio'
-					}
+					{ from: 'masterSection1', to: 'analyser1', type: 'audio' },
+					{ from: 'masterSection1', to: 'analyser2', type: 'audio' }
 				]
 			},
 		};
