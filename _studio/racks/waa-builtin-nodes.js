@@ -18,68 +18,38 @@ define([
 				+ ' Or two square waves with one slightly detuned to get pulse width modulation',
 			rackData : {
 				rows : [
-
-
 					{
-					// Sound generators
-						moduleCollections : [
-							{
-								controller : Oscillator.Controller,
-								factory : Oscillator.ModuleFactory,
-								modules : Oscillator.Modules.getItemsByShortName('osc1', 'osc2', 'osc3', 'osc4')
-							},
-					// Sound processors and modifiers
-							{
-								controller : Filter.Controller,
-								factory : Filter.ModuleFactory,
-								modules : Filter.Modules.getItemsByShortName('filter1', 'filter2', 'filter3', 'filter4')
-							},
+						modules: [
+							{ moduleMother: Oscillator, id: 'osc1' },
+							{ moduleMother: Oscillator, id: 'osc2' },
+							{ moduleMother: Oscillator, id: 'osc3' },
+							{ moduleMother: Oscillator, id: 'osc4' },
+							{ moduleMother: Filter, id: 'filter1' },
+							{ moduleMother: Filter, id: 'filter2' },
+							{ moduleMother: Filter, id: 'filter3' },
+							{ moduleMother: Filter, id: 'filter4' },
 						]
 					},
-
 					{
-						moduleCollections : [
-							{
-								controller : Gain.Controller,
-								factory : Gain.ModuleFactory,
-								modules : Gain.Modules.getItemsByShortName('gain1', 'gain2', 'gain3', 'gain4')
-							},
-							{
-								controller : Delay.Controller,
-								factory : Delay.ModuleFactory,
-								modules : Delay.Modules
-							},
+						modules: [
+							{ moduleMother: Gain, id: 'gain1' },
+							{ moduleMother: Gain, id: 'gain2' },
+							{ moduleMother: Gain, id: 'gain3' },
+							{ moduleMother: Gain, id: 'gain4' },
+							{ moduleMother: Delay, id: 'delay1' },
+							{ moduleMother: Delay, id: 'delay2' },
+							{ moduleMother: Delay, id: 'delay3' },
+							{ moduleMother: Delay, id: 'delay4' },
 						]
 					},
-
 					{
-						moduleCollections : [
-							{
-								controller : Convolver.Controller,
-								factory : Convolver.ModuleFactory,
-								modules : Convolver.Modules
-							},
-							{
-								controller : WaveShaper.Controller,
-								factory : WaveShaper.ModuleFactory,
-								modules : WaveShaper.Modules
-							},
-							{
-								controller : Compressor.Controller,
-								factory : Compressor.ModuleFactory,
-								modules : Compressor.Modules
-							},,
-							{
-								controller : AudioDestination.Controller,
-								factory : AudioDestination.ModuleFactory,
-								modules : AudioDestination.Modules
-							},
-
-							{
-								controller : Analyser.Controller,
-								factory : Analyser.ModuleFactory,
-								modules : Analyser.Modules
-							}
+						modules: [
+							{ moduleMother: Convolver, id: 'convolver1' },
+							{ moduleMother: WaveShaper, id: 'wsdist1' },
+							{ moduleMother: Compressor, id: 'compressor1' },
+							{ moduleMother: AudioDestination, id: 'audiodestination1' },
+							{ moduleMother: Analyser, id: 'analyser1' },
+							{ moduleMother: Analyser, id: 'analyser2' }
 						]
 					},
 				]

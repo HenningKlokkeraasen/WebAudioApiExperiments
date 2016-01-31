@@ -36,18 +36,24 @@
 							<li><a href="/_studio/rack.html?rackName=home">Home</a></li>
 							<li><a href="/history.html">History</a></li><!-- TODO -->
 							<li>
-								AudioBuffer &#8600;
+								Using Web Audio API to play audio files &#8600;
 								<ul class="menulevel3">
-									<li><a href="/_studio/rack.html?rackName=AudioBuffer/audio-file-player">Play an audio file</a></li>
+									<li><a href="">TODO: Play an audio file</a></li>
+									<li><a href="/_studio/rack.html?rackName=AudioBuffer/audio-file-player">Drum Pads 1</a></li>
 									<li><a href="/_studio/rack.html?rackName=AudioBuffer/drum-kit-2">Drum pads 2</a></li>
 									<li><a href="/_studio/rack.html?rackName=AudioBuffer/drum-kit-3">Drum pads 3</a></li>
 									<li><a href="/_studio/rack.html?rackName=AudioBuffer/soundeffects">Sound effects</a></li>
 									<li><a href="/_studio/rack.html?rackName=AudioBuffer/timed-sequence">Timed Sequence</a></li>
 								</ul>
 							</li>
-							<li><a href="/_studio/rack.html?rackName=waa-mediastream">MediaStream</a></li>
 							<li>
-								Sound generation and modification &#8600;
+								Using Web Audio API to get sound from the microphone &#8600;
+								<ul class="menulevel3">
+									<li><a href="/_studio/rack.html?rackName=waa-mediastream">Microphone</a></li>
+								</ul>
+							</li>
+							<li>
+								Using Web Audio API to generate and modify sound &#8600;
 								<ul class="menulevel3">
 									<li><a href="/_studio/rack.html?rackName=waa-builtin-nodes-simple">Built-in nodes</a></li>
 									<li><a href="/_studio/rack.html?rackName=waa-builtin-nodes">Built-in nodes - more modules</a></li>
@@ -55,7 +61,7 @@
 								</ul>
 							</li>
 							<li>
-								Modulation and triggering &#8600;
+								Using Web Audio API to modulate and trigger sound &#8600;
 								<ul class="menulevel3">
 									<li><a href="/_studio/rack.html?rackName=Modulation/modulation">TODO</a></li>
 									<li><a href="/_studio/rack.html?rackName=Modulation/vibrato">FM / Vibrato</a></li>
@@ -63,7 +69,12 @@
 									<li><a href="/_studio/rack.html?rackName=Modulation/wah-wah">Wah-Wah</a></li>
 								</ul>
 							</li>
-							<li><a href="/_studio/rack.html?rackName=waa-composite-nodes">Composite nodes</a></li>
+							<li>
+								Composite nodes &#8600;
+								<ul class="menulevel3">
+									<li><a href="/_studio/rack.html?rackName=waa-composite-nodes">Composite nodes</a></li>
+								</ul>
+							</li>
 							<li>
 								Sound Theory and Waveforms &#8600;
 								<ul class="menulevel3">
@@ -72,7 +83,7 @@
 								</ul>
 							</li>
 							<li>
-								Instruments &#8600;
+								Instruments ready to be played &#8600;
 								<ul class="menulevel3">
 									<li><a href="/_studio/rack.html?rackName=instruments/modular-synth-small">Modular synth - small</a></li>
 									<li><a href="/_studio/rack.html?rackName=instruments/modular-synth-large">Modular synth - large</a></li>
@@ -83,17 +94,17 @@
 							
 
 
-							<!-- Everything after here are TODOs -->
+							<li> Everything after here are TODOs </li>
 
 							<li>
 								Keyboard Input &#8600;
-								<ul class="menulevel3">
+								<ul class="menulevel3 hidden">
 									<li><a href="/_studio/rack.html?rackName=kbd-triggered-synth">Synth - Keyboard</a></li><!-- TODO -->
 								</ul>
 							</li>
 							<li>
 								Testing &#8600;
-								<ul class="menulevel3">
+								<ul class="menulevel3 hidden">
 									<li><a href="/_studio/rack.html?rackName=testing-2">Test 2</a></li><!-- TODO -->
 									<li><a href="/testing/testing-3.html">Test 3</a></li><!-- TODO -->
 									<li><a href="/testing/web-midi.html">MIDI 1</a></li><!-- TODO -->
@@ -104,7 +115,7 @@
 							</li>
 							<li>
 								Waveforms &#8600;
-								<ul class="menulevel3">
+								<ul class="menulevel3 hidden">
 									<li><a href="/_studio/rack.html?rackName=waveform-composite">Composite</a></li>
 									<li><a href="/_studio/rack.html?rackName=waveform-fourier">Fourier transforms</a></li>
 									<li>TODO : Random</li><!-- TODO -->
@@ -141,6 +152,8 @@
 
 		<div id="keysLegendContainer"></div>
 		<link rel="import" href="/html-partial/waa-common/keysLegend.html" /><!--TODO display none for non-kbd-->
+		
+		<br/><!--padding-->
 	</section>
 
 	<footer id="pageFooter"></footer>
@@ -150,67 +163,8 @@
 	<link rel="import" href="/html-partial/handlebars-templates/waa-module.html" />
 	<link rel="import" href="/html-partial/handlebars-templates/waa-analyser.html" />
 
-
-
-<!-- TODO move -->
-<svg>
-    <filter id="dropshadow" height="150%" width="150%">
-        <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
-        <feOffset dx="0" dy="3" result="offsetblur"/>
-        <feMerge>
-            <feMergeNode/>
-            <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-    </filter>
-    <filter id='inner-shadow'>
-
-        <!-- Shadow Offset -->
-        <feOffset
-                dx='0'
-                dy='5'
-                />
-
-        <!-- Shadow Blur -->
-        <feGaussianBlur
-                stdDeviation='5'
-                result='offset-blur'
-                />
-
-        <!-- Invert the drop shadow
-             to create an inner shadow -->
-        <feComposite
-                operator='out'
-                in='SourceGraphic'
-                in2='offset-blur'
-                result='inverse'
-                />
-
-        <!-- Color & Opacity -->
-        <feFlood
-                flood-color='black'
-                flood-opacity='0.75'
-                result='color'
-                />
-
-        <!-- Clip color inside shadow -->
-        <feComposite
-                operator='in'
-                in='color'
-                in2='inverse'
-                result='shadow'
-                />
-
-        <!-- Put shadow over original object -->
-        <feComposite
-                operator='over'
-                in='shadow'
-                in2='SourceGraphic'
-                />
-    </filter>
-</svg>
-
-
-
+	<!--SVG for the JimKnopf knob-->
+	<link rel="import" href="/html-partial/svg/knob.html" />
 
 </body>
 </html>

@@ -3,6 +3,7 @@ body {
 	color: #fefefe;
 	background-color : rgb(254, 253, 199); /* cream */
 	margin: 0;
+	padding: 0;
 }
 
 	body > header {
@@ -23,19 +24,6 @@ body {
 	body > footer {
 		padding: 10px 5px 10px 5px;
 		background-color: #8a6c46;
-	}
-
-	body > header,
-	body > section#pageContent,
-	body > footer {
-		/*Breakpoint-ish*/
-
-		/*width: 410px;*/
-		/*max-width: 1020px;*/
-		margin-left: auto;
-		margin-right: auto;
-		
-		padding: 5px 10px 0 5px;
 	}
 
 h1 {
@@ -80,4 +68,8 @@ to ensure a patch hole can be clicked
 (instead of the cable capturing the click) */
 .hideMe {
 	visibility: hidden;
+}
+		
+.hidden {
+	display: none;
 }

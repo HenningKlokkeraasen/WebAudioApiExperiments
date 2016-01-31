@@ -9,6 +9,7 @@ header#pageHeader nav ul {
 	margin: 0;
 	padding: 0;
 	cursor: pointer;
+	font-weight: bolder;
 }
 
 	/*seccond level*/
@@ -18,13 +19,14 @@ header#pageHeader nav ul {
 
 		margin: 0 0 0 20px;
 		list-style: inside;
+		font-weight: bolder;
 	}
 
 		/*third level*/
 
 		header#pageHeader nav ul.menulevel3 {
-			display: none;
 
 			margin: 0 0 0 20px;
 			list-style: inside;
+			font-weight: normal;
 		}

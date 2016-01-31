@@ -14,9 +14,6 @@ define([
 			title : 'Sound modulation and triggers (gates)',
 			description : 'This rack shows modulation and trigger nodes (LFO and Envelope Generator).'
 				+'<br/>1. Connect the trigger out of an EG to the trigger in of an Amp (gain node) to get a basic ADSR envelope.'
-				+'<br/>2. Connect the control out of an LFO to the control in of an Osc to get vibrato/frequency modulation'
-				+'<br/>3. Connect the control out of an LFO to the control in of a Filter to get wah-wah'
-				+'<br/>4. Connect the control out of an LFO to the control in of an Amp to get tremolo'
 				+'<br/>5. Connect the control out of an Osc (Modulator in audible range) to the control in of another Osc to get FM synthesis'
 				+'<br/>6. Connect the control out of an Osc (Modulator in audible range) to the control in of an Amp to get ring modulation'
 				// +'<br/>6. Chain several LFOs / '
