@@ -1,0 +1,122 @@
+
+<div id="headerContentContainer">
+	<h1><a href="/_studio/rack.html?rackName=home">Web Audio API Experiments</a></h1>
+	<nav>
+		
+		<ul class="menulevel1">
+			<li>
+				&#9776; Menu
+				<ul class="menulevel2">
+					<li><a href="/_studio/rack.html?rackName=home">Home</a></li>
+					<li><a href="/history.html">History</a></li><!-- TODO -->
+					<li>
+						Using Web Audio API to play audio files &#8600;
+						<ul class="menulevel3">
+							<li><a href="">TODO: Play an audio file</a></li>
+							<li><a href="/_studio/rack.html?rackName=AudioBuffer/audio-file-player">Drum Pads 1</a></li>
+							<li><a href="/_studio/rack.html?rackName=AudioBuffer/drum-kit-2">Drum pads 2</a></li>
+							<li><a href="/_studio/rack.html?rackName=AudioBuffer/drum-kit-3">Drum pads 3</a></li>
+							<li><a href="/_studio/rack.html?rackName=AudioBuffer/soundeffects">Sound effects</a></li>
+							<li><a href="/_studio/rack.html?rackName=AudioBuffer/timed-sequence">Timed Sequence</a></li>
+						</ul>
+					</li>
+					<li>
+						Using Web Audio API to get sound from the microphone &#8600;
+						<ul class="menulevel3">
+							<li><a href="/_studio/rack.html?rackName=waa-mediastream">Microphone</a></li>
+						</ul>
+					</li>
+					<li>
+						Using Web Audio API to generate and modify sound &#8600;
+						<ul class="menulevel3">
+							<li><a href="/_studio/rack.html?rackName=waa-builtin-nodes-simple">Built-in nodes</a></li>
+							<li><a href="/_studio/rack.html?rackName=waa-builtin-nodes">Built-in nodes - more modules</a></li>
+							
+						</ul>
+					</li>
+					<li>
+						Using Web Audio API to modulate and trigger sound &#8600;
+						<ul class="menulevel3">
+							<li><a href="/_studio/rack.html?rackName=Modulation/modulation">TODO</a></li>
+							<li><a href="/_studio/rack.html?rackName=Modulation/vibrato">FM / Vibrato</a></li>
+							<li><a href="/_studio/rack.html?rackName=Modulation/tremolo">AM / Tremolo</a></li>
+							<li><a href="/_studio/rack.html?rackName=Modulation/wah-wah">Wah-Wah</a></li>
+						</ul>
+					</li>
+					<li>
+						Composite nodes &#8600;
+						<ul class="menulevel3">
+							<li><a href="/_studio/rack.html?rackName=waa-composite-nodes">Composite nodes</a></li>
+						</ul>
+					</li>
+					<li>
+						Sound Theory and Waveforms &#8600;
+						<ul class="menulevel3">
+							<li><a href="/_studio/rack.html?rackName=soundtheory-harmonics-waveforms-additive-synthesis">Harmonics / Additive synthesis</a></li>
+							<li><a href="/_studio/rack.html?rackName=soundtheory-advanced-waveforms">Advanced Waveforms</a></li>
+						</ul>
+					</li>
+					<li>
+						Instruments ready to be played &#8600;
+						<ul class="menulevel3">
+							<li><a href="/_studio/rack.html?rackName=instruments/modular-synth-small">Modular synth - small</a></li>
+							<li><a href="/_studio/rack.html?rackName=instruments/modular-synth-large">Modular synth - large</a></li>
+							<li><a href="/_studio/rack.html?rackName=instruments/modular-synth-midi-small">Modular synth - small w/ Web MIDI API</a></li>
+							<li><a href="/_studio/rack.html?rackName=instruments/modular-synth-midi-large">Modular synth - large w/ Web MIDI API</a></li>
+						</ul>
+					</li>
+					
+
+
+					<li> Everything after here are TODOs </li>
+
+					<li>
+						Keyboard Input &#8600;
+						<ul class="menulevel3 hidden">
+							<li><a href="/_studio/rack.html?rackName=kbd-triggered-synth">Synth - Keyboard</a></li><!-- TODO -->
+						</ul>
+					</li>
+					<li>
+						Testing &#8600;
+						<ul class="menulevel3 hidden">
+							<li><a href="/_studio/rack.html?rackName=testing-2">Test 2</a></li><!-- TODO -->
+							<li><a href="/testing/testing-3.html">Test 3</a></li><!-- TODO -->
+							<li><a href="/testing/web-midi.html">MIDI 1</a></li><!-- TODO -->
+							<li><a href="/testing/web-midi-2.html">MIDI 2</a></li><!-- TODO -->
+							<li><a href="/testing/web-midi-3.html">MIDI 3</a></li><!-- TODO -->
+							<li><a href="/_studio/rack.html?rackName=testing/one-of-each-type">One of each type</a></li>
+						</ul>
+					</li>
+					<li>
+						Waveforms &#8600;
+						<ul class="menulevel3 hidden">
+							<li><a href="/_studio/rack.html?rackName=waveform-composite">Composite</a></li>
+							<li><a href="/_studio/rack.html?rackName=waveform-fourier">Fourier transforms</a></li>
+							<li>TODO : Random</li><!-- TODO -->
+							<li>TODO : S&H</li><!-- TODO -->
+						</ul>
+					</li>
+					<!-- <li>
+						More racks &#8600;
+						<ul class="menulevel3">
+							
+						</ul>
+					</li> -->
+				</ul>
+			</li>
+		</ul>
+	</nav>
+</div>	
+<script>
+	// importDoc references this import's document
+	var importDoc = document.currentScript.ownerDocument;
+
+	// mainDoc references the main document (the page that's importing us)
+	var mainDoc = document;
+
+	// Grab the element from this import, clone it,
+	// and append it to the importing document.
+	var header = mainDoc.querySelector('#pageHeader');
+	var el = importDoc.querySelector('#headerContentContainer');
+	header.appendChild(el.cloneNode(true));
+</script>
