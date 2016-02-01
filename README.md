@@ -52,3 +52,13 @@ Add this to the end of knob.js
 		  'Ui.El.Text':Ui.El.Text,
 		  'Ui.El.Arc':Ui.El.Arc
 		};});
+
+
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/sine.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/triangle.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/sawtooth.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/square.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/adsr.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/lpf.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/hpf.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/amp.png)
