@@ -6,23 +6,23 @@ define([
 	'/_studio/Modules/BasicWaa/Filter/Filter.js',
 	'/_studio/Modules/BasicWaa/Gain/Gain.js',
 
-	'/_studio/Modules/CustomModulators/LFO/Lfo.js'
-	], function(Analyser, MasterSection, Oscillator, Filter, Gain, LFO) {
+	'/_studio/Modules/TriggerSources/EnvelopeGenerator/EnvelopeGenerator.js'
+	], function(Analyser, MasterSection, Oscillator, Filter, Gain, EnvelopeGenerator) {
 		return {
-			title : 'Frequency Modulation / Tremolo',
-			description : 'This rack shows modulation of an oscillator with an LFO. '
-				+'The LFO modulates the oscillators frequency. This is known as FM. The effect is also known as a vibrato effect.'
-				
-				,
+			title : 'Envelope Generator to trigger Filter',
+			description : 'This rack shows triggering. An Envelope Generator can be started, and triggers an attack-release-decay cycle.'
+				+'(actually it just starts attack and then all sound is lost atm).'
+				+' When stopped, it triggers the final release portion of the common ADSR envelope.'
+				+'The EG controls the cutoff frequency of the filter, so the outcome is that the cutoff frequency starts at the min level, rises to the max level, decreases to the sustain level, then lingers until release, then decreases to the min level',
 			rackData : {
 				rows : [
 					{
 						modules: [
-							{ moduleMother: LFO, id: 'lfo1' },
+							{ moduleMother: EnvelopeGenerator, id: 'eg1' },
 							{ moduleMother: Oscillator, id: 'osc5' },
 							{ moduleMother: Filter, id: 'filter5' },
 							{ moduleMother: Gain, id: 'gain5' }
-						],
+						]
 					},
 					{
 						modules: [
@@ -30,7 +30,7 @@ define([
 							{ moduleMother: Analyser, id: 'analyser1' },
 							{ moduleMother: Analyser, id: 'analyser2' }
 						]
-					}
+					}	
 				],
 				patches : [
 					// Main audio route
@@ -38,14 +38,14 @@ define([
 					{ from : 'filter5', to : 'gain5', type : 'audio' },
 					{ from : 'gain5', to : 'masterSection1', type : 'audio' },
 					
-					// Modulation
-					{ from: 'lfo1', to: 'osc5', type: 'control' },
+					// Triggering
+					{ from: 'eg1', to: 'filter5', type: 'trigger' },
 					
 					// visual
 					{ from: 'masterSection1', to: 'analyser1', type: 'audio' },
 					{ from: 'masterSection1', to: 'analyser2', type: 'audio' }
 				]
-			},
+			}
 		};
 	}
 );

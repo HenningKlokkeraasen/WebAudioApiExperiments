@@ -17,7 +17,7 @@ define([
 			rackData : {
 				rows : [
 					{
-						modules : [
+						modules: [
 							{ moduleMother: LFO, id: 'lfo1' },
 							{ moduleMother: Oscillator, id: 'osc5' },
 							{ moduleMother: Filter, id: 'filter5' },
