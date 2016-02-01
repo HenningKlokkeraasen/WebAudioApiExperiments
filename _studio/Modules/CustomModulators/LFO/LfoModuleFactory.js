@@ -20,8 +20,8 @@ define([
 				parameters : [
 					{ func : LfoFacade.prototype.setRate, 			selector : 'input[data-parameterType="rate"]',			ev : 'input'	},
 					{ func : LfoFacade.prototype.setDepth, 			selector : 'input[data-parameterType="depth"]',			ev : 'input'	},
-					{ func : LfoFacade.prototype.setShape, 			selector : 'input[data-parameterType="shape"]',			ev : 'change'	}
-
+					{ func : LfoFacade.prototype.setShape, 			selector : 'input[data-parameterType="shape"]',			ev : 'change'	},
+					{ func : LfoFacade.prototype.setActsAsModulatorInAudibleRange, selector : 'input[data-parameterType="actsAsModulatorInAudibleRange"]', ev : 'change'}
 
 
 				]
@@ -37,23 +37,32 @@ define([
 		//			stp
 		// 		w_params
 		//			indexChecked
+		//		actsAsModulatorInAudibleRange
 		LfoModuleFactory.prototype.getModule = function(moduleData) {
-			return this.getModuleBase({
+			var module = this.getModuleBase({
 				name : moduleData.name, 
 				shortName : moduleData.shortName,
 		        sections : [ {
 					ranges : [
-						this.getRangeControlData({ label : 'R',     type : 'rate',	params : moduleData.f_params,  name : moduleData.shortName + '_freq' }),
-						this.getRangeControlData({ label : 'D',     type : 'depth',      params : moduleData.g_params,  name : moduleData.shortName + '_gain' })
+						this.getRangeControlData({ label : 'Rate',     type : 'rate',	params : moduleData.f_params,  name : moduleData.shortName + '_freq' }),
+						this.getRangeControlData({ label : 'Depth',     type : 'depth',      params : moduleData.g_params,  name : moduleData.shortName + '_gain' })
 
 
 					], 
 					radioButtonLists : [
-						this.getWaveTypeSelectObject('S', 'shape', moduleData.shortName + '_shape', moduleData.w_params.indexChecked)
+						this.getWaveTypeSelectObject('Shape', 'shape', moduleData.shortName + '_shape', moduleData.w_params.indexChecked)
 
 					],
 					rangeDisplayMode : 'knob'
-		    }]});
+		    }],
+				hiddenParameters: [],
+			});
+			if (moduleData.actsAsModulatorInAudibleRange != undefined
+				&& moduleData.actsAsModulatorInAudibleRange) {
+					module.hiddenParameters.push({ type : 'actsAsModulatorInAudibleRange', value: moduleData.actsAsModulatorInAudibleRange });
+					//moduleData.shortName + '_actsAsModulatorInAudibleRange'
+				}
+			return module;
 		};
 
         return LfoModuleFactory;

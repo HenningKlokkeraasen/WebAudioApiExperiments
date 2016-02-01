@@ -24,7 +24,6 @@ define([
 	'/_studio/Modules/Composite/ChannelStrip/ChannelStrip.js',
 
 	'/_studio/Modules/CustomModulators/LFO/Lfo.js',
-	'/_studio/Modules/CustomModulators/ModulatorAudibleRange/ModulatorAudibleRange.js',
 
 	'/_studio/Modules/TriggerSources/EnvelopeGenerator/EnvelopeGenerator.js',
 	'/_studio/Modules/TriggerSources/QwertyHancock/QwertyHancock.js',
@@ -35,7 +34,7 @@ define([
 	'/_studio/Modules/Specialized/PulseWave/PulseWave.js',
 	'/_studio/Modules/Specialized/SuperSaw/SuperSaw.js'
 	], function(AudioFilePlayer, TimedSequencePlayer, MediaStream, AudioDestination, Analyser, Oscillator, Filter, Gain, Delay, Convolver, WaveShaper, Compressor,
-		MasterSection, SlapbackDelay, SimpleReverb, ChannelStrip, LFO, ModulatorAudibleRange, EnvelopeGenerator, QwertyHancock, WebMidiInput,
+		MasterSection, SlapbackDelay, SimpleReverb, ChannelStrip, LFO, EnvelopeGenerator, QwertyHancock, WebMidiInput,
 		HarmonicGenerator, NoiseGenerator, PulseWave, SuperSaw) {
 		return {
 			title : 'All the modules',
@@ -64,7 +63,7 @@ define([
 					{
 						modules: [
 							{ moduleMother: LFO, id: 'lfo1' },
-							{ moduleMother: ModulatorAudibleRange, id: 'mar1' },
+							{ moduleMother: LFO, id: 'mar1' },
 							{ moduleMother: EnvelopeGenerator, id: 'eg1' },
 							{ moduleMother: MediaStream, id: 'mediastream1' },
 							{ moduleMother: ChannelStrip, id: 'ch3' },

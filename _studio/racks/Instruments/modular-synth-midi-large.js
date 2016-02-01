@@ -14,11 +14,10 @@ define([
 	'/_studio/Modules/Composite/ChannelStrip/ChannelStrip.js',
 
 	'/_studio/Modules/CustomModulators/LFO/Lfo.js',
-	'/_studio/Modules/CustomModulators/ModulatorAudibleRange/ModulatorAudibleRange.js',
 
 	'/_studio/Modules/TriggerSources/EnvelopeGenerator/EnvelopeGenerator.js',
 	'/_studio/Modules/TriggerSources/WebMidiInput/WebMidiInput.js'
-	], function(Analyser, MasterSection, Oscillator, Filter, Gain, Convolver, WaveShaper, SlapbackDelay, SimpleReverb, ChannelStrip, LFO, ModulatorAudibleRange, EnvelopeGenerator, WebMidiInput) {
+	], function(Analyser, MasterSection, Oscillator, Filter, Gain, Convolver, WaveShaper, SlapbackDelay, SimpleReverb, ChannelStrip, LFO, EnvelopeGenerator, WebMidiInput) {
 		return {
 			title : 'Modular synth - large',
 			description : 'Fully functional (but primitive), monophonic, monotimbral, modular synthesizer based on Web Audio API.',
@@ -37,7 +36,7 @@ define([
 					},
 					{
 						modules: [
-							{ moduleMother: ModulatorAudibleRange, id: 'mar1' },
+							{ moduleMother: LFO, id: 'mar1' },
 							{ moduleMother: LFO, id: 'lfo2' },
 							{ moduleMother: EnvelopeGenerator, id: 'eg2' },
 							{ moduleMother: EnvelopeGenerator, id: 'eg3' },

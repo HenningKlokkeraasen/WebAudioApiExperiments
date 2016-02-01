@@ -71,6 +71,10 @@ define([
             this.amount.gain.value = value;
             return this;
         };
+		
+		LfoFacade.prototype.setActsAsModulatorInAudibleRange = function(value) {
+			this.actsAsModulatorInAudibleRange = value;
+		}
 
         LfoFacade.prototype.start = function() {
             OscillatorFacade.prototype.start.call(this);
