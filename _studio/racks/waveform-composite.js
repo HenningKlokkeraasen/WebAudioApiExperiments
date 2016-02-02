@@ -37,7 +37,7 @@ define([
 					{ from : 'osc2', to : 'ch2', type : 'audio' },
 					{ from : 'osc3', to : 'gain4', type : 'audio' },
 					{ from : 'osc4', to : 'ch4', type : 'audio' },
-					{ from : 'gain4', to : 'ch4', type : 'audio' },
+					{ from : 'gain4', to : 'ch3', type : 'audio' },
 					{ from : 'ch1', to : 'masterSection1', type : 'audio' },
 					{ from : 'ch2', to : 'masterSection1', type : 'audio' },
 					{ from : 'ch3', to : 'masterSection1', type : 'audio' },
