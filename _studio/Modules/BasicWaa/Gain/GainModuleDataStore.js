@@ -44,10 +44,10 @@ define([], function() { return { Modules :
 	      name:'Gain 4: Invert',
 	      shortName:'gain4',
 	      g_params:{  
-	         min:-2,
+	         min:-1,
 	         max:0,
 	         val:-1,
-	         stp:0.01
+	         stp:1
 	      }
 	   },
 	   {  

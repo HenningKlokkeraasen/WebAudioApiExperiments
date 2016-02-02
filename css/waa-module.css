@@ -145,11 +145,6 @@
 				background-color: rgb(98, 247, 193);
 			}
 
-			.fmomodule {
-				/*background-color: rgb(231, 231, 15);*/
-				background-color : rgb(252, 222, 46);
-			}
-
 			.voicemodule {
 				/*background-color: rgba(184, 148, 36, 0.59);*/
 				background-color : rgb(241, 106, 42);
@@ -189,7 +184,7 @@
 
 			.for-future-use {
 				background-color: rgb(181, 207, 120);
-
+				background-color : rgb(252, 222, 46);
 
 
 

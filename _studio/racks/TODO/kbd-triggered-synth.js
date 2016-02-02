@@ -13,8 +13,6 @@ require.config({
 define([
 
 	// Facades to the custom nodes
-	'js/ApiFacades/WaaCustomNodes/VcoFacade.js',
-	'js/ApiFacades/WaaCustomNodes/VcaFacade.js',
 	'js/ApiFacades/WaaCustomNodes/VoiceFacade.js',
 	'js/ApiFacades/WaaCustomNodes/FmVoiceFacade.js',
 
@@ -26,7 +24,6 @@ define([
 	'js/Controllers/Other/KeyboardController.js',
 
 	// Factory for custom audio modules
-	'js/ModuleData/WaaCustomNodes/FmOscModuleFactory.js',
 	'js/ModuleData/WaaCustomNodes/VoiceModuleFactory.js',
 	'js/ModuleData/WaaCustomNodes/FmVoiceModuleFactory.js',
 	

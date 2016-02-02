@@ -3,8 +3,6 @@ define([
 
 	'/_studio/Modules/BasicWaa/Oscillator/Oscillator.js',
 
-	'/_studio/Modules/Composite/FmOsc/FmOsc.js',
-
 	'/_studio/Modules/Composite/SlapbackDelay/SlapbackDelay.js',
 	'/_studio/Modules/CustomModifiers/SimpleReverb/SimpleReverb.js',
 	'/_studio/Modules/Composite/Tremolo/Tremolo.js',
@@ -12,7 +10,7 @@ define([
 	
 	'/_studio/Modules/Composite/ChannelStrip/ChannelStrip.js',
 	'/_studio/Modules/Composite/MasterSection/MasterSection.js',
-	], function(Analyser, Oscillator, FmOsc, SlapbackDelay, SimpleReverb, Tremolo, WahWah, ChannelStrip, MasterSection) {
+	], function(Analyser, Oscillator, SlapbackDelay, SimpleReverb, Tremolo, WahWah, ChannelStrip, MasterSection) {
 		return {
 			title : 'Sound Generation and Modification',
 			description : 'Composite nodes. Most of these can be achieved by patching simple modules (see modulation rack). SlapbackDelay can be achieved by patching gain and delay nodes. Simple Reverb, Channel Strips and Master Section are the exclusive modules here. ',
@@ -29,13 +27,6 @@ define([
 								modules : Oscillator.Modules.getItemsByShortName('osc1')
 							},
 
-							// Custom generators
-
-							{
-								controller : FmOsc.Controller,	
-								factory : FmOsc.ModuleFactory,	
-								modules : FmOsc.Modules
-							},
 						]
 					},
 
