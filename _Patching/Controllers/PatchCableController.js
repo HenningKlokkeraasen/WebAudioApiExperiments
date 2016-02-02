@@ -56,16 +56,12 @@ PatchCableController.prototype.drawPatchCable = function(sourceCoordinates, dest
 	canvas.height = height; // no unit in html attributes
 
 
-
 	// debug background color
-	/*
-	context.beginPath();
-	context.rect(0, 0, canvas.width, canvas.height);
-	context.fillStyle = 'yellow';
-	context.fill();
-	*/
-
-
+	// context.beginPath();
+	// context.rect(0, 0, canvas.width, canvas.height);
+	// context.fillStyle = this.getRandomColor();
+	// context.fill();
+	
 
 	//context.fillStyle = getRandomColor();
 
@@ -92,8 +88,15 @@ PatchCableController.prototype.drawPatchCable = function(sourceCoordinates, dest
 	this.drawConnector(context, endX, endY, cableColor);
 
 	// Draw cable
-	var quadCurveControlPointX = width / 2;
-	var quadCurveControlPointY = fromUpToDown ? 0 : height;
+	var quadCurveControlPointX = 
+		(fromLeftToRight && !fromUpToDown) ?  (width * 0.8)
+		: (fromLeftToRight && fromUpToDown) ?  (width * 0.2)
+		: (!fromLeftToRight && !fromUpToDown) ?  (width * 0.8)
+		: startX - (width * 0.2);
+	var quadCurveControlPointY = (fromLeftToRight && !fromUpToDown) ?  (height * 0.8)
+		: (fromLeftToRight && fromUpToDown) ?  (height * 0.8)
+		: (!fromLeftToRight && !fromUpToDown) ?  (height * 0.2)
+		:  (height * 0.8);
 	//this.drawCableStraight(context, startX, startY, endX, endY, cableColor);
 	this.drawCableQuadratic(context, startX, startY, quadCurveControlPointX, quadCurveControlPointY, endX, endY, cableColor);
 	//this.drawCableBezier() TODO
