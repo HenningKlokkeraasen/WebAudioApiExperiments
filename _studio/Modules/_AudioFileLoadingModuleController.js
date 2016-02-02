@@ -5,8 +5,8 @@ define([
 		AudioFileLoadingModuleController.prototype = Object.create(GenericController.prototype); // new GenericController();
 		AudioFileLoadingModuleController.prototype.constructor = AudioFileLoadingModuleController;
 
-		function AudioFileLoadingModuleController(master, patcher) {
-			GenericController.call(this, master, patcher);
+		function AudioFileLoadingModuleController(master, patcher, facadeHolder) {
+			GenericController.call(this, master, patcher, facadeHolder);
 			this.buffers = undefined;
 		}
 

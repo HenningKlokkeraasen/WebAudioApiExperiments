@@ -4,6 +4,7 @@ define([
 		function ModuleRenderer(master, patcher) {
 			this.master = master;
             this.patcher = patcher;
+			this.facadeHolder = new Array();
 			this.renderedModules = new Array();
 			this.modulesToLoadCount = 0;
 			this.modulesLoadedCount = 0;
@@ -139,7 +140,7 @@ define([
 			modules.push(factory.getModule(module));
 
 			// Create instance of the controller specified
-			var controller = new moduleData.moduleMother.Controller(this.master, this.patcher);
+			var controller = new moduleData.moduleMother.Controller(this.master, this.patcher, this.facadeHolder);
 
 			// render module
 			controller.render(factory.getModuleDefinition(), modules, containerSelector, callback);
@@ -163,7 +164,7 @@ define([
 			modules.push(factory.getModule(module));
 
 			// Create instance of the controller specified
-			var controller = new moduleData.controller(this.master, this.patcher);
+			var controller = new moduleData.controller(this.master, this.patcher, this.facadeHolder);
 
 			// render module
 			controller.render(factory.getModuleDefinition(), modules, containerSelector, callback);

@@ -5,8 +5,8 @@ define([
 		ButtonTriggeredModuleController.prototype = Object.create(GenericController.prototype); // new GenericController();
 		ButtonTriggeredModuleController.prototype.constructor = ButtonTriggeredModuleController;
 
-		function ButtonTriggeredModuleController(master, patcher) {
-			GenericController.call(this, master, patcher);
+		function ButtonTriggeredModuleController(master, patcher, facadeHolder) {
+			GenericController.call(this, master, patcher, facadeHolder);
 		}
 
 		ButtonTriggeredModuleController.prototype.render = function(definition, model, containerSelector, callback) {

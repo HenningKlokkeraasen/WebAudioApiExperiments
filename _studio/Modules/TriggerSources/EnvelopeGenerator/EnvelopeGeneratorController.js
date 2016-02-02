@@ -5,8 +5,8 @@ define([
 		EnvelopeGeneratorController.prototype = Object.create(ButtonTriggeredModuleController.prototype); // new ButtonTriggeredModuleController();
 		EnvelopeGeneratorController.prototype.constructor = EnvelopeGeneratorController;
 
-		function EnvelopeGeneratorController(master, patcher) {
-			ButtonTriggeredModuleController.call(this, master, patcher);
+		function EnvelopeGeneratorController(master, patcher, facadeHolder) {
+			ButtonTriggeredModuleController.call(this, master, patcher, facadeHolder);
 		}
 
 		EnvelopeGeneratorController.prototype.bindStartStopButton = function(button, div) {

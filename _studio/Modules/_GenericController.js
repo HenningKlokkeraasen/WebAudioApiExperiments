@@ -3,9 +3,10 @@ define([
 	'/_studio/UiElements/Knobs/GreenKnob.js'
 	], function(JimKnopf, GreenKnob) {
 		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
-		function GenericController(master, patcher) {
+		function GenericController(master, patcher, facadeHolder) {
 			this.master = master;
 			this.patcher = patcher;
+			this.facadeHolder = facadeHolder;
 
 			this.audioPatchController = new PatchController();
 			this.triggerPatchController = new PatchController();
@@ -77,6 +78,8 @@ define([
 			var dataContainer = GenericController.prototype.findTheDataContainer(div);
 			var facadeDataAttr = GenericController.prototype.facadeDataAttr;
 			var facade = $(dataContainer).data(facadeDataAttr);
+			var index = $(dataContainer).data(facadeDataAttr);
+			var facade = this.facadeHolder[index];
 			return facade;
 		};
 
@@ -89,8 +92,9 @@ define([
 
 		GenericController.prototype.storeFacadeInDom = function(facadeInstance, dataContainer) {
 			var facadeDataAttr = GenericController.prototype.facadeDataAttr;
-			
-			$(dataContainer).data(facadeDataAttr, facadeInstance);
+			if (this.facadeHolder.indexOf(facadeInstance) < 0)
+				this.facadeHolder.push(facadeInstance);
+			$(dataContainer).data(facadeDataAttr, this.facadeHolder.indexOf(facadeInstance));
 		};
 
 		GenericController.prototype.initEachParameter = function(facadeInstance, parameters, dataContainer) {
@@ -153,8 +157,8 @@ define([
 					// bind to onChange to get mouseOut event
 					$(this).bind(parameter.ev,  function() {
 						// find the facade
-						var facadeInstance = $(element).parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
-
+						var index = $(element).parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
+						var facadeInstance = controller.facadeHolder[index];
 						var value = element.value;
 						controller.callFacadeAndUpdateOutput(element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance);
 					});
@@ -165,15 +169,15 @@ define([
 						function(value) {
 							if (parameter.ev == 'change') {
 								// find the facade
-								var facadeInstance = $(element).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
-
+								var index = $(element).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
+								var facadeInstance = controller.facadeHolder[index];
 								controller.callFacadeAndUpdateOutput(element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance);
 							}
 						}, function(value) {
 							if (parameter.ev == 'input') {
 								// find the facade
-								var facadeInstance = $(element).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
-								
+								var index = $(element).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
+								var facadeInstance = controller.facadeHolder[index];
 								controller.callFacadeAndUpdateOutput(element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance);
 							}
 						});
