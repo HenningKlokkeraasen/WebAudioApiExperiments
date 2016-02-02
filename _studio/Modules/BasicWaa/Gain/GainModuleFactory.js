@@ -41,7 +41,7 @@ define([
 				shortName : moduleData.shortName,
                 sections : [ {
                     ranges : [
-                        this.getRangeControlData({ label : 'G',     type : 'gain',      params : moduleData.g_params,  name : moduleData.shortName + '_gain' })
+                        this.getRangeControlData({ label : 'Gain',     type : 'gain',      params : moduleData.g_params,  name : moduleData.shortName + '_gain' })
                         
 
 

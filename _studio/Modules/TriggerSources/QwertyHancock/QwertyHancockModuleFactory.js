@@ -11,6 +11,7 @@ define([
 
         function QwertyHancockModuleFactory() {
             this.moduleCssClass = 'module-3u';
+			this.headerCssClass = 'externalInputModule';
             this.hasAudioIn = false;
             this.hasAudioOut = false;
             this.hasTriggerOut = true;

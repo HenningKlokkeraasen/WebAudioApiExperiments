@@ -9,6 +9,7 @@ define([
 		function OscillatorModuleFactory() {
 			// console.debug('ctor for OscillatorModuleFactory');
 			this.headerCssClass = 'oscillator';
+			this.buttonCssClass = 'round';
 			this.hasAudioIn = false;
 			this.hasTriggerIn = true;
 			this.hasControlIn = true;
@@ -56,14 +57,13 @@ define([
 					],
 					rangeDisplayMode : 'knob'
 		    }]});
-			module.buttonCssClass = 'round';
 			return module;
 		};
 		OscillatorModuleFactory.prototype.getFrequencyParamObject = function(moduleData) {
-		    return this.getRangeControlData({ label : 'F',     type : 'frequency',	params : moduleData.f_params,  name : moduleData.shortName + '_freq' });
+		    return this.getRangeControlData({ label : 'Frequency',     type : 'frequency',	params : moduleData.f_params,  name : moduleData.shortName + '_freq' });
 		};
 		OscillatorModuleFactory.prototype.getDetuneParamObject = function(shortName) {
-			return	{ label : 'D',	type : 'detune',		min : -100,		max : 100,		value: 0,		step : 1,		name : shortName + '_detune'	};
+			return	{ label : 'Detune',	type : 'detune',		min : -100,		max : 100,		value: 0,		step : 1,		name : shortName + '_detune'	};
 		};
 		OscillatorModuleFactory.prototype.getWaveTypeSelectObject1 = function(shortName, indexChecked) {
 			return this.getWaveTypeSelectObject('W', 'waveType', shortName + '_wave', indexChecked);

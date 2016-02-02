@@ -42,7 +42,7 @@ define([
 				shortName : moduleData.shortName, 
                 sections : [ {
                     ranges : [
-                        this.getRangeControlData({ label : 'D',     type : 'delayTime',	params : moduleData.d_params,  name : moduleData.shortName + '_delay' })
+                        this.getRangeControlData({ label : 'Delay time',     type : 'delayTime',	params : moduleData.d_params,  name : moduleData.shortName + '_delay' })
                         
 
 

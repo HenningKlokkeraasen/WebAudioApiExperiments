@@ -24,10 +24,10 @@ define([
 							{ moduleMother: Oscillator, id: 'osc2' },
 							{ moduleMother: Oscillator, id: 'osc3' },
 							{ moduleMother: Oscillator, id: 'osc4' },
-							{ moduleMother: Filter, id: 'filter1' },
-							{ moduleMother: Filter, id: 'filter2' },
-							{ moduleMother: Filter, id: 'filter3' },
-							{ moduleMother: Filter, id: 'filter4' },
+							{ moduleMother: Filter, id: 'resonant1' },
+							{ moduleMother: Filter, id: 'band1' },
+							{ moduleMother: Filter, id: 'shelf1' },
+							{ moduleMother: Filter, id: 'peaking1' },
 						]
 					},
 					{

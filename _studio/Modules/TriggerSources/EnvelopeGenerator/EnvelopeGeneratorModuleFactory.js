@@ -10,6 +10,7 @@ define([
 
 		function EnvelopeGeneratorModuleFactory() {
 			this.headerCssClass = 'egmodule';
+			this.buttonCssClass = 'round';
 			this.hasAudioIn = false;
 			this.hasAudioOut = false;
 			this.hasTriggerIn = true;

@@ -184,12 +184,10 @@
 
 			.for-future-use {
 				background-color: rgb(181, 207, 120);
+			}
+			
+			.externalInputModule {
 				background-color : rgb(252, 222, 46);
-
-
-
-
-
 			}
 
 			.lfomodule {

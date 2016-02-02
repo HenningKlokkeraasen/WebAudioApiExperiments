@@ -9,7 +9,7 @@ define([
         SimpleReverbModuleFactory.prototype.constructor = SimpleReverbModuleFactory;
 
         function SimpleReverbModuleFactory() {
-            this.headerCssClass = 'convolvermodule';
+            this.headerCssClass = 'effectsmodule';
             
             
         }

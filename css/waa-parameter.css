@@ -56,6 +56,7 @@ input[type=range].shadowrange {
 /********************************************Style knob***********************************************/
 div.knob {
 	display: inline-block;
+	text-align: center;
 }
 	div.knob > div {
 		margin: auto;

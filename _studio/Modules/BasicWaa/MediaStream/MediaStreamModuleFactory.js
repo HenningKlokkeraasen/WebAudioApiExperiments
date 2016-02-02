@@ -8,6 +8,7 @@ define([
 
 		function MediaStreamModuleFactory() {
 			this.headerCssClass = 'mediastreammodule';
+			this.buttonCssClass = 'round';
 			this.hasAudioIn = false;
 			this.hasStartButton = true;
 		}
