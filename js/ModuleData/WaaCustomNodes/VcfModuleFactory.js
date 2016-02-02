@@ -11,7 +11,7 @@ VcfModuleFactory.prototype = new ModuleFactoryBase();
 VcfModuleFactory.prototype.constructor = VcfModuleFactory;
 
 function VcfModuleFactory() {
-    this.moduleCssClass = 'genericmodule';
+    this.headerCssClass = 'genericmodule';
     
     
 }

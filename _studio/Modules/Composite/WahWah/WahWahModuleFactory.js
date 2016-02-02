@@ -9,7 +9,7 @@ define([
         WahWahModuleFactory.prototype.constructor = WahWahModuleFactory;
 
         function WahWahModuleFactory() {
-            this.moduleCssClass = 'effectsmodule';
+            this.headerCssClass = 'effectsmodule';
             // this.renderSectionsVertically = true;
             
         }

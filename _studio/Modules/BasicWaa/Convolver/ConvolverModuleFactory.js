@@ -7,7 +7,7 @@ define([
         ConvolverModuleFactory.prototype.constructor = ConvolverModuleFactory;
 
         function ConvolverModuleFactory() {
-            this.moduleCssClass = 'convolver';
+            this.headerCssClass = 'convolver';
             
             
         }

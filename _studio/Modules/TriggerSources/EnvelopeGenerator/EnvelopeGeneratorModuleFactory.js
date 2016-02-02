@@ -9,7 +9,7 @@ define([
 		EnvelopeGeneratorModuleFactory.prototype.constructor = EnvelopeGeneratorModuleFactory;
 
 		function EnvelopeGeneratorModuleFactory() {
-			this.moduleCssClass = 'egmodule';
+			this.headerCssClass = 'egmodule';
 			this.hasAudioIn = false;
 			this.hasAudioOut = false;
 			this.hasTriggerIn = true;

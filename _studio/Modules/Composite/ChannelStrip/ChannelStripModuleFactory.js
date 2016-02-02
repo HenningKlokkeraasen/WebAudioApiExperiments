@@ -9,7 +9,7 @@ define([
         ChannelStripModuleFactory.prototype.constructor = ChannelStripModuleFactory;
 
         function ChannelStripModuleFactory() {
-            this.moduleCssClass = 'mixermodule';
+            this.headerCssClass = 'mixermodule';
             
             
         }

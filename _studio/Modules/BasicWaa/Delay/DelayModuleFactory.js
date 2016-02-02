@@ -7,7 +7,7 @@ define([
         DelayModuleFactory.prototype.constructor = DelayModuleFactory;
 
         function DelayModuleFactory() {
-            this.moduleCssClass = 'delay';
+            this.headerCssClass = 'delay';
             
             
         }

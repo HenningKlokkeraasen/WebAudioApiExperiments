@@ -7,7 +7,7 @@ define([
         GainModuleFactory.prototype.constructor = GainModuleFactory;
 
         function GainModuleFactory() {
-            this.moduleCssClass = 'gain';
+            this.headerCssClass = 'gain';
             this.hasTriggerIn = true;
             this.hasControlIn = true;
         }

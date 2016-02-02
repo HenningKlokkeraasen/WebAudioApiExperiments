@@ -11,7 +11,7 @@ FmVoiceModuleFactory.prototype = new VoiceModuleFactory();
 FmVoiceModuleFactory.prototype.constructor = FmVoiceModuleFactory;
 
 function FmVoiceModuleFactory() {
-	this.moduleCssClass = 'fmvoicemodule';
+	this.headerCssClass = 'fmvoicemodule';
 
 	this.hasStartButton = false;
 }

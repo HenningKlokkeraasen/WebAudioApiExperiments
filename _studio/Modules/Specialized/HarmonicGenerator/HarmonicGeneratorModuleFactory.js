@@ -9,7 +9,7 @@ define([
 		HarmonicGeneratorModuleFactory.prototype.constructor = HarmonicGeneratorModuleFactory;
 
 		function HarmonicGeneratorModuleFactory() {
-			this.moduleCssClass = 'harmonicGenerator';
+			this.headerCssClass = 'harmonicGenerator';
 			this.hasTriggerIn = false;
 			this.hasControlIn = false;
 			this.hasControlOut = false;

@@ -25,3 +25,13 @@ button:active, button.activeToGetTheSameEffectWhenTriggeredFromDom {
 	position: relative;
 	bottom: -3px;
 }
+
+button.round {
+	border-radius: 50px;
+	padding: 0;
+	width: 50px;
+	height: 50px;
+	margin: 0;
+	background-color: black;
+	color: white;
+}

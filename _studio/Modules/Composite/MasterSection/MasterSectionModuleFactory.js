@@ -9,7 +9,7 @@ define([
         MasterSectionModuleFactory.prototype.constructor = MasterSectionModuleFactory;
 
         function MasterSectionModuleFactory() {
-            this.moduleCssClass = 'mastersectionmodule';
+            this.headerCssClass = 'mastersectionmodule';
             //this.hasNoOutputs = true; - output can be put in analyser node
             
         }

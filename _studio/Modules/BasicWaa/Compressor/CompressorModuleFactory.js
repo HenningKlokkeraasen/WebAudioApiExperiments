@@ -7,7 +7,7 @@ define([
         CompressorModuleFactory.prototype.constructor = CompressorModuleFactory;
 
         function CompressorModuleFactory() {
-            this.moduleCssClass = 'compressor';
+            this.headerCssClass = 'compressor';
             
             
         }

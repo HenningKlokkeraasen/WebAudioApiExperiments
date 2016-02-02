@@ -10,7 +10,7 @@ define([
 		FmOscModuleFactory.prototype.constructor = FmOscModuleFactory;
 
 		function FmOscModuleFactory() {
-			this.moduleCssClass = 'fmomodule';
+			this.headerCssClass = 'fmomodule';
 		    this.renderSectionsVertically = true;
 
 		}

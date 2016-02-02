@@ -8,7 +8,7 @@ define([
 
 		function OscillatorModuleFactory() {
 			// console.debug('ctor for OscillatorModuleFactory');
-			this.moduleCssClass = 'oscillator';
+			this.headerCssClass = 'oscillator';
 			this.hasAudioIn = false;
 			this.hasTriggerIn = true;
 			this.hasControlIn = true;
@@ -40,7 +40,7 @@ define([
 		// 		w_params
 		//			indexChecked
 		OscillatorModuleFactory.prototype.getModule = function(moduleData) {
-			return this.getModuleBase({
+			var module = this.getModuleBase({
 				name : moduleData.name, 
 				shortName : moduleData.shortName,
 		        sections : [ {
@@ -56,6 +56,8 @@ define([
 					],
 					rangeDisplayMode : 'knob'
 		    }]});
+			module.buttonCssClass = 'round';
+			return module;
 		};
 		OscillatorModuleFactory.prototype.getFrequencyParamObject = function(moduleData) {
 		    return this.getRangeControlData({ label : 'F',     type : 'frequency',	params : moduleData.f_params,  name : moduleData.shortName + '_freq' });

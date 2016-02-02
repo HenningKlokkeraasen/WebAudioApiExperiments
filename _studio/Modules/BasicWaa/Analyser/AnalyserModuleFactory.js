@@ -8,7 +8,8 @@ define([
 
         function AnalyserModuleFactory() {
             this.handlebarsTemplateSelector = '#analyserTemplate'; // differs from norm
-            this.moduleCssClass = 'module-2u analysermodule';
+            this.moduleCssClass = 'module-2u';
+			this.headerCssClass = 'analysermodule';
             this.hasAudioOut = false;
             this.hasStartButton = true;
         }
@@ -51,6 +52,7 @@ define([
             });
 			module.hasOscilloscope = moduleData.hasOscilloscope;
 			module.hasFsa = moduleData.hasFsa;
+			module.buttonCssClass = 'round';
 			return module;
         };
         //////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////

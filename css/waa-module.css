@@ -2,7 +2,6 @@
 /* sound generation and modification modules */
 
 .moduleRow {
-	display: tablre-row;
 	margin: 0 0 4px 0;
 }
 
@@ -31,7 +30,7 @@
 			height: 100%;
 
 			/* default background color for modules */
-			background-color : rgb(247, 238, 209); /* off white */
+			background-color : #6D666B;
 
 			/*Vertical align connectors to bottom*/
 			/*Disabling this because it destroys knob.js*/
@@ -57,7 +56,7 @@
 			}
 
 			.module fieldset {
-				border-color: white;
+				border-color: #403F3F;
 			}
 
 				.module fieldset.verticalAligned {

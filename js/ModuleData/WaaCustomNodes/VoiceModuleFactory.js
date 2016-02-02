@@ -11,7 +11,7 @@ VoiceModuleFactory.prototype = new OscillatorModuleFactory();
 VoiceModuleFactory.prototype.constructor = VoiceModuleFactory;
 
 function VoiceModuleFactory() {
-	this.moduleCssClass = 'voicemodule';
+	this.headerCssClass = 'voicemodule';
 	this.renderSectionsVertically = true;
 	this.hasStartButton = false;
 }

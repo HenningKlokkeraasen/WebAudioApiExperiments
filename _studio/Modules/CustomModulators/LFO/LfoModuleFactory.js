@@ -8,7 +8,7 @@ define([
 		function LfoModuleFactory() {
 			// console.debug('ctor for LfoModuleFactory');
 			OscillatorModuleFactory.call(this);
-			this.moduleCssClass = 'lfomodule';
+			this.headerCssClass = 'lfomodule';
 			this.hasTriggerIn = false;
 			this.hasControlOut = true; //TODO is this implemented?
 			this.hasAudioOut = false;

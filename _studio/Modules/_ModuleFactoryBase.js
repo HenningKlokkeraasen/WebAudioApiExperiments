@@ -4,6 +4,7 @@ define([
 		function ModuleFactoryBase() {
 			this.handlebarsTemplateSelector = '#moduleTemplate';
 			this.moduleCssClass = '';
+			this.headerCssClass = '';
 			this.hasStartButton = false;
 			this.hasKeyboardInterface = false;
 			this.hasAudioIn = true;
@@ -27,6 +28,7 @@ define([
 				moduleName : moduleData.name,
 				shortName: moduleData.shortName,
 				moduleCssClass : this.moduleCssClass,
+				headerCssClass : this.headerCssClass,
 				hasStartButton : this.hasStartButton,
 				hasKeyboardInterface : this.hasKeyboardInterface,
 				hasAudioIn : this.hasAudioIn,

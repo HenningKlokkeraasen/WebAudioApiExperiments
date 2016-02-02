@@ -9,7 +9,7 @@ define([
         SlapbackDelayModuleFactory.prototype.constructor = SlapbackDelayModuleFactory;
 
         function SlapbackDelayModuleFactory() {
-            this.moduleCssClass = 'effectsmodule';
+            this.headerCssClass = 'effectsmodule';
             
             
         }

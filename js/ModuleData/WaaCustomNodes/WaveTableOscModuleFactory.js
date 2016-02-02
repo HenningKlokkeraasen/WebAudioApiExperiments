@@ -11,7 +11,7 @@ WaveTableOscModuleFactory.prototype = new OscillatorModuleFactory();
 WaveTableOscModuleFactory.prototype.constructor = WaveTableOscModuleFactory;
 
 function WaveTableOscModuleFactory() {
-	this.moduleCssClass = 'waveTableOsc';
+	this.headerCssClass = 'waveTableOsc';
 
 	
 }

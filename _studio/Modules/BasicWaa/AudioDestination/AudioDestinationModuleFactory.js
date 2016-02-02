@@ -10,7 +10,7 @@ define([
         AudioDestinationModuleFactory.prototype.constructor = AudioDestinationModuleFactory;
 
         function AudioDestinationModuleFactory() {
-            this.moduleCssClass = 'audioContextDestination';
+            this.headerCssClass = 'audioContextDestination';
             this.hasAudioOut = false;
             
         }

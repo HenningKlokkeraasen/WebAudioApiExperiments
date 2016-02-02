@@ -7,7 +7,7 @@ define([
         FilterModuleFactory.prototype.constructor = FilterModuleFactory;
 
         function FilterModuleFactory() {
-            this.moduleCssClass = 'filter';
+            this.headerCssClass = 'filter';
             this.hasTriggerIn = true;
             this.hasControlIn = true;
         }

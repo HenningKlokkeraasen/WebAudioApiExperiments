@@ -9,7 +9,7 @@ define([
 		TremoloModuleFactory.prototype.constructor = TremoloModuleFactory;
 
 		function TremoloModuleFactory() {
-			this.moduleCssClass = 'effectsmodule';
+			this.headerCssClass = 'effectsmodule';
 
 
 		}

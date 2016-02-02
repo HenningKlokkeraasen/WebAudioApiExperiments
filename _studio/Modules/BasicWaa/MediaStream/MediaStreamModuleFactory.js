@@ -7,7 +7,7 @@ define([
 		MediaStreamModuleFactory.prototype.constructor = MediaStreamModuleFactory;
 
 		function MediaStreamModuleFactory() {
-			this.moduleCssClass = 'mediastreammodule';
+			this.headerCssClass = 'mediastreammodule';
 			this.hasAudioIn = false;
 			this.hasStartButton = true;
 		}
