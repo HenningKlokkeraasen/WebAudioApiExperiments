@@ -3,7 +3,8 @@ Web Audio API Experiments
 
 Some experiments with the Web Audio API and Web MIDI API.
 
-Goals:
+Goals
+-----
 
  - See and hear different sound waves
  - Subtractive synthesis
@@ -18,7 +19,8 @@ Goals:
 
 Running this requires a browser that supports Web Audio API and Web MIDI API.
 
-Requirements:
+Requirements
+------------
 
 Add js libs:
 
@@ -62,3 +64,18 @@ Add this to the end of knob.js
 ![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/lpf.png)
 ![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/hpf.png)
 ![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/amp.png)
+
+
+Concepts
+--------
+
+ - Module: Something that can produce, modify, modulate, trigger, analyse or output audio
+ - Patch: A connection between two modules. Either an audio patch, trigger/gate patch, or control patch (set a frequency, modulate a gain level, etc)
+ - Gear: Predefined set of modules and internal patching
+ - Rack: 1-1 with an HTML page. Has 1 or more Modules and Gear in it
+
+Responsibilities
+----------------
+ - Facade: A wrapper around a Web Audio API node, or a set of nodes. Responsible for interacting directly with the Web Audio API
+ - Factory: Creates a module from a module definition/parameters
+ - Controller: Renders a module to the DOM
