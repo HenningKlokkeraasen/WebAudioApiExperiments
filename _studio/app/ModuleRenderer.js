@@ -15,74 +15,101 @@ define([
 			this.cellCounter = 0;
 			this.rackData = rackData;
 			
-			this.renderGear(rackData, moduleTopContainer);
-			
 			this.modulesToLoadCount = this.countTheNumberOfModulesToLoadV2(rackData);
 			
-			this.renderRackV2(rackData, moduleTopContainer);
+			this.renderRacks(rackData, moduleTopContainerElem);
 		};
 		
-		ModuleRenderer.prototype.renderGear = function(rackData, moduleTopContainer) {
+		ModuleRenderer.prototype.renderRacks = function(rackData, moduleTopContainer) {
 			var self = this;
-			// TODO is this used yet, does this work?
-			if (rackData.gear != undefined) {
-				var gearCounter = 0;
-				rackData.gear.forEach(function(gear) {
-					var rowId = 'gearRow' + gearCounter++;
-					var rowElem = self.createRowElemAndAddToContainer(moduleTopContainer, rowId);
-
-					var gearController = new GearController();
-					var definition = { handlebarsTemplateSelector : '#gearTemplate' };
-					var models = [ { gearName : gear.gearName } ];
-					
-					gearController.render(definition, models, '#' + rowElem.id);
-
-					var moduleContainer = rowElem.querySelector('div.moduleContainer');
-
-					// Modules
-					gear.moduleCollections.forEach(function(moduleData) {
-						moduleData.modules.forEach(function(module) {
-							self.renderCellAndModule(module, moduleContainer, moduleData);
-						});
-					});
+			rackData.rows.forEach(function(row) {
+				var rowElem = self.createRowElemAndAddToContainer(moduleTopContainer);
+				self.renderGearInRow(row, rowElem);
+				self.renderModulesInRow(row, rowElem);
+			});
+		}
+		
+		ModuleRenderer.prototype.renderGearInRow = function(row, rowElem) {
+			var self = this;
+			if (row.gear != undefined) {
+				row.gear.forEach(function(gear) {
+					var gearElem = self.createGearElemAndAddToContainer(rowElem);
+					// console.log(gear);
+					self.createTitleAndAddToContainer(gear, gearElem);
+					self.renderRacks(gear.rackData, gearElem);
 				});
 			}
 		}
 		
-		ModuleRenderer.prototype.renderRackV2 = function(rackData, moduleTopContainer) {
+		ModuleRenderer.prototype.renderModulesInRow = function(row, rowElem) {
 			var self = this;
-			rackData.rows.forEach(function(row) {
-				var rowElem = self.createRowElemAndAddToContainer(moduleTopContainer);
-				if (row.modules != undefined)
-					row.modules.forEach(function(moduleData) {
-						// var mother = moduleData.moduleMother;
-						// var id = moduleData.id;
-						// console.log(moduleData);
-						// moduleData.modules.forEach(function(module) {
-							self.renderCellAndModuleV2(rowElem, moduleData, function(renderedModules) {
-								self.continueAfterAllModulesAreRendered(renderedModules);
-							});
-						// });
-					});
-			});
+			if (row.modules != undefined) {
+				row.modules.forEach(function(moduleData) {
+					// var mother = moduleData.moduleMother;
+					// var id = moduleData.id;
+					// console.log(moduleData);
+					// moduleData.modules.forEach(function(module) {
+						self.renderCellAndModuleV2(rowElem, moduleData, function(renderedModules) {
+							self.continueAfterAllModulesAreRendered(renderedModules);
+						});
+					// });
+				});
+			}
 		}
 		
 		ModuleRenderer.prototype.continueAfterAllModulesAreRendered = function(renderedModules) {
+			var rackData = this.rackData;
+			var pacthRenderer = new PatchRenderer();
 			var rm = this.renderedModules;
 			renderedModules.forEach(function(renderedModule, index, arr) {
 				rm.push(renderedModule);
 			});
 			this.modulesLoadedCount += renderedModules.length;
 			if (this.modulesLoadedCount === this.modulesToLoadCount) {
-				new PatchRenderer().renderPatches(rm, this.rackData.patches);
+				if (rackData.patches != undefined)
+					pacthRenderer.renderPatches(rm, rackData.patches);
+				if (rackData.rows != undefined) {
+					rackData.rows.forEach(function(row) {
+						if (row.gear != undefined) {
+							row.gear.forEach(function(gear) {
+								pacthRenderer.renderPatches(rm, gear.rackData.patches);
+								if (rackData.gearToModulePatches != undefined) {
+									rackData.gearToModulePatches.forEach(function(gearPatch) {
+										if (gearPatch.gear == gear.id) {
+											pacthRenderer.renderPatches(rm, [gearPatch]);
+										}
+									});
+								}
+								if (rackData.gearToGearPatches != undefined) {
+									rackData.gearToGearPatches.forEach(function(gearPatch) {
+										rackData.rows.forEach(function(row2) {
+											if (row.gear != undefined) {
+												row.gear.forEach(function(gear2) {
+													if (gearPatch.fromGear == gear.id && gearPatch.toGear == gear2.id) {
+														pacthRenderer.renderPatches(rm, [gearPatch]);
+													}
+												});
+											}
+										});
+									});
+								}
+							});
+						}
+					});
+				}
 			}
 		}
 		
 		ModuleRenderer.prototype.countTheNumberOfModulesToLoadV2 = function(rackData) {
 			var moduleCount = 0;
+			var self = this;
 			rackData.rows.forEach(function(row) {
 				if (row.modules != undefined)
 					moduleCount += row.modules.length;
+				if (row.gear != undefined)
+					row.gear.forEach(function(gear) {
+						moduleCount += self.countTheNumberOfModulesToLoadV2(gear.rackData);
+					})
 			});
 			return moduleCount;
 		}
@@ -113,13 +140,29 @@ define([
 		};
 		
 		ModuleRenderer.prototype.createRowElemAndAddToContainer = function(moduleTopContainerElem, id) {
+			return this.createElemAndAddToContainer('moduleRow', moduleTopContainerElem, id);
+		};
+		
+		ModuleRenderer.prototype.createGearElemAndAddToContainer = function(moduleTopContainerElem, id) {
+			return this.createElemAndAddToContainer('gear', moduleTopContainerElem, id);
+		}
+		
+		ModuleRenderer.prototype.createElemAndAddToContainer = function(className, moduleTopContainerElem, id) {
 			var rowElem = document.createElement('div');
-			rowElem.className = 'moduleRow';
+			rowElem.className = className;
 			if (id)
 				rowElem.id = id;
 			moduleTopContainerElem.appendChild(rowElem);
 			return rowElem;
-		};
+		}
+		
+		ModuleRenderer.prototype.createTitleAndAddToContainer = function(gear, parent) {
+			var rowElem = document.createElement('div');
+			rowElem.className = 'title';
+			rowElem.innerText = gear.title;
+			parent.appendChild(rowElem);
+			return rowElem;
+		}
 
 		return ModuleRenderer;
 	}

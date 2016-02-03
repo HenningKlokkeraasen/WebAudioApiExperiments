@@ -1,11 +1,39 @@
 .gear {
-	display: block !important;
-	background-color: #f9f9f9;
-	color: #030303;
-	margin: 0 0 4px 0;
+	border: 2px solid white;
+	padding: 0;
+	background-color: #6D666B;
 }
 
-div.gear > fieldset > div.moduleRow > div > div {
-		display: inline-block;
-		vertical-align: top;
-}
+	.gear .moduleRow{
+		margin: 0;
+	}
+	
+	.gear .module {
+		border: none;
+		margin: 0;
+		font-size: 0.8em;
+		width: 175px;
+		border-right: 1px solid white;
+	}
+
+		.moduleRow>div:last-child>div {
+			border-right: none;
+		}
+
+		.gear .module header {
+			color: black;
+		}
+		
+		.gear .module fieldset {
+			border: none;
+		}
+		
+		.gear .module-3u {
+			width: 539px;
+		}
+
+	.gear .title {
+		background-color: #DC8585;
+		text-align: center;
+		color: black;
+	}
