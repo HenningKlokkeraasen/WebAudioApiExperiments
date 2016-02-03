@@ -28,6 +28,14 @@ define([], function() { return { Modules :
 	      g_params:{ min:-200, max:200, val:10, stp:1 },
 	      w_params:{ indexChecked:0 },
 		  actsAsModulatorInAudibleRange: true
+	   },
+	   {
+		  name: 'Modulator in audible range',
+	      shortName:'mar2',
+	      f_params:{ min:20, max:2000, val:440, stp:1 },
+	      g_params:{ min:0, max:400, val:10, stp:1 },
+	      w_params:{ indexChecked:0 },
+		  actsAsModulatorInAudibleRange: true
 	   }
 	]
 };});

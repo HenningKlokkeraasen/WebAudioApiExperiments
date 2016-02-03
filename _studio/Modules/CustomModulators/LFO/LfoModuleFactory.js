@@ -12,6 +12,7 @@ define([
 			this.buttonCssClass = 'round';
 			this.hasTriggerIn = false;
 			this.hasControlOut = true; //TODO is this implemented?
+			this.hasControlIn = true;
 			this.hasAudioOut = false;
 		}
 		LfoModuleFactory.prototype.getModuleDefinition = function() {

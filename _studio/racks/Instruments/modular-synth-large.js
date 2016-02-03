@@ -19,15 +19,15 @@ define([
 	'/_studio/Modules/TriggerSources/QwertyHancock/QwertyHancock.js'
 	], function(Analyser, MasterSection, Oscillator, Filter, Gain, Convolver, WaveShaper, SlapbackDelay, SimpleReverb, ChannelStrip, LFO, EnvelopeGenerator, QwertyHancock) {
 		return {
-			title : 'Modular synth - large',
-			description : 'Fully functional (but primitive), monophonic, monotimbral, modular synthesizer based on Web Audio API.',
+			title : 'Modular subtractive synth - with more modulation and effects',
+			description : 'Fully functional (but primitive), monophonic, monotimbral, modular subtractive synthesizer based on Web Audio API.',
 			rackData : {
 				rows : [
 					{
 						modules: [
 							{ moduleMother: QwertyHancock, id: 'qwerty1' },
 							{ moduleMother: Oscillator, id: 'osc5' },
-							{ moduleMother: Filter, id: 'filter5' },
+							{ moduleMother: Filter, id: 'resonant1' },
 							{ moduleMother: Gain, id: 'gain5' },
 							{ moduleMother: Analyser, id: 'analyser1' }
 						]
@@ -36,7 +36,7 @@ define([
 						modules: [
 							{ moduleMother: LFO, id: 'lfo1' },
 							{ moduleMother: LFO, id: 'lfo2' },
-							{ moduleMother: LFO, id: 'mar1' },
+							{ moduleMother: LFO, id: 'lfo3' },
 							{ moduleMother: EnvelopeGenerator, id: 'eg2' },
 							{ moduleMother: EnvelopeGenerator, id: 'eg3' },
 							{ moduleMother: EnvelopeGenerator, id: 'eg4' },
@@ -58,20 +58,26 @@ define([
 				],
 				patches : [
 					// Main audio route
-					{ from : 'osc5', to : 'filter5', type : 'audio' },
-					{ from : 'filter5', to : 'gain5', type : 'audio' },
+					{ from : 'osc5', to : 'resonant1', type : 'audio' },
+					{ from : 'resonant1', to : 'gain5', type : 'audio' },
 					{ from : 'gain5', to : 'ch1', type : 'audio' },
 					{ from : 'ch1', to : 'masterSection1', type : 'audio' },
 					
 					// Trigger / gate
+					{ from : 'qwerty1', to : 'eg2', type: 'trigger' },
+					{ from : 'qwerty1', to : 'eg3', type: 'trigger' },
 					{ from : 'qwerty1', to : 'eg4', type: 'trigger' },
+					{ from : 'eg2', to : 'osc5', type: 'trigger' },
+					{ from : 'eg3', to : 'resonant1', type: 'trigger' },
 					{ from : 'eg4', to : 'gain5', type: 'trigger' },
 					
 					// Pitch / control / noteOn, noteOff
 					{ from: 'qwerty1', to: 'osc5', type: 'control' },
 					
 					// Modulation
-					{ from: 'lfo2', to: 'osc5', type: 'control' },
+					{ from: 'lfo1', to: 'osc5', type: 'control' },
+					{ from: 'lfo2', to: 'resonant1', type: 'control' },
+					{ from: 'lfo3', to: 'gain5', type: 'control' },
 					
 					// visual
 					{ from: 'masterSection1', to: 'analyser1', type: 'audio' },

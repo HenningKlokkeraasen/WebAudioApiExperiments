@@ -6,7 +6,7 @@ define([
 	'/_studio/Modules/BasicWaa/Analyser/Analyser.js'
 	], function(BasicVoice, Mixer, AudioDestination, Analyser) {
 		return {
-			title : 'Gears!',
+			title : 'Gear!',
 			description : 'This rack is the first to have Gear. A piece of Gear is something that has some predefined modules and internal patching, like a Voice, Mixer, Equalizer, Effects Unit, etc.',
 			rackData : {
 				rows : [

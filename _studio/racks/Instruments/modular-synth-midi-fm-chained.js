@@ -19,15 +19,15 @@ define([
 	'/_studio/Modules/TriggerSources/WebMidiInput/WebMidiInput.js'
 	], function(Analyser, MasterSection, Oscillator, Filter, Gain, Convolver, WaveShaper, SlapbackDelay, SimpleReverb, ChannelStrip, LFO, EnvelopeGenerator, WebMidiInput) {
 		return {
-			title : 'Modular subtractive synth - with more modulation and effects, with Web MIDI API',
-			description : 'Fully functional (but primitive), monophonic, monotimbral, modular subtractive synthesizer based on Web Audio API.',
+			title : 'Modular FM synth - with three operators',
+			description : 'Fully functional (but primitive), monophonic, monotimbral, modular FM synthesizer based on Web Audio API.',
 			rackData : {
 				rows : [
 					{
 						modules : [
 							{ moduleMother: WebMidiInput, id:  'webmidi1' },
 							{ moduleMother: Oscillator, id: 'osc5' },
-							{ moduleMother: Filter, id: 'resonant1' },
+							{ moduleMother: Filter, id: 'filter5' },
 							{ moduleMother: Gain, id: 'gain5' },
 							{ moduleMother: Analyser, id: 'analyser1' },
 							{ moduleMother: Analyser, id: 'analyser2' }
@@ -35,12 +35,12 @@ define([
 					},
 					{
 						modules: [
-							{ moduleMother: LFO, id: 'lfo1' },
+							{ moduleMother: LFO, id: 'mar1' },
+							{ moduleMother: LFO, id: 'mar2' },
 							{ moduleMother: EnvelopeGenerator, id: 'eg2' },
 							{ moduleMother: EnvelopeGenerator, id: 'eg3' },
 							{ moduleMother: EnvelopeGenerator, id: 'eg4' },
 							{ moduleMother: Convolver, id: 'convolver1' },
-							{ moduleMother: WaveShaper, id: 'wsdist1' },
 							{ moduleMother: SimpleReverb, id: 'smplrev1' },
 							{ moduleMother: SlapbackDelay, id: 'slpbkdl1' }
 						]
@@ -57,8 +57,8 @@ define([
 				],
 				patches : [
 					// Main audio route
-					{ from : 'osc5', to : 'resonant1', type : 'audio' },
-					{ from : 'resonant1', to : 'gain5', type : 'audio' },
+					{ from : 'osc5', to : 'filter5', type : 'audio' },
+					{ from : 'filter5', to : 'gain5', type : 'audio' },
 					{ from : 'gain5', to : 'ch1', type : 'audio' },
 					{ from : 'ch1', to : 'masterSection1', type : 'audio' },
 					
@@ -70,7 +70,8 @@ define([
 					{ from: 'webmidi1', to: 'osc5', type: 'control' },
 					
 					// Modulation
-					{ from: 'lfo1', to: 'osc5', type: 'control' },
+					{ from: 'mar1', to: 'mar2', type: 'control' },
+					{ from: 'mar2', to: 'osc5', type: 'control' },
 					
 					// visual
 					{ from: 'masterSection1', to: 'analyser1', type: 'audio' },

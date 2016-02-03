@@ -10,8 +10,8 @@ define([
 	'/_studio/Modules/TriggerSources/WebMidiInput/WebMidiInput.js'
 	], function(Analyser, MasterSection, Oscillator, Filter, Gain, EnvelopeGenerator, WebMidiInput) {
 		return {
-			title : 'Modular synth - small',
-			description : 'Fully functional (but primitive), monophonic, monotimbral, modular synthesizer based on Web Audio API.',
+			title : 'Modular subtractive synth - basic, with Web MIDI API',
+			description : 'Fully functional (but primitive), monophonic, monotimbral, modular synthesizer subtractive based on Web Audio API.',
 			rackData : {
 				rows : [
 					{
