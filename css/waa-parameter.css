@@ -66,3 +66,33 @@ div.knob {
 * {
 	outline: none;
 }
+
+
+
+
+/********************************************Style radio buttons***********************************************/
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  
+}
+
+input[type="radio"] + label span {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin: -1px 4px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+input[type="radio"] + label span {
+  background: url('img/radiobutton-off.png');
+}
+
+input[type="radio"]:checked + label span {
+  background: url('img/radiobutton-on.png');
+}

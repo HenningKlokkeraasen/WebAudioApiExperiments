@@ -46,12 +46,15 @@
 					{{#each radioButtons}}
 						<input 	type="radio" 
 								name="{{../rdoName}}" 
+								id="{{../rdoName}}_{{value}}"
 								value="{{value}}" 
 								title="{{value}}" 
 								data-parametertype="{{../type}}" 
 								{{#if selected}}checked{{/if}}>
-									<span>{{{name}}}</span>					{{!--Note triple stash for rendering html entities on label--}}
+									
 								</input>
+								
+								<label for="{{../rdoName}}_{{value}}"><span></span>{{{name}}}</label>
 					{{/each}}
 				</div>
 				{{/each}}
