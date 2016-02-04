@@ -5,8 +5,8 @@ define([
 		WebMidiInputController.prototype = Object.create(GenericController.prototype); // new GenericController();
 		WebMidiInputController.prototype.constructor = WebMidiInputController;
 
-		function WebMidiInputController(master, patcher, facadeHolder) {
-			GenericController.call(this, master, patcher, facadeHolder);
+		function WebMidiInputController(master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder) {
+			GenericController.call(this, master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder);
 		}
 
 		WebMidiInputController.prototype.render = function(definition, model, containerSelector, callback) {

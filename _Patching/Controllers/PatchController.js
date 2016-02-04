@@ -1,8 +1,11 @@
 /*
 	Controller for patch events
 */
+define([], function() {
 function PatchController() {
 }
+
+PatchController.prototype.drawnPatchCables = [];
 
 PatchController.prototype.setupPatching = function(
     containerElement, 
@@ -52,11 +55,13 @@ PatchController.prototype.patch = function(
 }
 
 PatchController.prototype.patchFrom = function(coordinates, facade, facadeConnectFunc, patcher, typeOfPatch) {
+	var self = this;
 	patcher.reset();
 	patcher.setSource(coordinates, function(destination) {
 		// in the callback: get the facade, have it connect to the destination node
 		// var facade = $(self).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
-		facadeConnectFunc.call(facade, destination);
+		var result = facadeConnectFunc.call(facade, destination);
+		// console.log(result);
 		
 		// console.log('Patching');
 		// console.group();
@@ -66,7 +71,26 @@ PatchController.prototype.patchFrom = function(coordinates, facade, facadeConnec
 		// console.log(destination);
 		// console.groupEnd()
 
-		PatchCableController.prototype.drawPatchCable(patcher.sourceCoordinates, patcher.destinationCoordinates, typeOfPatch);//TODO keep coordinates in this class
+		if (result > 0) {
+			var canvasAndContainer = PatchCableController.prototype.drawPatchCable(patcher.sourceCoordinates, patcher.destinationCoordinates, typeOfPatch);
+			// console.log(self);
+			self.drawnPatchCables.push({
+				facade: facade,
+				destination: destination,
+				typeOfPatch: typeOfPatch,
+				canvasAndContainer: canvasAndContainer
+			});
+		}
+		else if (result < 0) {
+			var drawnPatchCable = self.drawnPatchCables.find(function(element, index, array) {
+				if (element.facade == facade && element.destination == destination && element.typeOfPatch == typeOfPatch)
+					return true;
+				return false;
+			});
+			self.drawnPatchCables.splice(self.drawnPatchCables.indexOf(drawnPatchCable), 1);
+			PatchCableController.prototype.removePatchCable(drawnPatchCable.canvasAndContainer);
+		}
+		
 		patcher.reset();
 	});
 }
@@ -74,3 +98,6 @@ PatchController.prototype.patchFrom = function(coordinates, facade, facadeConnec
 PatchController.prototype.patchTo = function(coordinates, facadeInput, patcher) {
 	patcher.setDestination(coordinates, facadeInput);
 }
+
+return PatchController;
+});

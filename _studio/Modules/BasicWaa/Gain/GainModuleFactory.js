@@ -8,6 +8,7 @@ define([
 
         function GainModuleFactory() {
             this.headerCssClass = 'gain';
+			this.moduleCssClass = 'weave';
             this.hasTriggerIn = true;
             this.hasControlIn = true;
         }

@@ -100,6 +100,12 @@ PatchCableController.prototype.drawPatchCable = function(sourceCoordinates, dest
 	//this.drawCableStraight(context, startX, startY, endX, endY, cableColor);
 	this.drawCableQuadratic(context, startX, startY, quadCurveControlPointX, quadCurveControlPointY, endX, endY, cableColor);
 	//this.drawCableBezier() TODO
+	
+	return { canvas: canvas, container: container };
+}
+
+PatchCableController.prototype.removePatchCable = function(canvasAndContainer) {
+	canvasAndContainer.container.removeChild(canvasAndContainer.canvas);
 }
 
 PatchCableController.prototype.getColorForTypeOfPatch = function(typeOfPatch) {

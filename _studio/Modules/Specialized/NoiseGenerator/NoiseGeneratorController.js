@@ -7,8 +7,8 @@ define([
 		NoiseGeneratorController.prototype = Object.create(ButtonTriggeredModuleController.prototype); // new ButtonTriggeredModuleController();
 		NoiseGeneratorController.prototype.constructor = NoiseGeneratorController;
 
-		function NoiseGeneratorController(master, patcher, facadeHolder) {
-			ButtonTriggeredModuleController.call(this, master, patcher, facadeHolder);
+		function NoiseGeneratorController(master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder) {
+			ButtonTriggeredModuleController.call(this, master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder);
 		}
 
 		NoiseGeneratorController.prototype.bindStartStopButton = function(button, div) {

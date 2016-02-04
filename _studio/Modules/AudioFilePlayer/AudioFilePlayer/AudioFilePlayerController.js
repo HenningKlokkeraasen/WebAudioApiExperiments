@@ -5,9 +5,9 @@ define([
 		AudioFilePlayerController.prototype = Object.create(AudioFileLoadingModuleController.prototype); // new ButtonTriggeredModuleController();
 		AudioFilePlayerController.prototype.constructor = AudioFilePlayerController;
 
-		function AudioFilePlayerController(master, patcher, facadeHolder) {
+		function AudioFilePlayerController(master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder) {
 			new KeyboardController(this, this.numberKeyPressed, this.numberKeyReleased);
-			AudioFileLoadingModuleController.call(this, master, patcher, facadeHolder);
+			AudioFileLoadingModuleController.call(this, master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder);
 		}
 
 		AudioFilePlayerController.prototype.render = function(definition, model, containerSelector, callback) {

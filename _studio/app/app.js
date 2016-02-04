@@ -3,10 +3,12 @@
 */
 define([
     '/_studio/app/RackRenderer.js',
-	'/_Patching/Patcher.js'
+	'/_Patching/Patcher.js',
+	'/_Patching/Controllers/PatchController.js'
 	], function(
 		RackRenderer,
-		Patcher) {
+		Patcher,
+		PatchController) {
 		function App() {
 			this.xhrFacade = undefined;
 			this.master = undefined;
@@ -26,9 +28,12 @@ define([
 			console.log('Web Audio is available');
 			//console.log(this.master.audioContext);
 
-			this.initPatcher();
+			var patcher = new Patcher();
+			var audioPatchController = new PatchController();
+			var triggerPatchController = new PatchController();
+			var controlPatchController = new PatchController();
             
-			new RackRenderer().loadRack(board, this.master, this.patcher);
+			new RackRenderer().loadRack(board, this.master, patcher, audioPatchController, triggerPatchController, controlPatchController);
 
 			this.initPatchCables();
             
@@ -49,12 +54,6 @@ define([
 					PatchCableController.prototype.hidePatchCables();
 				}
 			});
-		};
-
-		App.prototype.initPatcher = function() {
-			// The Patcher represents the Audio Graph
-			// TODO improve
-			this.patcher = new Patcher();
 		};
 
 		return App;

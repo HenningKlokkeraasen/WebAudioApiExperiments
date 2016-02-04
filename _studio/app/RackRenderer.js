@@ -6,16 +6,16 @@ define([
 			
 		};
 
-		RackRenderer.prototype.loadRack = function(board, master, patcher) {
+		RackRenderer.prototype.loadRack = function(board, master, patcher,  audioPatchController, triggerPatchController, controlPatchController) {
             this.board = board;
-			this.loadModules(master, patcher);
+			this.loadModules(master, patcher,  audioPatchController, triggerPatchController, controlPatchController);
 			
 			// TODO
 			if (this.board.usesSynthAndKeyboard)
 				this.initSynthAndKeyboard(master.audioContext);
 		};
 
-		RackRenderer.prototype.loadModules = function(master, patcher) {
+		RackRenderer.prototype.loadModules = function(master, patcher, audioPatchController, triggerPatchController, controlPatchController) {
 			document.querySelector('#boardTitle').innerText = this.board.title;
 			document.querySelector('#boardDescription').innerText = this.board.description;
 
@@ -27,7 +27,7 @@ define([
 				return;
 			}
 
-			new ModuleRenderer(master, patcher).renderModules(rackData);
+			new ModuleRenderer(master, patcher, audioPatchController, triggerPatchController, controlPatchController).renderModules(rackData);
 
 		};
 

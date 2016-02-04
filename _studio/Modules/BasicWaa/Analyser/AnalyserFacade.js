@@ -15,7 +15,7 @@ define([
 
 		AnalyserFacade.prototype.init = function() {
 			this.isStopped = false;
-			console.log('connecting input to oscilloscope');
+			// console.log('connecting input to oscilloscope');
 			
 			// Connect graph
 			if (this.oscilloscope != undefined)

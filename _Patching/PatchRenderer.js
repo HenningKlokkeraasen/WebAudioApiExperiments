@@ -1,8 +1,10 @@
 define([
 	'/_Patching/Patcher.js'
 	], function (Patcher) {
-		function PatchRenderer() {
-			
+		function PatchRenderer(audioPatchController, triggerPatchController, controlPatchController) {
+			this.audioPatchController = audioPatchController;
+			this.triggerPatchController = triggerPatchController;
+			this.controlPatchController = controlPatchController;
 		}
 		
 		PatchRenderer.prototype.renderPatches = function(rm, patches) {
@@ -37,15 +39,22 @@ define([
 								? to.facadeInstance.controlIn
 								: undefined;
 					var connectFunc = type === 'audio'
-						? from.facadeInstance.connect
+						? from.facadeInstance.connectOrDisconnect
 						: type === 'trigger'
 							? from.facadeInstance.setTriggerFor
 							: type === 'control'
 								? from.facadeInstance.control
 								: undefined;
+					var patcherController = type === 'audio'
+						? self.audioPatchController
+						: type === 'trigger'
+							? self.triggerPatchController
+							: type === 'control'
+								? self.controlPatchController
+								: undefined;
 					var fromCoordinates = self.getCoordinates(from.containerSelector, '[data-patch-type=' + type + 'Out]');
 					var toCoordinates = self.getCoordinates(to.containerSelector, '[data-patch-type=' + type + 'In]');
-					PatchController.prototype.patch(fromCoordinates, toCoordinates, 
+					patcherController.patch(fromCoordinates, toCoordinates, 
 						from.facadeInstance, 
 						input, 
 						connectFunc, 

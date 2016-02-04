@@ -17,6 +17,9 @@ define([], function() {
 			// 	console.warn(this);
 			// 	console.groupEnd();
 			// }
+				
+			// TODO implement untrigger
+			return 1;
 		};
 
 		this.unsetTriggerFor = function() {

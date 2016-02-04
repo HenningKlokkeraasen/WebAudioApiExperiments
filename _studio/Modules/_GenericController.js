@@ -3,14 +3,14 @@ define([
 	'/_studio/UiElements/Knobs/GreenKnob.js'
 	], function(JimKnopf, GreenKnob) {
 		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
-		function GenericController(master, patcher, facadeHolder) {
+		function GenericController(master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder) {
 			this.master = master;
 			this.patcher = patcher;
 			this.facadeHolder = facadeHolder;
 
-			this.audioPatchController = new PatchController();
-			this.triggerPatchController = new PatchController();
-			this.controlPatchController = new PatchController();
+			this.audioPatchController = audioPatchController;
+			this.triggerPatchController = triggerPatchController;
+			this.controlPatchController = controlPatchController;
 		}
 
 		GenericController.prototype = {
@@ -52,7 +52,7 @@ define([
 
 					controller.initEachParameter(facadeInstance, definition.parameters, dataContainer);
 					
-					controller.setupPatching(div, controller.patcher, facadeInstance);
+					controller.setupPatching.call(controller, div, facadeInstance);
 
 					controller.bindControlsToParameters(div, definition.parameters);
 
@@ -130,14 +130,15 @@ define([
 			});
 		};
 
-		GenericController.prototype.setupPatching = function(div, patcher, facade) {
+		GenericController.prototype.setupPatching = function(div, facade) {
+			// console.log(this);
 			var dataContainerSelector = this.dataContainerSelector;
 			// var facadeDataAttr = this.facadeDataAttr;
 			// console.debug(facade);
 
-			this.audioPatchController.setupPatching(div, this.audioInSelector, this.audioOutSelector, dataContainerSelector, facade, facade.input, facade.output, facade.connect, patcher);
-			this.triggerPatchController.setupPatching(div, this.triggerInSelector, this.triggerOutSelector, dataContainerSelector, facade, facade, facade, facade.setTriggerFor, patcher);
-			this.controlPatchController.setupPatching(div, this.controlInSelector, this.controlOutSelector, dataContainerSelector, facade, facade.controlIn, facade.controlOut, facade.control, patcher);
+			this.audioPatchController.setupPatching(div, this.audioInSelector, this.audioOutSelector, dataContainerSelector, facade, facade.input, facade.output, facade.connectOrDisconnect, this.patcher);
+			this.triggerPatchController.setupPatching(div, this.triggerInSelector, this.triggerOutSelector, dataContainerSelector, facade, facade, facade, facade.setTriggerFor, this.patcher);
+			this.controlPatchController.setupPatching(div, this.controlInSelector, this.controlOutSelector, dataContainerSelector, facade, facade.controlIn, facade.controlOut, facade.control, this.patcher);
 		};
 
 		GenericController.prototype.bindControlsToParameters = function(div, parameters) {

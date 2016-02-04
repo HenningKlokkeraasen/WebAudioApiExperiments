@@ -15,6 +15,9 @@ define([], function() {
 				console.warn(this);
 				console.groupEnd();
 			}
+			
+			// TODO implement uncontrol
+			return 1;
 		};
 
 		this.uncontrol = function() {

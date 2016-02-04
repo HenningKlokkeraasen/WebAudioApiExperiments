@@ -6,8 +6,8 @@ define([
 		QwertyHancockController.prototype = Object.create(GenericController.prototype); // new GenericController();
 		QwertyHancockController.prototype.constructor = QwertyHancockController;
 
-		function QwertyHancockController(master, patcher, facadeHolder) {
-			GenericController.call(this, master, patcher, facadeHolder);
+		function QwertyHancockController(master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder) {
+			GenericController.call(this, master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder);
 		}
 
 		QwertyHancockController.prototype.render = function(definition, model, containerSelector, callback) {

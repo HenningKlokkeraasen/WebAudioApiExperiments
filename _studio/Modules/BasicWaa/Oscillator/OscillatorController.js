@@ -5,8 +5,8 @@ define([
 		OscillatorController.prototype = Object.create(ButtonTriggeredModuleController.prototype); // new ButtonTriggeredModuleController();
 		OscillatorController.prototype.constructor = OscillatorController;
 
-		function OscillatorController(master, patcher, facadeHolder) {
-			ButtonTriggeredModuleController.call(this, master, patcher, facadeHolder);
+		function OscillatorController(master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder) {
+			ButtonTriggeredModuleController.call(this, master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder);
 		}
 
 		OscillatorController.prototype.bindStartStopButton = function(button, div) {

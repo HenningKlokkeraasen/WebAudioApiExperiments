@@ -33,8 +33,8 @@ define([
 
 		// private
 		MasterSectionFacade.prototype.wireUp = function() {
-			this.gainFacade.connect(this.compressorFacade.input);
-			this.compressorFacade.connect(this.audioContext.destination);
+			this.gainFacade.connectOrDisconnect(this.compressorFacade.input);
+			this.compressorFacade.connectOrDisconnect(this.audioContext.destination);
 
 
 
