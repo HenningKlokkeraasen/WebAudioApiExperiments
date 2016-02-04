@@ -32,7 +32,7 @@ define([
 		// private
 		QwertyHancockFacade.prototype.setDefaultValues = function() {
 			this._currentOctave = 4;
-
+			this.glideTime = 0;
 
 		};
 
@@ -46,6 +46,10 @@ define([
 
 		};
 
+		QwertyHancockFacade.prototype.setGlideTime = function(value) {
+			this.glideTime = parseFloat(value);
+		}
+
 		QwertyHancockFacade.prototype.setOctave = function(octave) {
 			this._currentOctave = Math.round(octave);
 		};
@@ -56,6 +60,7 @@ define([
 		};
 
 		QwertyHancockFacade.prototype.initKeyboard = function(keyboard, outputForNoteNode) {
+			var self = this;
 			var facade = this;
 			this.outputForNoteNode = outputForNoteNode;
 
@@ -75,12 +80,11 @@ define([
 					+ facade.getQHOctaveQualifiedByCurrentOctave(note.substr(1,1)); // dirty DOM hack, TODO facade should not know about DOM
 
 				facade.controlDestinations.forEach(function(destination) {
-
-					// Uncomment this for glide/portamento
 					var now = facade.audioContext.currentTime;
 					destination.cancelScheduledValues(now);
-
-					destination.value = frequencyMultipliedWithOctave; // hack? will only work for oscillators
+					// console.log(`glide time: ${self.glideTime}`);
+					destination.exponentialRampToValueAtTime(frequencyMultipliedWithOctave, now + self.glideTime);
+					// hack? will only work for oscillators
 				});
 
 				facade.trigger();

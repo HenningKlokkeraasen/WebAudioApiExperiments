@@ -22,7 +22,7 @@ define([
                 handlebarsTemplateSelector : this.handlebarsTemplateSelector,
                 facade : WebMidiInputFacade,
                 parameters : [
-
+					{ func : WebMidiInputFacade.prototype.setGlideTime, 	selector : 'input[data-parameterType="glideTime"]',		ev : 'input'	},
                 
 
                     
@@ -45,19 +45,19 @@ define([
             return this.getModuleBase({
                 name : moduleData.name, 
 				shortName : moduleData.shortName,
-                sections : [
+                sections : [ {
+					ranges : [
+						{ label : 'Glide/Portamento',	type : 'glideTime',		min : 0,		max : 0.5,		value: 0,		step : 0.01,		name : moduleData.shortName + '_glide'	}
+						
 
 
-                        
-
-
-
-
-
-
-
-
-            ]});
+					], 
+					
+					
+					
+					
+					rangeDisplayMode : 'knob'
+				}]});
         };
 
         return WebMidiInputModuleFactory;

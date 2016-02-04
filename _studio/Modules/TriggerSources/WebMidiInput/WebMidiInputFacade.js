@@ -32,8 +32,8 @@ define([
 
 		// private
 		WebMidiInputFacade.prototype.setDefaultValues = function() {
-
-
+			this.glideTime = 0;
+			
 
 		};
 
@@ -46,6 +46,10 @@ define([
 
 
 		};
+		
+		WebMidiInputFacade.prototype.setGlideTime = function(value) {
+			this.glideTime = parseFloat(value);
+		}
 
 		WebMidiInputFacade.prototype.control = function(destination) {
 			this.controlDestinations.push(destination);
@@ -60,6 +64,7 @@ define([
 		};
 
 		WebMidiInputFacade.prototype.noteOn = function(note, frequency) {
+			var self = this;
 			// console.debug('gate on');
 			// console.debug(note);
 			// console.debug(frequency);
@@ -76,12 +81,11 @@ define([
 			var facade = this;
 
 			this.controlDestinations.forEach(function(destination) {
-
-				// Uncomment this for glide/portamento
 				var now = facade.audioContext.currentTime;
 				destination.cancelScheduledValues(now);
-
-				destination.value = frequency; // hack? will only work for oscillators
+				// console.log(`glide time: ${self.glideTime}`);
+				destination.exponentialRampToValueAtTime(frequency, now + self.glideTime);
+				// hack? will only work for oscillators
 			});
 
 			this.trigger();
