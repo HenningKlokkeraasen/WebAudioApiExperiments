@@ -10,6 +10,7 @@ define([
 			// console.debug('ctor for OscillatorModuleFactory');
 			this.headerCssClass = 'oscillator';
 			this.buttonCssClass = 'round';
+			this.moduleCssClass = 'fibredark';
 			this.hasAudioIn = false;
 			this.hasTriggerIn = true;
 			this.hasControlIn = true;

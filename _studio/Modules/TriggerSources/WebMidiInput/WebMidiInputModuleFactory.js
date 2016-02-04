@@ -11,6 +11,7 @@ define([
 
         function WebMidiInputModuleFactory() {
 			this.headerCssClass = 'externalInputModule';
+			this.moduleCssClass = 'coolstripes';
             this.hasAudioIn = false;
             this.hasAudioOut = false;
             this.hasTriggerOut = true;

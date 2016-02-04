@@ -76,7 +76,7 @@ input[type="radio"] {
 }
 
 input[type="radio"] + label {
-  
+  font-size: 0.8em;
 }
 
 input[type="radio"] + label span {

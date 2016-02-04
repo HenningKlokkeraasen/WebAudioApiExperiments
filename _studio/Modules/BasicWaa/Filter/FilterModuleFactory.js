@@ -8,6 +8,7 @@ define([
 
         function FilterModuleFactory() {
             this.headerCssClass = 'filter';
+			this.moduleCssClass = 'darkmat';
             this.hasTriggerIn = true;
             this.hasControlIn = true;
         }

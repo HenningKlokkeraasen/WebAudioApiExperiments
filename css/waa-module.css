@@ -209,6 +209,63 @@
 			.module-4u {
 				width: 839px; /*TODO not responsive*/
 			}
+			
+			.fibredark {
+				background:
+					radial-gradient(black 15%,transparent 16%) 0 0,
+					radial-gradient(black 15%,transparent 16%) 8px 8px,
+					radial-gradient(rgba(255,255,255,.1) 15%,transparent 20%) 0 1px,
+					radial-gradient(rgba(255,255,255,.1) 15%,transparent 20%) 8px 9px;
+				background-color:#282828;
+				background-size:16px 16px;
+				color: white;
+			}
+				.fibredark header {
+					color: black;
+				}
+			
+			.coolstripes {
+				background-color:#000;
+				background-image:
+					linear-gradient(to right, rgba(255,255,255,.07) 50%, transparent 50%),
+					linear-gradient(to right, rgba(255,255,255,.13) 50%, transparent 50%),
+					linear-gradient(to right, transparent 50%, rgba(255,255,255,.17) 50%),
+					linear-gradient(to right, transparent 50%, rgba(255,255,255,.19) 50%);
+				background-size:13px,29px,37px,53px;
+				color: white;
+			}
+				.coolstripes header {
+					color: black;
+				}
+				
+			.micromat {
+				background:
+					radial-gradient(circle at 0 50%,rgba(96,16,48,0) 9px,#000 10px,rgba(96,16,48,0) 11px) 0 10px,
+					radial-gradient(at 100% 100%,rgba(96,16,48,0) 9px,#000 10px,rgba(96,16,48,0) 11px),#4a4e40;
+				background-size:20px 20px;
+				color: white;
+			}
+				.micromat header {
+					color: black;
+				}
+				
+			.darkmat {
+				background:
+					linear-gradient(27deg,#151515 5px,transparent 5px) 0 5px,
+					linear-gradient(207deg,#151515 5px,transparent 5px) 10px 0,
+					linear-gradient(27deg,#222 5px,transparent 5px) 0 10px,
+					linear-gradient(207deg,#222 5px,transparent 5px) 10px 5px,
+					linear-gradient(90deg,#1b1b1b 10px,transparent 10px),
+					linear-gradient(#1d1d1d 25%,#1a1a1a 25%,#1a1a1a 50%,transparent 50%,transparent 75%,#242424 75%,#242424);
+				background-color:#131313;
+				background-size:20px 20px;
+				color: white;
+			}
+				.darkmat header {
+					color: black;
+				}
+				
+			
 
 .parameterLabel {
 	font-size: 0.8em;
