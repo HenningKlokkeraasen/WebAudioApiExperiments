@@ -102,8 +102,12 @@
 				width: 100%;
 			}
 
-			.genericmodule {
+			.for-future-use {
 				background-color: rgb(247, 98, 247);
+			}
+
+			.genericmodule {
+				background-color: white;
 			}
 
 			.oscillator {

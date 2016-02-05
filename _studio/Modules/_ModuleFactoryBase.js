@@ -4,7 +4,7 @@ define([
 		function ModuleFactoryBase() {
 			this.handlebarsTemplateSelector = '#moduleTemplate';
 			this.moduleCssClass = '';
-			this.headerCssClass = '';
+			this.headerCssClass = 'genericmodule';
 			this.buttonCssClass = '';
 			this.hasStartButton = false;
 			this.hasKeyboardInterface = false;

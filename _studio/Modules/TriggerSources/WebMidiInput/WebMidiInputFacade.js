@@ -82,9 +82,11 @@ define([
 
 			this.controlDestinations.forEach(function(destination) {
 				var now = facade.audioContext.currentTime;
-				destination.cancelScheduledValues(now);
+				if (destination.cancelScheduledValues != undefined)
+					destination.cancelScheduledValues(now);
 				// console.log(`glide time: ${self.glideTime}`);
-				destination.exponentialRampToValueAtTime(frequency, now + self.glideTime);
+				if (destination.exponentialRampToValueAtTime != undefined)
+					destination.exponentialRampToValueAtTime(frequency, now + self.glideTime);
 				// hack? will only work for oscillators
 			});
 
