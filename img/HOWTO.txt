@@ -1,0 +1,7 @@
+brush width 8
+
+gaussian blur 11
+
+photo->glow 13,19,23
+
+paint.net
