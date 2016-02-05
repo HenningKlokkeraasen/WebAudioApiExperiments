@@ -1,10 +1,10 @@
 .symbolsContainer{
-	background-color: rgb(214, 205, 160);
-	color: black;
+	background-color: black;
+	color: white;
 	padding: 10px;
 }
 	.symbolsContainer div {
-		width: 210px;
+		width: 361px;
 		display: inline-block;
 		text-align: center;
 	}

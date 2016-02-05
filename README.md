@@ -56,14 +56,16 @@ Add this to the end of knob.js
 		};});
 
 
-![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/sine.png)
-![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/triangle.png)
-![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/sawtooth.png)
-![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/square.png)
-![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/adsr.png)
-![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/lpf.png)
-![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/hpf.png)
-![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/amp.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/sine3.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/triangle3.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/sawtooth3.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/sawtooth-inverted3.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/square3.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/adsr3.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/lpf3.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/hpf3.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/amp3.png)
+![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/mod3.png)
 
 
 Concepts
