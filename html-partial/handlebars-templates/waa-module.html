@@ -80,17 +80,25 @@
 				<div>
 					<span title="{{type}}" class="parameterLabel ">{{label}}: </span>
 					{{#each radioButtons}}
-						<input 	type="radio" 
-								name="{{../rdoName}}" 
-								id="{{../rdoName}}_{{value}}"
-								value="{{value}}" 
-								title="{{value}}" 
-								data-parametertype="{{../type}}" 
-								{{#if selected}}checked{{/if}}>
+						<div class="radioButtonWrapper">
+							<label for="{{../rdoName}}_{{value}}"><span></span>
+								{{#if img}}
+									<img src="{{img}}" alt="{{name}}" title="{{name}}" />
+								{{else}}
+									{{{name}}}
+								{{/if}}
+							</label>
+							<br/>
+							<input 	type="radio" 
+									name="{{../rdoName}}" 
+									id="{{../rdoName}}_{{value}}"
+									value="{{value}}" 
+									title="{{value}}" 
+									data-parametertype="{{../type}}" 
+									{{#if selected}}checked{{/if}}>
 									
-								</input>
-								
-								<label for="{{../rdoName}}_{{value}}"><span></span>{{{name}}}</label>
+							</input>
+						</div>
 					{{/each}}
 				</div>
 				{{/each}}

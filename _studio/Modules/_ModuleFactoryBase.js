@@ -72,10 +72,10 @@ define([
 				type : type,
 				rdoName : rdoName,
 				radioButtons : [
-		    		{ value : 'sine', 		name : '&#8767;',	selected : indexChecked == 0 },
-		    		{ value : 'triangle', 	name : '&#8896;',	selected : indexChecked == 1 },
-		    		{ value : 'sawtooth', 	name : '&#8895;',	selected : indexChecked == 2 },
-		    		{ value : 'square', 		name : '&#8851;',	selected : indexChecked == 3 }
+		    		{ value : 'sine', 		name : 'sine',		img: '/img/sine3-28.png',	selected : indexChecked == 0 },
+		    		{ value : 'triangle', 	name : 'triangle',	img: '/img/triangle3-28.png',	selected : indexChecked == 1 },
+		    		{ value : 'sawtooth', 	name : 'sawtooth',	img: '/img/sawtooth3-28.png',	selected : indexChecked == 2 },
+		    		{ value : 'square', 	name : 'square',	img: '/img/square3-28.png',	selected : indexChecked == 3 }
 			]};
 		};
 
@@ -90,8 +90,8 @@ define([
 		};
 		ModuleFactoryBase.prototype.getFilterLowPassAndHighPassOptions = function(indexChecked) {
 			return [ 
-		    		{ value : 'lowpass', 	name : 'Lowpass', 	selected : indexChecked == 0 },
-		    		{ value : 'highpass', 	name : 'Highpass', 	selected : indexChecked == 1 }
+		    		{ value : 'lowpass', 	name : 'Lowpass',	img: '/img/lpf3-28.png', 	selected : indexChecked == 0 },
+		    		{ value : 'highpass', 	name : 'Highpass',	img: '/img/hpf3-28.png', 	selected : indexChecked == 1 }
 		    ];
 		};
 		ModuleFactoryBase.prototype.getFilterBandPassAndBandStopOptions = function(indexChecked) {

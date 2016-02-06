@@ -101,7 +101,8 @@ define([
 			$.each(parameters, function(key, parameter) {
 				//console.log($(dataContainer).siblings('fieldset').children('div').children(parameter.selector).val());
 				
-				var elements = $(dataContainer).siblings('fieldset').children('div').children(parameter.selector);
+				// var elements = $(dataContainer).siblings('fieldset').children('div').children(parameter.selector);
+				var elements = $(dataContainer).parent().find(parameter.selector);
 
 				var parameterValue;
 				if (elements.length > 1) {
@@ -158,7 +159,8 @@ define([
 					// bind to onChange to get mouseOut event
 					$(this).bind(parameter.ev,  function() {
 						// find the facade
-						var index = $(element).parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
+						// var index = $(element).parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
+						var index = $(element).parents('.module').children(dataContainerSelector).data(facadeDataAttr);
 						var facadeInstance = controller.facadeHolder[index];
 						var value = element.value;
 						controller.callFacadeAndUpdateOutput(element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance);
@@ -170,14 +172,16 @@ define([
 						function(value) {
 							if (parameter.ev == 'change') {
 								// find the facade
-								var index = $(element).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
+								// var index = $(element).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
+								var index = $(element).parents('.module').children(dataContainerSelector).data(facadeDataAttr);
 								var facadeInstance = controller.facadeHolder[index];
 								controller.callFacadeAndUpdateOutput(element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance);
 							}
 						}, function(value) {
 							if (parameter.ev == 'input') {
 								// find the facade
-								var index = $(element).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
+								// var index = $(element).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
+								var index = $(element).parents('.module').children(dataContainerSelector).data(facadeDataAttr);
 								var facadeInstance = controller.facadeHolder[index];
 								controller.callFacadeAndUpdateOutput(element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance);
 							}

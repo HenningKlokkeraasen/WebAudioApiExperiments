@@ -286,3 +286,7 @@
  .module fieldset span {
 	font-size: 0.8em;
 }
+
+.radioButtonWrapper {
+	display: inline-block;
+}

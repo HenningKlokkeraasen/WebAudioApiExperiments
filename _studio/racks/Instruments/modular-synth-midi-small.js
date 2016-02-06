@@ -25,7 +25,7 @@ define([
 					{
 						modules: [
 							{ moduleMother: Oscillator, id: 'osc5' },
-							{ moduleMother: Filter, id: 'filter5' },
+							{ moduleMother: Filter, id: 'resonant1' },
 							{ moduleMother: Gain, id: 'gain5' },
 							{ moduleMother: Analyser, id: 'analyser2' }
 						]
@@ -33,8 +33,8 @@ define([
 				],
 				patches : [
 					// Main audio route
-					{ from : 'osc5', to : 'filter5', type : 'audio' },
-					{ from : 'filter5', to : 'gain5', type : 'audio' },
+					{ from : 'osc5', to : 'resonant1', type : 'audio' },
+					{ from : 'resonant1', to : 'gain5', type : 'audio' },
 					{ from : 'gain5', to : 'masterSection1', type : 'audio' },
 					
 					// Trigger / gate

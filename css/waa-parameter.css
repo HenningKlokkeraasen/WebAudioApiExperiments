@@ -71,15 +71,15 @@ div.knob {
 
 
 /********************************************Style radio buttons***********************************************/
-input[type="radio"] {
+input[type="radio"].redradiobuttons {
   display: none;
 }
 
-input[type="radio"] + label {
+input[type="radio"].redradiobuttons + label {
   font-size: 0.8em;
 }
 
-input[type="radio"] + label span {
+input[type="radio"].redradiobuttons + label span {
   display: inline-block;
   width: 25px;
   height: 25px;
@@ -89,10 +89,10 @@ input[type="radio"] + label span {
   border-radius: 50%;
 }
 
-input[type="radio"] + label span {
+input[type="radio"].redradiobuttons + label span {
   background: url('img/radiobutton-off.png');
 }
 
-input[type="radio"]:checked + label span {
+input[type="radio"].redradiobuttons:checked + label span {
   background: url('img/radiobutton-on.png');
 }
