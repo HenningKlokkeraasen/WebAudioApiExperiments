@@ -22,9 +22,22 @@ define([
 				name : moduleData.name, 
 				shortName : moduleData.shortName,
 		        sections : [ 
+					{
+						leds: [
+							{color: 'white', label: 'LED' },
+							{color: 'green', label: 'On' },
+							{color: 'yellow', label: 'Medium' },
+							{color: 'red', label: 'Off' },
+							{color: 'blue', label: 'Cool' },
+							{color: 'green', label: 'Slow', blinkrate: 2 },
+							{color: 'yellow', label: 'Warning', blinkrate: 0.5 },
+							{color: 'red', label: 'LFO Rate', blinkrate: 0.1 },
+							{color: 'blue', label: 'Very Slow', blinkrate: 4 },
+							{color: 'white', label: 'Clock', blinkrate: 1 },
+						]
+					}
 				]
 			});
-			module.showAllLeds = true;
 			return module;
 		};
 
