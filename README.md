@@ -56,6 +56,10 @@ Add this to the end of knob.js
 		};});
 
 
+Add Web Components:
+
+ - /thirdparty/led-atom.html from https://github.com/HenningKlokkeraasen/led-webcomponent
+ 
 ![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/sine3.png)
 ![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/triangle3.png)
 ![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/sawtooth3.png)
