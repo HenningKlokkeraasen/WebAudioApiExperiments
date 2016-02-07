@@ -8,6 +8,42 @@
 				<div style="margin: 0 0 5px 0;">{{moduleName}}</div>
 			</header>
 			
+			{{#if showAllLeds}}
+			<div class="led-box">
+				<div class="led-green"></div>
+				<p>On</p>
+			</div>
+			<div class="led-box">
+				<div class="led-yellow"></div>
+				<p>Medium</p>
+			</div>
+			<div class="led-box">
+				<div class="led-red"></div>
+				<p>Off</p>
+			</div>
+			<div class="led-box">
+				<div class="led-blue"></div>
+				<p>Cool</p>
+			</div>
+
+			<div class="led-box">
+				<div class="led-green blink-green"></div>
+				<p>LFO Rate</p>
+			</div>
+			<div class="led-box">
+				<div class="led-yellow blink-yellow"></div>
+				<p>Clock</p>
+			</div>
+			<div class="led-box">
+				<div class="led-red blink-red"></div>
+				<p>Error</p>
+			</div>
+			<div class="led-box">
+				<div class="led-blue blink-blue"></div>
+				<p>Slow</p>
+			</div>
+			{{/if}}
+			
 			{{#if hasKeyboardInterface}}
 				<fieldset>
 					<div id="keyboard"></div>
@@ -29,11 +65,7 @@
 				{{#if sectionName}}
 					<legend>{{sectionName}}</legend>
 				{{/if}}
-				
-				{{#each leds}}
-					<led-atom color="{{color}}" blinkrate="{{blinkrate}}" label="{{label}}"></led-atom>
-				{{/each}}
-				
+
 				{{#each buttons}}
 				<button name="{{buttonId}}">{{buttonName}}</button>
 				{{/each}}

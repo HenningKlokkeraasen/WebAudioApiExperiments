@@ -55,9 +55,6 @@ Add this to the end of knob.js
 		  'Ui.El.Arc':Ui.El.Arc
 		};});
 
-Add Web Components:
-
- - /thirdparty/led-atom.html from https://github.com/HenningKlokkeraasen/led-webcomponent
 
 ![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/sine3.png)
 ![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/triangle3.png)
