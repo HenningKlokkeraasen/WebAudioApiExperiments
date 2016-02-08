@@ -1,5 +1,5 @@
 define([], function() {
-	var icanControlAudioParam = function() {
+	var icanSendPitchControlOut = function() {
 
 		// this.controlOut = undefined;
 
@@ -7,17 +7,16 @@ define([], function() {
 			// if (destination instanceof AudioParam) {
 				var nodesIControl = this.getNodesIControl.call(this);
 				var index = nodesIControl.indexOf(destination);
+				console.log(index);
 				if (index > -1) {
 					console.log('already connected to destination. disconnecting');
-					this.controlOut.disconnect(destination);
 					this.removeFromNodesIControl.call(this, index);
 					// console.log(this.nodesIHaveConnectedTo);
 					return -1;
 				}
 				else {
 					console.log('connecting to destination');
-					this.controlOut.connect(destination);
-					this.nodesIControl.push(destination);
+					this.controlDestinations.push(destination);
 					return 1;
 				}
 			// } else {
@@ -34,20 +33,20 @@ define([], function() {
 		};
 
 		this.getNodesIControl = function() {
-			if (this.nodesIControl == undefined)
-				this.nodesIControl = [];
-			return this.nodesIControl;
+			if (this.controlDestinations == undefined)
+				this.controlDestinations = [];
+			return this.controlDestinations;
 		}
 
 		this.removeFromNodesIControl = function(index) {
 			// console.log('delete before');
 			// console.log(this.nodesIHaveConnectedTo);
-			this.nodesIControl.splice(index, 1)
+			this.controlDestinations.splice(index, 1)
 			// console.log('delete after');
 			// console.log(this.nodesIHaveConnectedTo);
 		}
 
 	};
 
-	return icanControlAudioParam;
+	return icanSendPitchControlOut;
 });

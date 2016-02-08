@@ -4,15 +4,15 @@
 define([
 	'/_studio/Modules/_FacadeBase.js',
     '/_studio/Modules/_Mixins/ICanTrigger.js',
-	], function(FacadeBase, ICanTrigger) {
+    '/_studio/Modules/_Mixins/IcanSendPitchControlOut.js',
+	], function(FacadeBase, ICanTrigger, ICanSendPitchControlOut) {
 		QwertyHancockFacade.prototype = Object.create(FacadeBase.prototype);
 		QwertyHancockFacade.prototype.constructor = QwertyHancockFacade;
 
 		function QwertyHancockFacade(audioContext) {
 			FacadeBase.call(this, audioContext); // base()
 			ICanTrigger.call(this);
-
-		    this.controlDestinations = [];
+			ICanSendPitchControlOut.call(this);
 
             this.gateOnCallback = this.initiateTriggering;
             this.gateOffCallback = this.initiateReleasing;
@@ -52,11 +52,6 @@ define([
 
 		QwertyHancockFacade.prototype.setOctave = function(octave) {
 			this._currentOctave = Math.round(octave);
-		};
-
-		QwertyHancockFacade.prototype.control = function(destination) {
-			this.controlDestinations.push(destination);
-			return this;
 		};
 
 		QwertyHancockFacade.prototype.initKeyboard = function(keyboard, outputForNoteNode) {

@@ -4,16 +4,16 @@
 define([
 	'/_studio/Modules/_FacadeBase.js',
     '/_studio/Modules/_Mixins/ICanTrigger.js',
+    '/_studio/Modules/_Mixins/IcanSendPitchControlOut.js',
     '/_WebAudioApiFacades/WebMidiContext.js'
-	], function(FacadeBase, ICanTrigger, WebMidiContext) {
+	], function(FacadeBase, ICanTrigger, ICanSendPitchControlOut, WebMidiContext) {
 		WebMidiInputFacade.prototype = Object.create(FacadeBase.prototype);
 		WebMidiInputFacade.prototype.constructor = WebMidiInputFacade;
 
 		function WebMidiInputFacade(audioContext) {
 			FacadeBase.call(this, audioContext); // base()
 			ICanTrigger.call(this);
-
-		    this.controlDestinations = [];
+			ICanSendPitchControlOut.call(this);
 
             this.gateOnCallback = this.initiateTriggering;
             this.gateOffCallback = this.initiateReleasing;
@@ -50,11 +50,6 @@ define([
 		WebMidiInputFacade.prototype.setGlideTime = function(value) {
 			this.glideTime = parseFloat(value);
 		}
-
-		WebMidiInputFacade.prototype.control = function(destination) {
-			this.controlDestinations.push(destination);
-			return this;
-		};
 
 		WebMidiInputFacade.prototype.initKeyboard = function(outputForNoteNode) {
 			var facade = this;
