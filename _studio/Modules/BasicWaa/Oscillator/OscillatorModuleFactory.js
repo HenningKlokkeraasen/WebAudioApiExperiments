@@ -24,8 +24,7 @@ define([
 				parameters : [
 					{ func : OscillatorFacade.prototype.setFrequency, 	selector : 'input[data-parameterType="frequency"]',		ev : 'input'	},
 					{ func : OscillatorFacade.prototype.setDetune, 		selector : 'input[data-parameterType="detune"]',		ev : 'input'	},
-					{ func : OscillatorFacade.prototype.setType, 		selector : 'input[data-parameterType="waveType"]',		ev : 'change'	}
-
+					{ func : OscillatorFacade.prototype.setTypeByNumber,selector : 'webaudio-knob[data-parameterType="waveType2"]',		ev : 'change'	}
 
 
 				]
@@ -46,16 +45,15 @@ define([
 				name : moduleData.name, 
 				shortName : moduleData.shortName,
 		        sections : [ {
+					ranges: [
+						{ label : 'Wave',	type : 'waveType2',		min : 0,		max : 3,		value: 0,		step : 1,		name : moduleData.shortName + '_waveType2',	}
+					], 
+					rangeDisplayMode : 'webaudio-controls-Custom-White_Wave'
+					}, {
 					ranges : [
 						this.getFrequencyParamObject(moduleData), 
 						this.getDetuneParamObject(moduleData.shortName)
-
-
 					], 
-					radioButtonLists : [
-						this.getWaveTypeSelectObject1(moduleData.shortName, moduleData.w_params.indexChecked)
-
-					],
 					rangeDisplayMode : 'knob'
 		    }]});
 			return module;
@@ -66,6 +64,7 @@ define([
 		OscillatorModuleFactory.prototype.getDetuneParamObject = function(shortName) {
 			return	{ label : 'Detune',	type : 'detune',		min : -100,		max : 100,		value: 0,		step : 1,		name : shortName + '_detune'	};
 		};
+		// TODO move this
 		OscillatorModuleFactory.prototype.getWaveTypeSelectObject1 = function(shortName, indexChecked) {
 			return this.getWaveTypeSelectObject('W', 'waveType', shortName + '_wave', indexChecked);
 		};
