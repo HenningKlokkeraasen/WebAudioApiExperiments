@@ -88,6 +88,19 @@
 				{{#each ranges}}
 				<div class="{{../rangeDisplayMode}}">
 					<span title="{{type}}" class="parameterLabel {{../rangeDisplayMode}}">{{label}} </span>
+					
+					
+					{{#ifCond ../rangeDisplayMode "webaudio-controls-Custom-White_Wave"}}
+						<webaudio-knob name="{{name}}"
+							data-parameterType="{{type}}" 
+							src="/img/custom-webaudio-controls/Custom-White_Wave.png" 
+							sprites="3" diameter="44" valuetip="0" 
+							min="{{min}}" 
+							max="{{max}}" 
+							value="{{value}}" 
+							step="{{step}}" ></webaudio-knob>
+					{{else}}
+
 					<input 	type="range" 
 							data-parametertype="{{type}}" 
 							min="{{min}}" 
@@ -138,9 +151,10 @@
 
 								class="{{../../rangeDisplayMode}} shadowrange"							 />
 					{{/ifCond}}
-
+					
 					<output for="{{name}}" class="{{../rangeDisplayMode}}">{{value}}</output>
 					
+					{{/ifCond}}
 				</div>
 				{{/each}}
 

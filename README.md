@@ -24,11 +24,12 @@ Requirements
 
 See bower.json (jQuery, Require JS, Handlebars, Polymer)
 
+TODO remove knob.js after webaudio-components are integrated
 
 Add js libs:
 
--	/thirdparty/qwerty-hancock.js
--	/thirdparty/knob.js 				
+-	/_thirdparty/qwerty-hancock.js
+-	/_thirdparty/knob.js 				
 
 knob.js sourced from https://github.com/eskimoblood/jim-knopf
 and forked to https://github.com/HenningKlokkeraasen/jim-knopf
@@ -58,13 +59,16 @@ Add this to the end of knob.js
 
 Add Web Components:
 
- - /thirdparty/led-atom.html from https://github.com/HenningKlokkeraasen/led-webcomponent
+ - /_thirdparty/led-atom.html from https://github.com/HenningKlokkeraasen/led-webcomponent
+ - /_thirdparty/webaudio-controls/webcomponents/polymer.js from https://github.com/g200kg/webaudio-controls
+ - /_thirdparty/webaudio-controls/js/platform.js  from https://github.com/g200kg/webaudio-controls
+ - /_thirdparty/webaudio-controls/webcomponents/controls.html from https://github.com/g200kg/webaudio-controls
  
 Add wave tables:
 
- - /thirdparty/wavetable.js from http://chromium.googlecode.com/svn/trunk/samples/audio/lib/wavetable.js
- - /thirdparty/fft.js from http://chromium.googlecode.com/svn/trunk/samples/audio/lib/fft.js
- - /thirdparty/wave-tables/ * .txt from http://chromium.googlecode.com/svn/trunk/samples/audio/wave-tables/
+ - /_thirdparty/wavetable.js from http://chromium.googlecode.com/svn/trunk/samples/audio/lib/wavetable.js
+ - /_thirdparty/fft.js from http://chromium.googlecode.com/svn/trunk/samples/audio/lib/fft.js
+ - /_thirdparty/wave-tables/ * .txt from http://chromium.googlecode.com/svn/trunk/samples/audio/wave-tables/
  
 ![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/sine3.png)
 ![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/triangle3.png)

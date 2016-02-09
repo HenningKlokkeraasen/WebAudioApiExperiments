@@ -19,8 +19,16 @@
     <!-- data-main attribute tells require.js to load
          load/init.js after require.js loads. -->
     <script data-main="load/init" src="/bower_components/requirejs/require.js"></script>
+	
+	<!--For webaudio-controls-->
+	<script src="/_thirdparty/webaudio-controls/js/platform.js"></script>
+	<script src="/_thirdparty/webaudio-controls/webcomponents/polymer.js"></script>
 </head>
 <body>
+	
+	<!--For webaudio-controls-->
+	<link rel="import" href="/_thirdparty/webaudio-controls/webcomponents/controls.html" >
+	
 	<div id="patchCableContainer"></div>
 
 	<header id="pageHeader"></header>

@@ -49,6 +49,27 @@ define([
 			this.input.type = type;
 			return this;
 		};
+		
+		OscillatorFacade.prototype.setTypeByNumber = function(type) {
+			switch (parseInt(type)) {
+				case 0:
+					this.input.type = 'sine';
+					break;
+				case 1:
+					this.input.type = 'triangle';
+					break;
+				case 2:
+					this.input.type = 'sawtooth';
+					break;
+				case 3:
+					this.input.type = 'square';
+					break;
+				default:
+					this.input.type = 'sine';
+					break;
+			}
+			return this;
+		};
 
 		OscillatorFacade.prototype.setFrequency = function(frequency) {
 			this.input.frequency.value = parseFloat(frequency);

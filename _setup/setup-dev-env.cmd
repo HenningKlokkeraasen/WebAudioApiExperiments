@@ -9,4 +9,8 @@ call choco install npm
 @rem call npm install -g typescript Not yet
 call npm install -g bower
 
+call bower install --save requirejs
+call bower install --save jquery
+call bower install --save handlebars
+
 echo done
