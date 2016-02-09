@@ -1,0 +1,22 @@
+{
+  "name": "WebAudioExperiments",
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#1.2.0",
+    "jquery": "^2.2.0",
+    "handlebars": "^4.0.5",
+    "requirejs": "^2.1.22"
+  }
+}

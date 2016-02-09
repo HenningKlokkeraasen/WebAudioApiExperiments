@@ -22,11 +22,11 @@ Running this requires a browser that supports Web Audio API and Web MIDI API.
 Requirements
 ------------
 
+See bower.json (jQuery, Require JS, Handlebars, Polymer)
+
+
 Add js libs:
 
--	/thirdparty/jquery-2.1.1.min.js
--	/thirdparty/handlebars-v1.3.0.js
--	/thirdparty/require.js
 -	/thirdparty/qwerty-hancock.js
 -	/thirdparty/knob.js 				
 

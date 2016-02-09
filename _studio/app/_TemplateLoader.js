@@ -6,7 +6,7 @@
 
 
 */
-
+define(['/bower_components/handlebars/handlebars.min.js'], function(Handlebars) { 
 function TemplateLoader() {
 }
 
@@ -28,3 +28,6 @@ TemplateLoader.prototype.loadTemplateWithHandlebars = function(containerSelector
 	// Callback when done
 	callback();
 };
+
+return TemplateLoader;
+});

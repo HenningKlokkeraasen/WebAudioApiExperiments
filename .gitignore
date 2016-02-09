@@ -11,3 +11,5 @@ web.config
 .vscode/*
 
 *.pdn
+
+bower_components/*

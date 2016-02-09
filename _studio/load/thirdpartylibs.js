@@ -1,8 +1,8 @@
 define([
-	'/_thirdparty/jquery-2.1.1.js',
-    '/_thirdparty/handlebars-v1.3.0.js'
+	'/bower_components/jquery/dist/jquery.min.js',
+    '/bower_components/handlebars/handlebars.min.js'
     ],
-	function() {
+	function($, Handlebars) {
 
 		// a Handlebars helper that provides equality if condition
 		Handlebars.registerHelper('ifCond', function(v1, v2, options) {

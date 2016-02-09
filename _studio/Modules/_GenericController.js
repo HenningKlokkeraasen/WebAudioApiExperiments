@@ -1,7 +1,8 @@
 define([
 	'/_thirdparty/knob.js',
-	'/_studio/UiElements/Knobs/GreenKnob.js'
-	], function(JimKnopf, GreenKnob) {
+	'/_studio/UiElements/Knobs/GreenKnob.js',
+	'/_studio/app/_TemplateLoader.js',
+	], function(JimKnopf, GreenKnob, TemplateLoader) {
 		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
 		function GenericController(master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder) {
 			this.master = master;
