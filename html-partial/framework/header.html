@@ -3,10 +3,10 @@
 	<h1><a href="/_studio/rack.html?rackName=home">Web Audio API Experiments</a></h1>
 	<nav>
 		
-		<ul class="menulevel1">
-			<li>
-				&#9776; Menu
-				<ul class="menulevel2">
+				<label id="main-menu-toggle-label" for="main-menu-toggle">&#9776; Menu</label>  
+				<input type="checkbox" id="main-menu-toggle"/> 
+
+				<ul id="main-menu" class="menulevel2">
 					<li><a href="/_studio/rack.html?rackName=home">Home</a></li>
 					<li><a href="/history.html">History</a></li><!-- TODO -->
 					<li>
@@ -89,7 +89,7 @@
 					<li> Everything after here are TODOs </li>
 
 					<li>TODO
-						<ul class="menulevel3 hidden">
+						<ul class="menulevel3">
 							<li>Chain multiple LFOS</li>
 							<li>sync Modulator-Carrier</li>
 							<li>External control on FM patches, SuperSaw, etc</li>
@@ -100,19 +100,19 @@
 					
 					<li>
 						Keyboard Input &#8600;
-						<ul class="menulevel3 hidden">
+						<ul class="menulevel3">
 							<li><a href="/_studio/rack.html?rackName=kbd-triggered-synth">Synth - Keyboard</a></li><!-- TODO -->
 						</ul>
 					</li>
 					<li>
 						Testing &#8600;
-						<ul class="menulevel3 hidden">
+						<ul class="menulevel3">
 							<li><a href="/_studio/rack.html?rackName=testing-2">Test 2</a></li><!-- TODO -->
 						</ul>
 					</li>
 					<li>
 						Waveforms &#8600;
-						<ul class="menulevel3 hidden">
+						<ul class="menulevel3">
 							<li><a href="/_studio/rack.html?rackName=waveform-fourier">Fourier transforms</a></li>
 							<li>TODO : Random</li><!-- TODO -->
 							<li>TODO : S&H</li><!-- TODO -->
@@ -125,8 +125,6 @@
 						</ul>
 					</li> -->
 				</ul>
-			</li>
-		</ul>
 	</nav>
 </div>	
 <script>

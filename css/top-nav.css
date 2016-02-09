@@ -1,5 +1,15 @@
 
-header#pageHeader nav {
+#main-menu-toggle-label {  
+  cursor: pointer;
+}
+#main-menu-toggle {
+  display: none;
+}
+#main-menu {
+  display: none;
+}
+#main-menu-toggle:checked + #main-menu {
+  display: block;
 }
 
 /* first level */
@@ -8,7 +18,6 @@ header#pageHeader nav ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	cursor: pointer;
 	font-weight: bolder;
 }
 
