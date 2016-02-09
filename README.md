@@ -60,6 +60,12 @@ Add Web Components:
 
  - /thirdparty/led-atom.html from https://github.com/HenningKlokkeraasen/led-webcomponent
  
+Add wave tables:
+
+ - /thirdparty/wavetable.js from http://chromium.googlecode.com/svn/trunk/samples/audio/lib/wavetable.js
+ - /thirdparty/fft.js from http://chromium.googlecode.com/svn/trunk/samples/audio/lib/fft.js
+ - /thirdparty/wave-tables/ * .txt from http://chromium.googlecode.com/svn/trunk/samples/audio/wave-tables/
+ 
 ![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/sine3.png)
 ![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/triangle3.png)
 ![alt tag](https://raw.github.com/HenningKlokkeraasen/WebAudioApiExperiments/develop/img/sawtooth3.png)
