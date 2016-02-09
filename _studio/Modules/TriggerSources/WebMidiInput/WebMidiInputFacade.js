@@ -4,7 +4,7 @@
 define([
 	'/_studio/Modules/_FacadeBase.js',
     '/_studio/Modules/_Mixins/ICanTrigger.js',
-    '/_studio/Modules/_Mixins/IcanSendPitchControlOut.js',
+    '/_studio/Modules/_Mixins/ICanSendPitchControlOut.js',
     '/_WebAudioApiFacades/WebMidiContext.js'
 	], function(FacadeBase, ICanTrigger, ICanSendPitchControlOut, WebMidiContext) {
 		WebMidiInputFacade.prototype = Object.create(FacadeBase.prototype);

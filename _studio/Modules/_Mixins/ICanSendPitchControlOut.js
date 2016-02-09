@@ -1,5 +1,5 @@
 define([], function() {
-	var icanSendPitchControlOut = function() {
+	var ICanSendPitchControlOut = function() {
 
 		// this.controlOut = undefined;
 
@@ -48,5 +48,5 @@ define([], function() {
 
 	};
 
-	return icanSendPitchControlOut;
+	return ICanSendPitchControlOut;
 });

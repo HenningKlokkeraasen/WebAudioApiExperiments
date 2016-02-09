@@ -39,7 +39,14 @@ define([
 			{ name: 'Phoneme_ee', value: 'Phoneme_ee' },
 			{ name: 'Piano', value: 'Piano' },
 			{ name: 'Trombone', value: 'Trombone' },
-			{ name: 'Wurlitzer', value: 'Wurlitzer' }
+			{ name: 'Celeste', value: 'Celeste' },
+			{ name: 'Chorus_Strings', value: 'Chorus_Strings' },
+			{ name: 'Ethnic_33', value: 'Ethnic_33' },
+			{ name: 'Full_1', value: 'Full_1' },
+			{ name: 'Mkl_Hard', value: 'Mkl_Hard' },
+			{ name: 'Throaty', value: 'Throaty' },
+			{ name: 'Wurlitzer', value: 'Wurlitzer' },
+			{ name: 'Wurlitzer_2', value: 'Wurlitzer_2' }
 		];
 
 		WaveTableOscFacade.prototype.setPeriodicWave = function(periodicWave) {
@@ -66,6 +73,13 @@ define([
 				case this.periodicWaves[11].value:
 				case this.periodicWaves[12].value:
 				case this.periodicWaves[13].value:
+				case this.periodicWaves[14].value:
+				case this.periodicWaves[15].value:
+				case this.periodicWaves[16].value:
+				case this.periodicWaves[17].value:
+				case this.periodicWaves[18].value:
+				case this.periodicWaves[19].value:
+				case this.periodicWaves[20].value:
 					var self = this;
 					this.periodicWaveCreator.createChromiumWave(periodicWave, function(wave) {
 						self.input.setPeriodicWave(wave);

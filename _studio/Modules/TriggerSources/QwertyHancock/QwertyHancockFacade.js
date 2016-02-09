@@ -4,7 +4,7 @@
 define([
 	'/_studio/Modules/_FacadeBase.js',
     '/_studio/Modules/_Mixins/ICanTrigger.js',
-    '/_studio/Modules/_Mixins/IcanSendPitchControlOut.js',
+    '/_studio/Modules/_Mixins/ICanSendPitchControlOut.js',
 	], function(FacadeBase, ICanTrigger, ICanSendPitchControlOut) {
 		QwertyHancockFacade.prototype = Object.create(FacadeBase.prototype);
 		QwertyHancockFacade.prototype.constructor = QwertyHancockFacade;
