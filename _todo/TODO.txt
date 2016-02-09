@@ -1,6 +1,3 @@
-Knob/dial alternatives
- - jQuery Knob
- - YUI Dial
  - jqskin http://aikelab.net/websynth/
 
 Abbey Load
