@@ -20,9 +20,9 @@ define([
 				handlebarsTemplateSelector : this.handlebarsTemplateSelector,
 				facade : LfoFacade,
 				parameters : [
-					{ func : LfoFacade.prototype.setRate, 			selector : 'input[data-parameterType="rate"]',			ev : 'input'	},
-					{ func : LfoFacade.prototype.setDepth, 			selector : 'input[data-parameterType="depth"]',			ev : 'input'	},
-					{ func : LfoFacade.prototype.setShape, 			selector : 'input[data-parameterType="shape"]',			ev : 'change'	},
+					{ func : LfoFacade.prototype.setRate, 			selector : 'webaudio-knob[data-parameterType="rate"]',			ev : 'change'	},
+					{ func : LfoFacade.prototype.setDepth, 			selector : 'webaudio-knob[data-parameterType="depth"]',			ev : 'change'	},
+					{ func : LfoFacade.prototype.setShapeByNumber,selector : 'webaudio-knob[data-parameterType="waveType2"]',		ev : 'change'	},
 					{ func : LfoFacade.prototype.setActsAsModulatorInAudibleRange, selector : 'input[data-parameterType="actsAsModulatorInAudibleRange"]', ev : 'change'}
 
 
@@ -45,17 +45,16 @@ define([
 				name : moduleData.name, 
 				shortName : moduleData.shortName,
 		        sections : [ {
+					ranges: [
+						{ label : 'Shape',	type : 'waveType2',		min : 0,		max : 3,		value: 0,		step : 1,		name : moduleData.shortName + '_waveType2',	}
+					], 
+					rangeDisplayMode : 'webaudio-controls-Custom-White_Wave'
+		    }, {
 					ranges : [
 						this.getRangeControlData({ label : 'Rate',     type : 'rate',	params : moduleData.f_params,  name : moduleData.shortName + '_freq' }),
 						this.getRangeControlData({ label : 'Depth',     type : 'depth',      params : moduleData.g_params,  name : moduleData.shortName + '_gain' })
-
-
-					], 
-					radioButtonLists : [
-						this.getWaveTypeSelectObject('Shape', 'shape', moduleData.shortName + '_shape', moduleData.w_params.indexChecked)
-
 					],
-					rangeDisplayMode : 'knob'
+					rangeDisplayMode : 'webaudio-controls-color_knob'
 		    }],
 				hiddenParameters: [],
 			});

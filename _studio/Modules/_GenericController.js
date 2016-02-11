@@ -1,8 +1,6 @@
 define([
-	'/_thirdparty/knob.js',
-	'/_studio/UiElements/Knobs/GreenKnob.js',
 	'/_studio/app/_TemplateLoader.js',
-	], function(JimKnopf, GreenKnob, TemplateLoader) {
+	], function(TemplateLoader) {
 		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
 		function GenericController(master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder) {
 			this.master = master;
@@ -166,33 +164,14 @@ define([
 						var value = element.value;
 						controller.callFacadeAndUpdateOutput(element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance);
 					});
-
-					// Convert input ranges to JimKnopf Knobs
-					if ($(this).hasClass('knob')) {
-						var knob = new JimKnopf.Knob(element, new GreenKnob(),
-						function(value) {
-							if (parameter.ev == 'change') {
-								// find the facade
-								// var index = $(element).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
-								var index = $(element).parents('.module').children(dataContainerSelector).data(facadeDataAttr);
-								var facadeInstance = controller.facadeHolder[index];
-								controller.callFacadeAndUpdateOutput(element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance);
-							}
-						}, function(value) {
-							if (parameter.ev == 'input') {
-								// find the facade
-								// var index = $(element).parent().parent().parent().siblings(dataContainerSelector).data(facadeDataAttr);
-								var index = $(element).parents('.module').children(dataContainerSelector).data(facadeDataAttr);
-								var facadeInstance = controller.facadeHolder[index];
-								controller.callFacadeAndUpdateOutput(element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance);
-							}
-						});
-					}
 				});
 			});
 		};
 
 		GenericController.prototype.callFacadeAndUpdateOutput = function(element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance) {
+			
+			var formattedValue = Math.round(element.value * 100) / 100
+			
 			// special case for checkboxes
 			if ($(element).attr('type') == 'checkbox') {
 				value = element.checked;
@@ -204,8 +183,12 @@ define([
 
 			// also, update the output
 			if (element.name)
-				$('output[for=' + element.name + ']').text(element.value);
-			$(element).attr('title', element.value);
+				$('output[for=' + element.name + ']').text(formattedValue);
+			// for webaudio-controls, name is undefined, but id is not
+			else if (element.id)
+				$('output[for=' + element.id + ']').text(formattedValue);
+			
+			$(element).attr('title', value);
 		};
 
 		//////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////

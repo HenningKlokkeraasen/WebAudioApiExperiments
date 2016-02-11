@@ -17,7 +17,7 @@ define([
                 facade : DelayFacade,
                 parameters : [
                 // delay shouldnt change continously. bind to change instead of input
-        			{ func : DelayFacade.prototype.setDelayTime, 	selector : 'input[data-parameterType="delayTime"]',			ev : 'change'    }
+        			{ func : DelayFacade.prototype.setDelayTime, 	selector : 'webaudio-knob[data-parameterType="delayTime"]',			ev : 'change'    }
                 
 
                     
@@ -47,7 +47,7 @@ define([
 
 
                     ],
-                    rangeDisplayMode : 'knob'
+                    rangeDisplayMode : 'webaudio-controls-color_knob'
 
 
 

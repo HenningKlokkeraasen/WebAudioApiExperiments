@@ -4,13 +4,15 @@
     https://medium.com/web-audio/you-dont-need-that-scriptprocessor-61a836e28b42
 */
 define([
-    '/_studio/Modules/_FacadeBase.js'
-    ], function(FacadeBase) {
+    '/_studio/Modules/_FacadeBase.js',
+	'/_studio/Modules/_Mixins/ICanBeTriggered.js',
+    ], function(FacadeBase, ICanBeTriggered) {
         NoiseGeneratorFacade.prototype = Object.create(FacadeBase.prototype);
         NoiseGeneratorFacade.prototype.constructor = NoiseGeneratorFacade;
 
         function NoiseGeneratorFacade(audioContext) {
             FacadeBase.call(this, audioContext); // base()
+			ICanBeTriggered.call(this);
         }
 
         // private
@@ -22,7 +24,7 @@ define([
 
         // private
         NoiseGeneratorFacade.prototype.setDefaultValues = function() {
-
+            this.output.gain.value = 0;
 
 
         };
@@ -61,19 +63,17 @@ define([
         };
 
         NoiseGeneratorFacade.prototype.start = function() {
-            this.input.start(0);
+			if (!this.hasBeenStartedOnce)
+			{
+				this.input.start(0);
+				this.hasBeenStartedOnce = true;
+			}
+            this.output.gain.value = 1;
             return this;
         };
 
         NoiseGeneratorFacade.prototype.stop = function() {
-            this.input.stop();
-            this.input.disconnect();
-
-            // recreate
-            this.createBufferSource();
-            this.setNoiseType(this.noiseType);
-            this.wireUp();
-
+            this.output.gain.value = 0;
             return this;
         };
 
@@ -126,6 +126,27 @@ define([
                 this.data[i] *= 3.5; // (roughly) compensate for gain
             }
         };
+		
+		//region iCanBeTriggered
+		NoiseGeneratorFacade.prototype.gateOn = function(callback, originator) {
+			// console.debug('output.gain.value before is ' + this.output.gain.value);
+			// this.output.gain.value = 1;
+			// console.debug('output.gain.value after is ' + this.output.gain.value);
+			// console.debug('in GainFacade.gateOn, callback is ');
+			// console.debug(callback);
+			callback.call(originator, this.output.gain, 1, 0.0001);
+		};
+
+		NoiseGeneratorFacade.prototype.gateOff = function(callback, originator) {
+			// console.debug('output.gain.value before is ' + this.output.gain.value);
+			// this.output.gain.value = 0;
+			// console.debug('output.gain.value after is ' + this.output.gain.value);
+			// console.debug('in GainFacade.gateOff, callback is ');
+			// console.debug(callback);
+			callback.call(originator, this.output.gain, 0.0001);
+		};
+		//endregion iCanBeTriggered
+
 
         return NoiseGeneratorFacade;
     }

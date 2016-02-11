@@ -48,7 +48,7 @@ define([
 
 
                     selectLists : [
-                        { label : 'I',	type : 'impulse', 		options: this.getKeyValuePairsForSelectListOptions(moduleData.audioFilePaths) }
+                        { label : 'Impulse file',	type : 'impulse', 		options: this.getKeyValuePairsForSelectListOptions(moduleData.audioFilePaths) }
                     ]
             }]});
             module.audioFilePaths = moduleData.audioFilePaths;

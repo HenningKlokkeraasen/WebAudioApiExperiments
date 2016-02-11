@@ -44,13 +44,15 @@ define([
             return this;
         };
 
-        ChannelStripFacade.prototype.setLeftLevel = function(value) {
-            this.leftGain.gain.value = value;
-            return this;
-        };
-
-        ChannelStripFacade.prototype.setRightLevel = function(value) {
-            this.rightGain.gain.value = value;
+        ChannelStripFacade.prototype.setLeftRightPanLevel = function(value) {
+			if (value < 0) {
+            	this.leftGain.gain.value = (1 + Math.abs(value)) / 2;
+            	this.rightGain.gain.value = (1 - Math.abs(value)) / 2;
+			}
+			else {
+            	this.leftGain.gain.value = (1 - value) / 2;
+            	this.rightGain.gain.value = (1 + value) / 2;
+			}
             return this;
         };
 

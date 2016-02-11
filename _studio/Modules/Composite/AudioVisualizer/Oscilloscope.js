@@ -33,7 +33,7 @@ Oscilloscope.prototype.init = function(analyser) {
 	
 	// Setup animation
 	if (!window.requestAnimationFrame) {
-		console.log('requestAnimationFrame is NOT available');
+		console.warn('requestAnimationFrame is NOT available');
 		return;
 	}
 	else {
@@ -44,7 +44,7 @@ Oscilloscope.prototype.init = function(analyser) {
 
 	this.data = new Uint8Array(analyser.frequencyBinCount); // (time domain)
 
-	console.log('oscilloscope starts rendering');
+	// console.log('oscilloscope starts rendering');
 
 	// draw will be called recursively by requestAnimationFrame
 	requestAnimationFrame(this.draw.bind(this));

@@ -22,8 +22,8 @@ define([
 				handlebarsTemplateSelector : this.handlebarsTemplateSelector,
 				facade : OscillatorFacade,
 				parameters : [
-					{ func : OscillatorFacade.prototype.setFrequency, 	selector : 'input[data-parameterType="frequency"]',		ev : 'input'	},
-					{ func : OscillatorFacade.prototype.setDetune, 		selector : 'input[data-parameterType="detune"]',		ev : 'input'	},
+					{ func : OscillatorFacade.prototype.setFrequency, 	selector : 'webaudio-knob[data-parameterType="frequency"]',		ev : 'change'	},
+					{ func : OscillatorFacade.prototype.setDetune, 		selector : 'webaudio-knob[data-parameterType="detune"]',		ev : 'change'	},
 					{ func : OscillatorFacade.prototype.setTypeByNumber,selector : 'webaudio-knob[data-parameterType="waveType2"]',		ev : 'change'	}
 
 
@@ -54,7 +54,7 @@ define([
 						this.getFrequencyParamObject(moduleData), 
 						this.getDetuneParamObject(moduleData.shortName)
 					], 
-					rangeDisplayMode : 'knob'
+					rangeDisplayMode : 'webaudio-controls-color_knob'
 		    }]});
 			return module;
 		};

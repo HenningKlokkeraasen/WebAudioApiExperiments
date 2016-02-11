@@ -23,10 +23,10 @@ define([
 				handlebarsTemplateSelector : this.handlebarsTemplateSelector,
 				facade : EnvelopeGeneratorFacade,
 				parameters : [
-					{ func : EnvelopeGeneratorFacade.prototype.setAttackTime, selector : 'input[data-parameterType="attackTime"]', ev : 'input'	},
-					{ func : EnvelopeGeneratorFacade.prototype.setDecayTime, selector : 'input[data-parameterType="decayTime"]', ev : 'input' },
-					{ func : EnvelopeGeneratorFacade.prototype.setSustainLevel, selector : 'input[data-parameterType="sustainLevel"]', ev : 'input' },
-					{ func : EnvelopeGeneratorFacade.prototype.setReleaseTime, selector : 'input[data-parameterType="releaseTime"]', ev : 'input' }
+					{ func : EnvelopeGeneratorFacade.prototype.setAttackTime, selector : 'webaudio-slider[data-parameterType="attackTime"]', ev : 'change'	},
+					{ func : EnvelopeGeneratorFacade.prototype.setDecayTime, selector : 'webaudio-slider[data-parameterType="decayTime"]', ev : 'change' },
+					{ func : EnvelopeGeneratorFacade.prototype.setSustainLevel, selector : 'webaudio-slider[data-parameterType="sustainLevel"]', ev : 'change' },
+					{ func : EnvelopeGeneratorFacade.prototype.setReleaseTime, selector : 'webaudio-slider[data-parameterType="releaseTime"]', ev : 'change' }
 
 
 				]
@@ -67,7 +67,7 @@ define([
 				shortName : moduleData.shortName,
 		        sections : [ {
 					ranges : ranges,
-					rangeDisplayMode : 'slider-vertical'
+					rangeDisplayMode : 'webaudio-controls-vslider'
 		    }]});
 		};
 

@@ -53,21 +53,6 @@ input[type=range].shadowrange {
 	input[type=range].shadowrange::-ms-thumb {
 		visibility: hidden;
 	}
-/********************************************Style knob***********************************************/
-div.knob {
-	display: inline-block;
-	text-align: center;
-}
-	div.knob > div {
-		margin: auto;
-	}
-
-/*dirty hack. only wanted for knobs*/
-* {
-	outline: none;
-}
-
-
 
 
 /********************************************Style radio buttons***********************************************/
@@ -95,4 +80,15 @@ input[type="radio"].redradiobuttons + label span {
 
 input[type="radio"].redradiobuttons:checked + label span {
   background: url('img/radiobutton-on.png');
+}
+
+/********************************************Style webaudio-controls***********************************************/
+.webaudio-controls-vslider,
+.webaudio-controls-Custom-White_Wave,
+.webaudio-controls-MetalKnob,
+.webaudio-controls-Small-Moog-Like-Knob,
+.webaudio-controls-blue-knob,
+.webaudio-controls-color_knob {
+	display: inline-block;
+	text-align: center;
 }

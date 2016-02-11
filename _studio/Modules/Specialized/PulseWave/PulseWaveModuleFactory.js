@@ -18,9 +18,9 @@ define([
 				handlebarsTemplateSelector : this.handlebarsTemplateSelector,
 				facade : PulseWaveFacade,
 				parameters : [
-					{ func : PulseWaveFacade.prototype.setFrequency, 	selector : 'input[data-parameterType="frequency"]',		ev : 'input'	},
-					{ func : PulseWaveFacade.prototype.setDetune, 		selector : 'input[data-parameterType="detune"]',		ev : 'input'	},
-					{ func : PulseWaveFacade.prototype.setPulseWidth, 	selector : 'input[data-parameterType="pulseWidth"]',		ev : 'input'	},
+					{ func : PulseWaveFacade.prototype.setFrequency, 	selector : 'webaudio-knob[data-parameterType="frequency"]',		ev : 'change'	},
+					{ func : PulseWaveFacade.prototype.setDetune, 		selector : 'webaudio-knob[data-parameterType="detune"]',		ev : 'change'	},
+					{ func : PulseWaveFacade.prototype.setPulseWidth, 	selector : 'webaudio-knob[data-parameterType="pulseWidth"]',		ev : 'change'	},
 					// { func : OscillatorFacade.prototype.setType, 		selector : 'input[data-parameterType="waveType"]',		ev : 'change'	}
 
 
@@ -45,20 +45,16 @@ define([
 		        sections : [ {
 					ranges : [
 						this.getFrequencyParamObject(moduleData), 
-						this.getDetuneParamObject(moduleData.shortName)
+						this.getDetuneParamObject(moduleData.shortName),
+						{ label : 'Pulse width',	type : 'pulseWidth',		min : 0,		max : 100,		value: 50,		step : 1,		name : moduleData.shortName + 'pw'	}
 
 					],
-					rangeDisplayMode : 'knob'
+					rangeDisplayMode : 'webaudio-controls-color_knob'
 					// radioButtonLists : [
 					// 	this.getWaveTypeSelectObject1(moduleData.shortName, moduleData.w_params.indexChecked)
 
 					// ]
-		    		}, {
-					ranges : [
-						{ label : 'P',	type : 'pulseWidth',		min : 0,		max : 100,		value: 50,		step : 1,		name : moduleData.shortName + 'pw'	}
-
-					],
-					rangeDisplayMode : 'slider-vertical'
+		    		
 		    }]});
 		};
 

@@ -84,11 +84,14 @@
 					</select>
 				</div>
 				{{/each}}
+				
+				<!--TODO
+				<webaudio-switch id="switch-1" src="/_thirdparty/webaudio-controls/img/switch_toggle.png" width="32" height="32"></webaudio-switch>
+				<webaudio-keyboard keys="25" ></webaudio-keyboard>-->
 
 				{{#each ranges}}
 				<div class="{{../rangeDisplayMode}}">
 					<span title="{{type}}" class="parameterLabel {{../rangeDisplayMode}}">{{label}} </span>
-					
 					
 					{{#ifCond ../rangeDisplayMode "webaudio-controls-Custom-White_Wave"}}
 						<webaudio-knob name="{{name}}"
@@ -100,7 +103,50 @@
 							value="{{value}}" 
 							step="{{step}}" ></webaudio-knob>
 					{{else}}
-
+					
+					{{#ifCond ../rangeDisplayMode "webaudio-controls-vslider"}}
+						<webaudio-slider name="{{name}}"
+							id="{{name}}"
+							data-parameterType="{{type}}" 
+							src="/img/custom-webaudio-controls/custom-vslider-track.png" 
+							knobsrc="/img/custom-webaudio-controls/custom-vslider-knob.png" 
+							width="24" height="115" valuetip="0" 
+							min="{{min}}" 
+							max="{{max}}" 
+							value="{{value}}" 
+							step="{{step}}" ></webaudio-slider>
+						<!--<webaudio-param link="{{name}}"></webaudio-param> this binding wont work because the HBS template has not been rendered to the DOM yet-->
+						<output for="{{name}}" class="{{../rangeDisplayMode}}">{{value}}</output>
+					{{else}}
+					
+					{{#ifCond ../rangeDisplayMode "webaudio-controls-blue-knob"}}
+						<webaudio-knob name="{{name}}"
+							id="{{name}}"
+							data-parameterType="{{type}}" 
+							src="/img/webknobman-webaudio-controls/blue-knob.png" 
+							sprites="100" diameter="64" valuetip="0" 
+							min="{{min}}" 
+							max="{{max}}" 
+							value="{{value}}" 
+							step="{{step}}" ></webaudio-knob>
+						<!--<webaudio-param link="{{name}}"></webaudio-param> this binding wont work because the HBS template has not been rendered to the DOM yet-->
+						<output for="{{name}}" class="{{../rangeDisplayMode}}">{{value}}</output>
+					{{else}}
+					
+					{{#ifCond ../rangeDisplayMode "webaudio-controls-color_knob"}}
+						<webaudio-knob name="{{name}}"
+							id="{{name}}"
+							data-parameterType="{{type}}" 
+							src="/img/webknobman-webaudio-controls/color_knob.png" 
+							sprites="29" width="46" height="46" valuetip="0" 
+							min="{{min}}" 
+							max="{{max}}" 
+							value="{{value}}" 
+							step="{{step}}" ></webaudio-knob>
+						<!--<webaudio-param link="{{name}}"></webaudio-param> this binding wont work because the HBS template has not been rendered to the DOM yet-->
+						<output for="{{name}}" class="{{../rangeDisplayMode}}">{{value}}</output>
+					{{else}}
+				
 					<input 	type="range" 
 							data-parametertype="{{type}}" 
 							min="{{min}}" 
@@ -110,17 +156,11 @@
 							name="{{name}}"
 							title="{{value}}"
 
-							{{#ifCond ../rangeDisplayMode "knob"}}
-								data-width="50"
-								data-height="50"
-								data-angleOffset="220"
-								data-angleRange="280"
-							{{/ifCond}}
-
 							list="{{name}}_datalist" 
 
 							class="{{../rangeDisplayMode}}"							 />
 
+							<!--TODO remove slider-vertical. use webaudio-controls instead-->
 					{{#ifCond ../rangeDisplayMode "slider-vertical"}}
 						{{!--tick marks--}}
 						<datalist id="{{name}}_datalist">
@@ -153,7 +193,10 @@
 					{{/ifCond}}
 					
 					<output for="{{name}}" class="{{../rangeDisplayMode}}">{{value}}</output>
-					
+
+					{{/ifCond}}
+					{{/ifCond}}
+					{{/ifCond}}
 					{{/ifCond}}
 				</div>
 				{{/each}}

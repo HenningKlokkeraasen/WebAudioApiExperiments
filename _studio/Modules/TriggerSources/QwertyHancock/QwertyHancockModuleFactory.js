@@ -23,8 +23,8 @@ define([
                 handlebarsTemplateSelector : this.handlebarsTemplateSelector,
                 facade : QwertyHancockFacade,
                 parameters : [
-                    { func: QwertyHancockFacade.prototype.setOctave, selector: 'input[data-parameterType="octave"]',      ev: 'input'     },
-                	{ func : QwertyHancockFacade.prototype.setGlideTime, 	selector : 'input[data-parameterType="glideTime"]',		ev : 'input'	},
+                    { func: QwertyHancockFacade.prototype.setOctave, selector: 'webaudio-knob[data-parameterType="octave"]',      ev: 'change'     },
+                	{ func : QwertyHancockFacade.prototype.setGlideTime, 	selector : 'webaudio-knob[data-parameterType="glideTime"]',		ev : 'change'	},
 
                     
 
@@ -53,7 +53,7 @@ define([
 
 
                     ],
-                    rangeDisplayMode : 'knob'
+                    rangeDisplayMode : 'webaudio-controls-color_knob'
 
 
 

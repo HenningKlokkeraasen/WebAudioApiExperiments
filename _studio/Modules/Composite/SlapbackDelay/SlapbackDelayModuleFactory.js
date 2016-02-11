@@ -19,9 +19,9 @@ define([
                 facade : SlapbackDelayFacade,
                 parameters : [
                 // delay shouldnt change continously. bind to change instead of input
-                    { func: SlapbackDelayFacade.prototype.setDelayTime, selector: 'input[data-parameterType="delayTime"]',      ev: 'change'     },
-                    { func: SlapbackDelayFacade.prototype.setFeedback,  selector: 'input[data-parameterType="feedback"]',       ev: 'input'     },
-                    { func: SlapbackDelayFacade.prototype.setWetLevel,  selector: 'input[data-parameterType="wetLevel"]',       ev: 'input'     }
+                    { func: SlapbackDelayFacade.prototype.setDelayTime, selector: 'webaudio-knob[data-parameterType="delayTime"]',      ev: 'change'     },
+                    { func: SlapbackDelayFacade.prototype.setFeedback,  selector: 'webaudio-knob[data-parameterType="feedback"]',       ev: 'change'     },
+                    { func: SlapbackDelayFacade.prototype.setWetLevel,  selector: 'webaudio-knob[data-parameterType="wetLevel"]',       ev: 'change'     }
                     
 
 
@@ -44,12 +44,12 @@ define([
 				shortName : moduleData.shortName,
                 sections : [ {
                     ranges : [
-                        { label : 'D',  type : 'delayTime', min : 0,    max : 1,        value: 0.15,    step : 0.01,    name : moduleData.shortName + '_gain'       },
-                        { label : 'F',  type : 'feedback',  min : 0,    max : 1,        value: 0.25,    step : 0.01,    name : moduleData.shortName + '_fb'         },
-                        { label : 'W',  type : 'wetLevel',  min : 0,    max : 2,        value: 0.25,    step : 0.01,    name : moduleData.shortName + '_wl'         }
+                        { label : 'Delay Time',  type : 'delayTime', min : 0,    max : 1,        value: 0.15,    step : 0.01,    name : moduleData.shortName + '_gain'       },
+                        { label : 'Feedback',  type : 'feedback',  min : 0,    max : 1,        value: 0.25,    step : 0.01,    name : moduleData.shortName + '_fb'         },
+                        { label : 'Wet Level',  type : 'wetLevel',  min : 0,    max : 2,        value: 0.25,    step : 0.01,    name : moduleData.shortName + '_wl'         }
 
                     ],
-                    rangeDisplayMode : 'knob'
+                    rangeDisplayMode : 'webaudio-controls-color_knob'
 
 
 

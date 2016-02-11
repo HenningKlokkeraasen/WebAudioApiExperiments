@@ -23,7 +23,7 @@ define([
                 handlebarsTemplateSelector : this.handlebarsTemplateSelector,
                 facade : WebMidiInputFacade,
                 parameters : [
-					{ func : WebMidiInputFacade.prototype.setGlideTime, 	selector : 'input[data-parameterType="glideTime"]',		ev : 'input'	},
+					{ func : WebMidiInputFacade.prototype.setGlideTime, 	selector : 'webaudio-knob[data-parameterType="glideTime"]',		ev : 'change'	},
                 
 
                     
@@ -57,7 +57,7 @@ define([
 					
 					
 					
-					rangeDisplayMode : 'knob'
+					rangeDisplayMode : 'webaudio-controls-color_knob'
 				}]});
         };
 

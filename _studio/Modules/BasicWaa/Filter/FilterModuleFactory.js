@@ -17,9 +17,9 @@ define([
                 handlebarsTemplateSelector : this.handlebarsTemplateSelector,
                 facade : FilterFacade,
                 parameters : [
-                    { func: FilterFacade.prototype.setFrequencyByScale, selector: 'input[data-parameterType="frequency"]',      ev: 'input'     },
-                    { func: FilterFacade.prototype.setQuality,          selector: 'input[data-parameterType="quality"]',        ev: 'input'     },
-                    { func: FilterFacade.prototype.setGain,             selector: 'input[data-parameterType="gain"]',           ev: 'input'     },
+                    { func: FilterFacade.prototype.setFrequencyByScale, selector: 'webaudio-knob[data-parameterType="frequency"]',      ev: 'change'     },
+                    { func: FilterFacade.prototype.setQuality,          selector: 'webaudio-knob[data-parameterType="quality"]',        ev: 'change'     },
+                    { func: FilterFacade.prototype.setGain,             selector: 'webaudio-knob[data-parameterType="gain"]',           ev: 'change'     },
                     { func: FilterFacade.prototype.setType,             selector: 'input[data-parameterType="filterType"]',    ev: 'change'    }
 
 
@@ -51,7 +51,7 @@ define([
 						// this.getFilterTypeSelectData('Type', 'filterType', moduleData.shortName + '_filterType')
 
 					],
-                    rangeDisplayMode : 'knob'
+                    rangeDisplayMode : 'webaudio-controls-color_knob'
             }]});
 			switch (moduleData.mode) {
 				case 'resonant':

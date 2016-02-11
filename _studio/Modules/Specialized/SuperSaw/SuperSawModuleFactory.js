@@ -18,8 +18,8 @@ define([
 				handlebarsTemplateSelector : this.handlebarsTemplateSelector,
 				facade : SuperSawFacade,
 				parameters : [
-					{ func : SuperSawFacade.prototype.setFrequency, 	selector : 'input[data-parameterType="frequency"]',		ev : 'input'	},
-					{ func : SuperSawFacade.prototype.setDetune, 		selector : 'input[data-parameterType="detune"]',		ev : 'input'	},
+					{ func : SuperSawFacade.prototype.setFrequency, 	selector : 'webaudio-knob[data-parameterType="frequency"]',		ev : 'change'	},
+					{ func : SuperSawFacade.prototype.setDetune, 		selector : 'webaudio-knob[data-parameterType="detune"]',		ev : 'change'	},
 
 					// { func : OscillatorFacade.prototype.setType, 		selector : 'input[data-parameterType="waveType"]',		ev : 'change'	}
 
@@ -49,9 +49,9 @@ define([
 						
 
 					],
-					rangeDisplayMode : 'knob'
+					rangeDisplayMode : 'webaudio-controls-color_knob'
 					// radioButtonLists : [
-					// 	this.getWaveTypeSelectObject1(moduleData.shortName, moduleData.w_params.indexChecked)
+					// 	this.getWaveTypeSelec	tObject1(moduleData.shortName, moduleData.w_params.indexChecked)
 
 					// ]
 		    }]});

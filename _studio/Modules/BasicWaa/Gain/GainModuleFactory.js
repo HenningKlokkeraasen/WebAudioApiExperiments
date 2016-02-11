@@ -17,7 +17,7 @@ define([
                 handlebarsTemplateSelector : this.handlebarsTemplateSelector,
                 facade : GainFacade,
                 parameters : [
-                    { func : GainFacade.prototype.setGain,              selector : 'input[data-parameterType="gain"]',          ev : 'input'   }
+                    { func : GainFacade.prototype.setGain,              selector : 'webaudio-knob[data-parameterType="gain"]',          ev : 'change'   }
                 
 
                     
@@ -47,7 +47,7 @@ define([
 
 
                     ],
-                    rangeDisplayMode : 'knob'
+                    rangeDisplayMode : 'webaudio-controls-color_knob'
 
 
 

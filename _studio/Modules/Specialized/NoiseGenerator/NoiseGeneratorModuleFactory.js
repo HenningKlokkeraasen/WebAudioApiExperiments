@@ -10,7 +10,7 @@ define([
 
 		function NoiseGeneratorModuleFactory() {
 			
-			
+            this.hasTriggerIn = true;
 			
 		}
 		NoiseGeneratorModuleFactory.prototype.getModuleDefinition = function() {
@@ -44,7 +44,7 @@ define([
 		        sections : [ {
 			    	selectLists : [
 						{ 
-							label : 'N',
+							label : 'Noise type',
 							type : 'noiseType',
 							options : NoiseGeneratorFacade.prototype.noiseTypes
 						},

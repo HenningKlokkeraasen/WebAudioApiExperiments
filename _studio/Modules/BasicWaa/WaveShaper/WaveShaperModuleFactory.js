@@ -17,7 +17,7 @@ define([
 				facade : WaveShaperFacade,
 				parameters : [
 				// reverb build impulse is expensive. // bind to change instead of input
-					{ func : WaveShaperFacade.prototype.setAmount, 		selector : 'input[data-parameterType="amount"]',		ev : 'change'	},
+					{ func : WaveShaperFacade.prototype.setAmount, 		selector : 'webaudio-knob[data-parameterType="amount"]',		ev : 'change'	},
 					{ func : WaveShaperFacade.prototype.setOversample, 	selector : 'input[data-parameterType="oversample"]',	ev : 'change'	}
 					
 
@@ -41,7 +41,7 @@ define([
 				shortName : moduleData.shortName,
 		        sections : [ {
 					ranges : [
-						{ label : 'A',	type : 'amount',		min : 0,		max : 100,		value: 50,		step : 1,		name : moduleData.shortName + '_amount'	}
+						{ label : 'Amount',	type : 'amount',		min : 0,		max : 100,		value: 50,		step : 1,		name : moduleData.shortName + '_amount'	}
 						
 
 
@@ -50,12 +50,12 @@ define([
 						this.getOversampleSelectObject(moduleData.shortName)
 
 					],
-					rangeDisplayMode : 'knob'
+					rangeDisplayMode : 'webaudio-controls-color_knob'
 		    }]});
 		};
 		WaveShaperModuleFactory.prototype.getOversampleSelectObject = function(shortName) {
 			return { 
-				label : 'O',
+				label : 'Oversample',
 				type : 'oversample',
 				rdoName : shortName + '_oversample',
 				radioButtons : [

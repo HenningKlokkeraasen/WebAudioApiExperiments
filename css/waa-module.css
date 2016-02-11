@@ -33,9 +33,9 @@
 			background-color : #6D666B;
 
 			/*Vertical align connectors to bottom*/
-			/*Disabling this because it destroys knob.js*/
+			/*Disabling this because patch cables end up behind the modules*/
 			/*position: relative;
-			padding-bottom: 74px;*/
+			padding-bottom: 74px;*/ /*TODO this will break when connectors take up more than one row*/
 		}
 
 			.module header {
@@ -89,11 +89,11 @@
 				/* END Style similar to the Schmidt analog synthesizer */
 
 				.module fieldset.connectors {
-					/*Vertical align connectors to bottom*/
-					/*Disabling this because it destroys knob.js*/
+					/*Vertical align connectors to bottom*/    
+					/*Disabling this because patch cables end up behind the modules*/
 					/*position: absolute;
 					bottom: 10px;
-					width: 175px;*/
+					width: calc(100% - 30px);*/
 				}
 
 			.module .sectionName {

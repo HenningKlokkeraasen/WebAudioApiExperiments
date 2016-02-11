@@ -22,40 +22,11 @@ Running this requires a browser that supports Web Audio API and Web MIDI API.
 Requirements
 ------------
 
-See bower.json (jQuery, Require JS, Handlebars, Polymer)
-
-TODO remove knob.js after webaudio-components are integrated
+See bower.json (jQuery, Require JS, Handlebars)
 
 Add js libs:
 
 -	/_thirdparty/qwerty-hancock.js
--	/_thirdparty/knob.js 				
-
-knob.js sourced from https://github.com/eskimoblood/jim-knopf
-and forked to https://github.com/HenningKlokkeraasen/jim-knopf
-with some improvements
-
-Add this to the start of knob.js
-        
-		define([], function() { 
-
-Add this to the end of knob.js
-
-		return {
-		  'Knob':Knob,
-		  'Ui':Ui,
-		  'Ui.Pointer':Ui.Pointer,
-		  'Ui.Arc':Ui.Arc,
-		  'Ui.Scale':Ui.Scale,
-		  'Ui.Text':Ui.Text,
-		  'Ui.El':Ui.El,
-		  'Ui.El.Triangle':Ui.El.Triangle,
-		  'Ui.El.Rect':Ui.El.Rect,
-		  'Ui.El.Circle':Ui.El.Circle,
-		  'Ui.El.Text':Ui.El.Text,
-		  'Ui.El.Arc':Ui.El.Arc
-		};});
-
 
 Add Web Components:
 

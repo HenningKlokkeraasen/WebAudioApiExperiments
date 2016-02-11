@@ -60,6 +60,10 @@ define([
             OscillatorFacade.prototype.setType.call(this, type);
             return this;
         };
+		
+		LfoFacade.prototype.setShapeByNumber = function(number) {
+			OscillatorFacade.prototype.setTypeByNumber.call(this, number);
+		}
 
         LfoFacade.prototype.setRate = function(value) {
             // console.debug('actsAsModulatorInAudibleRange: ' + this.actsAsModulatorInAudibleRange);

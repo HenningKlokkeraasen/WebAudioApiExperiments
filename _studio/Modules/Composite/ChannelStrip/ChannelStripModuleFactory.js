@@ -18,9 +18,8 @@ define([
                 handlebarsTemplateSelector : this.handlebarsTemplateSelector,
                 facade : ChannelStripFacade,
                 parameters : [
-                    { func: ChannelStripFacade.prototype.setGainLevel,         selector: 'input[data-parameterType="gain"]',           ev: 'input'     },
-                    { func: ChannelStripFacade.prototype.setLeftLevel,         selector: 'input[data-parameterType="left"]',           ev: 'input'     },
-                    { func: ChannelStripFacade.prototype.setRightLevel,        selector: 'input[data-parameterType="right"]',          ev: 'input'     },
+                    { func: ChannelStripFacade.prototype.setGainLevel,         selector: 'webaudio-knob[data-parameterType="gain"]',           ev: 'change'     },
+                    { func: ChannelStripFacade.prototype.setLeftRightPanLevel,         selector: 'webaudio-knob[data-parameterType="left"]',           ev: 'change'     }
 
 
 
@@ -43,15 +42,15 @@ define([
 				shortName : moduleData.shortName,
                 sections : [ {
                     ranges : [
-                        { label : 'G',      type : 'gain',      min : 0,    max : 2,    value: 1,   step : 0.1, name : moduleData.shortName + '_gain'   },
-                        { label : 'L',      type : 'left',      min : 0,    max : 1,    value: 1,   step : 0.1, name : moduleData.shortName + '_left'   },
-                        { label : 'R',      type : 'right',     min : 0,    max : 1,    value: 1,   step : 0.1, name : moduleData.shortName + '_right'  },
+                        { label : 'Gain',      type : 'gain',      min : 0,    max : 2,    value: 1,   step : 0.1, name : moduleData.shortName + '_gain'   }
                     ],
-                    rangeDisplayMode : 'knob'
-                    
-
-
-
+                    rangeDisplayMode : 'webaudio-controls-color_knob'
+					},
+					{
+                    ranges : [
+                        { label : 'L/R Pan',      type : 'left',      min : -1,    max : 1,    value: 0,   step : 0.1, name : moduleData.shortName + '_leftrightpan'   }
+                    ],
+                    rangeDisplayMode : 'webaudio-controls-blue-knob'
             }]});
         };
 

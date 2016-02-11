@@ -13,7 +13,7 @@ define([
 		function PulseWaveFacade(audioContext) {
 			OscillatorFacade.call(this, audioContext); // base()
 			// FacadeBase2.call(this, audioContext); // ??
-			
+			this.hasBeenStartedOnce = false;
 			return this;
 		};
 
@@ -31,7 +31,7 @@ define([
 			this.dcOffset = this.createDCOffset();
 			this.dcGain = this.audioContext.createGain();
 			// output
-			this.output = new GainFacade(this.audioContext);
+			this.output = this.audioContext.createGain();
 		};
 
 		// private
@@ -42,19 +42,19 @@ define([
 			this.saw2.start(0);
 			this.inverter.gain.value = -1;
 			this.dutyCycle.delayTime.value = (1 / 440);
-			this.output.setGain(0);
+			this.output.gain.value = 0;
 		};
 
 		// private
 		PulseWaveFacade.prototype.wireUp = function() {
-			this.saw1.connect(this.output.output);
+			this.saw1.connect(this.output);
 
 			this.saw2.connect(this.inverter);
 			this.inverter.connect(this.dutyCycle);
-			this.dutyCycle.connect(this.output.output);
+			this.dutyCycle.connect(this.output);
 
 			this.dcOffset.connect(this.dcGain);
-			this.dcGain.connect(this.output.output);
+			this.dcGain.connect(this.output);
 		};
 
 		PulseWaveFacade.prototype.setType = function(type) {
@@ -113,14 +113,16 @@ define([
 		};
 
 		PulseWaveFacade.prototype.start = function() {
-			OscillatorFacade.prototype.start.call(this);
-			this.dcOffset.start();
+			this.output.gain.value = 1;
+			if (!this.hasBeenStartedOnce) {
+				this.dcOffset.start();
+				this.hasBeenStartedOnce = true;
+			}
 			return this;
 		};
 
 		PulseWaveFacade.prototype.stop = function() {
-			OscillatorFacade.prototype.stop.call(this);
-			this.dcOffset.stop();
+			this.output.gain.value = 0;
 			return this;
 		};
 

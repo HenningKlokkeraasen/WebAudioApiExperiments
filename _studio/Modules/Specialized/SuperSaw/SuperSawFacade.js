@@ -30,7 +30,7 @@ define([
 			this.shaper = this.audioContext.createBiquadFilter();
 
 			// output
-			this.output = new GainFacade(this.audioContext);
+			this.output = this.audioContext.createGain();
 		};
 
 		// private
@@ -51,7 +51,7 @@ define([
 
 				var detune = (detuneIteration++ * detuneFactor) + detuneStart;
 				
-				console.debug('i: ' + i + ' j: ' + j + ' detune i : ' + detune + ' detune j: ' + (detune*-1));
+				// console.debug('i: ' + i + ' j: ' + j + ' detune i : ' + detune + ' detune j: ' + (detune*-1));
 
 				this.oscillators[i].detune.value = detune;
 				this.oscillators[j].detune.value = detune * -1;
@@ -62,7 +62,7 @@ define([
 			this.shaper.type = 'highpass';
 			this.shaper.frequency.value = 440;
 			
-			this.output.setGain(0);
+			this.output.gain.value = 0;
 
 
 
@@ -88,7 +88,7 @@ define([
 				self.mixers[i].connect(self.shaper);
 				i++;
 			});
-			this.shaper.connect(this.output.output);
+			this.shaper.connect(this.output);
 		};
 
 		SuperSawFacade.prototype.setType = function(type) {
@@ -112,6 +112,16 @@ define([
 
 		SuperSawFacade.prototype.pitchBendIsh = function(detuneValue) {
 			//TODO
+			return this;
+		};
+
+		SuperSawFacade.prototype.start = function() {
+			this.output.gain.value = 1;
+			return this;
+		};
+
+		SuperSawFacade.prototype.stop = function() {
+			this.output.gain.value = 0;
 			return this;
 		};
 
