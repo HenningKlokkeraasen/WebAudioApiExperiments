@@ -90,14 +90,14 @@ define([
 		};
 		ModuleFactoryBase.prototype.getFilterLowPassAndHighPassOptions = function(indexChecked) {
 			return [ 
-		    		{ value : 'lowpass', 	name : 'Lowpass',	img: '/img/lpf3-28.png', 	selected : indexChecked == 0 },
-		    		{ value : 'highpass', 	name : 'Highpass',	img: '/img/hpf3-28.png', 	selected : indexChecked == 1 }
+		    		{ value : 'lowpass', 	name : 'Lowpass',	/*img: '/img/lpf3-28.png',*/ 	selected : indexChecked == 0 },
+		    		{ value : 'highpass', 	name : 'Highpass',	/*img: '/img/hpf3-28.png',*/ 	selected : indexChecked == 1 }
 		    ];
 		};
 		ModuleFactoryBase.prototype.getFilterBandPassAndBandStopOptions = function(indexChecked) {
 			return [ 
 		    		{ value : 'bandpass', 	name : 'Bandpass', 	selected : indexChecked == 2 },
-		    		{ value : 'notch', 		name : 'Notch', 	selected : indexChecked == 4 },
+		    		{ value : 'notch', 		name : 'Bandstop', 	selected : indexChecked == 4 },
 		    ];
 		};
 		ModuleFactoryBase.prototype.getFilterShelfOptions = function(indexChecked) {

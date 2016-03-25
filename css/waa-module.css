@@ -30,7 +30,7 @@
 			height: 100%;
 
 			/* default background color for modules */
-			background-color : #6D666B;
+			background-color : #E4E4E4;
 
 			/*Vertical align connectors to bottom*/
 			/*Disabling this because patch cables end up behind the modules*/
@@ -57,6 +57,7 @@
 
 			.module fieldset {
 				border-color: #403F3F;
+				margin: 3px 0 0 0;
 			}
 
 				.module fieldset.verticalAligned {
@@ -120,7 +121,8 @@
 
 			.filter {
 				/*background-color: rgb(247, 128, 98);*/
-				background-color : rgb(255, 142, 108);
+				/*background-color : rgb(255, 142, 108);*/
+				background-color: rgb(49, 135, 220);;
 			}
 
 			.delay {
@@ -156,7 +158,8 @@
 
 			.effectsmodule {
 				/*background-color: rgb(9, 163, 40);*/
-				background-color : rgb(148, 193, 196);
+				/*background-color : rgb(148, 193, 196);*/
+				background-color: rgb(255, 141, 48);
 			}
 
 			.mixermodule {
@@ -289,4 +292,8 @@
 
 .radioButtonWrapper {
 	display: inline-block;
+}
+
+.moduleRadioLabel {
+	font-size: 0.8em;
 }

@@ -8,7 +8,7 @@ define([
 
         function FilterModuleFactory() {
             this.headerCssClass = 'filter';
-			this.moduleCssClass = 'darkmat';
+			// this.moduleCssClass = 'darkmat';
             this.hasTriggerIn = true;
             this.hasControlIn = true;
         }
@@ -43,56 +43,54 @@ define([
             var module = this.getModuleBase({
                 name : moduleData.name, 
 				shortName : moduleData.shortName,
-                sections : [ {
-                    ranges : [
-                    ],
-
-					radioButtonLists : [
-						// this.getFilterTypeSelectData('Type', 'filterType', moduleData.shortName + '_filterType')
-
-					],
-                    rangeDisplayMode : 'webaudio-controls-color_knob'
+                sections : [ 
+					{ 
+						ranges : [],
+						rangeDisplayMode : 'webaudio-controls-color_knob'
+					},
+					{
+						radioButtonLists : []
             }]});
 			switch (moduleData.mode) {
 				case 'resonant':
-					module.sections[0].ranges.add({ label : 'Cutoff frequency',  type : 'frequency',     min : 0,    max : 1,    value: 0.75,    step : 0.01,    name : moduleData.shortName + '_f'  });
-					module.sections[0].ranges.add({ label : 'Resonance (Q)',  type : 'quality',       min : 0,    max : 1,    value: 0,       step : 0.01,    name : moduleData.shortName + '_q'  });
-					module.sections[0].radioButtonLists.add(this.getFilterTypeSelectData('Type', 'filterType', moduleData.shortName + '_filterType'));
-					module.sections[0].radioButtonLists[0].radioButtons.addRange(this.getFilterLowPassAndHighPassOptions(indexChecked));
+					module.sections[0].ranges.add({ label : 'Cutoff freq.',  type : 'frequency',     min : 0,    max : 1,    value: 0.75,    step : 0.01,    name : moduleData.shortName + '_f'  });
+					module.sections[0].ranges.add({ label : 'Resonance',  type : 'quality',       min : 0,    max : 1,    value: 0,       step : 0.01,    name : moduleData.shortName + '_q'  });
+					module.sections[1].radioButtonLists.add(this.getFilterTypeSelectData('Type', 'filterType', moduleData.shortName + '_filterType'));
+					module.sections[1].radioButtonLists[0].radioButtons.addRange(this.getFilterLowPassAndHighPassOptions(indexChecked));
 					break;
 				case 'band':
-					module.sections[0].ranges.add({ label : 'Center frequency',  type : 'frequency',     min : 0,    max : 1,    value: 0.75,    step : 0.01,    name : moduleData.shortName + '_f'  });
-					module.sections[0].ranges.add({ label : 'Bandwidth (Q)',  type : 'quality',       min : 0,    max : 1,    value: 0,       step : 0.01,    name : moduleData.shortName + '_q'  });
-					module.sections[0].radioButtonLists.add(this.getFilterTypeSelectData('Type', 'filterType', moduleData.shortName + '_filterType'));
-					module.sections[0].radioButtonLists[0].radioButtons.addRange(this.getFilterBandPassAndBandStopOptions(indexChecked));
+					module.sections[0].ranges.add({ label : 'Center freq.',  type : 'frequency',     min : 0,    max : 1,    value: 0.75,    step : 0.01,    name : moduleData.shortName + '_f'  });
+					module.sections[0].ranges.add({ label : 'Bandwidth',  type : 'quality',       min : 0,    max : 1,    value: 0,       step : 0.01,    name : moduleData.shortName + '_q'  });
+					module.sections[1].radioButtonLists.add(this.getFilterTypeSelectData('Type', 'filterType', moduleData.shortName + '_filterType'));
+					module.sections[1].radioButtonLists[0].radioButtons.addRange(this.getFilterBandPassAndBandStopOptions(indexChecked));
 					break;
 				case 'shelf':
-					module.sections[0].ranges.add({ label : 'Limit frequency',  type : 'frequency',     min : 0,    max : 1,    value: 0.75,    step : 0.01,    name : moduleData.shortName + '_f'  });
-					module.sections[0].ranges.add({ label : 'Boost / attenuate',  type : 'gain',          min : -4,   max : 4,    value: 0,       step : 0.01,    name : moduleData.shortName + '_g'  });
-					module.sections[0].radioButtonLists.add(this.getFilterTypeSelectData('Type', 'filterType', moduleData.shortName + '_filterType'));
-					module.sections[0].radioButtonLists[0].radioButtons.addRange(this.getFilterShelfOptions(indexChecked));
+					module.sections[0].ranges.add({ label : 'Limit freq.',  type : 'frequency',     min : 0,    max : 1,    value: 0.75,    step : 0.01,    name : moduleData.shortName + '_f'  });
+					module.sections[0].ranges.add({ label : 'Boost/Att.',  type : 'gain',          min : -4,   max : 4,    value: 0,       step : 0.01,    name : moduleData.shortName + '_g'  });
+					module.sections[1].radioButtonLists.add(this.getFilterTypeSelectData('Type', 'filterType', moduleData.shortName + '_filterType'));
+					module.sections[1].radioButtonLists[0].radioButtons.addRange(this.getFilterShelfOptions(indexChecked));
 					break;
 				case 'peaking':
-					module.sections[0].ranges.add({ label : 'Center frequency',  type : 'frequency',     min : 0,    max : 1,    value: 0.75,    step : 0.01,    name : moduleData.shortName + '_f'  });
-					module.sections[0].ranges.add({ label : 'Bandwidth (Q)',  type : 'quality',       min : 0,    max : 1,    value: 0,       step : 0.01,    name : moduleData.shortName + '_q'  });
-					module.sections[0].ranges.add({ label : 'Boost / attenuate',  type : 'gain',          min : -4,   max : 4,    value: 0,       step : 0.01,    name : moduleData.shortName + '_g'  });
-					// module.sections[0].radioButtonLists[0].radioButtons.addRange(this.getFilterPeakingOption(indexChecked));
+					module.sections[0].ranges.add({ label : 'Center freq.',  type : 'frequency',     min : 0,    max : 1,    value: 0.75,    step : 0.01,    name : moduleData.shortName + '_f'  });
+					module.sections[0].ranges.add({ label : 'Bandwidth',  type : 'quality',       min : 0,    max : 1,    value: 0,       step : 0.01,    name : moduleData.shortName + '_q'  });
+					module.sections[0].ranges.add({ label : 'Boost/Att.',  type : 'gain',          min : -4,   max : 4,    value: 0,       step : 0.01,    name : moduleData.shortName + '_g'  });
+					module.sections = module.sections.splice(0, 1);
 					break;
 				case 'allpass':
-					module.sections[0].ranges.add({ label : 'Max frequency',  type : 'frequency',     min : 0,    max : 1,    value: 0.75,    step : 0.01,    name : moduleData.shortName + '_f'  });
-					module.sections[0].ranges.add({ label : 'Bandwidth (Q)',  type : 'quality',       min : 0,    max : 1,    value: 0,       step : 0.01,    name : moduleData.shortName + '_q'  });
-					// module.sections[0].radioButtonLists[0].radioButtons.addRange(this.getFilterAllPassOption(indexChecked));
+					module.sections[0].ranges.add({ label : 'Max freq.',  type : 'frequency',     min : 0,    max : 1,    value: 0.75,    step : 0.01,    name : moduleData.shortName + '_f'  });
+					module.sections[0].ranges.add({ label : 'Bandwidth',  type : 'quality',       min : 0,    max : 1,    value: 0,       step : 0.01,    name : moduleData.shortName + '_q'  });
+					module.sections = module.sections.splice(0, 1);
 					break;
 				default: 
-                    module.sections[0].ranges.add({ label : 'F',  type : 'frequency',     min : 0,    max : 1,    value: 0.75,    step : 0.01,    name : moduleData.shortName + '_f'  });
+                    module.sections[0].ranges.add({ label : 'Frequency',  type : 'frequency',     min : 0,    max : 1,    value: 0.75,    step : 0.01,    name : moduleData.shortName + '_f'  });
 					module.sections[0].ranges.add({ label : 'Q',  type : 'quality',       min : 0,    max : 1,    value: 0,       step : 0.01,    name : moduleData.shortName + '_q'  });
-					module.sections[0].ranges.add({ label : 'G',  type : 'gain',          min : -4,   max : 4,    value: 0,       step : 0.01,    name : moduleData.shortName + '_g'  });
-					module.sections[0].radioButtonLists.add(this.getFilterTypeSelectData('Type', 'filterType', moduleData.shortName + '_filterType'));
-					module.sections[0].radioButtonLists[0].radioButtons.addRange(this.getFilterLowPassAndHighPassOptions(indexChecked));
-					module.sections[0].radioButtonLists[0].radioButtons.addRange(this.getFilterBandPassAndBandStopOptions(indexChecked));
-					module.sections[0].radioButtonLists[0].radioButtons.addRange(this.getFilterShelfOptions(indexChecked));
-					module.sections[0].radioButtonLists[0].radioButtons.addRange(this.getFilterAllPassOption(indexChecked));
-					module.sections[0].radioButtonLists[0].radioButtons.addRange(this.getFilterPeakingOption(indexChecked));
+					module.sections[0].ranges.add({ label : 'Gain',  type : 'gain',          min : -4,   max : 4,    value: 0,       step : 0.01,    name : moduleData.shortName + '_g'  });
+					module.sections[1].radioButtonLists.add(this.getFilterTypeSelectData('Type', 'filterType', moduleData.shortName + '_filterType'));
+					module.sections[1].radioButtonLists[0].radioButtons.addRange(this.getFilterLowPassAndHighPassOptions(indexChecked));
+					module.sections[1].radioButtonLists[0].radioButtons.addRange(this.getFilterBandPassAndBandStopOptions(indexChecked));
+					module.sections[1].radioButtonLists[0].radioButtons.addRange(this.getFilterShelfOptions(indexChecked));
+					module.sections[1].radioButtonLists[0].radioButtons.addRange(this.getFilterAllPassOption(indexChecked));
+					module.sections[1].radioButtonLists[0].radioButtons.addRange(this.getFilterPeakingOption(indexChecked));
 					break;
 			}
 			return module;

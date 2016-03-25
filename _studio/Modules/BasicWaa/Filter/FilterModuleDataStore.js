@@ -44,19 +44,25 @@ define([], function() { return { Modules :
 	   // - allpass
 	   // - all (default, do nothing - for backwards comp)
 	   {
-		   name: 'Resonant Filter',
+		   name: 'Resonant HP/LP Filter',
 		   shortName: 'resonant1',
 		   mode: 'resonant'
 	   },
 	   {
 		   name: 'Band Pass / Stop Filter',
 		   shortName: 'band1',
-		   mode: 'band'
+		   mode: 'band',
+	       t_params: {  
+	         indexChecked: 2
+	      }
 	   },
 	   {
-		   name: 'Shelf Filter',
+		   name: 'High / Low Shelf Filter',
 		   shortName: 'shelf1',
-		   mode: 'shelf'
+		   mode: 'shelf',
+	       t_params: {  
+	         indexChecked: 5
+	      }
 	   },
 	   {
 		   name: 'Peaking Filter',
@@ -64,9 +70,15 @@ define([], function() { return { Modules :
 		   mode: 'peaking'
 	   },
 	   {
-		   name: 'All Pass Filter',
+		   name: 'All Pass Filter (Phaser)',
 		   shortName: 'allpass1',
 		   mode: 'allpass'
+	   },
+	   // TODO use a unique DOM id per rendered element, this is duplicate of resonant1 just to avoid having two resonant1 elements in the DOM
+	   {
+		   name: 'Resonant HP/LP Filter',
+		   shortName: 'resonant2',
+		   mode: 'resonant'
 	   }
 	]
 };});

@@ -17,7 +17,7 @@
 	}
 
 		.moduleRow>div:last-child>div {
-			border-right: none;
+			/*border-right: none;*/
 		}
 
 		.gear .module header {
