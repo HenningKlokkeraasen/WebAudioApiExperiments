@@ -1,7 +1,7 @@
 define([], function() { return { Modules : 
 	[  
 	   {  
-	      name:'Distortion (Wave Shaper)',
+	      name:'Distortion',
 	      shortName:'wsdist1'
 	   }
 	]

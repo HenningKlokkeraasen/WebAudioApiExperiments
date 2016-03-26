@@ -8,7 +8,7 @@ define([
 
 		function WaveShaperModuleFactory() {
 			this.headerCssClass = 'waveshapermodule';
-			
+			this.moduleCssClass = 'module-1hp';
 			
 		}
 		WaveShaperModuleFactory.prototype.getModuleDefinition = function() {

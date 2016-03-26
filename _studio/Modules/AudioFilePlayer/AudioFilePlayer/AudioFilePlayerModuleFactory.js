@@ -6,7 +6,7 @@ define([
         AudioFilePlayerModuleFactory.prototype.constructor = AudioFilePlayerModuleFactory;
 
         function AudioFilePlayerModuleFactory() {
-            this.moduleCssClass = 'module-3u';
+            this.moduleCssClass = 'module-5hp';
 			this.headerCssClass = 'audioBuffer';
             this.hasAudioIn = false;
             

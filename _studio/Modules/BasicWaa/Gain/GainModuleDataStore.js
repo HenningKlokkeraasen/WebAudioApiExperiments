@@ -1,14 +1,17 @@
 define([], function() { return { Modules : 
 	[  
 	   {  
-	      name:'Gain',
+	      name:'Gain 1',
 	      shortName:'gain0',
 	      g_params:{  
 	         min:0,
 	         max:2,
 	         val:1,
 	         stp:0.01
-	      }
+	      },
+		  hasControlIn: false,
+		  hasTriggerIn: false,
+		  moduleCssClass: 'module-1hp'
 	   },
 	   {  
 	      name:'Amplifier',
@@ -18,7 +21,10 @@ define([], function() { return { Modules :
 	         max:6,
 	         val:1,
 	         stp:0.01
-	      }
+	      },
+		  hasControlIn: false,
+		  hasTriggerIn: false,
+		  moduleCssClass: 'module-1hp'
 	   },
 	   {  
 	      name:'Attenuator',
@@ -28,7 +34,10 @@ define([], function() { return { Modules :
 	         max:1,
 	         val:0.5,
 	         stp:0.01
-	      }
+	      },
+		  hasControlIn: false,
+		  hasTriggerIn: false,
+		  moduleCssClass: 'module-1hp'
 	   },
 	   {  
 	      name:'On / Off',
@@ -38,7 +47,10 @@ define([], function() { return { Modules :
 	         max:1,
 	         val:0,
 	         stp:1
-	      }
+	      },
+		  hasControlIn: false,
+		  hasTriggerIn: false,
+		  moduleCssClass: 'module-1hp'
 	   },
 	   {  
 	      name:'Inverter (Polarizer)',
@@ -48,7 +60,10 @@ define([], function() { return { Modules :
 	         max:-1,
 	         val:-1,
 	         stp:1
-	      }
+	      },
+		  hasControlIn: false,
+		  hasTriggerIn: false,
+		  moduleCssClass: 'module-1hp'
 	   },
 	   {  
 	      name:'VCA (-ish)',
@@ -59,6 +74,20 @@ define([], function() { return { Modules :
 	         val:1,
 	         stp:0.01
 	      }
+	   },
+	//    TODO: generate DOM IDs in controllers, this is basically a duplicate of Gain 1
+	   {  
+	      name:'Gain / Trim',
+	      shortName:'gain6',
+	      g_params:{  
+	         min:0,
+	         max:2,
+	         val:1,
+	         stp:0.01
+	      },
+		  hasControlIn: false,
+		  hasTriggerIn: false,
+		  moduleCssClass: 'module-1hp'
 	   }
 	]	
 };});

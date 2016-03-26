@@ -1,19 +1,14 @@
 .gear {
 	border: 2px solid white;
-	padding: 0;
-	background-color: #6D666B;
+	background-color : #E4E4E4;
 }
 
-	.gear .moduleRow{
+	.gear .moduleRow {
 		margin: 0;
 	}
 	
 	.gear .module {
 		border: none;
-		margin: 0;
-		font-size: 0.8em;
-		width: 175px;
-		border-right: 1px solid white;
 	}
 
 		.moduleRow>div:last-child>div {
@@ -24,14 +19,6 @@
 			color: black;
 		}
 		
-		.gear .module fieldset {
-			border: none;
-		}
-		
-		.gear .module-3u {
-			width: 539px;
-		}
-
 	.gear .title {
 		background-color: #DC8585;
 		text-align: center;

@@ -10,7 +10,7 @@ define([
         QwertyHancockModuleFactory.prototype.constructor = QwertyHancockModuleFactory;
 
         function QwertyHancockModuleFactory() {
-            this.moduleCssClass = 'module-3u';
+            this.moduleCssClass = 'module-6hp';
 			this.headerCssClass = 'externalInputModule';
             this.hasAudioIn = false;
             this.hasAudioOut = false;

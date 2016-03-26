@@ -12,6 +12,7 @@ define([
         function WebMidiInputModuleFactory() {
 			this.headerCssClass = 'externalInputModule';
 			// this.moduleCssClass = 'coolstripes';
+			this.moduleCssClass = 'module-1hp';
             this.hasAudioIn = false;
             this.hasAudioOut = false;
             this.hasTriggerOut = true;
@@ -48,7 +49,7 @@ define([
 				shortName : moduleData.shortName,
                 sections : [ {
 					ranges : [
-						{ label : 'Glide/Portamento',	type : 'glideTime',		min : 0,		max : 0.5,		value: 0,		step : 0.01,		name : moduleData.shortName + '_glide'	}
+						{ label : 'Glide (Portamento)',	type : 'glideTime',		min : 0,		max : 0.5,		value: 0,		step : 0.01,		name : moduleData.shortName + '_glide'	}
 						
 
 

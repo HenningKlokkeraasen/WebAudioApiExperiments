@@ -8,7 +8,7 @@ define([
 
         function AnalyserModuleFactory() {
             this.handlebarsTemplateSelector = '#analyserTemplate'; // differs from norm
-            this.moduleCssClass = 'module-2u';
+            this.moduleCssClass = 'module-4hp';
 			this.headerCssClass = 'analysermodule';
 			this.buttonCssClass = 'round';
             this.hasAudioOut = false;

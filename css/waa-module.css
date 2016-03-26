@@ -2,7 +2,9 @@
 /* sound generation and modification modules */
 
 .moduleRow {
-	margin: 0 0 4px 0;
+	margin: 0;
+	display: table;
+	border-spacing: 3px;
 }
 
 	.moduleRow>div {
@@ -21,7 +23,7 @@
 		.module {
 			border: 2px solid white;
 			display: inline-block;
-			margin: 0 3px 3px 0;
+			margin: 0;
 			padding: 3px;
 			width: 200px;
 			overflow: hidden;
@@ -205,16 +207,27 @@
 				background-color: rgb(152, 119, 152);
 			}
 			
-			.module-2u {
-				width: 413px; /*TODO not responsive*/
+			/*Width of units, inspired by Eurorack HP (horizontal pitch)*/
+			.module-1hp {
+				width: 93.5px;
 			}
-
-			.module-3u {
-				width: 626px; /*TODO not responsive*/
+			
+			/*module-2hp is the default*/
+			
+			.module-4hp {
+				width: 413px;
 			}
-
-			.module-4u {
-				width: 839px; /*TODO not responsive*/
+			
+			.module-5hp {
+				width: 520px;
+			}
+			
+			.module-6hp {
+				width: 626px;
+			}
+			
+			.module-8p {
+				width: 839px;
 			}
 			
 			.fibredark {

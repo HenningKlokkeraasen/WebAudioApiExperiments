@@ -37,6 +37,13 @@ define([
         // 
         //  
         GainModuleFactory.prototype.getModule = function(moduleData) {
+			if (moduleData.hasControlIn != undefined)
+				this.hasControlIn = moduleData.hasControlIn;
+			if (moduleData.hasTriggerIn != undefined)
+				this.hasTriggerIn = moduleData.hasTriggerIn;
+			if (moduleData.moduleCssClass != undefined)
+				this.moduleCssClass = moduleData.moduleCssClass;
+				
             return this.getModuleBase({
                 name : moduleData.name, 
 				shortName : moduleData.shortName,

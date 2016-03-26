@@ -11,8 +11,8 @@ define([
 
         function AudioDestinationModuleFactory() {
             this.headerCssClass = 'audioContextDestination';
+			this.moduleCssClass = 'module-1hp';
             this.hasAudioOut = false;
-            
         }
         AudioDestinationModuleFactory.prototype.getModuleDefinition = function() {
             return {    
