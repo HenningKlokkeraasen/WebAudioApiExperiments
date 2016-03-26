@@ -11,7 +11,7 @@ define([], function() { return { Modules :
 	      }
 	   },
 	   {  
-	      name:'Gain 1: Amplify',
+	      name:'Amplifier',
 	      shortName:'gain1',
 	      g_params:{  
 	         min:1,
@@ -21,7 +21,7 @@ define([], function() { return { Modules :
 	      }
 	   },
 	   {  
-	      name:'Gain 2: Reduce',
+	      name:'Attenuator',
 	      shortName:'gain2',
 	      g_params:{  
 	         min:0,
@@ -31,7 +31,7 @@ define([], function() { return { Modules :
 	      }
 	   },
 	   {  
-	      name:'Gain 3: Mute / Pass-thru',
+	      name:'On / Off',
 	      shortName:'gain3',
 	      g_params:{  
 	         min:0,
@@ -41,17 +41,17 @@ define([], function() { return { Modules :
 	      }
 	   },
 	   {  
-	      name:'Gain 4: Invert',
+	      name:'Inverter (Polarizer)',
 	      shortName:'gain4',
 	      g_params:{  
 	         min:-1,
-	         max:0,
+	         max:-1,
 	         val:-1,
 	         stp:1
 	      }
 	   },
 	   {  
-	      name:'Amp',
+	      name:'VCA (-ish)',
 	      shortName:'gain5',
 	      g_params:{  
 	         min:0,

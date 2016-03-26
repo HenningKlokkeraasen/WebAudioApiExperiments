@@ -79,6 +79,16 @@ define([], function() { return { Modules :
 		   name: 'Resonant HP/LP Filter',
 		   shortName: 'resonant2',
 		   mode: 'resonant'
+	   },
+	   {
+		   name: 'All Pass Filter (Phaser) 2',
+		   shortName: 'allpass2',
+		   mode: 'allpass'
+	   },
+	   {
+		   name: 'All Pass Filter (Phaser) 3',
+		   shortName: 'allpass3',
+		   mode: 'allpass'
 	   }
 	]
 };});

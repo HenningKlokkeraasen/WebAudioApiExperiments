@@ -1,7 +1,7 @@
 define([], function() { return { Modules : 
 	[  
 	   {  
-	      name:'Convolver',
+	      name:'Klang',
 	      shortName:'convolver1',
 	      audioFilePaths:[  
 	         '/audiofiles/impulses/FactoryHall/FactoryHall/FactoryHall.wav',

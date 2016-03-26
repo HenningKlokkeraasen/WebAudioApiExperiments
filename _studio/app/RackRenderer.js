@@ -17,8 +17,9 @@ define([
 
 		RackRenderer.prototype.loadModules = function(master, patcher, audioPatchController, triggerPatchController, controlPatchController) {
 			document.querySelector('#boardTitle').innerText = this.board.title;
-			document.querySelector('#boardDescription').innerText = this.board.description;
-
+			// document.querySelector('#boardDescription').innerText = this.board.description;
+			var parsedHtml = $.parseHTML(this.board.description);
+			$('#boardDescription').append(parsedHtml);
 			// console.log('loading modules');
 
 			var rackData = this.board.rackData;
