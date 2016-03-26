@@ -82,6 +82,26 @@ input[type="radio"].redradiobuttons:checked + label span {
   background: url('img/radiobutton-on.png');
 }
 
+/********************************************Style radio buttons v2***********************************************/
+/*http://viralpatel.net/blogs/css-radio-button-checkbox-background/*/
+input[type=radio].pushbutton {
+    display: none; 
+    margin: 4px;
+}
+input[type=radio].pushbutton + label {
+    display: inline-block;
+    margin:-2px;
+    padding: 3px;
+    background-color: #333333;
+	color: white;
+    border-color: #ddd;
+	cursor: hand;
+}
+input[type=radio].pushbutton:checked + label { 
+   background-image: none;
+   background-color: #000000;
+}
+
 /********************************************Style webaudio-controls***********************************************/
 .webaudio-controls-vslider,
 .webaudio-controls-Custom-White_Wave,
