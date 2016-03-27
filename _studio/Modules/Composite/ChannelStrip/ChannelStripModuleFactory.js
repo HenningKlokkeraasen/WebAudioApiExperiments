@@ -10,7 +10,7 @@ define([
 
         function ChannelStripModuleFactory() {
             this.headerCssClass = 'mixermodule';
-            
+            this.moduleCssClass = 'module-1hp';
             
         }
         ChannelStripModuleFactory.prototype.getModuleDefinition = function() {
@@ -18,39 +18,27 @@ define([
                 handlebarsTemplateSelector : this.handlebarsTemplateSelector,
                 facade : ChannelStripFacade,
                 parameters : [
-                    { func: ChannelStripFacade.prototype.setGainLevel,         selector: 'webaudio-knob[data-parameterType="gain"]',           ev: 'change'     },
-                    { func: ChannelStripFacade.prototype.setLeftRightPanLevel,         selector: 'webaudio-knob[data-parameterType="left"]',           ev: 'change'     }
-
-
-
+                    { func: ChannelStripFacade.prototype.setGainLevel,         selector: 'webaudio-knob[data-parameterType="gain"]',  ev: 'change'     },
+                    { func: ChannelStripFacade.prototype.setLeftRightPanLevel, selector: 'webaudio-knob[data-parameterType="pan"]',   ev: 'change'     }
                 ]
             };
         };
-        // moduleData
-        //      name
-        //      shortName
-        // 
-        // 
-        // 
-        // 
-        // 
-        // 
-        //  
+		
         ChannelStripModuleFactory.prototype.getModule = function(moduleData) {
             return this.getModuleBase({
                 name : moduleData.name, 
 				shortName : moduleData.shortName,
                 sections : [ {
                     ranges : [
-                        { label : 'Gain',      type : 'gain',      min : 0,    max : 2,    value: 1,   step : 0.1, name : moduleData.shortName + '_gain'   }
+                        { label : 'Gain/Trim',      type : 'gain',      min : 0,    max : 2,    value: 1,   step : 0.1, name : moduleData.shortName + '_gain'   }
                     ],
                     rangeDisplayMode : 'webaudio-controls-color_knob'
 					},
 					{
                     ranges : [
-                        { label : 'L/R Pan',      type : 'left',      min : -1,    max : 1,    value: 0,   step : 0.1, name : moduleData.shortName + '_leftrightpan'   }
+                        { label : 'L/R Pan',      type : 'pan',      min : -1,    max : 1,    value: 0,   step : 0.1, name : moduleData.shortName + '_leftrightpan'   }
                     ],
-                    rangeDisplayMode : 'webaudio-controls-blue-knob'
+                    rangeDisplayMode : 'webaudio-controls-color_knob'
             }]});
         };
 
