@@ -14,8 +14,8 @@ define([
 				rows : [
 					{
 						modules: [
-							{ moduleMother: Oscillator, id: 'osc1' },
-							{ moduleMother: Filter, id: 'resonant1' },
+							{ moduleMother: Oscillator, id: 'osc5' },
+							{ moduleMother: Filter, id: 'resonantvcf1' },
 							{ moduleMother: Gain, id: 'gain5' }
 						]
 					},
@@ -26,8 +26,8 @@ define([
 					// }
 				],
 				patches : [
-					{ from: 'osc1', to: 'resonant1', type: 'audio' },
-					{ from: 'resonant1', to: 'gain5', type: 'audio' },
+					{ from: 'osc5', to: 'resonantvcf1', type: 'audio' },
+					{ from: 'resonantvcf1', to: 'gain5', type: 'audio' },
 					// { from: 'gain5', to: 'patchbay1', type: 'audio' }
 				]
 			}

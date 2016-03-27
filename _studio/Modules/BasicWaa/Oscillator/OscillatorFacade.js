@@ -5,14 +5,18 @@ define([
 	'/_studio/Modules/_FacadeBase.js',
 	'/_studio/Modules/BasicWaa/Gain/GainFacade.js',
 	'/_studio/Modules/_Mixins/ICanBeTriggered.js',
+    // '/_studio/Modules/_Mixins/ICanControlAudioParam.js',
 	'/_studio/Modules/_Mixins/ICanBeAudioParamControlled.js'
-	], function(FacadeBase, GainFacade, ICanBeTriggered, ICanBeAudioParamControlled) {
+	], function(FacadeBase, GainFacade, ICanBeTriggered, 
+		// ICanControlAudioParam, 
+		ICanBeAudioParamControlled) {
 		OscillatorFacade.prototype = Object.create(FacadeBase.prototype); // new FacadeBase2();
 		OscillatorFacade.prototype.constructor = OscillatorFacade;
 
 		function OscillatorFacade(audioContext) {
 			FacadeBase.call(this, audioContext); // base()
 			ICanBeTriggered.call(this);
+            // ICanControlAudioParam.call(this);
 			ICanBeAudioParamControlled.call(this);
 			
 			return this;
@@ -24,8 +28,8 @@ define([
 			// create a gain node as the output
 			// this will be what is used for connections
 			this.output = this.audioContext.createGain();
+			// this.controlOut = this.output;
 			this.controlIn = this.input.frequency;
-			// this.controlOut = this.output.output;
 		};
 
 		// private

@@ -53,7 +53,7 @@ define([], function() { return { Modules :
 	      }
 	   },
 	   {  
-	      name:'Osc',
+	      name:'Osc (VCO)',
 	      shortName:'osc5',
 	      f_params:{  
 	         min:20,
@@ -63,7 +63,8 @@ define([], function() { return { Modules :
 	      },
 	      w_params:{  
 	         indexChecked:2
-	      }
+	      },
+		  mode: 'vco'
 	   },
 	   
 	//    {

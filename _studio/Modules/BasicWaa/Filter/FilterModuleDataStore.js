@@ -43,6 +43,8 @@ define([], function() { return { Modules :
 	   // - peaking
 	   // - allpass
 	   // - all (default, do nothing - for backwards comp)
+	   // - resonantvcf: High and Low Pass filter that can resonate
+	   //		and has Trigger In, Control In
 	   {
 		   name: 'Resonant HP/LP Filter',
 		   shortName: 'resonant1',
@@ -89,6 +91,13 @@ define([], function() { return { Modules :
 		   name: 'All Pass Filter (Phaser) 3',
 		   shortName: 'allpass3',
 		   mode: 'allpass'
+	   },
+	   {
+		   name: 'Resonant HP/LP Filter (VCF)',
+		   shortName: 'resonantvcf1',
+		   mode: 'resonantvcf',
+	      hasControlIn: true,
+		  hasTriggerIn: true,
 	   }
 	]
 };});

@@ -2,6 +2,7 @@ define([
 	'/_studio/Modules/BasicWaa/Analyser/Analyser.js',
 
 	'/_studio/Modules/CustomModulators/LFO/Lfo.js',
+	// '/_studio/Modules/BasicWaa/Oscillator/Oscillator.js',
 
 	'/_studio/Modules/TriggerSources/EnvelopeGenerator/EnvelopeGenerator.js',
 	'/_studio/Modules/TriggerSources/WebMidiInput/WebMidiInput.js',
@@ -10,7 +11,7 @@ define([
 	'/_studio/Gear/Fx.js',
 	'/_studio/Gear/Mixer.js',
 	'/_studio/Gear/FinalStage.js'
-	], function(Analyser, LFO, EnvelopeGenerator, WebMidiInput,
+	], function(Analyser, LFO/*Oscillator*/, EnvelopeGenerator, WebMidiInput,
 		BasicVoice, Fx, Mixer, FinalStage) {
 		return {
 			title : 'Modular subtractive synth - with more modulation and effects, with Web MIDI API',
@@ -28,7 +29,7 @@ define([
 					},
 					{
 						modules: [
-							{ moduleMother: LFO, id: 'lfo1' },
+							{ moduleMother: LFO/*Oscillator*/, id: 'lfo1' },
 							{ moduleMother: EnvelopeGenerator, id: 'eg2' },
 							{ moduleMother: EnvelopeGenerator, id: 'eg3' },
 							{ moduleMother: EnvelopeGenerator, id: 'eg4' },
@@ -52,10 +53,10 @@ define([
 					{ from : 'eg4', to : 'gain5', type: 'trigger' },
 					
 					// Pitch / control / noteOn, noteOff
-					{ from: 'webmidi1', to: 'osc1', type: 'control' },
+					{ from: 'webmidi1', to: 'osc5', type: 'control' },
 					
 					// Modulation
-					{ from: 'lfo1', to: 'osc1', type: 'control' },
+					{ from: 'lfo1', to: 'osc5', type: 'control' },
 					
 					{ from: 'gain5', to: 'ch1', type: 'audio'},
 					

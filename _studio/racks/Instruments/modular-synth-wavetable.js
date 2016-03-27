@@ -18,7 +18,7 @@ define([
 					{
 						modules : [
 							{ moduleMother: WaveTableOsc, id: 'wavetable1' },
-							{ moduleMother: Filter, id: 'resonant1' },
+							{ moduleMother: Filter, id: 'resonantvcf1' },
 							{ moduleMother: Gain, id: 'gain5' },
 							{ moduleMother: Analyser, id: 'analyser1' }
 						],
@@ -36,8 +36,8 @@ define([
 				],
 				patches : [
 					// Main audio route
-					{ from : 'wavetable1', to : 'resonant1', type : 'audio' },
-					{ from : 'resonant1', to : 'gain5', type : 'audio' },
+					{ from : 'wavetable1', to : 'resonantvcf1', type : 'audio' },
+					{ from : 'resonantvcf1', to : 'gain5', type : 'audio' },
 					{ from : 'gain5', to : 'gain6', type : 'audio' },
 					
 					// Trigger / gate

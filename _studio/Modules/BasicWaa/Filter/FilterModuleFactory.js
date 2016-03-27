@@ -9,8 +9,6 @@ define([
         function FilterModuleFactory() {
             this.headerCssClass = 'filter';
 			// this.moduleCssClass = 'darkmat';
-            this.hasTriggerIn = true;
-            this.hasControlIn = true;
         }
         FilterModuleFactory.prototype.getModuleDefinition = function() {
             return {    
@@ -40,6 +38,14 @@ define([
 			var indexChecked = moduleData.t_params != undefined && moduleData.t_params.indexChecked != undefined
 				? moduleData.t_params.indexChecked
 				: 0;
+			switch (moduleData.mode) {
+				case 'resonantvcf':
+					this.hasTriggerIn = true;
+					this.hasControlIn = true;
+					break;
+				default:
+					break;
+			}
             var module = this.getModuleBase({
                 name : moduleData.name, 
 				shortName : moduleData.shortName,
@@ -53,6 +59,7 @@ define([
             }]});
 			switch (moduleData.mode) {
 				case 'resonant':
+				case 'resonantvcf':
 					module.sections[0].ranges.add({ label : 'Cutoff freq.',  type : 'frequency',     min : 0,    max : 1,    value: 0.75,    step : 0.01,    name : moduleData.shortName + '_f'  });
 					module.sections[0].ranges.add({ label : 'Resonance',  type : 'quality',       min : 0,    max : 1,    value: 0,       step : 0.01,    name : moduleData.shortName + '_q'  });
 					module.sections[1].radioButtonLists.add(this.getFilterTypeSelectData('Type', 'filterType', moduleData.shortName + '_filterType'));

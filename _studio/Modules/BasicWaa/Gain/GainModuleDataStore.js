@@ -66,7 +66,7 @@ define([], function() { return { Modules :
 		  moduleCssClass: 'module-1hp'
 	   },
 	   {  
-	      name:'VCA (-ish)',
+	      name:'Amp (VCA)',
 	      shortName:'gain5',
 	      g_params:{  
 	         min:0,

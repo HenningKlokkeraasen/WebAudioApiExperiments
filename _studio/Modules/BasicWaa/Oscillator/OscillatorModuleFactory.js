@@ -12,8 +12,6 @@ define([
 			this.buttonCssClass = 'round';
 			// this.moduleCssClass = 'fibredark';
 			this.hasAudioIn = false;
-			this.hasTriggerIn = true;
-			this.hasControlIn = true;
 			// this.hasControlOut = true;
 			this.hasStartButton = true;
 		}
@@ -31,6 +29,25 @@ define([
 		};
 		
 		OscillatorModuleFactory.prototype.getModule = function(moduleData) {
+			var displayFrequencyKnob = true;
+			var frequencyKnobLabel = 'Frequency';
+			var displayDetuneKnob = true;
+			switch (moduleData.mode) {
+				case 'vco':
+					this.hasTriggerIn = true;
+					this.hasControlIn = true;
+					displayFrequencyKnob = false;
+					break;
+				// case 'lfo' : 
+				// 	this.hasAudioOut = false;
+				// 	this.hasControlIn = true;
+				// 	this.hasControlOut = true;
+				// 	displayDetuneKnob = false;
+				// 	frequencyKnobLabel = 'Rate';
+					// break;
+				default:
+					break;
+			}
 			var module = this.getModuleBase({
 				name : moduleData.name, 
 				shortName : moduleData.shortName,
@@ -40,22 +57,17 @@ define([
  					]
 					}, {
 					ranges : [
-						this.getFrequencyParamObject(moduleData), 
-						this.getDetuneParamObject(moduleData.shortName)
 					], 
 					rangeDisplayMode : 'webaudio-controls-color_knob'
 		    }]});
-			// switch (moduleData.mode) {
-			// 	case 'lfo' : 
-			// 		module.sections[0].ranges[0].label = 'Rate';
-			// 		break;
-			// 	default:
-			// 		break;
-			// }
+			if (displayFrequencyKnob)
+				module.sections[1].ranges.add(this.getFrequencyParamObject(moduleData, frequencyKnobLabel));
+			if (displayDetuneKnob)
+				module.sections[1].ranges.add(this.getDetuneParamObject(moduleData.shortName))
 			return module;
 		};
-		OscillatorModuleFactory.prototype.getFrequencyParamObject = function(moduleData) {
-		    return this.getRangeControlData({ label : 'Frequency',     type : 'frequency',	params : moduleData.f_params,  name : moduleData.shortName + '_freq' });
+		OscillatorModuleFactory.prototype.getFrequencyParamObject = function(moduleData, frequencyKnobLabel) {
+		    return this.getRangeControlData({ label : frequencyKnobLabel,     type : 'frequency',	params : moduleData.f_params,  name : moduleData.shortName + '_freq' });
 		};
 		OscillatorModuleFactory.prototype.getDetuneParamObject = function(shortName) {
 			return	{ label : 'Detune',	type : 'detune',		min : -100,		max : 100,		value: 0,		step : 1,		name : shortName + '_detune'	};

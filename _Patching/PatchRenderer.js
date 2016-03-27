@@ -87,6 +87,12 @@ define([
 		// TODO move this function somewhere better
 		PatchRenderer.prototype.getCoordinates = function(firstSelector, secondSelector) {
 			var element = $(firstSelector).find(secondSelector)[0];
+			if (element == undefined)
+			{
+				console.warn(`could not find element with firstSelector ${firstSelector} secondSelector ${secondSelector}`);
+				return {};
+			}
+				
 			var rect = element.getBoundingClientRect();			
 			// console.log(element);
 			// console.log(rect.top, rect.right, rect.bottom, rect.left);
