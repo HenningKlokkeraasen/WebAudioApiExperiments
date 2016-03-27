@@ -2,11 +2,10 @@ define([
 	'/_studio/Modules/BasicWaa/Analyser/Analyser.js',
 	
 	'/_studio/Modules/Specialized/NoiseGenerator/NoiseGenerator.js',
-	'/_studio/Modules/Specialized/PulseWave/PulseWave.js',
-	'/_studio/Modules/Specialized/SuperSaw/SuperSaw.js',
+	'/_studio/Modules/Specialized/SuperOsc/SuperOsc.js',
 	
 	'/_studio/Gear/FinalStage.js'
-	], function(Analyser, NoiseGenerator, PulseWave, SuperSaw, FinalStage) {
+	], function(Analyser, NoiseGenerator, SuperOsc, FinalStage) {
 		return {
 			title : 'Advanced wave forms',
 			description : 'Lorem ipsum',
@@ -15,8 +14,7 @@ define([
 					{
 						modules: [
 							{ moduleMother: NoiseGenerator, id: 'noisegen1' },
-							{ moduleMother: PulseWave, id: 'pulsewave1' },
-							{ moduleMother: SuperSaw, id: 'supersaw1' },
+							{ moduleMother: SuperOsc, id: 'superosc1' },
 							{ moduleMother: Analyser, id: 'analyser1' }
 						]
 					},
@@ -31,8 +29,7 @@ define([
 				],
 				moduleToGearPatches: [
 					{ gear: 'finalStage1', from: 'noisegen1', to: 'gain6', type: 'audio' },
-					{ gear: 'finalStage1', from: 'pulsewave1', to: 'gain6', type: 'audio' },
-					{ gear: 'finalStage1', from: 'supersaw1', to: 'gain6', type: 'audio' },
+					{ gear: 'finalStage1', from: 'superosc1', to: 'gain6', type: 'audio' },
 				],
 				gearToModulePatches: [
 					{ gear: 'finalStage1', from: 'compressor1', to: 'analyser1', type: 'audio' },

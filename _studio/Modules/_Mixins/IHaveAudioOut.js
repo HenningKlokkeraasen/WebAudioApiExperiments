@@ -9,7 +9,7 @@ define([], function() {
 				var index = nodesIHaveConnectedTo.indexOf(destination);
 				if (index > -1) {
 					// console.log('already connected to destination. disconnecting');
-					this.output.disconnect(destination);
+					this.disconnect.call(this, destination);
 					this.removeFromNodesIHaveConnectedTo.call(this, index);
 					// console.log(this.nodesIHaveConnectedTo);
 					return -1;
@@ -33,6 +33,16 @@ define([], function() {
 		
 		this.connect = function(destination) {
 			this.output.connect(destination);
+			return this;
+		}
+		
+		this.disconnect = function(destination) {
+			try {
+				this.output.disconnect(destination);
+			} catch (ex) {
+				// console.warn(`was not connected to ${destination}, ex ${ex}`);
+			}
+			return this;
 		}
 		
 		this.getNodesIHaveConnectedTo = function() {

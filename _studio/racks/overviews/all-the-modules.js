@@ -30,15 +30,14 @@ define([
 
 	'/_studio/Modules/Specialized/HarmonicGenerator/HarmonicGenerator.js',
 	'/_studio/Modules/Specialized/NoiseGenerator/NoiseGenerator.js',
-	'/_studio/Modules/Specialized/PulseWave/PulseWave.js',
-	'/_studio/Modules/Specialized/SuperSaw/SuperSaw.js',
+	'/_studio/Modules/Specialized/SuperOsc/SuperOsc.js',
 	
 	'/_studio/Modules/Specialized/WaveTableOsc/WaveTableOsc.js'
 	], function(AudioFilePlayer, TimedSequencePlayer, MediaStream, AudioDestination, Analyser, 
 		Oscillator, Filter, Gain, Delay, Convolver, WaveShaper, Compressor,
 		SlapbackDelay, SimpleReverb, ChannelStrip, MasterSection,
 		LFO, EnvelopeGenerator, QwertyHancock, WebMidiInput,
-		HarmonicGenerator, NoiseGenerator, PulseWave, SuperSaw, WaveTableOsc) {
+		HarmonicGenerator, NoiseGenerator, SuperOsc, WaveTableOsc) {
 		return {
 			title : 'All the modules',
 			description : 'A rack for just loading one of every module available',
@@ -87,8 +86,7 @@ define([
 						modules: [
 							{ moduleMother: HarmonicGenerator, id: 'harmgen1' },
 							{ moduleMother: NoiseGenerator, id: 'noisegen1' },
-							{ moduleMother: PulseWave, id: 'pulsewave1' },
-							{ moduleMother: SuperSaw, id: 'supersaw1' },
+							{ moduleMother: SuperOsc, id: 'superosc1' },
 							{ moduleMother: WaveTableOsc, id: 'wavetable1' }
 						],
 					},

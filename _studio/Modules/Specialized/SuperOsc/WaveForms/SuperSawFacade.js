@@ -8,7 +8,8 @@ define([
 		SuperSawFacade.prototype = Object.create(OscillatorFacade.prototype); // new FacadeBase2();
 		SuperSawFacade.prototype.constructor = SuperSawFacade;
 
-		function SuperSawFacade(audioContext) {
+		function SuperSawFacade(audioContext, numberOfOscillators = 7) {
+			this.numberOfOscillators = numberOfOscillators;
 			OscillatorFacade.call(this, audioContext); // base()
 			// FacadeBase2.call(this, audioContext); // ??
 			
@@ -17,12 +18,9 @@ define([
 
 		// private
 		SuperSawFacade.prototype.initNodes = function() {
-			// var numberOfOscillators = 7; // Roland JP-8000
-			var numberOfOscillators = 9; //	Access Virus TI
-
 			this.oscillators = [];
 			this.mixers = [];
-			for (var i = 0; i < numberOfOscillators; i++) {
+			for (var i = 0; i < this.numberOfOscillators; i++) {
 				this.oscillators.push(this.audioContext.createOscillator());
 				this.mixers.push(this.audioContext.createGain());
 			}
@@ -45,7 +43,7 @@ define([
 			var detuneIteration = 0;
 			var detuneStart = 0;
 			var detuneFactor = 2.4;
-			console.debug('center: ' + center);
+			// console.debug('center: ' + center);
 			for (var i = center + 1; i < this.oscillators.length; i++) {
 				var j = this.oscillators.length -1 - i;
 
