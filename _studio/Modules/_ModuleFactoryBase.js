@@ -66,19 +66,6 @@ define([
 			};
 		};
 
-		ModuleFactoryBase.prototype.getWaveTypeSelectObject = function(label, type, rdoName, indexChecked) {
-			return { 
-				label : label,
-				type : type,
-				rdoName : rdoName,
-				radioButtons : [
-		    		{ value : 'sine', 		name : 'sine',		img: '/img/sine3-28.png',	selected : indexChecked == 0 },
-		    		{ value : 'triangle', 	name : 'triangle',	img: '/img/triangle3-28.png',	selected : indexChecked == 1 },
-		    		{ value : 'sawtooth', 	name : 'sawtooth',	img: '/img/sawtooth3-28.png',	selected : indexChecked == 2 },
-		    		{ value : 'square', 	name : 'square',	img: '/img/square3-28.png',	selected : indexChecked == 3 }
-			]};
-		};
-
 		ModuleFactoryBase.prototype.getFilterTypeSelectData = function(label, type, rdoName) {
 			var data = { 
 				label : label,

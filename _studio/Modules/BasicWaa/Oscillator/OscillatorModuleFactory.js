@@ -29,27 +29,14 @@ define([
 				]
 			};
 		};
-		// moduleData
-		// 		name
-		// 		shortName
-		// 		f_params
-		//			min
-		//			max
-		//			val
-		//			stp
-		// 		w_params
-		//			indexChecked
+		
 		OscillatorModuleFactory.prototype.getModule = function(moduleData) {
 			var module = this.getModuleBase({
 				name : moduleData.name, 
 				shortName : moduleData.shortName,
 		        sections : [ {
-					// ranges: [
-					// 	{ label : 'Wave',	type : 'waveType2',		min : 0,		max : 3,		value: 0,		step : 1,		name : moduleData.shortName + '_waveType2',	}
-					// ], 
-					// rangeDisplayMode : 'webaudio-controls-Custom-White_Wave'
 					radioButtonLists : [
- 						this.getWaveTypeSelectObject1(moduleData.shortName, moduleData.w_params.indexChecked)
+ 						this.getWaveTypeSelectObject(moduleData.shortName, moduleData.w_params.indexChecked, 'Wave', 'waveType', moduleData.shortName + '_wave')
  					]
 					}, {
 					ranges : [
@@ -58,6 +45,13 @@ define([
 					], 
 					rangeDisplayMode : 'webaudio-controls-color_knob'
 		    }]});
+			// switch (moduleData.mode) {
+			// 	case 'lfo' : 
+			// 		module.sections[0].ranges[0].label = 'Rate';
+			// 		break;
+			// 	default:
+			// 		break;
+			// }
 			return module;
 		};
 		OscillatorModuleFactory.prototype.getFrequencyParamObject = function(moduleData) {
@@ -66,11 +60,19 @@ define([
 		OscillatorModuleFactory.prototype.getDetuneParamObject = function(shortName) {
 			return	{ label : 'Detune',	type : 'detune',		min : -100,		max : 100,		value: 0,		step : 1,		name : shortName + '_detune'	};
 		};
-		// TODO move this
-		OscillatorModuleFactory.prototype.getWaveTypeSelectObject1 = function(shortName, indexChecked) {
-			return this.getWaveTypeSelectObject('Wave', 'waveType', shortName + '_wave', indexChecked);
+		OscillatorModuleFactory.prototype.getWaveTypeSelectObject = function(shortName, indexChecked, label, type, rdoName) {
+			return { 
+				label : label,
+				type : type,
+				rdoName : rdoName,
+				radioButtons : [
+		    		{ value : 'sine', 		name : 'sine',		img: '/img/sine3-28.png',	selected : indexChecked == 0 },
+		    		{ value : 'triangle', 	name : 'triangle',	img: '/img/triangle3-28.png',	selected : indexChecked == 1 },
+		    		{ value : 'sawtooth', 	name : 'sawtooth',	img: '/img/sawtooth3-28.png',	selected : indexChecked == 2 },
+		    		{ value : 'square', 	name : 'square',	img: '/img/square3-28.png',	selected : indexChecked == 3 }
+			]};
 		};
-
+		
         return OscillatorModuleFactory;
     }
 );
