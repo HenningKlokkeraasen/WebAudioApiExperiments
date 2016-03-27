@@ -10,9 +10,7 @@ define([
 		WaveTableOscModuleFactory.prototype.constructor = WaveTableOscModuleFactory;
 
 		function WaveTableOscModuleFactory() {
-			this.headerCssClass = 'waveTableOsc';
-
-			
+			this.headerCssClass = 'oscillator';
 		}
 		WaveTableOscModuleFactory.prototype.getModuleDefinition = function() {
 			var base = OscillatorModuleFactory.prototype.getModuleDefinition.call(this);
