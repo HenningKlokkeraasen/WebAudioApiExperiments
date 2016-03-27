@@ -1,55 +1,53 @@
 define([
 	'/_studio/Modules/BasicWaa/Analyser/Analyser.js',
-	'/_studio/Modules/Composite/MasterSection/MasterSection.js',
-
-	'/_studio/Modules/BasicWaa/Oscillator/Oscillator.js',
-	'/_studio/Modules/BasicWaa/Filter/Filter.js',
-	'/_studio/Modules/BasicWaa/Gain/Gain.js',
 
 	'/_studio/Modules/TriggerSources/EnvelopeGenerator/EnvelopeGenerator.js',
-	'/_studio/Modules/TriggerSources/WebMidiInput/WebMidiInput.js'
-	], function(Analyser, MasterSection, Oscillator, Filter, Gain, EnvelopeGenerator, WebMidiInput) {
+	'/_studio/Modules/TriggerSources/WebMidiInput/WebMidiInput.js',
+	
+	'/_studio/Gear/BasicVoice.js',
+	'/_studio/Gear/FinalStage.js'
+	], function(Analyser, EnvelopeGenerator, WebMidiInput, BasicVoice, FinalStage) {
 		return {
 			title : 'Modular subtractive synth - basic, with Web MIDI API',
 			description : 'Fully functional (but primitive), monophonic, monotimbral, modular synthesizer subtractive based on Web Audio API.',
 			rackData : {
 				rows : [
 					{
+						gear: [
+							BasicVoice
+						],
 						modules : [
-							{ moduleMother: WebMidiInput, id:  'webmidi1' },
-							{ moduleMother: EnvelopeGenerator, id: 'eg1' },
-							{ moduleMother: MasterSection, id: 'masterSection1' },
 							{ moduleMother: Analyser, id: 'analyser1' }
 						],
 					},
 					{
+						gear: [
+							FinalStage
+						],
 						modules: [
-							{ moduleMother: Oscillator, id: 'osc5' },
-							{ moduleMother: Filter, id: 'resonant1' },
-							{ moduleMother: Gain, id: 'gain5' },
+							{ moduleMother: WebMidiInput, id:  'webmidi1' },
+							{ moduleMother: EnvelopeGenerator, id: 'eg1' },
 							{ moduleMother: Analyser, id: 'analyser2' }
 						]
 					}
 				],
 				patches : [
 					// Main audio route
-					{ from : 'osc5', to : 'resonant1', type : 'audio' },
-					{ from : 'resonant1', to : 'gain5', type : 'audio' },
-					{ from : 'gain5', to : 'masterSection1', type : 'audio' },
+					{ from : 'gain5', to : 'gain6', type : 'audio' },
 					
 					// Trigger / gate
 					{ from : 'webmidi1', to : 'eg1', type: 'trigger' },
 					{ from : 'eg1', to : 'gain5', type: 'trigger' },
 					
 					// Pitch / control / noteOn, noteOff
-					{ from: 'webmidi1', to: 'osc5', type: 'control' },
+					{ from: 'webmidi1', to: 'osc1', type: 'control' },
 					
 					// Modulation
-					{ from: 'lfo2', to: 'osc5', type: 'control' },
+					{ from: 'lfo2', to: 'osc1', type: 'control' },
 					
 					// visual
-					{ from: 'masterSection1', to: 'analyser1', type: 'audio' },
-					{ from: 'masterSection1', to: 'analyser2', type: 'audio' }
+					{ from: 'compressor1', to: 'analyser1', type: 'audio' },
+					{ from: 'compressor1', to: 'analyser2', type: 'audio' }
 				]
 			},
 		};

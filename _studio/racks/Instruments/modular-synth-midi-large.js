@@ -1,36 +1,29 @@
 define([
 	'/_studio/Modules/BasicWaa/Analyser/Analyser.js',
-	'/_studio/Modules/Composite/MasterSection/MasterSection.js',
-
-	'/_studio/Modules/BasicWaa/Oscillator/Oscillator.js',
-	'/_studio/Modules/BasicWaa/Filter/Filter.js',
-	'/_studio/Modules/BasicWaa/Gain/Gain.js',
-	'/_studio/Modules/BasicWaa/Convolver/Convolver.js',
-	'/_studio/Modules/BasicWaa/WaveShaper/WaveShaper.js',
-
-	'/_studio/Modules/Composite/SlapbackDelay/SlapbackDelay.js',
-	'/_studio/Modules/CustomModifiers/SimpleReverb/SimpleReverb.js',
-	
-	'/_studio/Modules/Composite/ChannelStrip/ChannelStrip.js',
 
 	'/_studio/Modules/CustomModulators/LFO/Lfo.js',
 
 	'/_studio/Modules/TriggerSources/EnvelopeGenerator/EnvelopeGenerator.js',
-	'/_studio/Modules/TriggerSources/WebMidiInput/WebMidiInput.js'
-	], function(Analyser, MasterSection, Oscillator, Filter, Gain, Convolver, WaveShaper, SlapbackDelay, SimpleReverb, ChannelStrip, LFO, EnvelopeGenerator, WebMidiInput) {
+	'/_studio/Modules/TriggerSources/WebMidiInput/WebMidiInput.js',
+	
+	'/_studio/Gear/BasicVoice.js',
+	'/_studio/Gear/Fx.js',
+	'/_studio/Gear/Mixer.js',
+	'/_studio/Gear/FinalStage.js'
+	], function(Analyser, LFO, EnvelopeGenerator, WebMidiInput,
+		BasicVoice, Fx, Mixer, FinalStage) {
 		return {
 			title : 'Modular subtractive synth - with more modulation and effects, with Web MIDI API',
 			description : 'Fully functional (but primitive), monophonic, monotimbral, modular subtractive synthesizer based on Web Audio API.',
 			rackData : {
 				rows : [
 					{
+						gear: [
+							BasicVoice
+						],
 						modules : [
 							{ moduleMother: WebMidiInput, id:  'webmidi1' },
-							{ moduleMother: Oscillator, id: 'osc5' },
-							{ moduleMother: Filter, id: 'resonant1' },
-							{ moduleMother: Gain, id: 'gain5' },
-							{ moduleMother: Analyser, id: 'analyser1' },
-							{ moduleMother: Analyser, id: 'analyser2' }
+							{ moduleMother: Analyser, id: 'analyser1' }
 						],
 					},
 					{
@@ -39,42 +32,35 @@ define([
 							{ moduleMother: EnvelopeGenerator, id: 'eg2' },
 							{ moduleMother: EnvelopeGenerator, id: 'eg3' },
 							{ moduleMother: EnvelopeGenerator, id: 'eg4' },
-							{ moduleMother: Convolver, id: 'convolver1' },
-							{ moduleMother: WaveShaper, id: 'wsdist1' },
-							{ moduleMother: SimpleReverb, id: 'smplrev1' },
-							{ moduleMother: SlapbackDelay, id: 'slpbkdl1' }
+							{ moduleMother: Analyser, id: 'analyser2' }
 						]
 					},
 					{
-						modules: [
-							{ moduleMother: ChannelStrip, id: 'ch1' },
-							{ moduleMother: ChannelStrip, id: 'ch2' },
-							{ moduleMother: ChannelStrip, id: 'ch3' },
-							{ moduleMother: ChannelStrip, id: 'ch4' },
-							{ moduleMother: MasterSection, id: 'masterSection1' }
-						]
+						gear: [
+							Mixer,
+							Fx,
+							FinalStage
+						],
 					}
 				],
 				patches : [
 					// Main audio route
-					{ from : 'osc5', to : 'resonant1', type : 'audio' },
-					{ from : 'resonant1', to : 'gain5', type : 'audio' },
-					{ from : 'gain5', to : 'ch1', type : 'audio' },
-					{ from : 'ch1', to : 'masterSection1', type : 'audio' },
+					{ from : 'masterSection1', to : 'gain6', type : 'audio' },
 					
 					// Trigger / gate
 					{ from : 'webmidi1', to : 'eg4', type: 'trigger' },
 					{ from : 'eg4', to : 'gain5', type: 'trigger' },
 					
 					// Pitch / control / noteOn, noteOff
-					{ from: 'webmidi1', to: 'osc5', type: 'control' },
+					{ from: 'webmidi1', to: 'osc1', type: 'control' },
 					
 					// Modulation
-					{ from: 'lfo1', to: 'osc5', type: 'control' },
+					{ from: 'lfo1', to: 'osc1', type: 'control' },
 					
-					// visual
-					{ from: 'masterSection1', to: 'analyser1', type: 'audio' },
-					{ from: 'masterSection1', to: 'analyser2', type: 'audio' }
+					{ from: 'gain5', to: 'ch1', type: 'audio'},
+					
+					{ from: 'compressor1', to: 'analyser1', type: 'audio' },
+					{ from: 'compressor1', to: 'analyser2', type: 'audio' }
 				]
 			},
 		};

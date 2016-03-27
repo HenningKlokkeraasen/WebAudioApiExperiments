@@ -1,13 +1,14 @@
 define([
 	'/_studio/Modules/BasicWaa/Analyser/Analyser.js',
-	'/_studio/Modules/Composite/MasterSection/MasterSection.js',
 
 	'/_studio/Modules/BasicWaa/Oscillator/Oscillator.js',
 	'/_studio/Modules/BasicWaa/Filter/Filter.js',
 	'/_studio/Modules/BasicWaa/Gain/Gain.js',
 
-	'/_studio/Modules/TriggerSources/EnvelopeGenerator/EnvelopeGenerator.js'
-	], function(Analyser, MasterSection, Oscillator, Filter, Gain, EnvelopeGenerator) {
+	'/_studio/Modules/TriggerSources/EnvelopeGenerator/EnvelopeGenerator.js',
+	
+	'/_studio/Gear/FinalStage.js'
+	], function(Analyser, Oscillator, Filter, Gain, EnvelopeGenerator, FinalStage) {
 		return {
 			title : 'Envelope Generator to trigger Oscillator',
 			description : 'This rack shows triggering. An Envelope Generator can be started, and triggers an attack-release-decay cycle.'
@@ -25,8 +26,10 @@ define([
 						]
 					},
 					{
+						gear: [
+							FinalStage
+						],
 						modules: [
-							{ moduleMother: MasterSection, id: 'masterSection1' },
 							{ moduleMother: Analyser, id: 'analyser1' },
 							{ moduleMother: Analyser, id: 'analyser2' }
 						]
@@ -36,15 +39,17 @@ define([
 					// Main audio route
 					{ from : 'osc5', to : 'filter5', type : 'audio' },
 					{ from : 'filter5', to : 'gain5', type : 'audio' },
-					{ from : 'gain5', to : 'masterSection1', type : 'audio' },
 					
 					// Triggering
-					{ from: 'eg1', to: 'osc5', type: 'trigger' },
-					
-					// visual
-					{ from: 'masterSection1', to: 'analyser1', type: 'audio' },
-					{ from: 'masterSection1', to: 'analyser2', type: 'audio' }
-				]
+					{ from: 'eg1', to: 'osc5', type: 'trigger' }
+				],
+				moduleToGearPatches: [
+					{ gear: 'finalStage1', from: 'gain5', to: 'gain6', type: 'audio' },
+				],
+				gearToModulePatches: [
+					{ gear: 'finalStage1', from: 'compressor1', to: 'analyser1', type: 'audio' },
+					{ gear: 'finalStage1', from: 'compressor1', to: 'analyser2', type: 'audio' }
+				],
 			}
 		};
 	}

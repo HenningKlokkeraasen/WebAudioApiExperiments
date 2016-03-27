@@ -16,12 +16,11 @@ define([
 	'/_studio/Modules/BasicWaa/WaveShaper/WaveShaper.js',
 	'/_studio/Modules/BasicWaa/Compressor/Compressor.js',
 	
-	'/_studio/Modules/Composite/MasterSection/MasterSection.js',
-	
 	'/_studio/Modules/Composite/SlapbackDelay/SlapbackDelay.js',
 	'/_studio/Modules/CustomModifiers/SimpleReverb/SimpleReverb.js',
 	
 	'/_studio/Modules/Composite/ChannelStrip/ChannelStrip.js',
+	'/_studio/Modules/Composite/MasterSection/MasterSection.js',
 
 	'/_studio/Modules/CustomModulators/LFO/Lfo.js',
 
@@ -33,8 +32,10 @@ define([
 	'/_studio/Modules/Specialized/NoiseGenerator/NoiseGenerator.js',
 	'/_studio/Modules/Specialized/PulseWave/PulseWave.js',
 	'/_studio/Modules/Specialized/SuperSaw/SuperSaw.js'
-	], function(AudioFilePlayer, TimedSequencePlayer, MediaStream, AudioDestination, Analyser, Oscillator, Filter, Gain, Delay, Convolver, WaveShaper, Compressor,
-		MasterSection, SlapbackDelay, SimpleReverb, ChannelStrip, LFO, EnvelopeGenerator, QwertyHancock, WebMidiInput,
+	], function(AudioFilePlayer, TimedSequencePlayer, MediaStream, AudioDestination, Analyser, 
+		Oscillator, Filter, Gain, Delay, Convolver, WaveShaper, Compressor,
+		SlapbackDelay, SimpleReverb, ChannelStrip, MasterSection,
+		LFO, EnvelopeGenerator, QwertyHancock, WebMidiInput,
 		HarmonicGenerator, NoiseGenerator, PulseWave, SuperSaw) {
 		return {
 			title : 'All the modules',
@@ -67,9 +68,9 @@ define([
 							{ moduleMother: EnvelopeGenerator, id: 'eg1' },
 							{ moduleMother: MediaStream, id: 'mediastream1' },
 							{ moduleMother: ChannelStrip, id: 'ch3' },
-							{ moduleMother: Compressor, id: 'compressor1' },
-							{ moduleMother: AudioDestination, id: 'audiodestination1' },
 							{ moduleMother: MasterSection, id: 'masterSection1' },
+							{ moduleMother: Compressor, id: 'compressor1' },
+							{ moduleMother: AudioDestination, id: 'audiodestination1' }
 						]
 					},
 					{

@@ -63,6 +63,7 @@ define([
 							{ moduleMother: SimpleReverb, id: 'smplrev1' },
 							{ moduleMother: SlapbackDelay, id: 'slpbkdl1' },
 							{ moduleMother: Delay, id: 'delay2' },
+							{ moduleMother: Delay, id: 'delay3' },
 							{ moduleMother: Analyser, id: 'analyser2' }
 						]
 					},
@@ -73,6 +74,8 @@ define([
 							{ moduleMother: ChannelStrip, id: 'ch3' },
 							{ moduleMother: ChannelStrip, id: 'ch4' },
 							{ moduleMother: MasterSection, id: 'masterSection1' },
+							{ moduleMother: Compressor, id: 'compressor1' },
+							{ moduleMother: AudioDestination, id: 'audiodestination1' },
 						]
 					},
 				],
@@ -134,6 +137,17 @@ define([
 					{
 						from : 'ch4',
 						to : 'masterSection1',
+						type : 'audio'
+					},
+					// Final Stage
+					{
+						from : 'masterSection1',
+						to : 'compressor1',
+						type : 'audio'
+					},
+					{
+						from : 'compressor1',
+						to : 'audiodestination1',
 						type : 'audio'
 					},
 					// Visualization

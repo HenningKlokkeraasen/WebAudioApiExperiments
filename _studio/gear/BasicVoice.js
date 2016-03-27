@@ -2,8 +2,10 @@ define([
 	'/_studio/Modules/BasicWaa/Oscillator/Oscillator.js',
 	'/_studio/Modules/BasicWaa/Filter/Filter.js',
 	'/_studio/Modules/BasicWaa/Gain/Gain.js',
-	'/_studio/Modules/AudioBuses/PatchBay/PatchBay.js',
-	], function(Oscillator, Filter, Gain, PatchBay) {
+	// '/_studio/Modules/AudioBuses/PatchBay/PatchBay.js',
+	], function(Oscillator, Filter, Gain
+	// , PatchBay
+	) {
 		return {
 			id: 'basicVoice1',
 			title : 'Basic Voice Unit',
@@ -17,16 +19,16 @@ define([
 							{ moduleMother: Gain, id: 'gain5' }
 						]
 					},
-					{
-						modules: [
-							{ moduleMother: PatchBay, id: 'patchbay1' }
-						]
-					}
+					// {
+					// 	modules: [
+					// 		{ moduleMother: PatchBay, id: 'patchbay1' }
+					// 	]
+					// }
 				],
 				patches : [
 					{ from: 'osc1', to: 'resonant1', type: 'audio' },
 					{ from: 'resonant1', to: 'gain5', type: 'audio' },
-					{ from: 'gain5', to: 'patchbay1', type: 'audio' }
+					// { from: 'gain5', to: 'patchbay1', type: 'audio' }
 				]
 			}
 		};

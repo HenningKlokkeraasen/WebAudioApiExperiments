@@ -83,6 +83,13 @@ define([
 										}
 									});
 								}
+								if (rackData.moduleToGearPatches != undefined) {
+									rackData.moduleToGearPatches.forEach(function(gearPatch) {
+										if (gearPatch.gear == gear.id) {
+											pacthRenderer.renderPatches(rm, [gearPatch]);
+										}
+									});
+								}
 								if (rackData.gearToGearPatches != undefined) {
 									rackData.gearToGearPatches.forEach(function(gearPatch) {
 										rackData.rows.forEach(function(row2) {
