@@ -1,7 +1,8 @@
 define([], function() {
-	function WebMidiContext(noteOnCallback, noteOffCallback) {
+	function WebMidiContext(noteOnCallback, noteOffCallback, midiMessageCallback) {
 		this._noteOnCallback = noteOnCallback;
 		this._noteOffCallback = noteOffCallback;
+		this._midiMessageCallback = midiMessageCallback;
 		this.initMidi();
 	}
 
@@ -102,7 +103,9 @@ define([], function() {
 			// 	str += "0x" + event.data[i].toString(16) + " ";
 			// }
 			// console.log(str);
-
+			
+			if (this._midiMessageCallback != undefined)
+				this._midiMessageCallback(event.data[0], event.data[1], event.data[2]);
 			
 			if (event.data[0] == 144) {
 				var midiNoteNumber = event.data[1];

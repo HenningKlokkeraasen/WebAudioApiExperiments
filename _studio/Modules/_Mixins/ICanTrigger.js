@@ -41,22 +41,24 @@ define([], function() {
 
 		this.trigger = function() {
 			var self = this;
-			this.facadesToTrigger.forEach(function(facade) {
-				// console.debug('calling gateOn for ')
-				// console.debug(facade);
-				// console.debug(self.gateOnCallback);
-				facade.gateOn(self.gateOnCallback, self);
-			});
+			if (this.facadesToTrigger != undefined)
+				this.facadesToTrigger.forEach(function(facade) {
+					// console.debug('calling gateOn for ')
+					// console.debug(facade);
+					// console.debug(self.gateOnCallback);
+					facade.gateOn(self.gateOnCallback, self);
+				});
 		};
 
 		this.release = function() {
 			var self = this;
-			this.facadesToTrigger.forEach(function(facade) {
-				// console.debug('calling gateOff for');
-				// console.debug(facade);
-				// console.debug(self.gateOffCallback);
-				facade.gateOff(self.gateOffCallback, self);
-			});
+			if (this.facadesToTrigger != undefined)
+				this.facadesToTrigger.forEach(function(facade) {
+					// console.debug('calling gateOff for');
+					// console.debug(facade);
+					// console.debug(self.gateOffCallback);
+					facade.gateOff(self.gateOffCallback, self);
+				});
 		};
 		
 		this.getFacadesToTrigger = function() {

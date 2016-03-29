@@ -55,7 +55,7 @@ define([
 			var facade = this;
 			this.outputForNoteNode = outputForNoteNode;
 
-			new WebMidiContext(this.noteOn.bind(this), this.noteOff.bind(this));
+			new WebMidiContext(this.noteOn.bind(this), this.noteOff.bind(this), this.midiMessage.bind(this));
 		};
 
 		WebMidiInputFacade.prototype.noteOn = function(note, frequency) {
@@ -75,15 +75,16 @@ define([
 
 			var facade = this;
 
-			this.controlDestinations.forEach(function(destination) {
-				var now = facade.audioContext.currentTime;
-				if (destination.cancelScheduledValues != undefined)
-					destination.cancelScheduledValues(now);
-				// console.log(`glide time: ${self.glideTime}`);
-				if (destination.exponentialRampToValueAtTime != undefined)
-					destination.exponentialRampToValueAtTime(frequency, now + self.glideTime);
-				// hack? will only work for oscillators
-			});
+			if (this.controlDestinations != undefined)
+				this.controlDestinations.forEach(function(destination) {
+					var now = facade.audioContext.currentTime;
+					if (destination.cancelScheduledValues != undefined)
+						destination.cancelScheduledValues(now);
+					// console.log(`glide time: ${self.glideTime}`);
+					if (destination.exponentialRampToValueAtTime != undefined)
+						destination.exponentialRampToValueAtTime(frequency, now + self.glideTime);
+					// hack? will only work for oscillators
+				});
 
 			this.trigger();
 		};
@@ -97,6 +98,10 @@ define([
 			if (!this._hasNotesOn())
 				this.release();
 		};
+		
+		WebMidiInputFacade.prototype.midiMessage = function(statusByte, dataByte1, dataByte2) {
+			console.debug(`statusByte: ${statusByte} dataByte1: ${dataByte1} dataByte2: ${dataByte2}`);
+		}
 
         WebMidiInputFacade.prototype.initiateTriggering = function(audioParam) {
             audioParam.value = 1;
