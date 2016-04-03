@@ -27,22 +27,10 @@ define([
 					{ func : EnvelopeGeneratorFacade.prototype.setDecayTime, selector : 'webaudio-slider[data-parameterType="decayTime"]', ev : 'change' },
 					{ func : EnvelopeGeneratorFacade.prototype.setSustainLevel, selector : 'webaudio-slider[data-parameterType="sustainLevel"]', ev : 'change' },
 					{ func : EnvelopeGeneratorFacade.prototype.setReleaseTime, selector : 'webaudio-slider[data-parameterType="releaseTime"]', ev : 'change' }
-
-
 				]
 			};
 		};
-		// moduleData
-		// 		name
-		// 		shortName
-		// 		a_params
-		//			min
-		//			max
-		//			val
-		//			stp
-		// 		d_params
-		// 		s_params
-		// 		r_params
+
 		EnvelopeGeneratorModuleFactory.prototype.getModule = function(moduleData) {
 			var ranges = [];
 			if (moduleData.a_params)

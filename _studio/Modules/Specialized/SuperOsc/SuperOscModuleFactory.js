@@ -6,6 +6,9 @@ define([
 		SuperOscModuleFactory.prototype.constructor = SuperOscModuleFactory;
 
 		function SuperOscModuleFactory() {
+					this.hasTriggerIn = true;
+					this.hasModulateIn = true;
+					this.hasFrequencyIn = true;
 		}
 		
 		SuperOscModuleFactory.prototype.getModuleDefinition = function() {
