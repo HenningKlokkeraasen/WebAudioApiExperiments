@@ -9,8 +9,10 @@ define([
 		MediaStreamController.prototype = Object.create(ButtonTriggeredModuleController.prototype); // new ButtonTriggeredModuleController();
 		MediaStreamController.prototype.constructor = MediaStreamController;
 
-		function MediaStreamController(master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder) {
-			ButtonTriggeredModuleController.call(this, master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder);
+		function MediaStreamController(master, patcher, audioPatchController, triggerPatchController, 
+			modulationPatchController, frequencyPatchController, facadeHolder) {
+			ButtonTriggeredModuleController.call(this, master, patcher, audioPatchController, triggerPatchController, 
+				modulationPatchController, frequencyPatchController, facadeHolder);
 		}
 
 		MediaStreamController.prototype.bindStartStopButton = function(button, div) {

@@ -30,7 +30,7 @@ define([], function() { return { Modules :
 	   },
 
 	   {  
-	      name:'Env Gen Osc',
+	      name:'EG 1 (Pitch Envelope)',
 	      shortName:'eg2',
 	      a_params:{  
 	         min:0,
@@ -43,11 +43,23 @@ define([], function() { return { Modules :
 	         max:3,
 	         val:0.1,
 	         stp:0.01
-	      }
+	      },
+	    //   s_params:{  
+	    //      min:0,
+	    //      max:1,
+	    //      val:0.4,
+	    //      stp:0.01
+	    //   },
+	    //   r_params:{  
+	    //      min:0,
+	    //      max:3,
+	    //      val:0.1,
+	    //      stp:0.01
+	    //  }
 	   },
 
 	   {  
-	      name:'Env Gen Filter',
+	      name:'EG 2 (Filter Envelope)',
 	      shortName:'eg3',
 	      a_params:{  
 	         min:0,
@@ -76,7 +88,7 @@ define([], function() { return { Modules :
 	   },
 
 	   {  
-	      name:'Env Gen Amp',
+	      name:'EG 3 (Loudness Envelope)',
 	      shortName:'eg4',
 	      a_params:{  
 	         min:0,

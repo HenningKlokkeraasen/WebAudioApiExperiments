@@ -11,8 +11,8 @@ define([
 		function HarmonicGeneratorModuleFactory() {
 			this.headerCssClass = 'harmonicGenerator';
 			this.hasTriggerIn = false;
-			this.hasControlIn = false;
-			this.hasControlOut = false;
+			this.hasModulateIn = false;
+			this.hasModulateOut = false;
 		}
 		HarmonicGeneratorModuleFactory.prototype.getModuleDefinition = function() {
 			var base = OscillatorModuleFactory.prototype.getModuleDefinition.call(this);

@@ -41,7 +41,7 @@ define([
 					{ from : 'filter5', to : 'gain5', type : 'audio' },
 					
 					// Modulation
-					{ from: 'lfo1', to: 'osc5', type: 'control' },
+					{ from: 'lfo1', to: 'osc5', type: 'modulate' },
 				],
 				moduleToGearPatches: [
 					{ gear: 'finalStage1', from: 'gain5', to: 'gain6', type: 'audio' },

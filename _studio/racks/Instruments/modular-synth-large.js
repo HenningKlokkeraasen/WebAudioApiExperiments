@@ -58,12 +58,12 @@ define([
 					{ from : 'eg4', to : 'gain5', type: 'trigger' },
 					
 					// Pitch / control / noteOn, noteOff
-					{ from: 'qwerty1', to: 'osc5', type: 'control' },
+					{ from: 'qwerty1', to: 'osc5', type: 'frequency' },
 					
 					// Modulation
-					{ from: 'lfo1', to: 'osc5', type: 'control' },
-					{ from: 'lfo2', to: 'resonantvcf1', type: 'control' },
-					{ from: 'lfo3', to: 'gain5', type: 'control' },
+					{ from: 'lfo1', to: 'osc5', type: 'modulate' },
+					{ from: 'lfo2', to: 'resonantvcf1', type: 'modulate' },
+					{ from: 'lfo3', to: 'gain5', type: 'modulate' },
 					
 					{ from: 'gain5', to: 'ch1', type: 'audio'},
 					

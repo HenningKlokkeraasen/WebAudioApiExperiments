@@ -28,7 +28,7 @@ define([
 
         // private
         EnvelopeGeneratorFacade.prototype.initNodes = function() {
-            this.controlIn = this.audioContext.createGain();
+            this.triggerIn = this.audioContext.createGain();
 
 
 
@@ -37,7 +37,7 @@ define([
 
         // private
         EnvelopeGeneratorFacade.prototype.setDefaultValues = function() {
-            this.controlIn.gain.value = 0;
+            this.triggerIn.gain.value = 0;
 
 
         };
@@ -93,11 +93,11 @@ define([
             // console.debug(this);
 			
 			// Ensure not exactly 0 values, they dont work so good
-			if (rampUpToValue === 0)
-				rampUpToValue = 0.0001; // TODO what if it is supposed to be a negative value?
+			// if (rampUpToValue === 0)
+			// 	rampUpToValue = 0.0001; // TODO what if it is supposed to be a negative value?
 				
-			if (rampDownToValue === 0)
-				rampDownToValue = 0.0001; // TODO what if it is supposed to be a negative value?
+			// if (rampDownToValue === 0)
+			// 	rampDownToValue = 0.0001; // TODO what if it is supposed to be a negative value?
 			
             var now = this.getCurrentTimeAndCancelScheduledValuesAndSetValue(audioParam);
 
@@ -110,8 +110,8 @@ define([
 
             // DECAY to SUSTAIN LEVEL
             var sustainLevel = this.sustainLevel;
-            if (this.sustainLevel == 0)
-                sustainLevel = 0.0001;
+            // if (this.sustainLevel == 0)
+            //     sustainLevel = 0.0001;
 
             
 
@@ -120,8 +120,8 @@ define([
             audioParam.linearRampToValueAtTime(sustainLevel, (now + this.attackTime + this.decayTime));
             ////this.triggerOut.setValueAtTime(sustainLevel, now + this.attackTime + this.decayTime);
 
-            if (this.sustainLevel == 0)
-                audioParam.setValueAtTime(rampDownToValue, now + this.attackTime + this.decayTime);
+            // if (this.sustainLevel == 0)
+            //     audioParam.setValueAtTime(rampDownToValue, now + this.attackTime + this.decayTime);
 
         };
 		 
@@ -173,13 +173,13 @@ define([
         EnvelopeGeneratorFacade.prototype.gateOn = function(callback, originator) {
             this.trigger();
             // this.initiateTriggering();
-            callback.call(originator, this.controlIn.gain);
+            callback.call(originator, this.triggerIn.gain);
         };
 
         EnvelopeGeneratorFacade.prototype.gateOff = function(callback, originator) {
             this.release();
             // this.initiateReleasing();
-            callback(originator, this.controlIn.gain);
+            callback(originator, this.triggerIn.gain);
         };
         //endregion iCanBeTriggered
 

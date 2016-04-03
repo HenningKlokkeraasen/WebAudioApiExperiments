@@ -6,16 +6,19 @@ define([
 			
 		};
 
-		RackRenderer.prototype.loadRack = function(board, master, patcher,  audioPatchController, triggerPatchController, controlPatchController) {
+		RackRenderer.prototype.loadRack = function(board, master, patcher,  audioPatchController, triggerPatchController, 
+			modulationPatchController, frequencyPatchController) {
             this.board = board;
-			this.loadModules(master, patcher,  audioPatchController, triggerPatchController, controlPatchController);
+			this.loadModules(master, patcher,  audioPatchController, triggerPatchController, 
+				modulationPatchController, frequencyPatchController);
 			
 			// TODO
 			if (this.board.usesSynthAndKeyboard)
 				this.initSynthAndKeyboard(master.audioContext);
 		};
 
-		RackRenderer.prototype.loadModules = function(master, patcher, audioPatchController, triggerPatchController, controlPatchController) {
+		RackRenderer.prototype.loadModules = function(master, patcher, audioPatchController, triggerPatchController, 
+			modulationPatchController, frequencyPatchController) {
 			document.querySelector('#boardTitle').innerText = this.board.title;
 			// document.querySelector('#boardDescription').innerText = this.board.description;
 			var parsedHtml = $.parseHTML(this.board.description);
@@ -28,7 +31,9 @@ define([
 				return;
 			}
 
-			new ModuleRenderer(master, patcher, audioPatchController, triggerPatchController, controlPatchController).renderModules(rackData);
+			new ModuleRenderer(master, patcher, audioPatchController, triggerPatchController, 
+				modulationPatchController, frequencyPatchController)
+				.renderModules(rackData);
 
 		};
 

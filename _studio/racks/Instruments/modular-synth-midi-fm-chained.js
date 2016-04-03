@@ -53,11 +53,11 @@ define([
 					{ from : 'eg4', to : 'gain5', type: 'trigger' },
 					
 					// Pitch / control / noteOn, noteOff
-					{ from: 'webmidi1', to: 'osc5', type: 'control' },
+					{ from: 'webmidi1', to: 'osc5', type: 'frequency' },
 					
 					// Modulation
-					{ from: 'mar1', to: 'mar2', type: 'control' },
-					{ from: 'mar2', to: 'osc5', type: 'control' },
+					{ from: 'mar1', to: 'mar2', type: 'modulate' },
+					{ from: 'mar2', to: 'osc5', type: 'modulate' },
 					
 					{ from: 'gain5', to: 'ch1', type: 'audio'},
 					

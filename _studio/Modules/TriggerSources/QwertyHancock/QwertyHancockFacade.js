@@ -4,15 +4,15 @@
 define([
 	'/_studio/Modules/_FacadeBase.js',
     '/_studio/Modules/_Mixins/ICanTrigger.js',
-    '/_studio/Modules/_Mixins/ICanSendPitchControlOut.js',
-	], function(FacadeBase, ICanTrigger, ICanSendPitchControlOut) {
+    '/_studio/Modules/_Mixins/ICanSetFrequency.js',
+	], function(FacadeBase, ICanTrigger, ICanSetFrequency) {
 		QwertyHancockFacade.prototype = Object.create(FacadeBase.prototype);
 		QwertyHancockFacade.prototype.constructor = QwertyHancockFacade;
 
 		function QwertyHancockFacade(audioContext) {
 			FacadeBase.call(this, audioContext); // base()
 			ICanTrigger.call(this);
-			ICanSendPitchControlOut.call(this);
+			ICanSetFrequency.call(this);
 
             this.gateOnCallback = this.initiateTriggering;
             this.gateOffCallback = this.initiateReleasing;
@@ -56,12 +56,11 @@ define([
 
 		QwertyHancockFacade.prototype.initKeyboard = function(keyboard, outputForNoteNode) {
 			var self = this;
-			var facade = this;
 			this.outputForNoteNode = outputForNoteNode;
 
 			keyboard.keyDown = function (note, frequency) {
 
-				var frequencyMultipliedWithOctave = facade.getFrequencyMultipliedByCurrentOctave(frequency);
+				var frequencyMultipliedWithOctave = self.getFrequencyMultipliedByCurrentOctave(frequency);
 
 				// console.debug('gate on');
 				// console.debug(note);
@@ -69,27 +68,28 @@ define([
 				// console.debug('Note before multiplying with octave: ' + note
 				// 	+ ' | frequency: ' + frequency);
 				// console.debug('Note after  multiplying with octave: ' + note.substr(0, 1)
-				// 	+ facade._currentOctave
+				// 	+ self._currentOctave
 				// 	+ ' | frequency: ' + frequencyMultipliedWithOctave);
-				facade.outputForNoteNode.textContent = note.substr(0, 1)
-					+ facade.getQHOctaveQualifiedByCurrentOctave(note.substr(1,1)); // dirty DOM hack, TODO facade should not know about DOM
+				self.outputForNoteNode.textContent = note.substr(0, 1)
+					+ self.getQHOctaveQualifiedByCurrentOctave(note.substr(1,1)); // dirty DOM hack, TODO facade should not know about DOM
 
-				facade.controlDestinations.forEach(function(destination) {
-					var now = facade.audioContext.currentTime;
-					destination.cancelScheduledValues(now);
-					// console.log(`glide time: ${self.glideTime}`);
-					destination.exponentialRampToValueAtTime(frequencyMultipliedWithOctave, now + self.glideTime);
-					// hack? will only work for oscillators
-				});
+				if (self.frequencySetDestinations != undefined)
+					self.frequencySetDestinations.forEach(function(destination) {
+						var now = self.audioContext.currentTime;
+						destination.cancelScheduledValues(now);
+						// console.log(`glide time: ${self.glideTime}`);
+						destination.exponentialRampToValueAtTime(frequencyMultipliedWithOctave, now + self.glideTime);
+						// hack? will only work for oscillators
+					});
 
-				facade.trigger();
+				self.trigger();
 			};
 
 			keyboard.keyUp = function (note, frequency) {
 
 				// console.debug('gate off');
 
-				facade.release();
+				self.release();
 			};
 		};
 

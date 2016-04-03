@@ -111,10 +111,12 @@ PatchCableController.prototype.removePatchCable = function(canvasAndContainer) {
 PatchCableController.prototype.getColorForTypeOfPatch = function(typeOfPatch) {
 	if (typeOfPatch == 'audio')
 		return '#D53734';
-	if (typeOfPatch == 'control')
+	if (typeOfPatch == 'modulate')
 		return '#2B4689';
 	if (typeOfPatch == 'trigger')
 		return '#1E926F';
+	if (typeOfPatch == 'frequency')
+		return 'rgb(247, 229, 98)';
 	return 'black';
 }
 

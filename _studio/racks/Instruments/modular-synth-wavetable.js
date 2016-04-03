@@ -45,10 +45,10 @@ define([
 					{ from : 'eg1', to : 'gain5', type: 'trigger' },
 					
 					// Pitch / control / noteOn, noteOff
-					{ from: 'webmidi1', to: 'wavetable1', type: 'control' },
+					{ from: 'webmidi1', to: 'wavetable1', type: 'frequency' },
 					
 					// Modulation
-					{ from: 'lfo2', to: 'wavetable1', type: 'control' },
+					{ from: 'lfo2', to: 'wavetable1', type: 'modulate' },
 					
 					// visual
 					{ from: 'compressor1', to: 'analyser1', type: 'audio' },

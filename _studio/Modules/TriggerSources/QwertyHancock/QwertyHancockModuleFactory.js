@@ -15,7 +15,7 @@ define([
             this.hasAudioIn = false;
             this.hasAudioOut = false;
             this.hasTriggerOut = true;
-            this.hasControlOut = true;
+            this.hasFrequencyOut = true;
             this.hasKeyboardInterface = true;
         }
         QwertyHancockModuleFactory.prototype.getModuleDefinition = function() {

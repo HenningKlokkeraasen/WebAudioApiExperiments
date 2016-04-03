@@ -9,7 +9,7 @@ define([], function() { return { Modules :
 	         val:1,
 	         stp:0.01
 	      },
-		  hasControlIn: false,
+		  hasModulateIn: false,
 		  hasTriggerIn: false,
 		  moduleCssClass: 'module-1hp'
 	   },
@@ -22,7 +22,7 @@ define([], function() { return { Modules :
 	         val:1,
 	         stp:0.01
 	      },
-		  hasControlIn: false,
+		  hasModulateIn: false,
 		  hasTriggerIn: false,
 		  moduleCssClass: 'module-1hp'
 	   },
@@ -35,7 +35,7 @@ define([], function() { return { Modules :
 	         val:0.5,
 	         stp:0.01
 	      },
-		  hasControlIn: false,
+		  hasModulateIn: false,
 		  hasTriggerIn: false,
 		  moduleCssClass: 'module-1hp'
 	   },
@@ -48,7 +48,7 @@ define([], function() { return { Modules :
 	         val:0,
 	         stp:1
 	      },
-		  hasControlIn: false,
+		  hasModulateIn: false,
 		  hasTriggerIn: false,
 		  moduleCssClass: 'module-1hp'
 	   },
@@ -61,7 +61,7 @@ define([], function() { return { Modules :
 	         val:-1,
 	         stp:1
 	      },
-		  hasControlIn: false,
+		  hasModulateIn: false,
 		  hasTriggerIn: false,
 		  moduleCssClass: 'module-1hp'
 	   },
@@ -85,7 +85,7 @@ define([], function() { return { Modules :
 	         val:1,
 	         stp:0.01
 	      },
-		  hasControlIn: false,
+		  hasModulateIn: false,
 		  hasTriggerIn: false,
 		  moduleCssClass: 'module-1hp'
 	   }

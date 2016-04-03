@@ -37,7 +37,7 @@ define([
 					{ from : 'eg1', to : 'gain5', type: 'trigger' },
 					
 					// Pitch / control / noteOn, noteOff
-					{ from: 'qwerty1', to: 'osc5', type: 'control' },
+					{ from: 'qwerty1', to: 'osc5', type: 'frequency' },
 					
 					// visual
 					{ from: 'compressor1', to: 'analyser1', type: 'audio' },

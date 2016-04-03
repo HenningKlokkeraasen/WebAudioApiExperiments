@@ -1,19 +1,19 @@
 /*
-	Web Audio API wrapper - Gain
+	Web Audio API wrapper - Web MIDI API note on, note off trigger module
 */
 define([
 	'/_studio/Modules/_FacadeBase.js',
     '/_studio/Modules/_Mixins/ICanTrigger.js',
-    '/_studio/Modules/_Mixins/ICanSendPitchControlOut.js',
+    '/_studio/Modules/_Mixins/ICanSetFrequency.js',
     '/_WebAudioApiFacades/WebMidiContext.js'
-	], function(FacadeBase, ICanTrigger, ICanSendPitchControlOut, WebMidiContext) {
+	], function(FacadeBase, ICanTrigger, ICanSetFrequency, WebMidiContext) {
 		WebMidiInputFacade.prototype = Object.create(FacadeBase.prototype);
 		WebMidiInputFacade.prototype.constructor = WebMidiInputFacade;
 
 		function WebMidiInputFacade(audioContext) {
 			FacadeBase.call(this, audioContext); // base()
 			ICanTrigger.call(this);
-			ICanSendPitchControlOut.call(this);
+			ICanSetFrequency.call(this);
 
             this.gateOnCallback = this.initiateTriggering;
             this.gateOffCallback = this.initiateReleasing;
@@ -50,6 +50,10 @@ define([
 		WebMidiInputFacade.prototype.setGlideTime = function(value) {
 			this.glideTime = parseFloat(value);
 		}
+		
+		WebMidiInputFacade.prototype.setDebugMode = function(value) {
+			this.debugMode = value;
+		}
 
 		WebMidiInputFacade.prototype.initKeyboard = function(outputForNoteNode) {
 			var facade = this;
@@ -66,18 +70,16 @@ define([
 			// console.debug('Note before multiplying with octave: ' + note
 			// 	+ ' | frequency: ' + frequency);
 			// console.debug('Note after  multiplying with octave: ' + note.substr(0, 1)
-			// 	+ facade._currentOctave
+			// 	+ self._currentOctave
 			// 	+ ' | frequency: ' + frequencyMultipliedWithOctave);
 			this.outputForNoteNode.textContent = note; // dirty DOM hack, TODO facade should not know about DOM
 
 			this._setIsOn(note);
 			// console.debug('currently playing'); console.group(); this._notesCurrentlyOn.forEach(function(note) { console.debug(note); }); console.groupEnd();
 
-			var facade = this;
-
-			if (this.controlDestinations != undefined)
-				this.controlDestinations.forEach(function(destination) {
-					var now = facade.audioContext.currentTime;
+			if (this.frequencySetDestinations != undefined)
+				this.frequencySetDestinations.forEach(function(destination) {
+					var now = self.audioContext.currentTime;
 					if (destination.cancelScheduledValues != undefined)
 						destination.cancelScheduledValues(now);
 					// console.log(`glide time: ${self.glideTime}`);
@@ -100,7 +102,8 @@ define([
 		};
 		
 		WebMidiInputFacade.prototype.midiMessage = function(statusByte, dataByte1, dataByte2) {
-			console.debug(`statusByte: ${statusByte} dataByte1: ${dataByte1} dataByte2: ${dataByte2}`);
+			if (this.debugMode)
+				console.debug(`statusByte: ${statusByte} dataByte1: ${dataByte1} dataByte2: ${dataByte2}`);
 		}
 
         WebMidiInputFacade.prototype.initiateTriggering = function(audioParam) {

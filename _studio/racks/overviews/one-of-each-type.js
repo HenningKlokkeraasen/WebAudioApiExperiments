@@ -11,7 +11,7 @@ define([
 	], function(Analyser, MasterSection, Oscillator, Filter, Gain, LFO, EnvelopeGenerator) {
 		return {
 			title : 'One of each type',
-			description : '...of connection combination (audio in/out, trigger (gate) in/out, control (cv) in/out)',
+			description : '...of connection combination (audio in/out, trigger (gate) in/out, modulate (cv) in/out, frequency in/out)', // TODO
 			rackData : {
 				rows : [
 					{

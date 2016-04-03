@@ -1,12 +1,14 @@
 define([
 	'/_Patching/PatchRenderer.js'
 	], function(PatchRenderer) {
-		function ModuleRenderer(master, patcher, audioPatchController, triggerPatchController, controlPatchController) {
+		function ModuleRenderer(master, patcher, audioPatchController, triggerPatchController, 
+			modulationPatchController, frequencyPatchController) {
 			this.master = master;
             this.patcher = patcher;
 			this.audioPatchController = audioPatchController;
 			this.triggerPatchController = triggerPatchController;
-			this.controlPatchController = controlPatchController;
+			this.modulationPatchController = modulationPatchController;
+			this.frequencyPatchController = frequencyPatchController;
 			this.facadeHolder = new Array();
 			this.renderedModules = new Array();
 			this.modulesToLoadCount = 0;
@@ -62,7 +64,8 @@ define([
 		
 		ModuleRenderer.prototype.continueAfterAllModulesAreRendered = function(renderedModules) {
 			var rackData = this.rackData;
-			var pacthRenderer = new PatchRenderer(this.audioPatchController, this.triggerPatchController, this.controlPatchController);
+			var pacthRenderer = new PatchRenderer(this.audioPatchController, this.triggerPatchController, 
+				this.modulationPatchController, this.frequencyPatchController);
 			var rm = this.renderedModules;
 			renderedModules.forEach(function(renderedModule, index, arr) {
 				rm.push(renderedModule);
@@ -144,7 +147,8 @@ define([
 
 			// Create instance of the controller specified
 			var controller = new moduleData.moduleMother.Controller(this.master, this.patcher,
-			this.audioPatchController, this.triggerPatchController, this.controlPatchController, this.facadeHolder);
+			this.audioPatchController, this.triggerPatchController, this.modulationPatchController, this.frequencyPatchController, 
+			this.facadeHolder);
 
 			// render module
 			controller.render(factory.getModuleDefinition(), modules, containerSelector, callback);

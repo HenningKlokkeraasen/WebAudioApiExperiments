@@ -31,9 +31,11 @@ define([
 			var patcher = new Patcher();
 			var audioPatchController = new PatchController();
 			var triggerPatchController = new PatchController();
-			var controlPatchController = new PatchController();
-            
-			new RackRenderer().loadRack(board, this.master, patcher, audioPatchController, triggerPatchController, controlPatchController);
+			var modulationPatchController = new PatchController();
+            var frequencyPatchController = new PatchController();
+			
+			new RackRenderer().loadRack(board, this.master, patcher, 
+				audioPatchController, triggerPatchController, modulationPatchController, frequencyPatchController);
 
 			this.initPatchCables();
             

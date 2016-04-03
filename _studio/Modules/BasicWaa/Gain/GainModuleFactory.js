@@ -10,7 +10,7 @@ define([
             this.headerCssClass = 'gain';
 			// this.moduleCssClass = 'weave';
             this.hasTriggerIn = true;
-            this.hasControlIn = true;
+            this.hasModulateIn = true;
         }
         GainModuleFactory.prototype.getModuleDefinition = function() {
             return {    
@@ -37,8 +37,8 @@ define([
         // 
         //  
         GainModuleFactory.prototype.getModule = function(moduleData) {
-			if (moduleData.hasControlIn != undefined)
-				this.hasControlIn = moduleData.hasControlIn;
+			if (moduleData.hasModulateIn != undefined)
+				this.hasModulateIn = moduleData.hasModulateIn;
 			if (moduleData.hasTriggerIn != undefined)
 				this.hasTriggerIn = moduleData.hasTriggerIn;
 			if (moduleData.moduleCssClass != undefined)

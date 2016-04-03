@@ -1,10 +1,12 @@
 define([
 	'/_Patching/Patcher.js'
 	], function (Patcher) {
-		function PatchRenderer(audioPatchController, triggerPatchController, controlPatchController) {
+		function PatchRenderer(audioPatchController, triggerPatchController, 
+			modulationPatchController, frequencyPatchController) {
 			this.audioPatchController = audioPatchController;
 			this.triggerPatchController = triggerPatchController;
-			this.controlPatchController = controlPatchController;
+			this.modulationPatchController = modulationPatchController;
+			this.frequencyPatchController = frequencyPatchController;
 		}
 		
 		PatchRenderer.prototype.renderPatches = function(rm, patches) {
@@ -35,23 +37,29 @@ define([
 						? to.facadeInstance.input
 						: type === 'trigger'
 							? to.facadeInstance
-							: type === 'control'
-								? to.facadeInstance.controlIn
-								: undefined;
+							: type === 'modulate'
+								? to.facadeInstance.modulateIn
+								: type == 'frequency'
+									? to.facadeInstance.frequencyIn
+									: undefined;
 					var connectFunc = type === 'audio'
 						? from.facadeInstance.connectOrDisconnect
 						: type === 'trigger'
 							? from.facadeInstance.setTriggerFor
-							: type === 'control'
-								? from.facadeInstance.control
-								: undefined;
+							: type === 'modulate'
+								? from.facadeInstance.modulate
+								: type == 'frequency'
+									? from.facadeInstance.setFrequencyFor
+									: undefined;
 					var patcherController = type === 'audio'
 						? self.audioPatchController
 						: type === 'trigger'
 							? self.triggerPatchController
-							: type === 'control'
-								? self.controlPatchController
-								: undefined;
+							: type === 'modulate'
+								? self.modulationPatchController
+								: type == 'frequency'
+									? self.frequencyPatchController
+									: undefined;
 					var fromCoordinates = self.getCoordinates(from.containerSelector, '[data-patch-type=' + type + 'Out]');
 					var toCoordinates = self.getCoordinates(to.containerSelector, '[data-patch-type=' + type + 'In]');
 					patcherController.patch(fromCoordinates, toCoordinates, 

@@ -4,8 +4,10 @@ define([
 		TimedSequencePlayerController.prototype = Object.create(AudioFilePlayerController.prototype); // new ButtonTriggeredModuleController();
 		TimedSequencePlayerController.prototype.constructor = TimedSequencePlayerController;
 
-		function TimedSequencePlayerController(master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder) {
-			AudioFilePlayerController.call(this, master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder); // base()
+		function TimedSequencePlayerController(master, patcher, audioPatchController, triggerPatchController, 
+			modulationPatchController, frequencyPatchController, facadeHolder) {
+			AudioFilePlayerController.call(this, master, patcher, audioPatchController, triggerPatchController, 
+			modulationPatchController, frequencyPatchController, facadeHolder); // base()
 		}
 
 		TimedSequencePlayerController.prototype.render = function(definition, model, containerSelector, callback) {

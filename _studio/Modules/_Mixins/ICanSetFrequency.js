@@ -1,22 +1,24 @@
 define([], function() {
-	var ICanSendPitchControlOut = function() {
+	var iCanSetFrequency = function() {
 
-		// this.controlOut = undefined;
+		// this.frequencySetOut = undefined;
 
-		this.control = function(destination) {
+		this.setFrequencyFor = function(destination) {
+			
 			// if (destination instanceof AudioParam) {
-				var nodesIControl = this.getNodesIControl.call(this);
-				var index = nodesIControl.indexOf(destination);
-				console.log(index);
+				var frequencySetDestinations = this.getNodesIControl.call(this);
+				var index = frequencySetDestinations.indexOf(destination);
 				if (index > -1) {
-					console.log('already connected to destination. disconnecting');
+					// console.log('already connected to destination. disconnecting');
+					// this.frequencySetOut.disconnect(destination);
 					this.removeFromNodesIControl.call(this, index);
 					// console.log(this.nodesIHaveConnectedTo);
 					return -1;
 				}
 				else {
-					console.log('connecting to destination');
-					this.controlDestinations.push(destination);
+					// console.log('connecting to destination');
+					// this.frequencySetIn.connect(destination);
+					this.frequencySetDestinations.push(destination);
 					return 1;
 				}
 			// } else {
@@ -28,25 +30,24 @@ define([], function() {
 			// 	console.groupEnd();
 			// }
 			
-			// TODO implement uncontrol
-			return 1;
+			// return 1;
 		};
 
 		this.getNodesIControl = function() {
-			if (this.controlDestinations == undefined)
-				this.controlDestinations = [];
-			return this.controlDestinations;
+			if (this.frequencySetDestinations == undefined)
+				this.frequencySetDestinations = [];
+			return this.frequencySetDestinations;
 		}
 
 		this.removeFromNodesIControl = function(index) {
 			// console.log('delete before');
 			// console.log(this.nodesIHaveConnectedTo);
-			this.controlDestinations.splice(index, 1)
+			this.frequencySetDestinations.splice(index, 1)
 			// console.log('delete after');
 			// console.log(this.nodesIHaveConnectedTo);
 		}
 
 	};
 
-	return ICanSendPitchControlOut;
+	return iCanSetFrequency;
 });

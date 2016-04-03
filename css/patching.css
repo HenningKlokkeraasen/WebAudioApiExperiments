@@ -51,9 +51,17 @@ fieldset.connectors {
 	border-radius: 4px;
 }
 
-.controlPatch {
+.modulationPatch {
 	background-color: #2B4689;
 	border: 1px solid #2B4689;
+	margin: 4px;
+	padding: 3px;
+	border-radius: 4px;
+}
+
+.frequencyPatch {
+	background-color: rgb(247, 229, 98);
+	color: black;
 	margin: 4px;
 	padding: 3px;
 	border-radius: 4px;

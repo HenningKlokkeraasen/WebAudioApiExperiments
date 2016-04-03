@@ -96,7 +96,7 @@ define([], function() { return { Modules :
 		   name: 'Resonant HP/LP Filter (VCF)',
 		   shortName: 'resonantvcf1',
 		   mode: 'resonantvcf',
-	      hasControlIn: true,
+	      hasModulateIn: true,
 		  hasTriggerIn: true,
 	   }
 	]

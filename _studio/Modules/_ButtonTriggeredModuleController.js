@@ -5,8 +5,10 @@ define([
 		ButtonTriggeredModuleController.prototype = Object.create(GenericController.prototype); // new GenericController();
 		ButtonTriggeredModuleController.prototype.constructor = ButtonTriggeredModuleController;
 
-		function ButtonTriggeredModuleController(master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder) {
-			GenericController.call(this, master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder);
+		function ButtonTriggeredModuleController(master, patcher, audioPatchController, triggerPatchController, 
+			modulationPatchController, frequencyPatchController, facadeHolder) {
+			GenericController.call(this, master, patcher, audioPatchController, triggerPatchController, 
+				modulationPatchController, frequencyPatchController, facadeHolder);
 		}
 
 		ButtonTriggeredModuleController.prototype.render = function(definition, model, containerSelector, callback) {

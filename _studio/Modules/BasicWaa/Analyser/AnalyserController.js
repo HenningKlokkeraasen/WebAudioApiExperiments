@@ -11,8 +11,10 @@ define([
 		AnalyserController.prototype = Object.create(ButtonTriggeredModuleController.prototype); // new ButtonTriggeredModuleController();
 		AnalyserController.prototype.constructor = AnalyserController;
 
-		function AnalyserController(master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder) {
-			ButtonTriggeredModuleController.call(this, master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder);
+		function AnalyserController(master, patcher, audioPatchController, triggerPatchController, 
+			modulationPatchController, frequencyPatchController, facadeHolder) {
+			ButtonTriggeredModuleController.call(this, master, patcher, audioPatchController, triggerPatchController, 
+				modulationPatchController, frequencyPatchController, facadeHolder);
 		}
 
 		AnalyserController.prototype.bindStartStopButton = function(button, div) {

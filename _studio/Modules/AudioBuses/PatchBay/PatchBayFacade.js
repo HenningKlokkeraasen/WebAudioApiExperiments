@@ -4,15 +4,17 @@
 define([
 	'/_studio/Modules/_FacadeBase.js',
 	'/_studio/Modules/_Mixins/ICanBeTriggered.js',
-	'/_studio/Modules/_Mixins/ICanBeAudioParamControlled.js'
-	], function(FacadeBase, ICanBeTriggered, ICanBeAudioParamControlled) {
+	// '/_studio/Modules/_Mixins/ICanBeAudioParamControlled.js'
+	], function(FacadeBase, ICanBeTriggered
+	// , ICanBeAudioParamControlled
+	) {
 		PatchBay.prototype = Object.create(FacadeBase.prototype);
 		PatchBay.prototype.constructor = PatchBay;
 
 		function PatchBay(audioContext) {
 		    FacadeBase.call(this, audioContext); // base()
 			ICanBeTriggered.call(this);
-			ICanBeAudioParamControlled.call(this);
+			// ICanBeAudioParamControlled.call(this);
 
 			return this;
 		}
@@ -21,7 +23,7 @@ define([
 		PatchBay.prototype.initNodes = function() {
 		    this.input = this.audioContext.createGain();
 		    this.output = this.audioContext.createGain();
-			this.controlIn = this.input.gain;
+			// this.controlIn = this.input.gain;
 
 		};
 

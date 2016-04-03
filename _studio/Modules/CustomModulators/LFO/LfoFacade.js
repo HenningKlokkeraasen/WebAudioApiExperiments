@@ -4,16 +4,16 @@
 define([
     '/_studio/Modules/BasicWaa/Oscillator/OscillatorFacade.js',
     '/_studio/Modules/BasicWaa/Gain/GainFacade.js',
-    '/_studio/Modules/_Mixins/ICanControlAudioParam.js',
-	'/_studio/Modules/_Mixins/ICanBeAudioParamControlled.js'
-    ], function(OscillatorFacade, GainFacade, ICanControlAudioParam, ICanBeAudioParamControlled) {
+    '/_studio/Modules/_Mixins/ICanModulate.js',
+	'/_studio/Modules/_Mixins/ICanBeModulated.js'
+    ], function(OscillatorFacade, GainFacade, ICanModulate, ICanBeModulated) {
         LfoFacade.prototype = Object.create(OscillatorFacade.prototype);
         LfoFacade.prototype.constructor = LfoFacade;
 
         function LfoFacade(audioContext) {
             OscillatorFacade.call(this, audioContext); // base()
-            ICanControlAudioParam.call(this);
-			ICanBeAudioParamControlled.call(this);
+            ICanModulate.call(this);
+			ICanBeModulated.call(this);
 
             return this;
         }
@@ -24,8 +24,8 @@ define([
             
             
             this.amount = this.audioContext.createGain();
-            this.controlOut = this.amount;
-			this.controlIn = this.input.frequency;
+            this.modulateOut = this.amount;
+			this.modulateIn = this.input.frequency;
         };
 
         // private

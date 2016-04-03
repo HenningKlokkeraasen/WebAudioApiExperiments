@@ -12,7 +12,7 @@ define([
 			this.buttonCssClass = 'round';
 			// this.moduleCssClass = 'fibredark';
 			this.hasAudioIn = false;
-			// this.hasControlOut = true;
+			// this.hasModulateOut = true;
 			this.hasStartButton = true;
 		}
 		OscillatorModuleFactory.prototype.getModuleDefinition = function() {
@@ -35,13 +35,14 @@ define([
 			switch (moduleData.mode) {
 				case 'vco':
 					this.hasTriggerIn = true;
-					this.hasControlIn = true;
+					this.hasModulateIn = true;
+					this.hasFrequencyIn = true;
 					displayFrequencyKnob = false;
 					break;
 				// case 'lfo' : 
 				// 	this.hasAudioOut = false;
-				// 	this.hasControlIn = true;
-				// 	this.hasControlOut = true;
+				// 	this.hasModulateOut = true;
+				// 	this.hasModulateOut = true;
 				// 	displayDetuneKnob = false;
 				// 	frequencyKnobLabel = 'Rate';
 					// break;

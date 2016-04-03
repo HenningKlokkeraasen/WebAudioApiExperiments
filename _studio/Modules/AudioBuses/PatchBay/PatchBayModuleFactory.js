@@ -10,8 +10,8 @@ define([
             this.headerCssClass = 'patchBay';
 			this.moduleCssClass = 'module-4hp';
             this.hasTriggerIn = true;
-            this.hasControlIn = true;
-			this.hasControlOut = true;
+            // this.hasControlIn = true;
+			// this.hasControlOut = true;
         }
         PatchBayModuleFactory.prototype.getModuleDefinition = function() {
             return {    

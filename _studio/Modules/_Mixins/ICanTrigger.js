@@ -36,7 +36,7 @@ define([], function() {
 			// 	console.groupEnd();
 			// }
 			
-			return 1;
+			// return 1;
 		};
 
 		this.trigger = function() {

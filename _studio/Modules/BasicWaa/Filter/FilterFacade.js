@@ -4,15 +4,15 @@
 define([
 	'/_studio/Modules/_FacadeBase.js',
 	'/_studio/Modules/_Mixins/ICanBeTriggered.js',
-	'/_studio/Modules/_Mixins/ICanBeAudioParamControlled.js'
-	], function(FacadeBase, ICanBeTriggered, ICanBeAudioParamControlled) {
+	'/_studio/Modules/_Mixins/ICanBeModulated.js'
+	], function(FacadeBase, ICanBeTriggered, ICanBeModulated) {
 		FilterFacade.prototype = Object.create(FacadeBase.prototype); //new FacadeBase();
 		FilterFacade.prototype.constructor = FilterFacade;
 
 		function FilterFacade(audioContext) {
 			FacadeBase.call(this, audioContext); // base()
 			ICanBeTriggered.call(this);
-			ICanBeAudioParamControlled.call(this);
+			ICanBeModulated.call(this);
 			
 			return this;
 		}
@@ -21,7 +21,7 @@ define([
 		FilterFacade.prototype.initNodes = function() {
 		    this.input = this.audioContext.createBiquadFilter();
 		    this.output = this.input; // TODO verify
-			this.controlIn = this.input.frequency;
+			this.modulateIn = this.input.frequency;
 
 		};
 

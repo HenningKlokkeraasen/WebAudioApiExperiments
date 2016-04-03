@@ -215,12 +215,20 @@
 					<div><div>Trigger<br/>Out</div><div><span class="patchHole " data-patch-type="triggerOut">&nbsp;</span></div></div>
 				{{/if}}
 
-				{{#if hasControlIn}}
-					<div><div>Control<br/>In</div><div><span class="patchHole " data-patch-type="controlIn">&nbsp;</span></div></div>
+				{{#if hasModulateIn}}
+					<div><div>Modulate<br/>In</div><div><span class="patchHole " data-patch-type="modulateIn">&nbsp;</span></div></div>
 				{{/if}}
 
-				{{#if hasControlOut}}
-					<div><div>Control<br/>Out</div><div><span class="patchHole " data-patch-type="controlOut">&nbsp;</span></div></div>
+				{{#if hasModulateOut}}
+					<div><div>Modulate<br/>Out</div><div><span class="patchHole " data-patch-type="modulateOut">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasFrequencyIn}}
+					<div><div>Frequency<br/>In</div><div><span class="patchHole " data-patch-type="frequencyIn">&nbsp;</span></div></div>
+				{{/if}}
+
+				{{#if hasFrequencyOut}}
+					<div><div>Frequency<br/>Out</div><div><span class="patchHole " data-patch-type="frequencyOut">&nbsp;</span></div></div>
 				{{/if}}
 
 				{{#if hasAudioIn}}

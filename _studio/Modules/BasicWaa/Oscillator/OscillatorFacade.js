@@ -6,10 +6,11 @@ define([
 	'/_studio/Modules/BasicWaa/Gain/GainFacade.js',
 	'/_studio/Modules/_Mixins/ICanBeTriggered.js',
     // '/_studio/Modules/_Mixins/ICanControlAudioParam.js',
-	'/_studio/Modules/_Mixins/ICanBeAudioParamControlled.js'
+	'/_studio/Modules/_Mixins/ICanBeModulated.js',
+	'/_studio/Modules/_Mixins/ICanBeFrequencySet.js'
 	], function(FacadeBase, GainFacade, ICanBeTriggered, 
 		// ICanControlAudioParam, 
-		ICanBeAudioParamControlled) {
+		ICanBeModulated, ICanBeFrequencySet) {
 		OscillatorFacade.prototype = Object.create(FacadeBase.prototype); // new FacadeBase2();
 		OscillatorFacade.prototype.constructor = OscillatorFacade;
 
@@ -17,7 +18,8 @@ define([
 			FacadeBase.call(this, audioContext); // base()
 			ICanBeTriggered.call(this);
             // ICanControlAudioParam.call(this);
-			ICanBeAudioParamControlled.call(this);
+			ICanBeModulated.call(this);
+			ICanBeFrequencySet.call(this);
 			
 			return this;
 		};
@@ -29,7 +31,8 @@ define([
 			// this will be what is used for connections
 			this.output = this.audioContext.createGain();
 			// this.controlOut = this.output;
-			this.controlIn = this.input.frequency;
+			this.modulateIn = this.input.frequency;
+			this.frequencyIn = this.input.frequency;
 		};
 
 		// private
@@ -123,16 +126,19 @@ define([
 			// use the sustainLevelOverride param to the EG to go back down 
 			// to the original frequency
 			var originalValue = this.input.frequency.value;
-			this.input.frequency.value = originalValue / 2; //TODO verify
-			var rampUpToValue = originalValue * 2; // TODO verify
-			callback.call(originator, this.input.frequency, rampUpToValue, 20, originalValue);
+			// this.input.frequency.value = originalValue / 2; //TODO verify
+			// var rampUpToValue = originalValue * 2; // TODO verify
+			var rampUpToValue = originalValue;
+			// var rampDownToValue = 20;
+			var rampDownToValue = 0;
+			callback.call(originator, this.input.frequency, 1);
 		};
 
 		OscillatorFacade.prototype.gateOff = function(callback, originator) {
-			// callback.call(originator, this.input.frequency, 40);
+			callback.call(originator, this.input.frequency, 0);
 		};
 		//endregion iCanBeTriggered
-
+		
 		return OscillatorFacade;
 	}
 );

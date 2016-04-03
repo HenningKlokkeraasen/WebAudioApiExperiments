@@ -24,16 +24,7 @@ define([
                 ]
             };
         };
-        // moduleData
-        //      name
-        //      shortName
-        //
-        //
-        //
-        //
-        //
-        //      t_params
-        //          indexChecked
+		
         FilterModuleFactory.prototype.getModule = function(moduleData) {
 			var indexChecked = moduleData.t_params != undefined && moduleData.t_params.indexChecked != undefined
 				? moduleData.t_params.indexChecked
@@ -41,7 +32,7 @@ define([
 			switch (moduleData.mode) {
 				case 'resonantvcf':
 					this.hasTriggerIn = true;
-					this.hasControlIn = true;
+					this.hasModulateIn = true;
 					break;
 				default:
 					break;
@@ -102,6 +93,45 @@ define([
 			}
 			return module;
         };
+		
+		FilterModuleFactory.prototype.getFilterTypeSelectData = function(label, type, rdoName) {
+			var data = { 
+				label : label,
+				type : type,
+				rdoName : rdoName,
+				radioButtons: []
+			};
+			return data;
+		};
+		FilterModuleFactory.prototype.getFilterLowPassAndHighPassOptions = function(indexChecked) {
+			return [ 
+		    		{ value : 'lowpass', 	name : 'Lowpass',	/*img: '/img/lpf3-28.png',*/ 	selected : indexChecked == 0 },
+		    		{ value : 'highpass', 	name : 'Highpass',	/*img: '/img/hpf3-28.png',*/ 	selected : indexChecked == 1 }
+		    ];
+		};
+		FilterModuleFactory.prototype.getFilterBandPassAndBandStopOptions = function(indexChecked) {
+			return [ 
+		    		{ value : 'bandpass', 	name : 'Bandpass', 	selected : indexChecked == 2 },
+		    		{ value : 'notch', 		name : 'Bandstop', 	selected : indexChecked == 4 },
+		    ];
+		};
+		FilterModuleFactory.prototype.getFilterShelfOptions = function(indexChecked) {
+			return [ 
+		    		{ value : 'lowshelf', 	name : 'Highshelf',	selected : indexChecked == 5 },
+		    		{ value : 'highshelf', 	name : 'Lowshelf', 	selected : indexChecked == 6 },
+		    ];
+		};
+		FilterModuleFactory.prototype.getFilterAllPassOption = function(indexChecked) {
+			return [ 
+		    		{ value : 'allpass', 	name : 'Allpass', 	selected : indexChecked == 3 },
+		    ];
+		};
+		FilterModuleFactory.prototype.getFilterPeakingOption = function(indexChecked) {
+			return [ 
+		    		{ value : 'peaking',	name : 'Peaking', 	selected : indexChecked == 7 }
+		    ];
+		};
+
         //////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
         return FilterModuleFactory;
     }

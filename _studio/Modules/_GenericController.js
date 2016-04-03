@@ -2,14 +2,16 @@ define([
 	'/_studio/app/_TemplateLoader.js',
 	], function(TemplateLoader) {
 		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
-		function GenericController(master, patcher, audioPatchController, triggerPatchController, controlPatchController, facadeHolder) {
+		function GenericController(master, patcher, audioPatchController, triggerPatchController, 
+			modulationPatchController, frequencyPatchController, facadeHolder) {
 			this.master = master;
 			this.patcher = patcher;
 			this.facadeHolder = facadeHolder;
 
 			this.audioPatchController = audioPatchController;
 			this.triggerPatchController = triggerPatchController;
-			this.controlPatchController = controlPatchController;
+			this.modulationPatchController = modulationPatchController;
+			this.frequencyPatchController = frequencyPatchController;
 		}
 
 		GenericController.prototype = {
@@ -19,8 +21,10 @@ define([
 			audioOutSelector: 'span[data-patch-type="audioOut"]',
 			triggerInSelector: 'span[data-patch-type="triggerIn"]',
 			triggerOutSelector: 'span[data-patch-type="triggerOut"]',
-			controlInSelector: 'span[data-patch-type="controlIn"]',
-			controlOutSelector: 'span[data-patch-type="controlOut"]',
+			modulateInSelector: 'span[data-patch-type="modulateIn"]',
+			modulateOutSelector: 'span[data-patch-type="modulateOut"]',
+			frequencyInSelector: 'span[data-patch-type="frequencyIn"]',
+			frequencyOutSelector: 'span[data-patch-type="frequencyOut"]'
 		};
 
 		GenericController.prototype.render = function(definition, model, containerSelector, callback) {
@@ -138,7 +142,8 @@ define([
 
 			this.audioPatchController.setupPatching(div, this.audioInSelector, this.audioOutSelector, dataContainerSelector, facade, facade.input, facade.output, facade.connectOrDisconnect, this.patcher);
 			this.triggerPatchController.setupPatching(div, this.triggerInSelector, this.triggerOutSelector, dataContainerSelector, facade, facade, facade, facade.setTriggerFor, this.patcher);
-			this.controlPatchController.setupPatching(div, this.controlInSelector, this.controlOutSelector, dataContainerSelector, facade, facade.controlIn, facade.controlOut, facade.control, this.patcher);
+			this.modulationPatchController.setupPatching(div, this.modulateInSelector, this.modulateOutSelector, dataContainerSelector, facade, facade.modulateIn, facade.modulateOut, facade.modulate, this.patcher);
+			this.frequencyPatchController.setupPatching(div, this.frequencyInSelector, this.frequencyOutSelector, dataContainerSelector, facade, facade.frequencyIn, facade.frequencyOut, facade.setFrequencyFor, this.patcher);
 		};
 
 		GenericController.prototype.bindControlsToParameters = function(div, parameters) {

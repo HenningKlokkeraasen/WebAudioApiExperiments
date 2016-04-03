@@ -15,7 +15,7 @@ define([
             this.hasAudioIn = false;
             this.hasAudioOut = false;
             this.hasTriggerOut = true;
-            this.hasControlOut = true;
+            this.hasFrequencyOut = true;
             this.hasKeyboardInterface = true;   // not true per se, but hack to get the output of note
         }
 		
@@ -25,7 +25,7 @@ define([
                 facade : WebMidiInputFacade,
                 parameters : [
 					{ func : WebMidiInputFacade.prototype.setGlideTime, 	selector : 'webaudio-knob[data-parameterType="glideTime"]',		ev : 'change'	},
-					{ func : WebMidiInputFacade.prototype.setDebugMOde, 	selector : 'input[data-parameterType="debugMode"]',		ev : 'change'	},
+					{ func : WebMidiInputFacade.prototype.setDebugMode, 	selector : 'input[data-parameterType="debugMode"]',		ev : 'change'	},
                 ]
             };
         };
@@ -33,7 +33,7 @@ define([
         WebMidiInputModuleFactory.prototype.getModule = function(moduleData) {
 			var debugMode = false;
 			if (moduleData.debugMode != undefined && moduleData.debugMode) {
-				this.moduleCssClass = 'module'
+				// this.moduleCssClass = 'module'
 				debugMode = true;
 			}
             return this.getModuleBase({
@@ -42,12 +42,13 @@ define([
                 sections : [ {
 					ranges : [
 						{ label : 'Glide (Portamento)',	type : 'glideTime',		min : 0,		max : 0.5,		value: 0,		step : 0.01,		name : moduleData.shortName + '_glide'	}
-					], 
-					hiddenParameters: [
-						{ type: 'debugMode', value: debugMode, name: moduleData.shortName + '_debugMode' }
 					],
 					rangeDisplayMode : 'webaudio-controls-color_knob'
-				}]});
+				}],
+					hiddenParameters: [
+						{ type: 'debugMode', value: debugMode, name: moduleData.shortName + '_debugMode' }
+					]
+				});
         };
 
         return WebMidiInputModuleFactory;

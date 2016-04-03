@@ -12,8 +12,10 @@ define([
 			this.hasAudioOut = true;
 			this.hasTriggerIn = false;
 			this.hasTriggerOut = false;
-			this.hasControlIn = false;
-			this.hasControlOut = false;
+			this.hasModulateIn = false;
+			this.hasModulateOut = false;
+			this.hasFrequencyIn = false;
+			this.hasFrequencyOut = false;
 			this.renderSectionsVertically = false;
 		}
 
@@ -37,8 +39,10 @@ define([
 				hasAudioOut : this.hasAudioOut,
 				hasTriggerIn : this.hasTriggerIn,
 				hasTriggerOut : this.hasTriggerOut,
-				hasControlIn : this.hasControlIn,
-				hasControlOut : this.hasControlOut,
+				hasModulateIn : this.hasModulateIn,
+				hasModulateOut : this.hasModulateOut,
+				hasFrequencyIn: this.hasFrequencyIn,
+				hasFrequencyOut: this.hasFrequencyOut,
 				sections : moduleData.sections,
 				renderSectionsVertically : this.renderSectionsVertically,
 				hiddenParameters : moduleData.hiddenParameters
@@ -64,44 +68,6 @@ define([
 				step : paramData.params.stp,
 				name : paramData.name
 			};
-		};
-
-		ModuleFactoryBase.prototype.getFilterTypeSelectData = function(label, type, rdoName) {
-			var data = { 
-				label : label,
-				type : type,
-				rdoName : rdoName,
-				radioButtons: []
-			};
-			return data;
-		};
-		ModuleFactoryBase.prototype.getFilterLowPassAndHighPassOptions = function(indexChecked) {
-			return [ 
-		    		{ value : 'lowpass', 	name : 'Lowpass',	/*img: '/img/lpf3-28.png',*/ 	selected : indexChecked == 0 },
-		    		{ value : 'highpass', 	name : 'Highpass',	/*img: '/img/hpf3-28.png',*/ 	selected : indexChecked == 1 }
-		    ];
-		};
-		ModuleFactoryBase.prototype.getFilterBandPassAndBandStopOptions = function(indexChecked) {
-			return [ 
-		    		{ value : 'bandpass', 	name : 'Bandpass', 	selected : indexChecked == 2 },
-		    		{ value : 'notch', 		name : 'Bandstop', 	selected : indexChecked == 4 },
-		    ];
-		};
-		ModuleFactoryBase.prototype.getFilterShelfOptions = function(indexChecked) {
-			return [ 
-		    		{ value : 'lowshelf', 	name : 'Highshelf',	selected : indexChecked == 5 },
-		    		{ value : 'highshelf', 	name : 'Lowshelf', 	selected : indexChecked == 6 },
-		    ];
-		};
-		ModuleFactoryBase.prototype.getFilterAllPassOption = function(indexChecked) {
-			return [ 
-		    		{ value : 'allpass', 	name : 'Allpass', 	selected : indexChecked == 3 },
-		    ];
-		};
-		ModuleFactoryBase.prototype.getFilterPeakingOption = function(indexChecked) {
-			return [ 
-		    		{ value : 'peaking',	name : 'Peaking', 	selected : indexChecked == 7 }
-		    ];
 		};
 
 		/*
