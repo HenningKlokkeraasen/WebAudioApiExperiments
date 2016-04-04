@@ -31,6 +31,10 @@ define([
             this.gateOffCallback = this.initiateReleasing;
 
 		}
+
+		setTempoInBpm(tempoInBpm) {
+			this.tempoInBpm = tempoInBpm;
+		}
 		
 		calculateScheduleAheadTimeInSeconds(schedulingIntervalInMilliseconds, overlapInMilliseconds) {
 			return (schedulingIntervalInMilliseconds + overlapInMilliseconds) / 100;

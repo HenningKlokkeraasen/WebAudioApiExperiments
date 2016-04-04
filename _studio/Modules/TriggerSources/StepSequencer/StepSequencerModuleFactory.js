@@ -22,17 +22,22 @@ define([
 				handlebarsTemplateSelector : this.handlebarsTemplateSelector,
 				facade : StepSequencerFacade,
 				parameters : [
+					{ func : StepSequencerFacade.prototype.setTempoInBpm, selector : 'webaudio-knob[data-parameterType="tempoInBpm"]',		ev : 'change'	},
 				]
 			};
 		};
 
 		StepSequencerModuleFactory.prototype.getModule = function(moduleData) {
 			var ranges = [];
-			
+			ranges.push(
+				{ label : 'Tempo (BPM)',	type : 'tempoInBpm',	min : moduleData.tempoInBpm.min, max : moduleData.tempoInBpm.max, value: moduleData.tempoInBpm.val, step : moduleData.tempoInBpm.stp, name : moduleData.shortName + '_tempoInBpm'	}
+			);
 			return this.getModuleBase({
 				name : moduleData.name, 
 				shortName : moduleData.shortName,
 		        sections : [ {
+					ranges : ranges,
+					rangeDisplayMode : 'webaudio-controls-color_knob'
 		    }]});
 		};
 
