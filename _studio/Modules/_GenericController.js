@@ -130,7 +130,7 @@ define([
 				//console.log(parameter.selector + ' ' + parameterValue);
 				// call the function, ensure the facade is this in the context
 				if (parameterValue != undefined && parameter.func != undefined)
-					parameter.func.call(facadeInstance, parameterValue);
+					parameter.func.call(facadeInstance, parameterValue, parameter.additionalParameters);
 			});
 		};
 
@@ -151,7 +151,6 @@ define([
 			var facadeDataAttr = GenericController.prototype.facadeDataAttr;
 
 			var controller = this;
-
 
 			// user controls - go through each parameter
 			$.each(parameters, function(key, parameter) {
@@ -184,7 +183,7 @@ define([
 
 			// call the function with the value of the element
 			// ensure the facade is this in the context
-			parameter.func.call(facadeInstance, value);
+			parameter.func.call(facadeInstance, value, parameter.additionalParameters);
 
 			// also, update the output
 			if (element.name)

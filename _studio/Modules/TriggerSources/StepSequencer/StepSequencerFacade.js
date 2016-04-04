@@ -8,8 +8,17 @@ define([
 			ICanSetFrequency.call(this);
 				
 			this.audioContext = audioContext;
-			this.on = false;
-			this.tempoInBpm = 200;//input.tempoInBpm;
+
+			this.setInitialValues();
+
+            this.gateOnCallback = this.initiateTriggering;
+            this.gateOffCallback = this.initiateReleasing;
+		}
+
+		setInitialValues() {
+			this.isOn = false;
+			this.tempoInBpm = 200;
+			this.masterFrequency = 440;
 			this.noteLength = 0.2;//input.noteLength;
 			this.numberOfSteps = 16;//input.numberOfSteps;
 			this.schedulingIntervalInMilliseconds = 100;//input.schedulingIntervalInMilliseconds;
@@ -21,47 +30,49 @@ define([
 			
 			this.steps = new Array();
 			for (let i = 0; i < this.numberOfSteps; i++) {
-				this.steps.push({ frequency: 440, noteLength: this.noteLength });
+				this.steps.push({ frequency: this.masterFrequency, noteLength: this.noteLength });
 			}
 			
 			this._notesCurrentlyOn = [];
 			this.glideTime = 0;
-
-            this.gateOnCallback = this.initiateTriggering;
-            this.gateOffCallback = this.initiateReleasing;
-
 		}
 
 		setTempoInBpm(tempoInBpm) {
 			this.tempoInBpm = tempoInBpm;
 		}
 		
+		setMasterFrequency(frequency) {
+			this.masterFrequency = frequency;
+		}
+
+		setStepFrequency(frequency, additionalParameters) {
+			this.steps[additionalParameters.stepNumber].frequency = frequency;
+		}
+
+		setStepLength(noteLength, additionalParameters) {
+			this.steps[additionalParameters.stepNumber].noteLength = noteLength;
+		}
+
 		calculateScheduleAheadTimeInSeconds(schedulingIntervalInMilliseconds, overlapInMilliseconds) {
 			return (schedulingIntervalInMilliseconds + overlapInMilliseconds) / 100;
 		}
 		
-		scheduleNoteOn(stepNumber, audioTime) {
-			if (!this.on)
+		scheduleNoteOn(stepNumber, nextNoteTime) {
+			if (!this.isOn)
 				return;
 			
-			var f;
-			if (! (stepNumber % 16) )         // beat 0 == low pitch
-				f = 220.0;
-			else if (stepNumber % 4)          // quarter notes = medium pitch
-				f = 440.0;
-			else                              // other 16th notes = high pitch
-				f = 880.0;
+			var f = this.masterFrequency + 	this.steps[stepNumber].frequency;
 			
-			this.noteOn(stepNumber, f, audioTime);
+			this.noteOn(stepNumber, f, nextNoteTime);
 			
-			// this.dispatchNoteEvents(f, audioTime);
+			// this.dispatchNoteEvents(f, nextNoteTime);
 		}
 		
-		scheduleNoteOff(stepNumber, audioTime) {
-			if (!this.on)
+		scheduleNoteOff(stepNumber, nextNoteTime) {
+			if (!this.isOn)
 				return;
-			//console.log('noteoff at ' + audioTime);
-			this.noteOff(stepNumber, audioTime);
+			//console.log('noteoff at ' + nextNoteTime);
+			this.noteOff(stepNumber, nextNoteTime + this.steps[stepNumber].noteLength);
 			
 			// this.dispatchNoteEvents(f, audioTime);
 		}
@@ -84,7 +95,7 @@ define([
 		scheduleNotesThatFallInThisInterval() {
 			while (this.nextNoteTime < this.audioContext.currentTime + this.scheduleAheadTimeInSeconds) {
 				this.scheduleNoteOn(this.current16thNote, this.nextNoteTime);
-				this.scheduleNoteOff(this.current16thNote, this.nextNoteTime + this.noteLength);
+				this.scheduleNoteOff(this.current16thNote, this.nextNoteTime);
 				this.advanceToNextNote();
 			}
 			var that = this;
@@ -92,14 +103,14 @@ define([
 		}
 		
 		start() {
-			this.on = true;
+			this.isOn = true;
 			this.current16thNote = 0;
 			this.nextNoteTime = this.audioContext.currentTime;
 			this.scheduleNotesThatFallInThisInterval();
 		}
 		
 		stop() {
-			this.on = false;
+			this.isOn = false;
 			window.clearTimeout( this.timerId );
 		}
 		

@@ -207,6 +207,11 @@
 			.egmodule {
 				background-color: rgb(152, 119, 152);
 			}
+
+			.stepsequencer {
+				background-color: #712094;
+				color: honeydew;
+			}
 			
 			/*Width of units, inspired by Eurorack HP (horizontal pitch)*/
 			.module-1hp {
@@ -227,7 +232,7 @@
 				width: 626px;
 			}
 			
-			.module-8p {
+			.module-8hp {
 				width: 839px;
 			}
 			

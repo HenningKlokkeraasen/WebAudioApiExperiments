@@ -15,28 +15,55 @@ define([
             this.hasFrequencyOut = true;
 			this.hasStartButton = true;
 			this.buttonCssClass = 'round';
+			this.moduleCssClass = 'module-8hp';
+			this.headerCssClass = 'stepsequencer';
 		}
 
 		StepSequencerModuleFactory.prototype.getModuleDefinition = function() {
-			return {	
+			var def = {	
 				handlebarsTemplateSelector : this.handlebarsTemplateSelector,
 				facade : StepSequencerFacade,
 				parameters : [
 					{ func : StepSequencerFacade.prototype.setTempoInBpm, selector : 'webaudio-knob[data-parameterType="tempoInBpm"]',		ev : 'change'	},
+					{ func : StepSequencerFacade.prototype.setMasterFrequency, selector : 'webaudio-knob[data-parameterType="masterFrequency"]',		ev : 'change'	},
 				]
 			};
+
+			for (var i = 0; i < 16; i++) {
+				def.parameters.push(
+					{func : StepSequencerFacade.prototype.setStepFrequency, selector : `webaudio-knob[data-parameterType="step_frequencies_${i}"]`,		ev : 'change', additionalParameters: {'stepNumber': i}	})
+				def.parameters.push(
+					{func : StepSequencerFacade.prototype.setStepLength, selector : `webaudio-knob[data-parameterType="step_lengths_${i}"]`,		ev : 'change', additionalParameters: {'stepNumber': i}	})
+			}
+			return def;
 		};
 
 		StepSequencerModuleFactory.prototype.getModule = function(moduleData) {
-			var ranges = [];
-			ranges.push(
-				{ label : 'Tempo (BPM)',	type : 'tempoInBpm',	min : moduleData.tempoInBpm.min, max : moduleData.tempoInBpm.max, value: moduleData.tempoInBpm.val, step : moduleData.tempoInBpm.stp, name : moduleData.shortName + '_tempoInBpm'	}
-			);
+			var stepsNoteLengths = [];
+			var stepsFrequencies = [];
+			for (var i = 0; i < 16; i++) {
+				stepsFrequencies.push(
+					{ label : i+1,	type : 'step_frequencies_'+i,	min :-100, max : 100, value: 0, step : 0.1, name : moduleData.shortName + '_step_frequency' + i	});
+				stepsNoteLengths.push(
+					{ label : i+1,	type : 'step_lengths_'+i,	min :0.1, max : 1, value: 0.2, step : 0.1, name : moduleData.shortName + '_step_notelength' + i	});
+			}
+
 			return this.getModuleBase({
 				name : moduleData.name, 
 				shortName : moduleData.shortName,
 		        sections : [ {
-					ranges : ranges,
+		    		sectionName: 'Master',
+					ranges : [ 
+						{ label : 'Tempo (BPM)',	type : 'tempoInBpm',	min : moduleData.tempoInBpm.min, max : moduleData.tempoInBpm.max, value: moduleData.tempoInBpm.val, step : moduleData.tempoInBpm.stp, name : moduleData.shortName + '_tempoInBpm'	},
+						{ label: 'Freuquency', type: 'masterFrequency', min: 20, max: 3000, value: 440, step: 1, name: moduleData.shortName + '_masterFrequency'}],
+					rangeDisplayMode : 'webaudio-controls-color_knob'
+		    }, {
+		    	sectionName: 'Note length',
+		    	ranges : stepsNoteLengths,
+					rangeDisplayMode : 'webaudio-controls-color_knob'
+		    }, {
+		    	sectionName: 'Frequency',
+		    	ranges : stepsFrequencies,
 					rangeDisplayMode : 'webaudio-controls-color_knob'
 		    }]});
 		};

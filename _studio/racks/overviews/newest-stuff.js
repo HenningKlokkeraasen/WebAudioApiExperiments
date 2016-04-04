@@ -5,11 +5,7 @@ define([
 	'/_studio/Modules/TriggerSources/WebMidiInput/WebMidiInput.js',
 	'/_studio/Modules/Specialized/SuperOsc/SuperOsc.js',
 	'/_studio/Modules/TriggerSources/StepSequencer/StepSequencer.js',
-
-	'/_studio/Gear/BasicVoice.js',
-	'/_studio/Gear/FinalStage.js'
-	], function(PatchBay, BlankPanel, LedTest, WebMidiInput, SuperOsc, StepSequencer,
-		BasicVoice, FinalStage) {
+	], function(PatchBay, BlankPanel, LedTest, WebMidiInput, SuperOsc, StepSequencer) {
 		return {
 			title : 'Newest stuff',
 			description : '',
@@ -22,21 +18,14 @@ define([
 							{ moduleMother: LedTest, id: 'ledTest1' },
 							{ moduleMother: WebMidiInput, id: 'webmidi2' },
 							{ moduleMother: SuperOsc, id: 'superosc1' },
-							{ moduleMother: StepSequencer, id: 'stepseq1' }
 						]
 					},
 					{
-						gear: [
-							BasicVoice,
-							FinalStage
-						],
-					}
+						modules: [
+							{ moduleMother: StepSequencer, id: 'stepseq1' }
+						]
+					},
 				],
-				patches: [
-					{ from: 'stepseq1', to: 'gain5', type: 'trigger' },
-					{ from: 'stepseq1', to: 'osc5', type: 'frequency' },
-					{ from: 'gain5', to: 'gain6', type: 'audio'}
-				]
 			}
 		};
 	}

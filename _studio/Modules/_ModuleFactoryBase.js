@@ -1,6 +1,5 @@
 define([
 	], function() {
-		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
 		function ModuleFactoryBase() {
 			this.handlebarsTemplateSelector = '#moduleTemplate';
 			this.moduleCssClass = '';
@@ -19,13 +18,6 @@ define([
 			this.renderSectionsVertically = false;
 		}
 
-		//  moduleData
-		//		name
-		// 		sections
-		//  		ranges
-		// 			radioButtonLists
-		//			selectLists,
-		//			checkBoxes
 		ModuleFactoryBase.prototype.getModuleBase = function(moduleData) {
 			return { 
 				moduleName : moduleData.name,
@@ -49,15 +41,6 @@ define([
 			};
 		};
 
-		// paramData
-		//      label
-		//      type
-		//      params
-		//          min
-		//          max
-		//          val
-		//          stp
-		//      name
 		ModuleFactoryBase.prototype.getRangeControlData = function(paramData) {
 			return { 
 				label : paramData.label,
@@ -70,29 +53,6 @@ define([
 			};
 		};
 
-		/*
-
-		ModuleFactoryBase.prototype.getModuleDefinition = function() {
-			var moduleDefinition = {
-				handlebarsTemplateSelector : '#moduleTemplate',
-				containerSelector : '',
-				facade : FacadeBase,
-				parameters : []
-			};
-			return moduleDefinition;	
-		};
-
-		ModuleFactoryBase.prototype.getDefinitionParam = function(func, paramType, ev) {
-			return {
-					func: func,
-					selector: 'input[data-parameterType="' + paramType + '"]',
-					ev: ev
-				};
-		};
-
-
-		*/
-		//////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
 		return ModuleFactoryBase;
 	}
 );
