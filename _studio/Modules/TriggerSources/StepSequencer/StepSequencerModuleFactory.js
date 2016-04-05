@@ -31,6 +31,8 @@ define([
 
 			for (var i = 0; i < 16; i++) {
 				def.parameters.push(
+					{func : StepSequencerFacade.prototype.setOnOff, selector : `webaudio-switch[data-parameterType="step_toggles_${i}"]`,		ev : 'change', additionalParameters: {'stepNumber': i}	}) 
+				def.parameters.push(
 					{func : StepSequencerFacade.prototype.setStepFrequency, selector : `webaudio-knob[data-parameterType="step_frequencies_${i}"]`,		ev : 'change', additionalParameters: {'stepNumber': i}	})
 				def.parameters.push(
 					{func : StepSequencerFacade.prototype.setStepLength, selector : `webaudio-knob[data-parameterType="step_lengths_${i}"]`,		ev : 'change', additionalParameters: {'stepNumber': i}	})
@@ -39,9 +41,12 @@ define([
 		};
 
 		StepSequencerModuleFactory.prototype.getModule = function(moduleData) {
+			var stepsToggles = [];
 			var stepsNoteLengths = [];
 			var stepsFrequencies = [];
 			for (var i = 0; i < 16; i++) {
+				stepsToggles.push(
+					{ buttonName : i+1,	type : 'step_toggles_'+i,	buttonId : moduleData.shortName + '_step_toggles'+i });
 				stepsFrequencies.push(
 					{ label : i+1,	type : 'step_frequencies_'+i,	min :-100, max : 100, value: 0, step : 0.1, name : moduleData.shortName + '_step_frequency' + i	});
 				stepsNoteLengths.push(
@@ -57,6 +62,10 @@ define([
 						{ label : 'Tempo (BPM)',	type : 'tempoInBpm',	min : moduleData.tempoInBpm.min, max : moduleData.tempoInBpm.max, value: moduleData.tempoInBpm.val, step : moduleData.tempoInBpm.stp, name : moduleData.shortName + '_tempoInBpm'	},
 						{ label: 'Freuquency', type: 'masterFrequency', min: 20, max: 3000, value: 440, step: 1, name: moduleData.shortName + '_masterFrequency'}],
 					rangeDisplayMode : 'webaudio-controls-color_knob'
+		    }, {
+		    	sectionName: 'On / Off',
+		    	buttons : stepsToggles,
+					buttonDisplayMode : 'webaudio-controls-switchtoggle'
 		    }, {
 		    	sectionName: 'Note length',
 		    	ranges : stepsNoteLengths,

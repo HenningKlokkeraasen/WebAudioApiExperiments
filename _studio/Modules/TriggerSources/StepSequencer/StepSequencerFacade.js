@@ -30,7 +30,7 @@ define([
 			
 			this.steps = new Array();
 			for (let i = 0; i < this.numberOfSteps; i++) {
-				this.steps.push({ frequency: this.masterFrequency, noteLength: this.noteLength });
+				this.steps.push({ isOn: false, frequency: this.masterFrequency, noteLength: this.noteLength });
 			}
 			
 			this._notesCurrentlyOn = [];
@@ -43,6 +43,10 @@ define([
 		
 		setMasterFrequency(frequency) {
 			this.masterFrequency = frequency;
+		}
+
+		setOnOff(isOn, additionalParameters) {
+			this.steps[additionalParameters.stepNumber].isOn = isOn == 1;
 		}
 
 		setStepFrequency(frequency, additionalParameters) {
@@ -63,7 +67,8 @@ define([
 			
 			var f = this.masterFrequency + 	this.steps[stepNumber].frequency;
 			
-			this.noteOn(stepNumber, f, nextNoteTime);
+			if (this.steps[stepNumber].isOn)
+				this.noteOn(stepNumber, f, nextNoteTime);
 			
 			// this.dispatchNoteEvents(f, nextNoteTime);
 		}

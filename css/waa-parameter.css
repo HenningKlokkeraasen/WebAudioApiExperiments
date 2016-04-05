@@ -107,7 +107,8 @@ input[type=radio].pushbutton:checked + label {
 .webaudio-controls-MetalKnob,
 .webaudio-controls-Small-Moog-Like-Knob,
 .webaudio-controls-blue-knob,
-.webaudio-controls-color_knob {
+.webaudio-controls-color_knob,
+.webaudio-controls-switchtoggle {
 	display: inline-block;
 	text-align: center;
 }

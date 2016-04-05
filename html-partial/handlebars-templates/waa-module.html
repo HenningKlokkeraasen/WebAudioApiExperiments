@@ -31,7 +31,19 @@
 				{{/if}}
 
 				{{#each buttons}}
-				<button name="{{buttonId}}">{{buttonName}}</button>
+					{{#ifCond ../buttonDisplayMode "webaudio-controls-switchtoggle"}}
+						<div class="webaudio-controls-switchtoggle" style="width:46px">
+									<!-- inlinestyle dirty hack to get same width as knob -->
+						<span title="{{buttonName}}" class="parameterLabel ">{{buttonName}}</span>
+						<webaudio-switch id="{{buttonId}}" 
+							src="/_thirdparty/webaudio-controls/img/switch_toggle.png" 
+							width="32" height="32" tooltip="{{buttonName}}"
+							data-parameterType="{{type}}" >
+						</webaudio-switch>
+						</div>
+					{{else}}
+						<button name="{{buttonId}}">{{buttonName}}</button>
+					{{/ifCond}}
 				{{/each}}
 				
 				{{#each leds}}
@@ -85,7 +97,6 @@
 				{{/each}}
 				
 				<!--TODO
-				<webaudio-switch id="switch-1" src="/_thirdparty/webaudio-controls/img/switch_toggle.png" width="32" height="32"></webaudio-switch>
 				<webaudio-keyboard keys="25" ></webaudio-keyboard>-->
 
 				{{#each ranges}}
