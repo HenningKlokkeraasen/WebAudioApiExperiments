@@ -6,27 +6,19 @@ define([
 	'/_Patching/Patcher.js',
 	'/_Patching/Controllers/PatchController.js'
 	], function(
-		RackRenderer,
-		Patcher,
-		PatchController) {
-		function App() {
+	RackRenderer,
+	Patcher,
+	PatchController) {
+	class App {
+		constructor() {
 			this.xhrFacade = undefined;
 			this.master = undefined;
 		}
 
-		App.prototype.init = function(board) {
-			console.log('starting');
+		init(board) {
+			// console.log('starting');
 
-			//
-			// AUDIO CONTEXT - ENTRY POINT OF WEB AUDIO API
-			//
-			this.master = new AudioContextFacade();
-			if (!this.master.WebAudioApiIsEnabled) {
-				console.error('Web Audio is NOT available');
-				return;
-			}
-			console.log('Web Audio is available');
-			//console.log(this.master.audioContext);
+			this.initAudioContext();
 
 			var patcher = new Patcher();
 			var audioPatchController = new PatchController();
@@ -43,10 +35,24 @@ define([
 			//var isInitializedEvent = new CustomEvent('appIsInitialized', { detail : { instance : this } });
 			//document.dispatchEvent(isInitializedEvent);
 
-			console.log('all loaded');
-		};
+			// console.log('all loaded');
+		}
 
-		App.prototype.initPatchCables = function() {
+		initAudioContext() {
+			// AUDIO CONTEXT - ENTRY POINT OF WEB AUDIO API
+			this.master = new AudioContextFacade();
+			if (!this.master.WebAudioApiIsEnabled) {
+				console.error('Web Audio is NOT available');
+				return;
+			}
+			// console.log('Web Audio is available');
+			$('#waapi-context-status-led').attr('color', 'green');
+			$('#waapi-context-status-led').attr('label', '');
+			$('#waapi-context-status-led').attr('tooltip', 'Web Audio is available');
+			//console.log(this.master.audioContext);
+		}
+
+		initPatchCables() {
 			//PatchCableController.prototype.hidePatchCables();
 			$('#showPatchCablesCheckbox').bind('change', function() {
 				if($(this).is(':checked')) {
@@ -56,8 +62,8 @@ define([
 					PatchCableController.prototype.hidePatchCables();
 				}
 			});
-		};
+		}
 
-		return App;
 	}
-);
+	return App;
+});
