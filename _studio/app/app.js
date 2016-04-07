@@ -2,9 +2,9 @@
 	App
 */
 define([
-    '/_studio/app/RackRenderer.js',
-	'/_Patching/Patcher.js',
-	'/_Patching/Controllers/PatchController.js'
+    'app/RackRenderer',
+	'Patching/Patcher',
+	'Patching/Controllers/PatchController'
 	], function(
 	RackRenderer,
 	Patcher,

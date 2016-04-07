@@ -2,39 +2,35 @@ require.config({
 	// Force cache invalidation
 	urlArgs: "bust=" + (new Date()).getTime(),
 
-    baseUrl: '/js', // relative to the html page loading this file?
+    baseUrl: '', // === /_studio
     paths: {
+    	thirdparty: '../_thirdparty',
+    	// bower_components: '../bower_components',
+    	WebAudioApiFacades: '../_WebAudioApiFacades',
+    	BrowserApiFacades: '../_BrowserApiFacades'
     },
 });
 
 require([
-		'/_studio/app/app.js',
-
-		'/_BrowserApiFacades/QueryStringFacade.js',
-		
-		'/_studio/app/ArrayExtensions.js',
-
-		'/_studio/load/thirdpartylibs.js', // relative to the path of this file? or the html file loading this file?
-		'/_studio/load/patching.js',
-
-		'/_WebAudioApiFacades/AudioContextFacade.js',
+		'app/app',
+		'BrowserApiFacades/QueryStringFacade',
+		'app/ArrayExtensions',
+		'load/thirdpartylibs',
+		'load/patching',
+		'WebAudioApiFacades/AudioContextFacade',
 	], function(App, QueryStringFacade) {
 	    // console.debug('dependencies for app has loaded');
 
 		var rackName = QueryStringFacade.prototype.getParameterByName('rackName');
 
-		require(['/_studio/racks/' + rackName + '.js'], function(rack) {
+		require(['racks/' + rackName], function(rack) {
 			// console.debug('all js required has been loaded. app is ready to be started');
 			
 			$(document).ready(function() {
 				var app = new App();
 				app.init(rack);
 			});
-		    
-		},
-	    
-		// reqiure.js loading errors
-		function(err) {
+		}, function(err) {
 			console.error('require.js error:');
 			console.error(err);
 		});

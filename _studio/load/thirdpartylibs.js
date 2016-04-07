@@ -1,4 +1,4 @@
-define([
+require([
 	'/bower_components/jquery/dist/jquery.min.js',
     '/bower_components/handlebars/handlebars.min.js'
     ],

@@ -1,5 +1,5 @@
 define([
-	'/_Patching/Patcher.js'
+	'Patching/Patcher'
 	], function (Patcher) {
 		function PatchRenderer(audioPatchController, triggerPatchController, 
 			modulationPatchController, frequencyPatchController) {
@@ -101,7 +101,7 @@ define([
 				return {};
 			}
 				
-			var rect = element.getBoundingClientRect();			
+			var rect = element.getBoundingClientRect();
 			// console.log(element);
 			// console.log(rect.top, rect.right, rect.bottom, rect.left);
 			// console.log(rect);

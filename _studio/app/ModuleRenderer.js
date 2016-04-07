@@ -1,5 +1,5 @@
 define([
-	'/_Patching/PatchRenderer.js'
+	'Patching/PatchRenderer'
 	], function(PatchRenderer) {
 		function ModuleRenderer(master, patcher, audioPatchController, triggerPatchController, 
 			modulationPatchController, frequencyPatchController) {

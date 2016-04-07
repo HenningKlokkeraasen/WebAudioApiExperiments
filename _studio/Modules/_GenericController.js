@@ -1,7 +1,6 @@
 define([
 	'/_studio/app/_TemplateLoader.js',
 	], function(TemplateLoader) {
-		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
 		function GenericController(master, patcher, audioPatchController, triggerPatchController, 
 			modulationPatchController, frequencyPatchController, facadeHolder) {
 			this.master = master;
@@ -38,7 +37,7 @@ define([
 				
 			var renderedModules = new Array();
 
-			TemplateLoader.prototype.loadTemplateWithHandlebars(containerSelector, definition.handlebarsTemplateSelector, model, function() {
+			new TemplateLoader().loadTemplateWithHandlebars(containerSelector, definition.handlebarsTemplateSelector, model, function() {
 				// callback
 				////console.log("templates for " + containerSelector + " loaded");
 				
@@ -172,8 +171,8 @@ define([
 			});
 		};
 
-		GenericController.prototype.callFacadeAndUpdateOutput = function(element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance) {
-			
+		GenericController.prototype.callFacadeAndUpdateOutput = function(
+			element, value, dataContainerSelector, facadeDataAttr, parameter, facadeInstance) {
 			var formattedValue = Math.round(element.value * 100) / 100
 			
 			// special case for checkboxes
@@ -195,7 +194,6 @@ define([
 			$(element).attr('title', value);
 		};
 
-		//////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
 		return GenericController;
 	}
 );

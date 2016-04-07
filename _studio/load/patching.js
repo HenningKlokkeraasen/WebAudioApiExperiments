@@ -1,9 +1,9 @@
 define([
-	'/_Patching/Patcher.js',
+	'Patching/Patcher',
 
 	// Controllers: responsible for binding the view and model
-	'/_Patching/Controllers/PatchController.js',
-	'/_Patching/Controllers/PatchCableController.js',
+	'Patching/Controllers/PatchController',
+	'Patching/Controllers/PatchCableController',
 	], function() {
 	}
 );
