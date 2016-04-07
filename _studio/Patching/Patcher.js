@@ -1,28 +1,23 @@
 define([], function() {
-/*
-	Patcher
-*/
+class Patcher {
 
-function Patcher() {
-}
-
-Patcher.prototype.setSource = function(coordinates, callback) {
+setSource(coordinates, callback) {
 	this.sourceCoordinates = coordinates;
 	this.callback = callback;
 	return this;
 }
 
-Patcher.prototype.setDestination = function(coordinates, destination) {
+setDestination(coordinates, destination) {
 	this.destinationCoordinates = coordinates;
 	this.callback(destination);
 	return this;
 }
 
-Patcher.prototype.reset = function() {
+reset() {
 	this.sourceCoordinates = null;
 	this.destinationCoordinates = null;
 	this.callback = null;
 }
-	
+}
 return Patcher;
 });

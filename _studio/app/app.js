@@ -4,15 +4,18 @@
 define([
     'app/RackRenderer',
 	'Patching/Patcher',
-	'Patching/Controllers/PatchController'
+	'Patching/Controllers/PatchController',
+	'Patching/Controllers/PatchCableController'
 	], function(
 	RackRenderer,
 	Patcher,
-	PatchController) {
+	PatchController,
+	PatchCableController) {
 	class App {
 		constructor() {
 			this.xhrFacade = undefined;
 			this.master = undefined;
+			this.PatchCableController = new PatchCableController();
 		}
 
 		init(board) {
@@ -21,10 +24,10 @@ define([
 			this.initAudioContext();
 
 			var patcher = new Patcher();
-			var audioPatchController = new PatchController();
-			var triggerPatchController = new PatchController();
-			var modulationPatchController = new PatchController();
-            var frequencyPatchController = new PatchController();
+			var audioPatchController = new PatchController(this.PatchCableController);
+			var triggerPatchController = new PatchController(this.PatchCableController);
+			var modulationPatchController = new PatchController(this.PatchCableController);
+            var frequencyPatchController = new PatchController(this.PatchCableController);
 			
 			new RackRenderer().loadRack(board, this.master, patcher, 
 				audioPatchController, triggerPatchController, modulationPatchController, frequencyPatchController);
@@ -53,13 +56,13 @@ define([
 		}
 
 		initPatchCables() {
-			//PatchCableController.prototype.hidePatchCables();
+			var self = this;
 			$('#showPatchCablesCheckbox').bind('change', function() {
 				if($(this).is(':checked')) {
-					PatchCableController.prototype.showPatchCables();
+					self.PatchCableController.showPatchCables();
 				}
 				else {
-					PatchCableController.prototype.hidePatchCables();
+					self.PatchCableController.hidePatchCables();
 				}
 			});
 		}

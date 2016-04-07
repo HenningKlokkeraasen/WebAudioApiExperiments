@@ -1,16 +1,10 @@
-
 /*
-
-
 	Controller for patch cable drawing
-
-
 */
+define([], function() {
+class PatchCableController {
 
-function PatchCableController() {
-}
-
-PatchCableController.prototype.drawPatchCable = function(sourceCoordinates, destinationCoordinates, typeOfPatch) {
+drawPatchCable(sourceCoordinates, destinationCoordinates, typeOfPatch) {
 	var container = document.getElementById('patchCableContainer');
 	var canvas = document.createElement('canvas');
 	container.appendChild(canvas);
@@ -104,11 +98,11 @@ PatchCableController.prototype.drawPatchCable = function(sourceCoordinates, dest
 	return { canvas: canvas, container: container };
 }
 
-PatchCableController.prototype.removePatchCable = function(canvasAndContainer) {
+removePatchCable(canvasAndContainer) {
 	canvasAndContainer.container.removeChild(canvasAndContainer.canvas);
 }
 
-PatchCableController.prototype.getColorForTypeOfPatch = function(typeOfPatch) {
+getColorForTypeOfPatch(typeOfPatch) {
 	if (typeOfPatch == 'audio')
 		return '#D53734';
 	if (typeOfPatch == 'modulate')
@@ -134,7 +128,7 @@ PatchCableController.prototype.getColorForTypeOfPatch = function(typeOfPatch) {
 // 	return Math.floor(randomFloatingPointNumber);
 // }
 
-PatchCableController.prototype.drawConnector = function(context, x, y, cableColor) {
+drawConnector(context, x, y, cableColor) {
 	var radius = 6;
 
 	context.beginPath();
@@ -146,7 +140,7 @@ PatchCableController.prototype.drawConnector = function(context, x, y, cableColo
 	context.stroke();
 };
 
-PatchCableController.prototype.drawCableStraight = function(context, startX, startY, endX, endY, cableColor) {
+drawCableStraight(context, startX, startY, endX, endY, cableColor) {
 	context.beginPath();
 	context.lineWidth = 5;
 	context.moveTo(startX, startY);
@@ -156,7 +150,7 @@ PatchCableController.prototype.drawCableStraight = function(context, startX, sta
 	context.stroke();
 };
 
-PatchCableController.prototype.drawCableQuadratic = function(context, startX, startY, quadCurveControlPointX, quadCurveControlPointY, endX, endY, cableColor) {
+drawCableQuadratic(context, startX, startY, quadCurveControlPointX, quadCurveControlPointY, endX, endY, cableColor) {
 	context.beginPath();
 	context.lineWidth = 5;
 	context.moveTo(startX, startY);
@@ -167,10 +161,15 @@ PatchCableController.prototype.drawCableQuadratic = function(context, startX, st
 	context.stroke();
 };
 
-PatchCableController.prototype.hidePatchCables = function() {
+hidePatchCables() {
 	$('#patchCableContainer').addClass('hideMe');
 }
 
-PatchCableController.prototype.showPatchCables = function() {
+showPatchCables() {
 	$('#patchCableContainer').removeClass('hideMe');
 }
+
+}
+
+return PatchCableController;
+});

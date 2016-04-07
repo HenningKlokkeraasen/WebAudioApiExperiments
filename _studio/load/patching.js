@@ -4,6 +4,6 @@ define([
 	// Controllers: responsible for binding the view and model
 	'Patching/Controllers/PatchController',
 	'Patching/Controllers/PatchCableController',
-	], function() {
+	], function(Patcher, PatchController, PatchCableController) {
 	}
 );
