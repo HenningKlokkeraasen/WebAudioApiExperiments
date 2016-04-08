@@ -6,22 +6,20 @@ require.config({
     paths: {
     	thirdparty: '../_thirdparty',
     	// bower_components: '../bower_components',
-    	WebAudioApiFacades: '../_WebAudioApiFacades',
-    	BrowserApiFacades: '../_BrowserApiFacades'
     },
 });
 
 require([
 		'app/app',
-		'BrowserApiFacades/QueryStringFacade',
+		'BrowserApiWrappers/QueryStringFacade',
 		'app/ArrayExtensions',
 		'load/thirdpartylibs',
 		'load/patching',
-		'WebAudioApiFacades/AudioContextFacade',
+		'WaapiWrappers/AudioContextFacade',
 	], function(App, QueryStringFacade) {
 	    // console.debug('dependencies for app has loaded');
 
-		var rackName = QueryStringFacade.prototype.getParameterByName('rackName');
+		var rackName = new QueryStringFacade().getParameterByName('rackName');
 
 		require(['racks/' + rackName], function(rack) {
 			// console.debug('all js required has been loaded. app is ready to be started');

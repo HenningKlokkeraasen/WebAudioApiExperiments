@@ -1,6 +1,6 @@
 // DOWNLOAD AND DECODE SOUND FILES
 define([
-	'/_WebAudioApiFacades/BufferFacade.js'
+	'WaapiWrappers/BufferFacade'
 	], function(BufferFacade) {
 		function AudioFileLoader() {
 			this.loadAudioFilesIntoBuffers = function(audioContext, filePaths, callback) {

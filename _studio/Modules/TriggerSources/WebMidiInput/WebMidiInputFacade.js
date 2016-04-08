@@ -5,7 +5,7 @@ define([
 	'/_studio/Modules/_FacadeBase.js',
     '/_studio/Modules/_Mixins/ICanTrigger.js',
     '/_studio/Modules/_Mixins/ICanSetFrequency.js',
-    '/_WebAudioApiFacades/WebMidiContext.js'
+    'WaapiWrappers/WebMidiContext'
 	], function(FacadeBase, ICanTrigger, ICanSetFrequency, WebMidiContext) {
 		WebMidiInputFacade.prototype = Object.create(FacadeBase.prototype);
 		WebMidiInputFacade.prototype.constructor = WebMidiInputFacade;

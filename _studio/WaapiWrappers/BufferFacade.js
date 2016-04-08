@@ -2,7 +2,7 @@
 	Web Audio API wrapper - bufferer (downloader)
 */
 define([
-	'/_BrowserApiFacades/XhrFacade.js'
+	'BrowserApiWrappers/XhrFacade'
 	], function(XhrFacade) {
 		function BufferFacade(audioContext) {
 			

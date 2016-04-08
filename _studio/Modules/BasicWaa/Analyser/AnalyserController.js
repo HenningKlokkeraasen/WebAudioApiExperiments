@@ -3,10 +3,10 @@
 */
 define([
 	'/_studio/Modules/_ButtonTriggeredModuleController.js',
-	'/_BrowserApiFacades/CanvasFacade.js',
+	'BrowserApiWrappers/CanvasFacade',
 	'/_studio/Modules/Composite/AudioVisualizer/Oscilloscope.js',
 	'/_studio/Modules/Composite/AudioVisualizer/FrequencySpectrumAnalyser.js'
-	], function(ButtonTriggeredModuleController) {
+	], function(ButtonTriggeredModuleController, CanvasFacade) {
 		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////	
 		AnalyserController.prototype = Object.create(ButtonTriggeredModuleController.prototype); // new ButtonTriggeredModuleController();
 		AnalyserController.prototype.constructor = AnalyserController;

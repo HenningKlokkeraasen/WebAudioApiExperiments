@@ -3,9 +3,8 @@
 */
 define([
 	'/_studio/Modules/_ButtonTriggeredModuleController.js',
-	'/_BrowserApiFacades/UserMediaFacade.js'
+	'BrowserApiWrappers/UserMediaFacade'
 	], function(ButtonTriggeredModuleController, UserMediaFacade) {
-		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////	
 		MediaStreamController.prototype = Object.create(ButtonTriggeredModuleController.prototype); // new ButtonTriggeredModuleController();
 		MediaStreamController.prototype.constructor = MediaStreamController;
 
@@ -46,7 +45,6 @@ define([
 			});
 		}
 
-		//////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
 		return MediaStreamController;
 	}
 );
