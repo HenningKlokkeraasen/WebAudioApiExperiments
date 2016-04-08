@@ -55,33 +55,6 @@ input[type=range].shadowrange {
 	}
 
 
-/********************************************Style radio buttons***********************************************/
-input[type="radio"].redradiobuttons {
-  display: none;
-}
-
-input[type="radio"].redradiobuttons + label {
-  font-size: 0.8em;
-}
-
-input[type="radio"].redradiobuttons + label span {
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-  margin: -1px 4px 0 0;
-  vertical-align: middle;
-  cursor: pointer;
-  border-radius: 50%;
-}
-
-input[type="radio"].redradiobuttons + label span {
-  background: url('img/radiobutton-off.png');
-}
-
-input[type="radio"].redradiobuttons:checked + label span {
-  background: url('img/radiobutton-on.png');
-}
-
 /********************************************Style radio buttons v2***********************************************/
 /*http://viralpatel.net/blogs/css-radio-button-checkbox-background/*/
 input[type=radio].pushbutton {
