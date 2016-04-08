@@ -12,33 +12,40 @@ define([
 	PatchController,
 	PatchCableController) {
 	class App {
-		constructor() {
+		constructor(loader) {
 			this.xhrFacade = undefined;
 			this.master = undefined;
 			this.PatchCableController = new PatchCableController();
+			this.loader = loader;
 		}
 
-		init(board) {
+		init() {
 			// console.log('starting');
-
 			this.initAudioContext();
-
-			var patcher = new Patcher();
-			var audioPatchController = new PatchController(this.PatchCableController);
-			var triggerPatchController = new PatchController(this.PatchCableController);
-			var modulationPatchController = new PatchController(this.PatchCableController);
-            var frequencyPatchController = new PatchController(this.PatchCableController);
-			
-			new RackRenderer().loadRack(board, this.master, patcher, 
-				audioPatchController, triggerPatchController, modulationPatchController, frequencyPatchController);
-
-			this.initPatchCables();
+			this.loadPatchControllers();
+			this.bindTogglePatchCableVisibility();
             
 			// finished initializing, notify others
 			//var isInitializedEvent = new CustomEvent('appIsInitialized', { detail : { instance : this } });
 			//document.dispatchEvent(isInitializedEvent);
 
 			// console.log('all loaded');
+		}
+
+		loadRack(rack) {
+			this.rackRenderer.loadRack(rack);
+		}
+
+		loadPatchControllers() {
+			this.patcher = new Patcher();
+			this.audioPatchController = new PatchController(this.PatchCableController);
+			this.triggerPatchController = new PatchController(this.PatchCableController);
+			this.modulationPatchController = new PatchController(this.PatchCableController);
+            this.frequencyPatchController = new PatchController(this.PatchCableController);
+            this.rackRenderer = new RackRenderer(this.master, this.patcher, 
+				this.audioPatchController, this.triggerPatchController, 
+				this.modulationPatchController, this.frequencyPatchController,
+				this.loader);
 		}
 
 		initAudioContext() {
@@ -55,7 +62,7 @@ define([
 			//console.log(this.master.audioContext);
 		}
 
-		initPatchCables() {
+		bindTogglePatchCableVisibility() {
 			var self = this;
 			$('#showPatchCablesCheckbox').bind('change', function() {
 				if($(this).is(':checked')) {
