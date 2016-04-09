@@ -125,10 +125,10 @@ define([
 				else {
 					parameterValue = $(elements[0]).val();
 				}
-				
+
 				//console.log(parameter.selector + ' ' + parameterValue);
 				// call the function, ensure the facade is this in the context
-				if (parameterValue != undefined && parameter.func != undefined)
+				if (parameterValue != undefined && parameter.func != undefined && !parameter.doNotInitOnRender)
 					parameter.func.call(facadeInstance, parameterValue, parameter.additionalParameters);
 			});
 		};
@@ -191,6 +191,16 @@ define([
 			else if (element.id)
 				$('output[for=' + element.id + ']').text(formattedValue);
 			
+			// On/off buttons - assumes too much TODO fix
+			if (parameter.ev === 'click')
+				if ($(element).data('on') === 'true'){
+					$(element).data('on', 'false')
+					$(element).text(parameter.textWhenOff);
+				} else {
+					$(element).data('on', 'true')
+					$(element).text(parameter.textWhenOn);
+				}
+
 			$(element).attr('title', value);
 		};
 

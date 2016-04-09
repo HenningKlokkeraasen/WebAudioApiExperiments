@@ -13,8 +13,6 @@ define([
             this.hasAudioOut = false;
             this.hasTriggerOut = true;
             this.hasFrequencyOut = true;
-			this.hasStartButton = true;
-			this.buttonCssClass = 'round';
 			this.moduleCssClass = 'module-8hp';
 			this.headerCssClass = 'stepsequencer';
 		}
@@ -26,6 +24,8 @@ define([
 				parameters : [
 					{ func : StepSequencerFacade.prototype.setTempoInBpm, selector : 'webaudio-knob[data-parameterType="tempoInBpm"]',		ev : 'change'	},
 					{ func : StepSequencerFacade.prototype.setMasterFrequency, selector : 'webaudio-knob[data-parameterType="masterFrequency"]',		ev : 'change'	},
+					{ func: StepSequencerFacade.prototype.toggleStartStop, selector: 'button[data-parameterType="togglestartstop"]', 
+						ev: 'click', doNotInitOnRender: true, textWhenOff: 'Start', textWhenOn: 'Stop'}
 				]
 			};
 
@@ -58,6 +58,11 @@ define([
 				shortName : moduleData.shortName,
 		        sections : [ {
 		    		sectionName: 'Master',
+		    		buttons: [
+		    			{
+		    				buttonId: moduleData.shortName + '_start', buttonName: 'Start', 
+		    				buttonLabel: 'Start / Stop', buttonCssClass: 'round', type: 'togglestartstop'
+		    			}],
 					ranges : [ 
 						{ label : 'Tempo (BPM)',	type : 'tempoInBpm',	min : moduleData.tempoInBpm.min, max : moduleData.tempoInBpm.max, value: moduleData.tempoInBpm.val, step : moduleData.tempoInBpm.stp, name : moduleData.shortName + '_tempoInBpm'	},
 						{ label: 'Freuquency', type: 'masterFrequency', min: 20, max: 3000, value: 440, step: 1, name: moduleData.shortName + '_masterFrequency'}],

@@ -118,6 +118,13 @@ define([
 			this.isOn = false;
 			window.clearTimeout( this.timerId );
 		}
+
+		toggleStartStop() {
+			if (this.isOn)
+				this.stop();
+			else
+				this.start();
+		}
 		
 		noteOn(stepNumber, frequency, audioTime) {
 			var self = this;

@@ -41,7 +41,11 @@
 						</webaudio-switch>
 						</div>
 					{{else}}
-						<button name="{{buttonId}}">{{buttonName}}</button>
+						<div style="display:inline-block;vertical-align: top;">
+							<span title="{{buttonLabel}}" class="parameterLabel ">{{buttonLabel}}</span>
+							<br/>
+							<button name="{{buttonId}}" class="{{buttonCssClass}}" data-parameterType="{{type}}" >{{buttonName}}</button>
+						</div>
 					{{/ifCond}}
 				{{/each}}
 				
