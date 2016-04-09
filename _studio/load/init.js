@@ -5,12 +5,11 @@ require.config({
 	baseUrl: '', // === /_studio
 	paths: {
 		thirdparty: '../_thirdparty',
-		// bower_components: '../bower_components',
 	},
 });
 
 require([ 
-	'load/thirdpartylibs',
+	'/bower_components/jquery/dist/jquery.min.js',
 	'load/kickstarter',
 	'app/ArrayExtensions',
 	'load/patching',

@@ -2,7 +2,6 @@ define([
     '/_studio/Modules/_ModuleFactoryBase.js',
     '/_studio/Modules/BasicWaa/Analyser/AnalyserFacade.js'
     ], function(ModuleFactoryBase, AnalyserFacade) {
-        //////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
         AnalyserModuleFactory.prototype = new ModuleFactoryBase();
         AnalyserModuleFactory.prototype.constructor = AnalyserModuleFactory;
 
@@ -10,52 +9,37 @@ define([
             this.handlebarsTemplateSelector = '#analyserTemplate'; // differs from norm
             this.moduleCssClass = 'module-4hp';
 			this.headerCssClass = 'analysermodule';
-			this.buttonCssClass = 'round';
             this.hasAudioOut = false;
-            this.hasStartButton = true;
         }
         AnalyserModuleFactory.prototype.getModuleDefinition = function() {
             return {    
                 handlebarsTemplateSelector : this.handlebarsTemplateSelector,
                 facade : AnalyserFacade,
                 parameters : [
-
-
-
-
-
-
+                    { func : AnalyserFacade.prototype.toggleStartStop, selector: 'button[data-parameterType="togglestartstop"]', 
+                        ev: 'click', doNotInitOnRender: true, textWhenOff: 'Start', textWhenOn: 'Stop'}
                 ],
             };
         };
-        // moduleData
-        //      name
-        //      shortName
-        //
-        //		hasOscilloscope
-        //		hasFsa
-        //
-        //
-        //
-        //
+
         AnalyserModuleFactory.prototype.getModule = function(moduleData) {
             var module = this.getModuleBase({
                 name : moduleData.name, 
 				shortName : moduleData.shortName,
-				
-
-
-
-
-
-
-
+                sections: [{
+                    sectionName: 'Master',
+                    buttons: [
+                        {
+                            buttonId: moduleData.shortName + '_start', buttonName: 'Start', 
+                            buttonLabel: 'Start / Stop', buttonCssClass: 'round', type: 'togglestartstop'
+                        }],
+                }]
             });
 			module.hasOscilloscope = moduleData.hasOscilloscope;
 			module.hasFsa = moduleData.hasFsa;
 			return module;
         };
-        //////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
+
         return AnalyserModuleFactory;
     }
 );

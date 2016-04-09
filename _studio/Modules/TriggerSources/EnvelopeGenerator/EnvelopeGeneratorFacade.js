@@ -34,11 +34,11 @@ define([
 
 
         };
-            this.isOn = false;
+
         // private
         EnvelopeGeneratorFacade.prototype.setDefaultValues = function() {
             this.triggerIn.gain.value = 0;
-
+            this.isOn = false;
 
         };
 

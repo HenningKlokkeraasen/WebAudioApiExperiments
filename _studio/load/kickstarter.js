@@ -9,11 +9,18 @@ define([
 	class Kickstarter {
 		kickstart() {
 			new DomEnsurer().ensureDocumentReady()
+				.then(initHandlebars)
 				.then(initApp)
 				.then(getRackName)
 				.then(loadRack)
 				.then(renderRack, logRackLoadingError);
 		}
+	}
+
+	function initHandlebars() {
+		return new Promise(function(resolve, reject) {
+			require(['load/thirdpartylibs/handlebars'], resolve, reject);
+		});
 	}
 
 	function initApp() {

@@ -6,11 +6,14 @@ define([
 		function AnalyserFacade(audioContext) {
 			this.input = audioContext.createAnalyser(); // Note spelling of Analyser
 			this.isStopped = true;
-
-
-
-
 			return this;
+		}
+
+		AnalyserFacade.prototype.toggleStartStop = function() {
+			if (this.isStopped)
+				this.init();
+			else
+				this.stop();
 		}
 
 		AnalyserFacade.prototype.init = function() {

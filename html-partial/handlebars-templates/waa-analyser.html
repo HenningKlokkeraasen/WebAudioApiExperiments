@@ -8,12 +8,10 @@
 				<div style="margin: 0 0 5px 0;">{{moduleName}}</div>
 			</header>
 
-			{{#if hasStartButton}}
-			<fieldset>
-				<button class="{{buttonCssClass}}">Start</button>
-			</fieldset>
-			{{/if}}
-			
+			{{#each sections}}
+				{{> partial-sections}}
+			{{/each}}
+
 			{{!specific for analyser: canvas}}
 			
 			{{#if hasOscilloscope}}

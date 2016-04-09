@@ -2,53 +2,23 @@
 	Controller for Analyser
 */
 define([
-	'/_studio/Modules/_ButtonTriggeredModuleController.js',
+	'/_studio/Modules/_GenericController.js',
 	'BrowserApiWrappers/CanvasFacade',
 	'/_studio/Modules/Composite/AudioVisualizer/Oscilloscope.js',
 	'/_studio/Modules/Composite/AudioVisualizer/FrequencySpectrumAnalyser.js'
-	], function(ButtonTriggeredModuleController, CanvasFacade) {
-		//////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////	
-		AnalyserController.prototype = Object.create(ButtonTriggeredModuleController.prototype); // new ButtonTriggeredModuleController();
+	], function(GenericController, CanvasFacade) {	
+		AnalyserController.prototype = Object.create(GenericController.prototype);
 		AnalyserController.prototype.constructor = AnalyserController;
 
 		function AnalyserController(master, patcher, audioPatchController, triggerPatchController, 
 			modulationPatchController, frequencyPatchController, facadeHolder) {
-			ButtonTriggeredModuleController.call(this, master, patcher, audioPatchController, triggerPatchController, 
+			GenericController.call(this, master, patcher, audioPatchController, triggerPatchController, 
 				modulationPatchController, frequencyPatchController, facadeHolder);
-		}
-
-		AnalyserController.prototype.bindStartStopButton = function(button, div) {
-			var facade = this.findTheFacade(div);
-			var dataContainer = this.findTheDataContainer(div);
-
-			$(button).bind('click',  function() {
-				if (facade.isStopped) {
-					facade.init();
-					$(this).text('Stop');
-				}
-				else {
-					facade.stop();
-					$(this).text('Start');
-				}
-			});
-
-
-
-
-
-
-
-
-
-
-
-
-
 		}
 
 		// override
 		AnalyserController.prototype.render = function(definition, model, containerSelector, callback) {
-			ButtonTriggeredModuleController.prototype.render.call(this, definition, model, containerSelector, callback); //  = base.render()
+			GenericController.prototype.render.call(this, definition, model, containerSelector, callback); //  = base.render()
 
 			var controller = this;
 			// Go through each of the modules in the container
@@ -80,7 +50,6 @@ define([
 			facade.setFreqSpectrumAnalyser(freqSpectrumAnalyser);
 		};
 
-		//////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
 		return AnalyserController;
 	}
 );
