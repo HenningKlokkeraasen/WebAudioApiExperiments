@@ -9,27 +9,38 @@ require.config({
     },
 });
 
-require([
-		'app/app',
-		'BrowserApiWrappers/QueryStringFacade',
-		'app/ArrayExtensions',
-		'load/thirdpartylibs',
-		'load/patching',
-		'WaapiWrappers/AudioContextFacade',
-	], function(App, QueryStringFacade) {
-	    // console.debug('dependencies for app has loaded');
+require([ 
+	'load/thirdpartylibs',
+	'app/domEnsurer',
+	'app/rackLoader',
+	'app/app',
+	'BrowserApiWrappers/QueryStringFacade',
+	'app/ArrayExtensions',
+	'load/patching',
+	'WaapiWrappers/AudioContextFacade',
+], function(thirdpartylibs, DomEnsurer, RackLoader, App, QueryStringFacade) {
+	// console.debug('dependencies for app has loaded');
+	var rackLoader = new RackLoader();
+	var app = new App(rackLoader);
+	new DomEnsurer().ensureDocumentReady().then(init);
 
+	function init() {
+		app.init();
+		loadRack();
+	}
+
+	function loadRack() {
 		var rackName = new QueryStringFacade().getParameterByName('rackName');
+		if (rackName)
+			rackLoader.loadRack(rackName).then(renderRack, logRackLoadingError);
+	}
 
-		require(['racks/' + rackName], function(rack) {
-			// console.debug('all js required has been loaded. app is ready to be started');
-			
-			$(document).ready(function() {
-				var app = new App();
-				app.init(rack);
-			});
-		}, function(err) {
-			console.error('require.js error:');
-			console.error(err);
-		});
+	function renderRack(rack) {
+		app.renderRack(rack);
+	}
+
+	function logRackLoadingError(err) {
+		console.error('require.js error: could not load rack');
+		console.error(err);
+	}
 });

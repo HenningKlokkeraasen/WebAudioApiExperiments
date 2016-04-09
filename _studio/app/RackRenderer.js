@@ -3,17 +3,17 @@ define(['app/ModuleRenderer',
 	class RackRenderer {
 		constructor(master, patcher, audioPatchController, triggerPatchController, 
 			modulationPatchController, frequencyPatchController,
-			loader) {
+			rackLoader) {
 			this.master = master;
 			this.patcher = patcher;
 			this.audioPatchController = audioPatchController;
 			this.triggerPatchController = triggerPatchController;
 			this.modulationPatchController = modulationPatchController;
 			this.frequencyPatchController = frequencyPatchController;
-			this.loader = loader;
+			this.rackLoader = rackLoader;
 		}
 
-		loadRack(board) {
+		renderRack(board) {
             this.board = board;
             this.loadTitleAndDescription();
 			this.loadModules();
@@ -62,8 +62,8 @@ define(['app/ModuleRenderer',
 				nodeUl.appendChild(nodeLi);
 				nodeA.addEventListener('click', function() {
 					var rackName = this.innerText;
-					self.loader.requireRack(rackName, function(rack) {
-						self.loadRack(rack);
+					self.rackLoader.loadRack(rackName).then(function(rack) {
+						self.renderRack(rack);
 					});
 				})
 			});

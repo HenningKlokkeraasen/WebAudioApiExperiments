@@ -12,11 +12,10 @@ define([
 	PatchController,
 	PatchCableController) {
 	class App {
-		constructor(loader) {
-			this.xhrFacade = undefined;
+		constructor(rackLoader) {
 			this.master = undefined;
 			this.PatchCableController = new PatchCableController();
-			this.loader = loader;
+			this.rackLoader = rackLoader;
 		}
 
 		init() {
@@ -32,8 +31,8 @@ define([
 			// console.log('all loaded');
 		}
 
-		loadRack(rack) {
-			this.rackRenderer.loadRack(rack);
+		renderRack(rack) {
+			this.rackRenderer.renderRack(rack);
 		}
 
 		loadPatchControllers() {
@@ -45,7 +44,7 @@ define([
             this.rackRenderer = new RackRenderer(this.master, this.patcher, 
 				this.audioPatchController, this.triggerPatchController, 
 				this.modulationPatchController, this.frequencyPatchController,
-				this.loader);
+				this.rackLoader);
 		}
 
 		initAudioContext() {
