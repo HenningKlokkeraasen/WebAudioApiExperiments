@@ -11,8 +11,8 @@ require.config({
 
 require([ 
 	'load/thirdpartylibs',
-	'app/domEnsurer',
-	'app/rackLoader',
+	'load/domEnsurer',
+	'load/rackLoader',
 	'app/app',
 	'BrowserApiWrappers/QueryStringFacade',
 	'app/ArrayExtensions',
@@ -22,17 +22,27 @@ require([
 	// console.debug('dependencies for app has loaded');
 	var rackLoader = new RackLoader();
 	var app = new App(rackLoader);
-	new DomEnsurer().ensureDocumentReady().then(init);
+	new DomEnsurer().ensureDocumentReady()
+		.then(init)
+		.then(getRackName)
+		.then(loadRack)
+		.then(renderRack, logRackLoadingError);
 
 	function init() {
 		app.init();
-		loadRack();
 	}
 
-	function loadRack() {
-		var rackName = new QueryStringFacade().getParameterByName('rackName');
-		if (rackName)
-			rackLoader.loadRack(rackName).then(renderRack, logRackLoadingError);
+	function getRackName() {
+		return new QueryStringFacade().getParameterByName('rackName');
+	}
+
+	function loadRack(rackName) {
+		return new Promise(function(resolve, reject) {
+			if (rackName)
+				rackLoader.loadRack(rackName).then(resolve, reject);
+			else
+				reject(Error('no rack name'));
+		});
 	}
 
 	function renderRack(rack) {
