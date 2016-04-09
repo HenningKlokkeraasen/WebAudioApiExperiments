@@ -19,8 +19,10 @@
 				</div>
 			{{else}}
 				<div style="display:inline-block;vertical-align: top;">
-					<span title="{{buttonLabel}}" class="parameterLabel ">{{buttonLabel}}</span>
-					<br/>
+					{{#if buttonLabel}}
+						<span title="{{buttonLabel}}" class="parameterLabel ">{{buttonLabel}}</span>
+						<br/>
+					{{/if}}
 					<button name="{{buttonId}}" class="{{buttonCssClass}}" data-parameterType="{{type}}" >{{buttonName}}</button>
 				</div>
 			{{/ifCond}}

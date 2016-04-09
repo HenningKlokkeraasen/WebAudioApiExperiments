@@ -62,7 +62,7 @@ define([
 					buttons: [
 		    			{
 		    				buttonId: moduleData.shortName + '_start', buttonName: 'Start', 
-		    				buttonLabel: 'Start / Stop', buttonCssClass: 'round', type: 'togglestartstop'
+		    				buttonLabel: '', buttonCssClass: 'round', type: 'togglestartstop'
 		    			}],
 				}
 				sections.push(buttonSection);

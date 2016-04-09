@@ -40,6 +40,7 @@ define([
 			//this.input.start(0);
 			this.output.gain.value = 0;
 			this.hasBeenStartedOnce = false;
+			this.isOn = false;
 		};
 
 		// private
@@ -93,7 +94,15 @@ define([
 			return this;
 		};
 
+		OscillatorFacade.prototype.toggleStartStop = function() {
+			if (this.isOn)
+				this.stop();
+			else
+				this.start();
+		}
+
 		OscillatorFacade.prototype.start = function() {
+			this.isOn = true;
 			if (!this.hasBeenStartedOnce)
 			{
 				this.input.start(0);
@@ -104,6 +113,7 @@ define([
 		};
 
 		OscillatorFacade.prototype.stop = function() {
+			this.isOn = false;
 			//this.node.stop();
 
 			// When an oscillator has stopped, it can not be started again. Create a new one ready to go.

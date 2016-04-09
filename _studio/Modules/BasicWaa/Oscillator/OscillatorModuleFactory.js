@@ -9,11 +9,9 @@ define([
 		function OscillatorModuleFactory() {
 			// console.debug('ctor for OscillatorModuleFactory');
 			this.headerCssClass = 'oscillator';
-			this.buttonCssClass = 'round';
 			// this.moduleCssClass = 'fibredark';
 			this.hasAudioIn = false;
 			// this.hasModulateOut = true;
-			this.hasStartButton = true;
 		}
 		OscillatorModuleFactory.prototype.getModuleDefinition = function() {
 			return {	
@@ -23,7 +21,9 @@ define([
 					{ func : OscillatorFacade.prototype.setFrequency, 	selector : 'webaudio-knob[data-parameterType="frequency"]',		ev : 'change'	},
 					{ func : OscillatorFacade.prototype.setDetune, 		selector : 'webaudio-knob[data-parameterType="detune"]',		ev : 'change'	},
 					// { func : OscillatorFacade.prototype.setTypeByNumber,selector : 'webaudio-knob[data-parameterType="waveType2"]',		ev : 'change'	}
-					{ func : OscillatorFacade.prototype.setType, 		selector : 'input[data-parameterType="waveType"]',		ev : 'change'	}
+					{ func : OscillatorFacade.prototype.setType, 		selector : 'input[data-parameterType="waveType"]',		ev : 'change'	},
+					{ func : OscillatorFacade.prototype.toggleStartStop, selector: 'button[data-parameterType="togglestartstop"]', 
+                        ev: 'click', doNotInitOnRender: true, textWhenOff: 'Start', textWhenOn: 'Stop'}
 				]
 			};
 		};
@@ -53,6 +53,12 @@ define([
 				name : moduleData.name, 
 				shortName : moduleData.shortName,
 		        sections : [ {
+		        	buttons: [
+                        {
+                            buttonId: moduleData.shortName + '_start', buttonName: 'Start', 
+                            buttonLabel: '', buttonCssClass: 'round', type: 'togglestartstop'
+                        }],
+                    }, {
 					radioButtonLists : [
  						this.getWaveTypeSelectObject(moduleData.shortName, moduleData.w_params.indexChecked, 'Wave', 'waveType', moduleData.shortName + '_wave')
  					]
@@ -62,9 +68,9 @@ define([
 					rangeDisplayMode : 'webaudio-controls-color_knob'
 		    }]});
 			if (displayFrequencyKnob)
-				module.sections[1].ranges.add(this.getFrequencyParamObject(moduleData, frequencyKnobLabel));
+				module.sections[2].ranges.add(this.getFrequencyParamObject(moduleData, frequencyKnobLabel));
 			if (displayDetuneKnob)
-				module.sections[1].ranges.add(this.getDetuneParamObject(moduleData.shortName))
+				module.sections[2].ranges.add(this.getDetuneParamObject(moduleData.shortName))
 			return module;
 		};
 		OscillatorModuleFactory.prototype.getFrequencyParamObject = function(moduleData, frequencyKnobLabel) {
