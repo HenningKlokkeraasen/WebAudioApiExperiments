@@ -4,7 +4,7 @@ define([], function() { return { Modules :
 	      name:'Envelope Generator',
 	      shortName:'eg1',
 	      a_params:{  
-	         min:0,
+	         min:0.001,
 	         max:3,
 	         val:0.12,
 	         stp:0.01
@@ -22,7 +22,7 @@ define([], function() { return { Modules :
 	         stp:0.01
 	      },
 	      r_params:{  
-	         min:0,
+	         min:0.001,
 	         max:3,
 	         val:0.1,
 	         stp:0.01
@@ -34,7 +34,7 @@ define([], function() { return { Modules :
 	      name:'EG 1 (Pitch Envelope)',
 	      shortName:'eg2',
 	      a_params:{  
-	         min:0,
+	         min:0.001,
 	         max:3,
 	         val:0.02,
 	         stp:0.01
@@ -63,7 +63,7 @@ define([], function() { return { Modules :
 	      name:'EG 2 (Filter Envelope)',
 	      shortName:'eg3',
 	      a_params:{  
-	         min:0,
+	         min:0.001,
 	         max:3,
 	         val:0.12,
 	         stp:0.01
@@ -81,7 +81,7 @@ define([], function() { return { Modules :
 	         stp:1
 	      },
 	      r_params:{  
-	         min:0,
+	         min:0.001,
 	         max:3,
 	         val:0.1,
 	         stp:0.01
@@ -92,7 +92,7 @@ define([], function() { return { Modules :
 	      name:'EG 3 (Loudness Envelope)',
 	      shortName:'eg4',
 	      a_params:{  
-	         min:0,
+	         min:0.001,
 	         max:3,
 	         val:0.01,
 	         stp:0.01
@@ -110,7 +110,7 @@ define([], function() { return { Modules :
 	         stp:0.01
 	      },
 	      r_params:{  
-	         min:0,
+	         min:0.001,
 	         max:3,
 	         val:0.01,
 	         stp:0.01

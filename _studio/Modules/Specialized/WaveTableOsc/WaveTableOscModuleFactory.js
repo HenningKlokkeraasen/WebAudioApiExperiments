@@ -17,6 +17,7 @@ define([
 			base.facade = WaveTableOscFacade;
 			base.parameters[0].func = WaveTableOscFacade.prototype.setFrequency;
 			base.parameters[1].func = WaveTableOscFacade.prototype.setDetune;
+			base.parameters[3].func = WaveTableOscFacade.prototype.toggleStartStop;
 			base.parameters.splice(2, 1); 	// remove the set wave type
 											// note splice() has side effects; it changes the array itself
 			base.parameters.push(
