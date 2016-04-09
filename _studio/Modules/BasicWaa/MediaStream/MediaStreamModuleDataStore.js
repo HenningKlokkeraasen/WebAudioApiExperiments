@@ -1,7 +1,7 @@
 define([], function() { return { Modules : 
 		[  
 		   {  
-		      name:'Microphone',
+		      name:'Mic / Line In',
 		      shortName : 'mediastream1'
 		   }
 		]

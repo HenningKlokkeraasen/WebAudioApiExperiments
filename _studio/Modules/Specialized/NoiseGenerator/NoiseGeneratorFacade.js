@@ -25,18 +25,12 @@ define([
         // private
         NoiseGeneratorFacade.prototype.setDefaultValues = function() {
             this.output.gain.value = 0;
-
-
+            this.isOn = false;
         };
 
         // private
         NoiseGeneratorFacade.prototype.wireUp = function() {
             this.input.connect(this.output);
-
-
-
-
-
         };
 
         NoiseGeneratorFacade.prototype.noiseTypes = [ 
@@ -62,7 +56,15 @@ define([
             }
         };
 
+        NoiseGeneratorFacade.prototype.toggleStartStop = function() {
+            if (this.isOn)
+                this.stop();
+            else
+                this.start();
+        };
+        
         NoiseGeneratorFacade.prototype.start = function() {
+            this.isOn = true;
 			if (!this.hasBeenStartedOnce)
 			{
 				this.input.start(0);
@@ -73,6 +75,7 @@ define([
         };
 
         NoiseGeneratorFacade.prototype.stop = function() {
+            this.isOn = false;
             this.output.gain.value = 0;
             return this;
         };

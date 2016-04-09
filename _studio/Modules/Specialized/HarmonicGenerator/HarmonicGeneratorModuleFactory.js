@@ -20,9 +20,10 @@ define([
 			base.parameters[0].func = HarmonicGeneratorFacade.prototype.setFrequency;
 			base.parameters[1].func = HarmonicGeneratorFacade.prototype.setDetune;
 			base.parameters[2].func = HarmonicGeneratorFacade.prototype.setType;
+			base.parameters[3].func = HarmonicGeneratorFacade.prototype.toggleStartStop;
 			base.parameters.push(
 					{ func : HarmonicGeneratorFacade.prototype.setNumberOfHarmonics, 	selector : 'input[data-parameterType="numberOfHarmonics"]',			ev : 'input'    },
-					{ func : HarmonicGeneratorFacade.prototype.setAmplitudeMode, 		selector : 'select[data-parameterType="AmplitudeMode"]',		ev : 'change'	},
+					{ func : HarmonicGeneratorFacade.prototype.setAmplitudeMode, 		selector : 'input[data-parameterType="AmplitudeMode"]',		ev : 'change'	},
 					{ func : HarmonicGeneratorFacade.prototype.setFrequencyMode, 		selector : 'input[data-parameterType="FrequencyMode"]',		ev : 'change'	},
 					{ func : HarmonicGeneratorFacade.prototype.setStackMode, 			selector : 'input[data-parameterType="StackMode"]',		ev : 'change'	} ,
 					{ func : HarmonicGeneratorFacade.prototype.setPhaseInvertOnAll,		selector: 'input[data-parameterType="phaseInvertOnAll"]',		ev: 'change'	},
@@ -47,35 +48,34 @@ define([
 					sectionName : '',
 					ranges : [
 		                this.getRangeControlData({ 
-		                	label : 'N',
+		                	label : 'Number of harmonics',
 		                	type : 'numberOfHarmonics',	
 		                	params : { min : 0, 	max : HarmonicGeneratorFacade.prototype.numberOfHarmonics, val :  0, stp :  1 	},
 		                	name : moduleData.shortName + '_numberOfHarmonics' })
 			    	],
-			    	selectLists : [
-						{ 
-							label : 'A',
-							type : 'AmplitudeMode',
-							options : HarmonicGeneratorFacade.prototype.amplitudeModes
-						},
-			    	],
 					radioButtonLists : [
 						{ 
-							label : 'F',
+							label : 'Frequency mode',
 							type : 'FrequencyMode',
 							rdoName : moduleData.shortName + '_FrequencyMode',
 							radioButtons : HarmonicGeneratorFacade.prototype.frequencyModes
 						},
 						{ 
-							label : 'S',
+							label : 'Stack mode',
 							type : 'StackMode',
 							rdoName : moduleData.shortName + '_StackMode',
 							radioButtons : HarmonicGeneratorFacade.prototype.stackModes
+						},
+						{
+							label : 'Amplitude mode',
+							type : 'AmplitudeMode',
+							rdoName : moduleData.shortName + '_AmplitudeMode',
+							radioButtons : HarmonicGeneratorFacade.prototype.amplitudeModes
 						}
 					],
 		    		checkBoxes : [
-		    			{ label : 'I',	type : 'phaseInvertOnAll' },
-		    			{ label : 'T',	type : 'phaseInvertOnEveryFourth' }
+		    			{ label : 'Phase invert on all',	type : 'phaseInvertOnAll' },
+		    			{ label : 'Phase invert on every fourth',	type : 'phaseInvertOnEveryFourth' }
 		    		]
 
 			});

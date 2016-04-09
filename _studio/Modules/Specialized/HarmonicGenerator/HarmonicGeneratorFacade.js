@@ -34,6 +34,7 @@ define([
 			//this.amplitudeMode = this.amplitudeModes[0].value;
 			//this.frequencyMode = this.frequencyModes[0].value;
 			//this.stackMode = this.stackModes[0].value;
+			this.isOn = false;
 		};
 
 		// private
@@ -74,8 +75,15 @@ define([
 			return this;
 		};
 
+		HarmonicGeneratorFacade.prototype.toggleStartStop = function() {
+			if (this.isOn)
+				this.stop();
+			else
+				this.start();
+		};
 		// override
 		HarmonicGeneratorFacade.prototype.start = function() {
+			this.isOn = true;
 			for (var i = 0; i < this.numberOfHarmonics; i++) {
 				this.oscillators[i].start(0);
 			}
@@ -84,6 +92,7 @@ define([
 
 		// override
 		HarmonicGeneratorFacade.prototype.stop = function() {
+			this.isOn = false;
 			for (var i = 0; i < this.numberOfHarmonics; i++) {
 				this.oscillators[i].stop();
 				// recreate

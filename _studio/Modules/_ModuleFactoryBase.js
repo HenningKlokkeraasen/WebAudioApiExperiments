@@ -4,8 +4,6 @@ define([
 			this.handlebarsTemplateSelector = '#moduleTemplate';
 			this.moduleCssClass = '';
 			this.headerCssClass = 'genericmodule';
-			this.buttonCssClass = '';
-			this.hasStartButton = false;
 			this.hasKeyboardInterface = false;
 			this.hasAudioIn = true;
 			this.hasAudioOut = true;
@@ -24,8 +22,6 @@ define([
 				shortName: moduleData.shortName,
 				moduleCssClass : this.moduleCssClass,
 				headerCssClass : this.headerCssClass,
-				buttonCssClass: this.buttonCssClass,
-				hasStartButton : this.hasStartButton,
 				hasKeyboardInterface : this.hasKeyboardInterface,
 				hasAudioIn : this.hasAudioIn,
 				hasAudioOut : this.hasAudioOut,
@@ -51,6 +47,24 @@ define([
 				step : paramData.params.stp,
 				name : paramData.name
 			};
+		};
+
+		ModuleFactoryBase.prototype.getStartStopButtonParameter = function(func, textWhenOn, textWhenOff) {
+			return {
+				func: func, 
+				selector: 'button[data-parameterType="togglestartstop"]', 
+				ev: 'click', 
+				doNotInitOnRender: true, 
+				textWhenOff: textWhenOff ? textWhenOff : 'Start', 
+				textWhenOn: textWhenOn ? textWhenOn : 'Stop'
+			};
+		};
+
+		ModuleFactoryBase.prototype.getStartStopButtonControl = function(shortName, buttonName) {
+			return {
+                buttonId: shortName + '_start', buttonName: buttonName ? buttonName : 'Start', 
+                buttonLabel: '', buttonCssClass: 'round', type: 'togglestartstop'
+            };
 		};
 
 		return ModuleFactoryBase;

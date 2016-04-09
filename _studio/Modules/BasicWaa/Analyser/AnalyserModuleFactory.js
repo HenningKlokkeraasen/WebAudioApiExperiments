@@ -16,8 +16,7 @@ define([
                 handlebarsTemplateSelector : this.handlebarsTemplateSelector,
                 facade : AnalyserFacade,
                 parameters : [
-                    { func : AnalyserFacade.prototype.toggleStartStop, selector: 'button[data-parameterType="togglestartstop"]', 
-                        ev: 'click', doNotInitOnRender: true, textWhenOff: 'Start', textWhenOn: 'Stop'}
+                    this.getStartStopButtonParameter(AnalyserFacade.prototype.toggleStartStop)
                 ],
             };
         };
@@ -28,10 +27,8 @@ define([
 				shortName : moduleData.shortName,
                 sections: [{
                     buttons: [
-                        {
-                            buttonId: moduleData.shortName + '_start', buttonName: 'Start', 
-                            buttonLabel: '', buttonCssClass: 'round', type: 'togglestartstop'
-                        }],
+                        this.getStartStopButtonControl(moduleData.shortName)
+                    ],
                 }]
             });
 			module.hasOscilloscope = moduleData.hasOscilloscope;

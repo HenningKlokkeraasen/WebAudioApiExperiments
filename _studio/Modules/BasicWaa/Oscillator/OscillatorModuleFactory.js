@@ -22,8 +22,7 @@ define([
 					{ func : OscillatorFacade.prototype.setDetune, 		selector : 'webaudio-knob[data-parameterType="detune"]',		ev : 'change'	},
 					// { func : OscillatorFacade.prototype.setTypeByNumber,selector : 'webaudio-knob[data-parameterType="waveType2"]',		ev : 'change'	}
 					{ func : OscillatorFacade.prototype.setType, 		selector : 'input[data-parameterType="waveType"]',		ev : 'change'	},
-					{ func : OscillatorFacade.prototype.toggleStartStop, selector: 'button[data-parameterType="togglestartstop"]', 
-                        ev: 'click', doNotInitOnRender: true, textWhenOff: 'Start', textWhenOn: 'Stop'}
+					this.getStartStopButtonParameter(OscillatorFacade.prototype.toggleStartStop)
 				]
 			};
 		};
@@ -54,10 +53,8 @@ define([
 				shortName : moduleData.shortName,
 		        sections : [ {
 		        	buttons: [
-                        {
-                            buttonId: moduleData.shortName + '_start', buttonName: 'Start', 
-                            buttonLabel: '', buttonCssClass: 'round', type: 'togglestartstop'
-                        }],
+		        		this.getStartStopButtonControl(moduleData.shortName)
+		        	],
                     }, {
 					radioButtonLists : [
  						this.getWaveTypeSelectObject(moduleData.shortName, moduleData.w_params.indexChecked, 'Wave', 'waveType', moduleData.shortName + '_wave')

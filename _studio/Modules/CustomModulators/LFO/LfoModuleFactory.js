@@ -9,7 +9,6 @@ define([
 			// console.debug('ctor for LfoModuleFactory');
 			OscillatorModuleFactory.call(this);
 			this.headerCssClass = 'lfomodule';
-			this.buttonCssClass = 'round';
 			this.hasTriggerIn = false;
 			this.hasModulateOut = true;
 			this.hasModulateIn = true;
@@ -23,28 +22,21 @@ define([
 					{ func : LfoFacade.prototype.setRate, 			selector : 'webaudio-knob[data-parameterType="rate"]',			ev : 'change'	},
 					{ func : LfoFacade.prototype.setDepth, 			selector : 'webaudio-knob[data-parameterType="depth"]',			ev : 'change'	},
 					{ func : LfoFacade.prototype.setShape,			selector : 'input[data-parameterType="waveType2"]',		ev : 'change'	},
-					{ func : LfoFacade.prototype.setActsAsModulatorInAudibleRange, selector : 'input[data-parameterType="actsAsModulatorInAudibleRange"]', ev : 'change'}
-
-
+					{ func : LfoFacade.prototype.setActsAsModulatorInAudibleRange, selector : 'input[data-parameterType="actsAsModulatorInAudibleRange"]', ev : 'change'},
+					this.getStartStopButtonParameter(LfoFacade.prototype.toggleStartStop)
 				]
 			};
 		};
-		// moduleData
-		// 		name
-		// 		shortName
-		// 		f_params
-		//			min
-		//			max
-		//			val
-		//			stp
-		// 		w_params
-		//			indexChecked
-		//		actsAsModulatorInAudibleRange
+
 		LfoModuleFactory.prototype.getModule = function(moduleData) {
 			var module = this.getModuleBase({
 				name : moduleData.name, 
 				shortName : moduleData.shortName,
 		        sections : [ {
+		        	buttons: [
+		        		this.getStartStopButtonControl(moduleData.shortName)
+		        	]
+		        }, {
 					radioButtonLists : [
  						OscillatorModuleFactory.prototype.getWaveTypeSelectObject(moduleData.shortName, moduleData.w_params.indexChecked, 'Shape', 'waveType2', moduleData.shortName + '_waveType2')
  					]

@@ -22,7 +22,6 @@ define([
         LfoFacade.prototype.initNodes = function() {
             OscillatorFacade.prototype.initNodes.call(this); // base()
             
-            
             this.amount = this.audioContext.createGain();
             this.modulateOut = this.amount;
 			this.modulateIn = this.input.frequency;
@@ -33,15 +32,12 @@ define([
             OscillatorFacade.prototype.setDefaultValues.call(this); // base()
             this.setDepth(1);
             this.setRate(10);
+            this.isOn = false;
         };
 
         // private
         LfoFacade.prototype.wireUp = function() {
             this.input.connect(this.amount);
-            
-
-
-
         };
 
         LfoFacade.prototype.connect = function(destination) {//TODO define what each facade have of connect, control and trigger
@@ -76,6 +72,7 @@ define([
         LfoFacade.prototype.setDepth = function(value) {
             // console.debug('LFO depth set to ' + value);
             this.amount.gain.value = value;
+            this.amountValue = value;
             return this;
         };
 		
@@ -83,13 +80,22 @@ define([
 			this.actsAsModulatorInAudibleRange = value;
 		}
 
+        LfoFacade.prototype.toggleStartStop = function() {
+            if (this.isOn)
+                this.stop();
+            else
+                this.start();
+        };
         LfoFacade.prototype.start = function() {
+            this.isOn = true;
+            this.setDepth(this.amountValue);
             OscillatorFacade.prototype.start.call(this);
             return this;
         };
 
         LfoFacade.prototype.stop = function() {
-            OscillatorFacade.prototype.stop.call(this);
+            this.isOn = false;
+            this.amount.gain.value = 0;
             return this;
         };
         

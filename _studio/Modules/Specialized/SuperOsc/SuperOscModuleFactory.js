@@ -19,13 +19,14 @@ define([
 				{ func : SuperOscFacade.prototype.setDetune, 		selector : 'webaudio-knob[data-parameterType="detune"]',		ev : 'change'	},
 				{ func : SuperOscFacade.prototype.setType, 		selector : 'input[data-parameterType="waveType"]',		ev : 'change'	},
 				{ func : SuperOscFacade.prototype.setPulseWidth, 	selector : 'webaudio-knob[data-parameterType="pulseWidth"]',		ev : 'change'	},
+				this.getStartStopButtonParameter(SuperOscFacade.prototype.toggleStartStop)
 			]
 			return def;
 		};
 		
 		SuperOscModuleFactory.prototype.getModule = function(moduleData) {
 			var module = OscillatorModuleFactory.prototype.getModule.call(this, moduleData);
-			module.sections[1].ranges.add(
+			module.sections[2].ranges.add(
 				{ label : 'Pulse width',	type : 'pulseWidth',		min : 0,		max : 100,		value: 50,		step : 1,		name : moduleData.shortName + 'pw'	}
 			);
 			return module;

@@ -2,7 +2,7 @@ define([
 	'/_studio/Modules/_AudioFileLoadingModuleController.js',
 	'/_studio/Modules/AudioFilePlayer/AudioFilePlayer/AudioFilePlayerKeyboardController.js',
 	], function(AudioFileLoadingModuleController, KeyboardController) {
-		AudioFilePlayerController.prototype = Object.create(AudioFileLoadingModuleController.prototype); // new ButtonTriggeredModuleController();
+		AudioFilePlayerController.prototype = Object.create(AudioFileLoadingModuleController.prototype);
 		AudioFilePlayerController.prototype.constructor = AudioFilePlayerController;
 
 		function AudioFilePlayerController(master, patcher, audioPatchController, triggerPatchController, 

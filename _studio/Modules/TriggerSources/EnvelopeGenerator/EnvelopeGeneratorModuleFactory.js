@@ -25,8 +25,7 @@ define([
 					{ func : EnvelopeGeneratorFacade.prototype.setDecayTime, selector : 'webaudio-slider[data-parameterType="decayTime"]', ev : 'change' },
 					{ func : EnvelopeGeneratorFacade.prototype.setSustainLevel, selector : 'webaudio-slider[data-parameterType="sustainLevel"]', ev : 'change' },
 					{ func : EnvelopeGeneratorFacade.prototype.setReleaseTime, selector : 'webaudio-slider[data-parameterType="releaseTime"]', ev : 'change' },
-					{ func : EnvelopeGeneratorFacade.prototype.toggleGateOnOff, selector: 'button[data-parameterType="togglestartstop"]', 
-						ev: 'click', doNotInitOnRender: true, textWhenOff: 'Start', textWhenOn: 'Stop'}
+					this.getStartStopButtonParameter(EnvelopeGeneratorFacade.prototype.toggleGateOnOff, 'Release', 'Trigger')
 				]
 			};
 		};
@@ -60,10 +59,8 @@ define([
 		    if (moduleData.hasStartStopButton) {
 				var buttonSection = {
 					buttons: [
-		    			{
-		    				buttonId: moduleData.shortName + '_start', buttonName: 'Start', 
-		    				buttonLabel: '', buttonCssClass: 'round', type: 'togglestartstop'
-		    			}],
+						this.getStartStopButtonControl(moduleData.shortName, 'Trigger')
+					],
 				}
 				sections.push(buttonSection);
 			}

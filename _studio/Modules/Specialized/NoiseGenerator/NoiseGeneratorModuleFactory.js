@@ -19,11 +19,7 @@ define([
 				facade : NoiseGeneratorFacade,
 				parameters : [
 					{ func : NoiseGeneratorFacade.prototype.setNoiseType, 		selector : 'select[data-parameterType="noiseType"]',		ev : 'change'	},
-
-
-
-
-
+					this.getStartStopButtonParameter(NoiseGeneratorFacade.prototype.toggleStartStop)
 				]
 			};
 		};
@@ -42,6 +38,10 @@ define([
 		        name : moduleData.name, 
 				shortName : moduleData.shortName,
 		        sections : [ {
+					buttons: [
+						this.getStartStopButtonControl(moduleData.shortName)
+					],
+				}, {
 			    	selectLists : [
 						{ 
 							label : 'Noise type',

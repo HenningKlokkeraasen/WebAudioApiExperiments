@@ -3,7 +3,7 @@ define([
 	
 
 	// Controllers: responsible for binding the view and model
-	'/_studio/Modules/BasicWaa/MediaStream/MediaStreamController.js',
+	'/_studio/Modules/_GenericController.js',
 
 	// Data (model) for basic modules
 	'/_studio/Modules/BasicWaa/MediaStream/MediaStreamModuleFactory.js',

@@ -45,6 +45,7 @@ define([
 		// private
 		SuperOscFacade.prototype.setDefaultValues = function() {
 			this.output.gain.value = 0;
+			this.isOn = false;
 		};
 
 		// private
@@ -118,7 +119,15 @@ define([
 			return this;
 		}
 
+		SuperOscFacade.prototype.toggleStartStop = function() {
+			if (this.isOn)
+				this.stop();
+			else
+				this.start();
+		};
+		
 		SuperOscFacade.prototype.start = function() {
+			this.isOn = true;
 			this.vanillaOsc.start();
 			this.sawtoothTriangular.start();
 			this.pulseWave.start();
@@ -129,6 +138,7 @@ define([
 		};
 
 		SuperOscFacade.prototype.stop = function() {
+			this.isOn = false;
 			this.vanillaOsc.stop();
 			this.sawtoothTriangular.stop();
 			this.pulseWave.stop();

@@ -1,7 +1,7 @@
 define([
 	'/_studio/Modules/AudioFilePlayer/AudioFilePlayer/AudioFilePlayerController.js'
 	], function(AudioFilePlayerController) {
-		TimedSequencePlayerController.prototype = Object.create(AudioFilePlayerController.prototype); // new ButtonTriggeredModuleController();
+		TimedSequencePlayerController.prototype = Object.create(AudioFilePlayerController.prototype);
 		TimedSequencePlayerController.prototype.constructor = TimedSequencePlayerController;
 
 		function TimedSequencePlayerController(master, patcher, audioPatchController, triggerPatchController, 
