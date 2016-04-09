@@ -11,6 +11,9 @@ define([
 
 		function WaveTableOscModuleFactory() {
 			this.headerCssClass = 'oscillator';
+			this.hasTriggerIn = true;
+			this.hasModulateIn = true;
+			this.hasFrequencyIn = true;
 		}
 		WaveTableOscModuleFactory.prototype.getModuleDefinition = function() {
 			var base = OscillatorModuleFactory.prototype.getModuleDefinition.call(this);
@@ -26,16 +29,7 @@ define([
 
 			return base;
 		};
-		// moduleData
-		// 		name
-		// 		shortName
-		// 		f_params
-		//			min
-		//			max
-		//			val
-		//			stp
-		// 		w_params
-		//			indexChecked
+		
 		WaveTableOscModuleFactory.prototype.getModule = function(moduleData) {
 			var base = OscillatorModuleFactory.prototype.getModule.call(this, moduleData);
 			base.sections[0].radioButtonLists = undefined;
