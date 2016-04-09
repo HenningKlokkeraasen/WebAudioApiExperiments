@@ -34,7 +34,7 @@ define([
 
 
         };
-
+            this.isOn = false;
         // private
         EnvelopeGeneratorFacade.prototype.setDefaultValues = function() {
             this.triggerIn.gain.value = 0;
@@ -58,11 +58,20 @@ define([
         //     return this;
         // };
 
+        EnvelopeGeneratorFacade.prototype.toggleGateOnOff = function() {
+            if (this.isOn)
+                this.initGateOff();
+            else
+                this.initGateOn();
+        }
+
         EnvelopeGeneratorFacade.prototype.initGateOn = function() {
+            this.isOn = true;
             this.trigger();
         };
 
         EnvelopeGeneratorFacade.prototype.initGateOff = function() {
+            this.isOn = false;
             this.release();
         };
 

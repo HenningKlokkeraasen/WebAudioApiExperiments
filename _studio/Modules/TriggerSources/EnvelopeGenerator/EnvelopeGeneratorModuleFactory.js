@@ -10,13 +10,11 @@ define([
 
 		function EnvelopeGeneratorModuleFactory() {
 			this.headerCssClass = 'egmodule';
-			this.buttonCssClass = 'round';
 			// this.moduleCssClass = 'micromat';
 			this.hasAudioIn = false;
 			this.hasAudioOut = false;
 			this.hasTriggerIn = true;
 			this.hasTriggerOut = true;
-			this.hasStartButton = true;
 		}
 		EnvelopeGeneratorModuleFactory.prototype.getModuleDefinition = function() {
 			return {	
@@ -26,7 +24,9 @@ define([
 					{ func : EnvelopeGeneratorFacade.prototype.setAttackTime, selector : 'webaudio-slider[data-parameterType="attackTime"]', ev : 'change'	},
 					{ func : EnvelopeGeneratorFacade.prototype.setDecayTime, selector : 'webaudio-slider[data-parameterType="decayTime"]', ev : 'change' },
 					{ func : EnvelopeGeneratorFacade.prototype.setSustainLevel, selector : 'webaudio-slider[data-parameterType="sustainLevel"]', ev : 'change' },
-					{ func : EnvelopeGeneratorFacade.prototype.setReleaseTime, selector : 'webaudio-slider[data-parameterType="releaseTime"]', ev : 'change' }
+					{ func : EnvelopeGeneratorFacade.prototype.setReleaseTime, selector : 'webaudio-slider[data-parameterType="releaseTime"]', ev : 'change' },
+					{ func : EnvelopeGeneratorFacade.prototype.toggleGateOnOff, selector: 'button[data-parameterType="togglestartstop"]', 
+						ev: 'click', doNotInitOnRender: true, textWhenOff: 'Start', textWhenOn: 'Stop'}
 				]
 			};
 		};
@@ -50,13 +50,31 @@ define([
 					{ label : 'R',	type : 'releaseTime',	min : moduleData.r_params.min, max : moduleData.r_params.max, value: moduleData.r_params.val, step : moduleData.r_params.stp, name : moduleData.shortName + '_release'	}
 				);
 
+		    sections = [];
+
+			var adsrSection = {
+					ranges : ranges,
+					rangeDisplayMode : 'webaudio-controls-vslider'
+		    };
+
+		    if (moduleData.hasStartStopButton) {
+				var buttonSection = {
+					buttons: [
+		    			{
+		    				buttonId: moduleData.shortName + '_start', buttonName: 'Start', 
+		    				buttonLabel: 'Start / Stop', buttonCssClass: 'round', type: 'togglestartstop'
+		    			}],
+				}
+				sections.push(buttonSection);
+			}
+
+		    sections.push(adsrSection);
+
 			return this.getModuleBase({
 				name : moduleData.name, 
 				shortName : moduleData.shortName,
-		        sections : [ {
-					ranges : ranges,
-					rangeDisplayMode : 'webaudio-controls-vslider'
-		    }]});
+		        sections : sections
+		    });
 		};
 
         return EnvelopeGeneratorModuleFactory;

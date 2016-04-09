@@ -3,7 +3,7 @@ define([
 	
 
 	// Controllers: responsible for binding the view and model
-	'/_studio/Modules/TriggerSources/EnvelopeGenerator/EnvelopeGeneratorController.js',
+	'/_studio/Modules/_GenericController.js',
 
 	// Data (model) for basic modules
 	'/_studio/Modules/TriggerSources/EnvelopeGenerator/EnvelopeGeneratorModuleFactory.js',

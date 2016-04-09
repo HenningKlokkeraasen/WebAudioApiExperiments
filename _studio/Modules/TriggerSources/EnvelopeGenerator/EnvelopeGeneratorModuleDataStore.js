@@ -26,7 +26,8 @@ define([], function() { return { Modules :
 	         max:3,
 	         val:0.1,
 	         stp:0.01
-	     }
+	     },
+	     hasStartStopButton: true
 	   },
 
 	   {  
