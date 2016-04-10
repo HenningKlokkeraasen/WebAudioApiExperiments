@@ -11,8 +11,13 @@ define([
 
 			this.setInitialValues();
 
-            this.gateOnCallback = this.initiateTriggering;
-            this.gateOffCallback = this.initiateReleasing;
+            // Implementation of ICanBeTrigger
+            this.onGateOn = StepSequencer.prototype.onGateOn;
+            this.onGateOff = StepSequencer.prototype.onGateOff;
+
+            // Subscribe to its own Signals
+            this.gateSignal.on.add(this.onGateOn.bind(this));
+            this.gateSignal.off.add(this.onGateOff.bind(this));
 		}
 
 		setInitialValues() {
@@ -69,8 +74,6 @@ define([
 			
 			if (this.steps[stepNumber].isOn)
 				this.noteOn(stepNumber, f, nextNoteTime);
-			
-			// this.dispatchNoteEvents(f, nextNoteTime);
 		}
 		
 		scheduleNoteOff(stepNumber, nextNoteTime) {
@@ -78,14 +81,7 @@ define([
 				return;
 			//console.log('noteoff at ' + nextNoteTime);
 			this.noteOff(stepNumber, nextNoteTime + this.steps[stepNumber].noteLength);
-			
-			// this.dispatchNoteEvents(f, audioTime);
 		}
-		
-		// dispatchNoteEvents(frequency, audioTime) {
-			// var noteEvent = new CustomEvent('stepSequencerNote', { detail: { startTime: audioTime, frequency: frequency, stopTime: audioTime + this.noteLength } });
-			// window.dispatchEvent(noteEvent);
-		// }
 		
 		advanceToNextNote() {
 			var secondsPerBeat = 60.0 / this.tempoInBpm;
@@ -131,27 +127,17 @@ define([
 			this._setIsOn(stepNumber);
 			// console.debug('currently playing'); console.group(); this._notesCurrentlyOn.forEach(function(note) { console.debug(note); }); console.groupEnd();
 
-			var facade = this;
-
-			if (self.facadesToTrigger != undefined)
-				self.facadesToTrigger.forEach(function(facade) {
-					facade.output.gain.setValueAtTime(1, audioTime);
-				});
-
-			var self = this;
+			this.trigger(audioTime);
 
 			if (self.frequencySetDestinations != undefined)
 				self.frequencySetDestinations.forEach(function(destination) {
-					var now = self.audioContext.currentTime;
 					destination.cancelScheduledValues(audioTime);
 					// console.log(`glide time: ${self.glideTime}`);
 					destination.setValueAtTime(frequency, audioTime);
 					// hack? will only work for oscillators
 				});
 
-
 			//console.log(audioTime);
-			//this.trigger();
 		}
 
 		noteOff(stepNumber, audioTime) {
@@ -161,23 +147,8 @@ define([
 			this._setNoLongerOn(stepNumber);
 			// console.debug('currently playing'); console.group(); this._notesCurrentlyOn.forEach(function(note) { console.debug(note); }); console.groupEnd();
 
-			// if (!this._hasNotesOn())
-				//this.release();
-
-			if (self.facadesToTrigger != undefined)
-				self.facadesToTrigger.forEach(function(facade) {
-					facade.output.gain.setValueAtTime(0, audioTime);
-				});
-
+			this.release(audioTime);
 		}
-
-        // initiateTriggering(audioParam) {
-        //     audioParam.value = 1;
-        // }
-
-        // initiateReleasing(audioParam) {
-        //     audioParam.value = 0;
-        // }
 
         _hasNotesOn() {
         	// console.debug('notesOn: ' + this._notesCurrentlyOn.length);
@@ -196,101 +167,33 @@ define([
 				this._notesCurrentlyOn.splice(index, 1);
         }
 
-        initGateOn() {
-        	console.log('step sequencer gate on');
-        	this.start();
+        // Implementation of ICanBeTrigger
+        onGateOn(audioTime) {
+            var self = this;
+            if (this.facadesToTrigger != undefined)
+                this.facadesToTrigger.forEach(function(facade) {
+                    if (facade.triggerIn)
+                    	self.runAttackDecay(facade.triggerIn, 1, audioTime);
+                });
+        };
+
+        onGateOff(audioTime) {
+            var self = this;
+            if (this.facadesToTrigger != undefined)
+                this.facadesToTrigger.forEach(function(facade) {
+                    if (facade.triggerIn)
+                    	self.runRelease(facade.triggerIn, 0, audioTime);
+                });
+        };
+        // End Implementation of ICanBeTrigger
+
+        runAttackDecay(audioParam, rampUpToValue, audioTime) {
+        	audioParam.setValueAtTime(rampUpToValue, audioTime);
         }
 
-        initGateOff() {
-        	console.log('step sequencer gate off');
-        	this.stop();
+        runRelease(audioParam, rampDownToValue, audioTime) {
+        	audioParam.setValueAtTime(rampDownToValue, audioTime);
         }
-
-        initiateTriggering(audioParam, rampUpToValue, overrideSustainLevel) {
-			var self = this;
-			if (this.facadesToTrigger != undefined)
-				this.facadesToTrigger.forEach(function(facade) {
-					 // console.debug('calling gateOn for ')
-					// console.debug(facade);
-					// console.debug(self.gateOnCallback);
-					facade.gateOn(self.gateOnCallback, self);
-				});
-            // console.debug(this);
-			
-			// Ensure not exactly 0 values, they dont work so good
-			// if (rampUpToValue === 0)
-			// 	rampUpToValue = 0.0001; // TODO what if it is supposed to be a negative value?
-				
-			// if (rampDownToValue === 0)
-			// 	rampDownToValue = 0.0001; // TODO what if it is supposed to be a negative value?
-			
-            var now = this.getCurrentTimeAndCancelScheduledValuesAndSetValue(audioParam);
-
-            if (overrideSustainLevel)
-                this.sustainLevel = overrideSustainLevel;
-
-            // ATTACK
-            audioParam.linearRampToValueAtTime(rampUpToValue, (now ));
-            ////this.triggerOut.setTargetAtTime(1.0, now, this.attackTime);
-
-            // DECAY to SUSTAIN LEVEL
-            var sustainLevel = this.sustainLevel;
-            // if (this.sustainLevel == 0)
-            //     sustainLevel = 0.0001;
-
-            
-
-            // audioParam.linearRampToValueAtTime(sustainLevel, (now + this.noteLength));
-
-            // if (this.sustainLevel == 0)
-            //     audioParam.setValueAtTime(rampDownToValue, now + this.attackTime + this.decayTime);
-
-        }
-		 
-        initiateReleasing(audioParam, rampDownToValue) {
-            // console.debug(audioParam);
-			
-            // var now = this.getCurrentTimeAndCancelScheduledValuesAtTime(audioParam, this.releaseTime);
-			var now = this.audioContext.currentTime;
-			audioParam.cancelScheduledValues(now);
-			// var value = audioParam.value;
-			
-			// TODO truncate attack (required as linearRamp is removed by cancelScheduledValues)
-
-			audioParam.setValueAtTime(audioParam.value, (now + 0.0001));
-			
-            // RELEASE
-            // audioParam.setTargetAtTime(rampDownToValue, now, this.releaseTime);
-			audioParam.linearRampToValueAtTime(rampDownToValue, (now + 0.0001 ));	
-			
-			// audioParam.cancelScheduledValues(now + this.releaseTime);
-        }
-
-        getCurrentTimeAndCancelScheduledValuesAndSetValue(audioParam) {
-            var now = this.getCurrentTimeAndCancelScheduledValues(audioParam);
-
-            // Anchor beginning of ramp at current value.
-            audioParam.setValueAtTime(audioParam.value, now);
-
-            return now;
-        }
-
-        getCurrentTimeAndCancelScheduledValues(audioParam) {
-            var now = this.audioContext.currentTime;
-
-            audioParam.cancelScheduledValues(now);
-
-            return now;
-        }
-
-        getCurrentTimeAndCancelScheduledValuesAtTime(audioParam, time) {
-            var now = this.audioContext.currentTime;
-
-            audioParam.cancelScheduledValues(time);
-
-            return now;
-        }
-
 	}
 	return StepSequencer;
 });

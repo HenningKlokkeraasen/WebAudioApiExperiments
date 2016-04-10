@@ -25,26 +25,15 @@ define([
 		WebMidiInputFacade.prototype.initNodes = function() {
 		    this.input = undefined;
 		    this.output = undefined;
-
-
-
 		};
 
 		// private
 		WebMidiInputFacade.prototype.setDefaultValues = function() {
 			this.glideTime = 0;
-			
-
 		};
 
 		// private
 		WebMidiInputFacade.prototype.wireUp = function() {
-
-
-
-
-
-
 		};
 		
 		WebMidiInputFacade.prototype.setGlideTime = function(value) {

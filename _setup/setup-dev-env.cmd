@@ -12,5 +12,6 @@ call npm install -g bower
 call bower install --save requirejs
 call bower install --save jquery
 call bower install --save handlebars
+call bower install --save js-signals
 
 echo done

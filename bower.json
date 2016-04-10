@@ -16,6 +16,7 @@
   "dependencies": {
     "jquery": "^2.2.0",
     "handlebars": "^4.0.5",
-    "requirejs": "^2.1.22"
+    "requirejs": "^2.1.22",
+    "js-signals":"^1.0.0"
   }
 }
