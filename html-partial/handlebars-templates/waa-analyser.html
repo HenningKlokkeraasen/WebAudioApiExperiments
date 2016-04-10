@@ -1,35 +1,29 @@
-<!-- TODO reuse waa-module.html -->
-	<!--Handlebars.js template for analyser (oscilloscope) module-->
-	<script id="analyserTemplate" type="text/x-handlebars-template">
-		<div class="module {{moduleCssClass}}">
-			<span class="dataContainer"></span>
+<!--Handlebars.js template for analyser (oscilloscope) module-->
+<script id="analyserTemplate" type="text/x-handlebars-template">
+	<div class="module {{moduleCssClass}}">
+		<span class="dataContainer"></span>
 
-			<header class="{{headerCssClass}}">
-				<div style="margin: 0 0 5px 0;">{{moduleName}}</div>
-			</header>
+		{{> partial-header}}
+		
+		{{#each sections}}
+			{{> partial-sections}}
+		{{/each}}
 
-			{{#each sections}}
-				{{> partial-sections}}
-			{{/each}}
+		{{#if hasOscilloscope}}
+		<span class="oscilloscopeCanvasContainer">
+			<canvas></canvas>
+		</span>
+		{{/if}}
+		
+		{{#if hasFsa}}
+		<span class="freqSpectrumAnalyserCanvasContainer">
+			<canvas></canvas>
+		</span>
+		{{/if}}
 
-			{{!specific for analyser: canvas}}
-			
-			{{#if hasOscilloscope}}
-			<span class="oscilloscopeCanvasContainer">
-				<canvas></canvas>
-			</span>
-			{{/if}}
-			
-			{{#if hasFsa}}
-			<span class="freqSpectrumAnalyserCanvasContainer">
-				<canvas></canvas>
-			</span>
-			{{/if}}
-
-			{{> partial-connectors}}
-
-		</div>
-	</script>
+		{{> partial-connectors}}
+	</div>
+</script>
 
 <script>
 	// importDoc references this import's document

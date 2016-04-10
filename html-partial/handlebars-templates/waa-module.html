@@ -3,9 +3,7 @@
 	<div class="module {{moduleCssClass}} ">
 		<span class="dataContainer"></span>
 
-		<header class="{{headerCssClass}}">
-			<div style="margin: 0 0 5px 0;">{{moduleName}}</div>
-		</header>
+		{{> partial-header}}
 		
 		{{#if hasKeyboardInterface}}
 			<fieldset>

@@ -24,4 +24,5 @@ require([
 	// Partials
 	Handlebars.registerPartial('partial-sections', $("#partial-sections").html());
 	Handlebars.registerPartial('partial-connectors', $("#partial-connectors").html());
+	Handlebars.registerPartial('partial-header', $("#partial-header").html());
 });
