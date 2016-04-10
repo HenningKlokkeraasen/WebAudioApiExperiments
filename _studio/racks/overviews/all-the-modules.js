@@ -1,43 +1,45 @@
 define([
-	'/_studio/Modules/AudioFilePlayer/AudioFilePlayer/AudioFilePlayer.js',
-	'/_studio/Modules/AudioFilePlayer/TimedSequencePlayer/TimedSequencePlayer.js',
+	'Modules/AudioFilePlayer/AudioFilePlayer/AudioFilePlayer',
+	'Modules/AudioFilePlayer/TimedSequencePlayer/TimedSequencePlayer',
 	
-	'/_studio/Modules/BasicWaa/MediaStream/MediaStream.js',
+	'Modules/BasicWaa/MediaStream/MediaStream',
 	
-	'/_studio/Modules/BasicWaa/AudioDestination/AudioDestination.js',
+	'Modules/BasicWaa/AudioDestination/AudioDestination',
 	
-	'/_studio/Modules/BasicWaa/Analyser/Analyser.js',
+	'Modules/BasicWaa/Analyser/Analyser',
 
-	'/_studio/Modules/BasicWaa/Oscillator/Oscillator.js',
-	'/_studio/Modules/BasicWaa/Filter/Filter.js',
-	'/_studio/Modules/BasicWaa/Gain/Gain.js',
-	'/_studio/Modules/BasicWaa/Delay/Delay.js',
-	'/_studio/Modules/BasicWaa/Convolver/Convolver.js',
-	'/_studio/Modules/BasicWaa/WaveShaper/WaveShaper.js',
-	'/_studio/Modules/BasicWaa/Compressor/Compressor.js',
+	'Modules/BasicWaa/Oscillator/Oscillator',
+	'Modules/BasicWaa/Filter/Filter',
+	'Modules/BasicWaa/Gain/Gain',
+	'Modules/BasicWaa/Delay/Delay',
+	'Modules/BasicWaa/Convolver/Convolver',
+	'Modules/BasicWaa/WaveShaper/WaveShaper',
+	'Modules/BasicWaa/Compressor/Compressor',
 	
-	'/_studio/Modules/Composite/SlapbackDelay/SlapbackDelay.js',
-	'/_studio/Modules/CustomModifiers/SimpleReverb/SimpleReverb.js',
+	'Modules/Composite/SlapbackDelay/SlapbackDelay',
+	'Modules/CustomModifiers/SimpleReverb/SimpleReverb',
 	
-	'/_studio/Modules/Composite/ChannelStrip/ChannelStrip.js',
-	'/_studio/Modules/Composite/MasterSection/MasterSection.js',
+	'Modules/Composite/ChannelStrip/ChannelStrip',
+	'Modules/Composite/MasterSection/MasterSection',
 
-	'/_studio/Modules/CustomModulators/LFO/Lfo.js',
+	'Modules/CustomModulators/LFO/Lfo',
 
-	'/_studio/Modules/TriggerSources/EnvelopeGenerator/EnvelopeGenerator.js',
-	'/_studio/Modules/TriggerSources/QwertyHancock/QwertyHancock.js',
-	'/_studio/Modules/TriggerSources/WebMidiInput/WebMidiInput.js',
+	'Modules/TriggerSources/EnvelopeGenerator/EnvelopeGenerator',
+	'Modules/TriggerSources/QwertyHancock/QwertyHancock',
+	'Modules/TriggerSources/WebMidiInput/WebMidiInput',
 
-	'/_studio/Modules/Specialized/HarmonicGenerator/HarmonicGenerator.js',
-	'/_studio/Modules/Specialized/NoiseGenerator/NoiseGenerator.js',
-	'/_studio/Modules/Specialized/SuperOsc/SuperOsc.js',
+	'Modules/Specialized/HarmonicGenerator/HarmonicGenerator',
+	'Modules/Specialized/NoiseGenerator/NoiseGenerator',
+	'Modules/Specialized/SuperOsc/SuperOsc',
 	
-	'/_studio/Modules/Specialized/WaveTableOsc/WaveTableOsc.js'
+	'Modules/Specialized/WaveTableOsc/WaveTableOsc',
+
+	'Modules/TriggerSources/StepSequencer/StepSequencer'
 	], function(AudioFilePlayer, TimedSequencePlayer, MediaStream, AudioDestination, Analyser, 
 		Oscillator, Filter, Gain, Delay, Convolver, WaveShaper, Compressor,
 		SlapbackDelay, SimpleReverb, ChannelStrip, MasterSection,
 		LFO, EnvelopeGenerator, QwertyHancock, WebMidiInput,
-		HarmonicGenerator, NoiseGenerator, SuperOsc, WaveTableOsc) {
+		HarmonicGenerator, NoiseGenerator, SuperOsc, WaveTableOsc, StepSequencer) {
 		return {
 			title : 'All the modules',
 			description : 'A rack for just loading one of every module available',
@@ -87,7 +89,8 @@ define([
 							{ moduleMother: HarmonicGenerator, id: 'harmgen1' },
 							{ moduleMother: NoiseGenerator, id: 'noisegen1' },
 							{ moduleMother: SuperOsc, id: 'superosc1' },
-							{ moduleMother: WaveTableOsc, id: 'wavetable1' }
+							{ moduleMother: WaveTableOsc, id: 'wavetable1' },
+							{ moduleMother: StepSequencer, id: 'stepseq1' }
 						],
 					},
 				]

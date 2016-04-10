@@ -26,13 +26,7 @@
 			</span>
 			{{/if}}
 
-			<fieldset class="connectors">
-				<legend>Connectors</legend>
-				{{#if hasAudioIn}}
-					<div><div>Audio<br/>In</div><div><span class="patchHole " data-patch-type="audioIn">&nbsp;</span></div></div>
-				{{/if}}
-
-			</fieldset>
+			{{> partial-connectors}}
 
 		</div>
 	</script>

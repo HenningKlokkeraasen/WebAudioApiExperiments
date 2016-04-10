@@ -1,73 +1,40 @@
-	<!--Handlebars.js template for modules-->
-	<script id="moduleTemplate" type="text/x-handlebars-template">
-		<div class="module {{moduleCssClass}} ">
-			<span class="dataContainer"></span>
+<!--Handlebars.js template for modules-->
+<script id="moduleTemplate" type="text/x-handlebars-template">
+	<div class="module {{moduleCssClass}} ">
+		<span class="dataContainer"></span>
 
-			<header class="{{headerCssClass}}">
-				<div style="margin: 0 0 5px 0;">{{moduleName}}</div>
-			</header>
-			
-			{{#if hasKeyboardInterface}}
-				<fieldset>
-					<div id="keyboard"></div>
-					<div>&nbsp;</div>
-					<div id="keyboardNoteInput">&nbsp;</div>
-				</fieldset>
-			{{/if}}
+		<header class="{{headerCssClass}}">
+			<div style="margin: 0 0 5px 0;">{{moduleName}}</div>
+		</header>
+		
+		{{#if hasKeyboardInterface}}
+			<fieldset>
+				<div id="keyboard"></div>
+				<div>&nbsp;</div>
+				<div id="keyboardNoteInput">&nbsp;</div>
+			</fieldset>
+		{{/if}}
 
-			{{#each sections}}
-				{{> partial-sections}}
-			{{/each}}
+		{{#each sections}}
+			{{> partial-sections}}
+		{{/each}}
 
-			{{#if hiddenParameters}}
+		{{#if hiddenParameters}}
 			<fieldset>
 			{{#each hiddenParameters}}
-			<div>
-				<input	type="hidden"
-						data-parametertype="{{type}}"
-						name="{{name}}"
-						value="{{value}}" />
-			</div>
+				<div>
+					<input	type="hidden"
+							data-parametertype="{{type}}"
+							name="{{name}}"
+							value="{{value}}" />
+				</div>
 			{{/each}}
 			</fieldset>
-			{{/if}}
+		{{/if}}
 
-			<fieldset class="connectors">
-				<legend>Connectors</legend>
-				{{#if hasTriggerIn}}
-					<div><div>Trigger<br/>In</div><div><span class="patchHole " data-patch-type="triggerIn">&nbsp;</span></div></div>
-				{{/if}}
-
-				{{#if hasTriggerOut}}
-					<div><div>Trigger<br/>Out</div><div><span class="patchHole " data-patch-type="triggerOut">&nbsp;</span></div></div>
-				{{/if}}
-
-				{{#if hasModulateIn}}
-					<div><div>Modulate<br/>In</div><div><span class="patchHole " data-patch-type="modulateIn">&nbsp;</span></div></div>
-				{{/if}}
-
-				{{#if hasModulateOut}}
-					<div><div>Modulate<br/>Out</div><div><span class="patchHole " data-patch-type="modulateOut">&nbsp;</span></div></div>
-				{{/if}}
-
-				{{#if hasFrequencyIn}}
-					<div><div>Frequency<br/>In</div><div><span class="patchHole " data-patch-type="frequencyIn">&nbsp;</span></div></div>
-				{{/if}}
-
-				{{#if hasFrequencyOut}}
-					<div><div>Frequency<br/>Out</div><div><span class="patchHole " data-patch-type="frequencyOut">&nbsp;</span></div></div>
-				{{/if}}
-
-				{{#if hasAudioIn}}
-					<div><div>Audio<br/>In</div><div><span class="patchHole " data-patch-type="audioIn">&nbsp;</span></div></div>
-				{{/if}}
-
-				{{#if hasAudioOut}}
-					<div><div>Audio<br/>Out</div><div><span class="patchHole " data-patch-type="audioOut">&nbsp;</span></div></div>
-				{{/if}}
-			</fieldset>
-		</div>
-	</script>
+		{{> partial-connectors}}
+	</div>
+</script>
 
 <script>
 	// importDoc references this import's document

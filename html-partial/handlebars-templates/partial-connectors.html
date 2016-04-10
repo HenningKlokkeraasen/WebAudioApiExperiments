@@ -1,0 +1,50 @@
+<!--Handlebars.js partial template for connectors-->
+<script id="partial-connectors" type="text/x-handlebars-template">
+	<fieldset class="connectors">
+		<legend>Connectors</legend>
+		{{#if hasTriggerIn}}
+			<div><div>Trigger<br/>In</div><div><span class="patchHole " data-patch-type="triggerIn">&nbsp;</span></div></div>
+		{{/if}}
+
+		{{#if hasTriggerOut}}
+			<div><div>Trigger<br/>Out</div><div><span class="patchHole " data-patch-type="triggerOut">&nbsp;</span></div></div>
+		{{/if}}
+
+		{{#if hasModulateIn}}
+			<div><div>Modulate<br/>In</div><div><span class="patchHole " data-patch-type="modulateIn">&nbsp;</span></div></div>
+		{{/if}}
+
+		{{#if hasModulateOut}}
+			<div><div>Modulate<br/>Out</div><div><span class="patchHole " data-patch-type="modulateOut">&nbsp;</span></div></div>
+		{{/if}}
+
+		{{#if hasFrequencyIn}}
+			<div><div>Frequency<br/>In</div><div><span class="patchHole " data-patch-type="frequencyIn">&nbsp;</span></div></div>
+		{{/if}}
+
+		{{#if hasFrequencyOut}}
+			<div><div>Frequency<br/>Out</div><div><span class="patchHole " data-patch-type="frequencyOut">&nbsp;</span></div></div>
+		{{/if}}
+
+		{{#if hasAudioIn}}
+			<div><div>Audio<br/>In</div><div><span class="patchHole " data-patch-type="audioIn">&nbsp;</span></div></div>
+		{{/if}}
+
+		{{#if hasAudioOut}}
+			<div><div>Audio<br/>Out</div><div><span class="patchHole " data-patch-type="audioOut">&nbsp;</span></div></div>
+		{{/if}}
+	</fieldset>
+</script>
+
+<script>
+	// importDoc references this import's document
+	var importDoc = document.currentScript.ownerDocument;
+
+	// mainDoc references the main document (the page that's importing us)
+	var mainDoc = document;
+
+	// Grab the element from this import, clone it,
+	// and append it to the importing document.
+	var el = importDoc.querySelector('#partial-connectors');
+	mainDoc.body.appendChild(el.cloneNode(true));
+</script>

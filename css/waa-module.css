@@ -2,14 +2,12 @@
 /* sound generation and modification modules */
 
 .moduleRow {
-	margin: 0;
-	display: table;
-	border-spacing: 3px;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 	.moduleRow>div {
-		display: table-cell;
-		vertical-align: top;
+		display: flex;
 	}
 
 		.placeholderModule {
@@ -22,23 +20,21 @@
 
 		.module {
 			border: 2px solid white;
-			display: inline-block;
-			margin: 0;
-			padding: 3px;
-			width: 200px;
+			display: flex;
+  			flex-direction: column;
+			margin: 1px;
+			padding: 0;
+			width: 204px;
 			overflow: hidden;
 			font-size: 0.8em;
 			color: black;
-			height: 100%;
-
-			/* default background color for modules */
 			background-color : #E4E4E4;
-
-			/*Vertical align connectors to bottom*/
-			/*Disabling this because patch cables end up behind the modules*/
-			/*position: relative;
-			padding-bottom: 74px;*/ /*TODO this will break when connectors take up more than one row*/
 		}
+
+			/* flex - align to bottom */
+			.module > fieldset.connectors {
+				margin-top: auto;
+			}
 
 			.module header {
 				text-align: center;
@@ -90,14 +86,6 @@
 					}
 
 				/* END Style similar to the Schmidt analog synthesizer */
-
-				.module fieldset.connectors {
-					/*Vertical align connectors to bottom*/    
-					/*Disabling this because patch cables end up behind the modules*/
-					/*position: absolute;
-					bottom: 10px;
-					width: calc(100% - 30px);*/
-				}
 
 			.module .sectionName {
 				text-align: center;
@@ -215,17 +203,17 @@
 			
 			/*Width of units, inspired by Eurorack HP (horizontal pitch)*/
 			.module-1hp {
-				width: 93.5px;
+				width: 101px;
 			}
 			
 			/*module-2hp is the default*/
 			
 			.module-4hp {
-				width: 413px;
+				width: 410px;
 			}
 			
 			.module-5hp {
-				width: 520px;
+				width: 513px;
 			}
 			
 			.module-6hp {
@@ -233,7 +221,7 @@
 			}
 			
 			.module-8hp {
-				width: 839px;
+				width: 830px;
 			}
 			
 			.fibredark {

@@ -1,24 +1,15 @@
 .gear {
 	border: 2px solid white;
 	background-color : #E4E4E4;
+	display: flex;
+	flex-direction: column;
+	margin: 1px;
 }
 
-	.gear .moduleRow {
-		margin: 0;
-	}
-	
 	.gear .module {
 		border: none;
 	}
 
-		.moduleRow>div:last-child>div {
-			/*border-right: none;*/
-		}
-
-		.gear .module header {
-			color: black;
-		}
-		
 	.gear .title {
 		background-color: #DC8585;
 		text-align: center;
