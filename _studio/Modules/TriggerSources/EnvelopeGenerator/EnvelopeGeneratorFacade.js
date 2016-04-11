@@ -24,13 +24,9 @@ define([
             ICanTrigger.call(this);
             ICanBeTriggered.call(this);
 
-            // Implementation of ICanBeTrigger
+            // Implementation of ICanBeTriggered
             this.onGateOn = EnvelopeGeneratorFacade.prototype.onGateOn;
             this.onGateOff = EnvelopeGeneratorFacade.prototype.onGateOff;
-
-            // Subscribe to its own Signals
-            this.gateSignal.on.add(this.onGateOn.bind(this));
-            this.gateSignal.off.add(this.onGateOff.bind(this));
 
             return this;
         }
@@ -57,12 +53,16 @@ define([
 
         EnvelopeGeneratorFacade.prototype.initGateOn = function() {
             this.isOn = true;
-            this.trigger(this.getCurrentTime());
+            var audioTime = this.getCurrentTime();
+            this.trigger(audioTime);
+            this.onGateOn(audioTime);
         };
 
         EnvelopeGeneratorFacade.prototype.initGateOff = function() {
             this.isOn = false;
-            this.release(this.getCurrentTime());
+            var audioTime = this.getCurrentTime();
+            this.release(audioTime);
+            this.onGateOff(audioTime);
         };
 
         EnvelopeGeneratorFacade.prototype.setAttackTime = function(value) {

@@ -11,13 +11,9 @@ define([
 
 			this.setInitialValues();
 
-            // Implementation of ICanBeTrigger
+            // Implementation of ICanBeTriggered
             this.onGateOn = StepSequencer.prototype.onGateOn;
             this.onGateOff = StepSequencer.prototype.onGateOff;
-
-            // Subscribe to its own Signals
-            this.gateSignal.on.add(this.onGateOn.bind(this));
-            this.gateSignal.off.add(this.onGateOff.bind(this));
 		}
 
 		setInitialValues() {
@@ -128,6 +124,7 @@ define([
 			// console.debug('currently playing'); console.group(); this._notesCurrentlyOn.forEach(function(note) { console.debug(note); }); console.groupEnd();
 
 			this.trigger(audioTime);
+			this.onGateOn(audioTime);
 
 			if (self.frequencySetDestinations != undefined)
 				self.frequencySetDestinations.forEach(function(destination) {
@@ -148,6 +145,7 @@ define([
 			// console.debug('currently playing'); console.group(); this._notesCurrentlyOn.forEach(function(note) { console.debug(note); }); console.groupEnd();
 
 			this.release(audioTime);
+			this.onGateOff(audioTime);
 		}
 
         _hasNotesOn() {

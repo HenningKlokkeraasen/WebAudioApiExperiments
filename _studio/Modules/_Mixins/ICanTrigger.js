@@ -87,6 +87,23 @@ define(['app/Signal'], function(Signal) {
 			// console.log(this.nodesIHaveConnectedTo);
 		}
 
+		// this.onGateOn = function(audioTime) {
+  //           var self = this;
+  //           if (this.facadesToTrigger != undefined)
+  //               this.facadesToTrigger.forEach(function(facade) {
+  //                   if (facade.triggerIn)
+  //                   	self.runAttackDecay(facade.triggerIn, 1, audioTime);
+  //               });
+  //       };
+
+  //       this.onGateOff = function(audioTime) {
+  //           var self = this;
+  //           if (this.facadesToTrigger != undefined)
+  //               this.facadesToTrigger.forEach(function(facade) {
+  //                   if (facade.triggerIn)
+  //                   	self.runRelease(facade.triggerIn, 0, audioTime);
+  //               });
+  //       };
 	};
 
 	return iCanTrigger;
