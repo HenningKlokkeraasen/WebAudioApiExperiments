@@ -48,29 +48,11 @@ define(['app/Signal'], function(Signal) {
 		};
 
 		this.trigger = function(audioTime) {
-			// console.log('triggering');
 			this.gateSignal.on.dispatch(audioTime);
-			// var self = this;
-			// if (this.facadesToTrigger != undefined)
-			// 	this.facadesToTrigger.forEach(function(facade) {
-			// 		 // console.debug('calling gateOn for ')
-			// 		// console.debug(facade);
-			// 		// console.debug(self.gateOnCallback);
-			// 		facade.gateOn(self.gateOnCallback, self);
-			// 	});
 		};
 
 		this.release = function(audioTime) {
-			// console.log('releasing');
 			this.gateSignal.off.dispatch(audioTime);
-			// var self = this;
-			// if (this.facadesToTrigger != undefined)
-			// 	this.facadesToTrigger.forEach(function(facade) {
-			// 		// console.debug('calling gateOff for');
-			// 		// console.debug(facade);
-			// 		// console.debug(self.gateOffCallback);
-			// 		facade.gateOff(self.gateOffCallback, self);
-			// 	});
 		};
 		
 		this.getFacadesToTrigger = function() {
@@ -87,23 +69,33 @@ define(['app/Signal'], function(Signal) {
 			// console.log(this.nodesIHaveConnectedTo);
 		}
 
-		// this.onGateOn = function(audioTime) {
-  //           var self = this;
-  //           if (this.facadesToTrigger != undefined)
-  //               this.facadesToTrigger.forEach(function(facade) {
-  //                   if (facade.triggerIn)
-  //                   	self.runAttackDecay(facade.triggerIn, 1, audioTime);
-  //               });
-  //       };
+        this.gateOn = function(audioTime) {
+			var facadesToTrigger = this.getFacadesToTrigger.call(this);
+            var self = this;
+            facadesToTrigger.forEach(function(facade) {
+                if (facade.triggerIn)
+                	self.runAttackDecay(facade.triggerIn, 1, audioTime);
+            });
+        }
 
-  //       this.onGateOff = function(audioTime) {
-  //           var self = this;
-  //           if (this.facadesToTrigger != undefined)
-  //               this.facadesToTrigger.forEach(function(facade) {
-  //                   if (facade.triggerIn)
-  //                   	self.runRelease(facade.triggerIn, 0, audioTime);
-  //               });
-  //       };
+        this.gateOff = function(audioTime) {
+			var facadesToTrigger = this.getFacadesToTrigger.call(this);
+            var self = this;
+            facadesToTrigger.forEach(function(facade) {
+                if (facade.triggerIn)
+                	self.runRelease(facade.triggerIn, 0, audioTime);
+            });
+        };
+
+        // Default implementation. Typically overridden in more sophisticated ADSR Envelope Generator
+        this.runAttackDecay = function(audioParam, rampUpToValue, audioTime) {
+        	audioParam.setValueAtTime(rampUpToValue, audioTime);
+        }
+
+        // Default implementation. Typically overridden in more sophisticated ADSR Envelope Generator
+        this.runRelease = function(audioParam, rampDownToValue, audioTime) {
+        	audioParam.setValueAtTime(rampDownToValue, audioTime);
+        }
 	};
 
 	return iCanTrigger;

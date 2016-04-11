@@ -2,9 +2,9 @@
 	Web Audio API wrapper - Web MIDI API note on, note off trigger module
 */
 define([
-	'/_studio/Modules/_FacadeBase.js',
-    '/_studio/Modules/_Mixins/ICanTrigger.js',
-    '/_studio/Modules/_Mixins/ICanSetFrequency.js',
+	'Modules/_FacadeBase',
+    'Modules/_Mixins/ICanTrigger',
+    'Modules/_Mixins/ICanSetFrequency',
     'WaapiWrappers/WebMidiContext'
 	], function(FacadeBase, ICanTrigger, ICanSetFrequency, WebMidiContext) {
 		WebMidiInputFacade.prototype = Object.create(FacadeBase.prototype);
@@ -15,8 +15,7 @@ define([
 			ICanTrigger.call(this);
 			ICanSetFrequency.call(this);
 
-            this.gateOnCallback = this.initiateTriggering;
-            this.gateOffCallback = this.initiateReleasing;
+			this.audioContext = audioContext;
 
 			return this;
 		}
@@ -66,18 +65,10 @@ define([
 			this._setIsOn(note);
 			// console.debug('currently playing'); console.group(); this._notesCurrentlyOn.forEach(function(note) { console.debug(note); }); console.groupEnd();
 
-			if (this.frequencySetDestinations != undefined)
-				this.frequencySetDestinations.forEach(function(destination) {
-					var now = self.audioContext.currentTime;
-					if (destination.cancelScheduledValues != undefined)
-						destination.cancelScheduledValues(now);
-					// console.log(`glide time: ${self.glideTime}`);
-					if (destination.exponentialRampToValueAtTime != undefined)
-						destination.exponentialRampToValueAtTime(frequency, now + self.glideTime);
-					// hack? will only work for oscillators
-				});
-
-			this.trigger();
+			var audioTime = self.audioContext.currentTime;
+			this.setFrequency(frequency, audioTime + this.glideTime);
+			this.trigger(audioTime);
+			this.gateOn(audioTime);
 		};
 
 		WebMidiInputFacade.prototype.noteOff = function(note, frequency) {
@@ -86,22 +77,16 @@ define([
 			this._setNoLongerOn(note);
 			// console.debug('currently playing'); console.group(); this._notesCurrentlyOn.forEach(function(note) { console.debug(note); }); console.groupEnd();
 
+			var audioTime = this.audioContext.currentTime;
 			if (!this._hasNotesOn())
-				this.release();
+				this.release(audioTime);
+			this.gateOff(audioTime);
 		};
 		
 		WebMidiInputFacade.prototype.midiMessage = function(statusByte, dataByte1, dataByte2) {
 			if (this.debugMode)
 				console.debug(`statusByte: ${statusByte} dataByte1: ${dataByte1} dataByte2: ${dataByte2}`);
 		}
-
-        WebMidiInputFacade.prototype.initiateTriggering = function(audioParam) {
-            audioParam.value = 1;
-        };
-
-        WebMidiInputFacade.prototype.initiateReleasing = function(audioParam) {
-            audioParam.value = 0;
-        };
 
         WebMidiInputFacade.prototype._notesCurrentlyOn = [];
 

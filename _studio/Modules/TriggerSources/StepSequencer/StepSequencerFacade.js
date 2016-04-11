@@ -1,7 +1,7 @@
 //http://www.html5rocks.com/en/tutorials/audio/scheduling/
 define([
-    '/_studio/Modules/_Mixins/ICanTrigger.js',
-    '/_studio/Modules/_Mixins/ICanSetFrequency.js',], function(ICanTrigger, ICanSetFrequency) {
+    'Modules/_Mixins/ICanTrigger',
+    'Modules/_Mixins/ICanSetFrequency',], function(ICanTrigger, ICanSetFrequency) {
 	class StepSequencer {
 		constructor(audioContext) {
 			ICanTrigger.call(this);
@@ -10,10 +10,6 @@ define([
 			this.audioContext = audioContext;
 
 			this.setInitialValues();
-
-            // Implementation of ICanBeTriggered
-            this.onGateOn = StepSequencer.prototype.onGateOn;
-            this.onGateOff = StepSequencer.prototype.onGateOff;
 		}
 
 		setInitialValues() {
@@ -123,29 +119,19 @@ define([
 			this._setIsOn(stepNumber);
 			// console.debug('currently playing'); console.group(); this._notesCurrentlyOn.forEach(function(note) { console.debug(note); }); console.groupEnd();
 
+			this.setFrequency(frequency, audioTime /*+ this.glideTime*/);
 			this.trigger(audioTime);
-			this.onGateOn(audioTime);
-
-			if (self.frequencySetDestinations != undefined)
-				self.frequencySetDestinations.forEach(function(destination) {
-					destination.cancelScheduledValues(audioTime);
-					// console.log(`glide time: ${self.glideTime}`);
-					destination.setValueAtTime(frequency, audioTime);
-					// hack? will only work for oscillators
-				});
-
-			//console.log(audioTime);
+			this.gateOn(audioTime);
 		}
 
 		noteOff(stepNumber, audioTime) {
 			var self = this;
-			// console.debug('gate off');
 
 			this._setNoLongerOn(stepNumber);
 			// console.debug('currently playing'); console.group(); this._notesCurrentlyOn.forEach(function(note) { console.debug(note); }); console.groupEnd();
 
 			this.release(audioTime);
-			this.onGateOff(audioTime);
+			this.gateOff(audioTime);
 		}
 
         _hasNotesOn() {
@@ -163,34 +149,6 @@ define([
         	var index = this._notesCurrentlyOn.indexOf(note);
 			if (index > -1)
 				this._notesCurrentlyOn.splice(index, 1);
-        }
-
-        // Implementation of ICanBeTrigger
-        onGateOn(audioTime) {
-            var self = this;
-            if (this.facadesToTrigger != undefined)
-                this.facadesToTrigger.forEach(function(facade) {
-                    if (facade.triggerIn)
-                    	self.runAttackDecay(facade.triggerIn, 1, audioTime);
-                });
-        };
-
-        onGateOff(audioTime) {
-            var self = this;
-            if (this.facadesToTrigger != undefined)
-                this.facadesToTrigger.forEach(function(facade) {
-                    if (facade.triggerIn)
-                    	self.runRelease(facade.triggerIn, 0, audioTime);
-                });
-        };
-        // End Implementation of ICanBeTrigger
-
-        runAttackDecay(audioParam, rampUpToValue, audioTime) {
-        	audioParam.setValueAtTime(rampUpToValue, audioTime);
-        }
-
-        runRelease(audioParam, rampDownToValue, audioTime) {
-        	audioParam.setValueAtTime(rampDownToValue, audioTime);
         }
 	}
 	return StepSequencer;

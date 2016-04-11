@@ -1,10 +1,10 @@
 /*
-	Web Audio API wrapper - Gain
+	QwertyHancock: listens to events from QwertyHancock.js to trigger noteOn, noteOff
 */
 define([
-	'/_studio/Modules/_FacadeBase.js',
-    '/_studio/Modules/_Mixins/ICanTrigger.js',
-    '/_studio/Modules/_Mixins/ICanSetFrequency.js',
+	'Modules/_FacadeBase',
+    'Modules/_Mixins/ICanTrigger',
+    'Modules/_Mixins/ICanSetFrequency',
 	], function(FacadeBase, ICanTrigger, ICanSetFrequency) {
 		QwertyHancockFacade.prototype = Object.create(FacadeBase.prototype);
 		QwertyHancockFacade.prototype.constructor = QwertyHancockFacade;
@@ -14,8 +14,7 @@ define([
 			ICanTrigger.call(this);
 			ICanSetFrequency.call(this);
 
-            this.gateOnCallback = this.initiateTriggering;
-            this.gateOffCallback = this.initiateReleasing;
+			this.audioContext = audioContext;
 
 			return this;
 		}
@@ -24,26 +23,16 @@ define([
 		QwertyHancockFacade.prototype.initNodes = function() {
 		    this.input = undefined;
 		    this.output = undefined;
-
-
-
 		};
 
 		// private
 		QwertyHancockFacade.prototype.setDefaultValues = function() {
 			this._currentOctave = 4;
 			this.glideTime = 0;
-
 		};
 
 		// private
 		QwertyHancockFacade.prototype.wireUp = function() {
-
-
-
-
-
-
 		};
 
 		QwertyHancockFacade.prototype.setGlideTime = function(value) {
@@ -55,51 +44,38 @@ define([
 		};
 
 		QwertyHancockFacade.prototype.initKeyboard = function(keyboard, outputForNoteNode) {
-			var self = this;
 			this.outputForNoteNode = outputForNoteNode;
 
-			keyboard.keyDown = function (note, frequency) {
-
-				var frequencyMultipliedWithOctave = self.getFrequencyMultipliedByCurrentOctave(frequency);
-
-				// console.debug('gate on');
-				// console.debug(note);
-				// console.debug(frequency);
-				// console.debug('Note before multiplying with octave: ' + note
-				// 	+ ' | frequency: ' + frequency);
-				// console.debug('Note after  multiplying with octave: ' + note.substr(0, 1)
-				// 	+ self._currentOctave
-				// 	+ ' | frequency: ' + frequencyMultipliedWithOctave);
-				self.outputForNoteNode.textContent = note.substr(0, 1)
-					+ self.getQHOctaveQualifiedByCurrentOctave(note.substr(1,1)); // dirty DOM hack, TODO facade should not know about DOM
-
-				if (self.frequencySetDestinations != undefined)
-					self.frequencySetDestinations.forEach(function(destination) {
-						var now = self.audioContext.currentTime;
-						destination.cancelScheduledValues(now);
-						// console.log(`glide time: ${self.glideTime}`);
-						destination.exponentialRampToValueAtTime(frequencyMultipliedWithOctave, now + self.glideTime);
-						// hack? will only work for oscillators
-					});
-
-				self.trigger();
-			};
-
-			keyboard.keyUp = function (note, frequency) {
-
-				// console.debug('gate off');
-
-				self.release();
-			};
+			keyboard.keyDown = QwertyHancock.prototype.noteOn.bind(this);
+			keyboard.keyUp = QwertyHancock.prototype.noteOff.bind(this);
 		};
 
-        QwertyHancockFacade.prototype.initiateTriggering = function(audioParam) {
-            audioParam.value = 1;
-        };
+		QwertyHancock.prototype.noteOn = function(note, frequency) {
+			var self = this;
+			var frequencyMultipliedWithOctave = self.getFrequencyMultipliedByCurrentOctave(frequency);
 
-        QwertyHancockFacade.prototype.initiateReleasing = function(audioParam) {
-            audioParam.value = 0;
-        };
+			// console.debug('gate on');
+			// console.debug(note);
+			// console.debug(frequency);
+			// console.debug('Note before multiplying with octave: ' + note
+			// 	+ ' | frequency: ' + frequency);
+			// console.debug('Note after  multiplying with octave: ' + note.substr(0, 1)
+			// 	+ self._currentOctave
+			// 	+ ' | frequency: ' + frequencyMultipliedWithOctave);
+			self.outputForNoteNode.textContent = note.substr(0, 1)
+				+ self.getQHOctaveQualifiedByCurrentOctave(note.substr(1,1)); // dirty DOM hack, TODO facade should not know about DOM
+
+			var audioTime = self.audioContext.currentTime;
+			this.setFrequency(frequency, audioTime + this.glideTime);
+			this.trigger(audioTime);
+			this.gateOn(audioTime);
+		};
+
+		QwertyHancock.prototype.noteOff = function(note, frequency) {
+			var audioTime = this.audioContext.currentTime;
+			this.release(audioTime);
+			this.gateOff(audioTime);
+		};
 
 		// what to add the octave set in QwertyHancock with, to get the currentOctave
 		QwertyHancockFacade.prototype.multiplierTableQHOctave = {

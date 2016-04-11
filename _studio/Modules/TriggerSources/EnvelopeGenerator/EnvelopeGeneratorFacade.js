@@ -12,9 +12,9 @@
         // gateOff: release to destination.endValue
 */
 define([
-    '/_studio/Modules/_FacadeBase.js',
-    '/_studio/Modules/_Mixins/ICanTrigger.js',
-    '/_studio/Modules/_Mixins/ICanBeTriggered.js'
+    'Modules/_FacadeBase',
+    'Modules/_Mixins/ICanTrigger',
+    'Modules/_Mixins/ICanBeTriggered'
     ], function(FacadeBase, ICanTrigger, ICanBeTriggered) {
         EnvelopeGeneratorFacade.prototype = Object.create(FacadeBase.prototype);
         EnvelopeGeneratorFacade.prototype.constructor = EnvelopeGeneratorFacade;
@@ -27,6 +27,10 @@ define([
             // Implementation of ICanBeTriggered
             this.onGateOn = EnvelopeGeneratorFacade.prototype.onGateOn;
             this.onGateOff = EnvelopeGeneratorFacade.prototype.onGateOff;
+
+            // Implementation of ICanTrigger
+            this.runAttackDecay = EnvelopeGeneratorFacade.prototype.runAttackDecay;
+            this.runRelease = EnvelopeGeneratorFacade.prototype.runRelease;
 
             return this;
         }
@@ -85,33 +89,21 @@ define([
             return this;
         };
 
-        // Implementation of ICanBeTrigger
+        // Implementation of ICanBeTriggered
         EnvelopeGeneratorFacade.prototype.onGateOn = function(audioTime) {
             // console.log('EG onGateOn');
             // console.log(this);
-            var self = this;
-            if (this.facadesToTrigger != undefined)
-                this.facadesToTrigger.forEach(function(facade) {
-                    if (facade.triggerIn)
-                        self.runAttackDecay(facade.triggerIn, 1, audioTime);
-                });
+            this.gateOn(audioTime);
         };
 
         EnvelopeGeneratorFacade.prototype.onGateOff = function(audioTime) {
             // console.log('EG onGateOff');
             // console.log(this);
-            var self = this;
-            if (this.facadesToTrigger != undefined)
-                this.facadesToTrigger.forEach(function(facade) {
-                    if (facade.triggerIn)
-                        self.runRelease(facade.triggerIn, 0, audioTime);
-                });
+            this.gateOff(audioTime);
         };
-        // End Implementation of ICanBeTrigger
+        // End Implementation of ICanBeTriggered
 
-        //
-        // private
-        //
+        // Implementation of ICanTrigger
         EnvelopeGeneratorFacade.prototype.runAttackDecay = function(audioParam, rampUpToValue, audioTime) {
             // console.debug(this);
 			
@@ -162,6 +154,7 @@ define([
             // audioParam.setTargetAtTime(rampDownToValue, now, this.releaseTime);
 			audioParam.linearRampToValueAtTime(rampDownToValue, (audioTime + 0.0001 + this.releaseTime));	
         };
+        // End Implementation of ICanTrigger
 
         EnvelopeGeneratorFacade.prototype.getCurrentTime = function() {
             var now = this.audioContext.currentTime;

@@ -47,6 +47,16 @@ define([], function() {
 			// console.log(this.nodesIHaveConnectedTo);
 		}
 
+		this.setFrequency = function(frequency, audioTime) {
+			var frequencySetDestinations = this.getNodesIControl.call(this);
+			frequencySetDestinations.forEach(function(destination) {
+				if (destination.cancelScheduledValues != undefined)
+					destination.cancelScheduledValues(audioTime);
+				if (destination.exponentialRampToValueAtTime != undefined)
+					destination.exponentialRampToValueAtTime(frequency, audioTime);
+				// hack? will only work for oscillators
+			});
+		}
 	};
 
 	return iCanSetFrequency;
