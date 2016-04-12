@@ -24,18 +24,28 @@ define([
 			return this;
 		};
 
-		// private
+		// Implementation of FacadeBase
 		OscillatorFacade.prototype.initNodes = function() {
 			this.input = this.audioContext.createOscillator();
 			// create a gain node as the output
 			// this will be what is used for connections
 			this.output = this.audioContext.createGain();
 			// this.controlOut = this.output;
+
+		    // Implementation of ICanBeModulated
 			this.modulateIn = this.input.frequency;
+
+			// Implementation of ICanBeFrequencySet
 			this.frequencyIn = this.input.frequency;
+
+			// Implementation of iCanBeTriggered
+			this.triggerIn = this.input.frequency;
+			var tvelfthRootOfTwo = 1.0594630;
+			var numberOfSemitonesToRamp = 1;
+			this.depthPercentage = tvelfthRootOfTwo * numberOfSemitonesToRamp; // set to positive for attack rise, negative for attack fall
+			this.setEnvelopeValues(this.triggerIn.value);
 		};
 
-		// private
 		OscillatorFacade.prototype.setDefaultValues = function() {
 			//this.input.start(0);
 			this.output.gain.value = 0;
@@ -43,15 +53,10 @@ define([
 			this.isOn = false;
 		};
 
-		// private
 		OscillatorFacade.prototype.wireUp = function() {
 			this.input.connect(this.output);
-
-
-
-
-
 		};
+		// Implementation of FacadeBase
 
 		OscillatorFacade.prototype.setType = function(type) {
 			this.input.type = type;
@@ -81,6 +86,7 @@ define([
 
 		OscillatorFacade.prototype.setFrequency = function(frequency) {
 			this.input.frequency.value = parseFloat(frequency);
+			this.setEnvelopeValues(this.input.frequency.value);
 			return this;
 		};
 
@@ -128,27 +134,13 @@ define([
 			return this;
 		};
 		
-		//region iCanBeTriggered
-		OscillatorFacade.prototype.gateOn = function(callback, originator) {
-			// set the value of the frequency AudioParam down,
-			// it will be picked up in the EG,
-			// set the ramp up to value higher than the original frequency,
-			// use the sustainLevelOverride param to the EG to go back down 
-			// to the original frequency
-			var originalValue = this.input.frequency.value;
-			// this.input.frequency.value = originalValue / 2; //TODO verify
-			// var rampUpToValue = originalValue * 2; // TODO verify
-			var rampUpToValue = originalValue;
-			// var rampDownToValue = 20;
-			var rampDownToValue = 0;
-			callback.call(originator, this.input.frequency, 1);
+		OscillatorFacade.prototype.setEnvelopeValues = function(frequency) {
+			depth = frequency + this.depthPercentage;
+			this.triggerInValue = frequency; // has no effect - pitch envelope will have S = 1 i.e. the current pitch.
+			this.triggerInMaxValue = frequency + depth; // Attack to this
+			this.triggerInMinValue = frequency; // Release to the frequency (pitch) - has no effect
 		};
 
-		OscillatorFacade.prototype.gateOff = function(callback, originator) {
-			callback.call(originator, this.input.frequency, 0);
-		};
-		//endregion iCanBeTriggered
-		
 		return OscillatorFacade;
 	}
 );

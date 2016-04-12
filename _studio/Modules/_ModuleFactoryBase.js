@@ -60,10 +60,10 @@ define([
 			};
 		};
 
-		ModuleFactoryBase.prototype.getStartStopButtonControl = function(shortName, buttonName) {
+		ModuleFactoryBase.prototype.getStartStopButtonControl = function(shortName, buttonName, buttonLabel) {
 			return {
                 buttonId: shortName + '_start', buttonName: buttonName ? buttonName : 'Start', 
-                buttonLabel: '', buttonCssClass: 'round', type: 'togglestartstop'
+                  buttonLabel: buttonLabel ? buttonLabel : '', buttonCssClass: 'round', type: 'togglestartstop'
             };
 		};
 

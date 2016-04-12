@@ -74,7 +74,10 @@ define(['app/Signal'], function(Signal) {
             var self = this;
             facadesToTrigger.forEach(function(facade) {
                 if (facade.triggerIn)
-                	self.runAttackDecay(facade.triggerIn, 1, audioTime);
+                {
+                	// console.log(`${facade.triggerInValue} ${facade.triggerInMaxValue} ${facade.triggerInMinValue}`);
+                	self.runAttackDecay(facade.triggerIn, facade.triggerInMaxValue, facade.triggerInValue, audioTime);
+                }
             });
         }
 
@@ -83,12 +86,15 @@ define(['app/Signal'], function(Signal) {
             var self = this;
             facadesToTrigger.forEach(function(facade) {
                 if (facade.triggerIn)
-                	self.runRelease(facade.triggerIn, 0, audioTime);
+                {
+                	// console.log(`${facade.triggerInValue} ${facade.triggerInMaxValue} ${facade.triggerInMinValue}`);
+                	self.runRelease(facade.triggerIn, facade.triggerInMinValue, audioTime);
+                }
             });
         };
 
         // Default implementation. Typically overridden in more sophisticated ADSR Envelope Generator
-        this.runAttackDecay = function(audioParam, rampUpToValue, audioTime) {
+        this.runAttackDecay = function(audioParam, rampUpToValue, value, audioTime) {
         	audioParam.setValueAtTime(rampUpToValue, audioTime);
         }
 

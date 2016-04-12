@@ -35,18 +35,17 @@ define([
             return this;
         }
 
-        // private
+        // Implementation of FacadeBase
         EnvelopeGeneratorFacade.prototype.initNodes = function() {
         };
 
-        // private
         EnvelopeGeneratorFacade.prototype.setDefaultValues = function() {
             this.isOn = false;
         };
 
-        // private
         EnvelopeGeneratorFacade.prototype.wireUp = function() {
         };
+        // End Implementation of FacadeBase
 
         EnvelopeGeneratorFacade.prototype.toggleGateOnOff = function() {
             if (this.isOn)
@@ -91,22 +90,16 @@ define([
 
         // Implementation of ICanBeTriggered
         EnvelopeGeneratorFacade.prototype.onGateOn = function(audioTime) {
-            // console.log('EG onGateOn');
-            // console.log(this);
             this.gateOn(audioTime);
         };
 
         EnvelopeGeneratorFacade.prototype.onGateOff = function(audioTime) {
-            // console.log('EG onGateOff');
-            // console.log(this);
             this.gateOff(audioTime);
         };
         // End Implementation of ICanBeTriggered
 
         // Implementation of ICanTrigger
-        EnvelopeGeneratorFacade.prototype.runAttackDecay = function(audioParam, rampUpToValue, audioTime) {
-            // console.debug(this);
-			
+        EnvelopeGeneratorFacade.prototype.runAttackDecay = function(audioParam, rampUpToValue, sustainToCalculatePercentageOf, audioTime) {
 			// Ensure not exactly 0 values, they dont work so good
 			// if (rampUpToValue === 0)
 			// 	rampUpToValue = 0.0001; // TODO what if it is supposed to be a negative value?
@@ -119,30 +112,27 @@ define([
             // Anchor beginning of ramp at current value.
             audioParam.setValueAtTime(audioParam.value, audioTime);
 
-            // if (overrideSustainLevel)
-            //     this.sustainLevel = overrideSustainLevel;
-
             // ATTACK
             audioParam.linearRampToValueAtTime(rampUpToValue, (audioTime + this.attackTime));
             ////this.triggerOut.setTargetAtTime(1.0, now, this.attackTime);
 
             // DECAY to SUSTAIN LEVEL
-            var sustainLevel = this.sustainLevel;
+            var sustainLevel = this.sustainLevel ? this.sustainLevel : 0;
+            var sustainCalculatedLevel = sustainLevel * sustainToCalculatePercentageOf;
             // if (this.sustainLevel == 0)
             //     sustainLevel = 0.0001;
 
             ////this.triggerOut.exponentialRampToValueAtTime(sustainLevel, now + this.attackTime + this.decayTime);
             ////this.triggerOut.setTargetAtTime(sustainLevel, now + this.attackTime, this.decayTime);
-            audioParam.linearRampToValueAtTime(sustainLevel, (audioTime + this.attackTime + this.decayTime));
-            ////this.triggerOut.setValueAtTime(sustainLevel, now + this.attackTime + this.decayTime);
+            var attackTime = this.attackTime ? this.attackTime : 0;
+            var decayTime = this.decayTime ? this.decayTime : 0;
+            audioParam.linearRampToValueAtTime(sustainCalculatedLevel, (audioTime + attackTime + decayTime));
 
             // if (this.sustainLevel == 0)
             //     audioParam.setValueAtTime(rampDownToValue, now + this.attackTime + this.decayTime);
         };
 		 
         EnvelopeGeneratorFacade.prototype.runRelease = function(audioParam, rampDownToValue, audioTime) {
-            // console.debug(audioParam);
-			
 			audioParam.cancelScheduledValues(audioTime);
 			// var value = audioParam.value;
 			
@@ -152,7 +142,8 @@ define([
 			
             // RELEASE
             // audioParam.setTargetAtTime(rampDownToValue, now, this.releaseTime);
-			audioParam.linearRampToValueAtTime(rampDownToValue, (audioTime + 0.0001 + this.releaseTime));	
+            var releaseTime = this.releaseTime ? this.releaseTime : 0;
+			audioParam.linearRampToValueAtTime(rampDownToValue, (audioTime + 0.0001 + releaseTime));	
         };
         // End Implementation of ICanTrigger
 

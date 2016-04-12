@@ -17,26 +17,33 @@ define([
 			return this;
 		}
 
-		// private
+		// Implementation of FacadeBase
 		GainFacade.prototype.initNodes = function() {
 		    this.input = this.audioContext.createGain();
 		    this.output = this.audioContext.createGain();
-			this.modulateIn = this.input.gain; // ICanBeModulated
-			this.triggerIn = this.input.gain; // ICanBeTriggered
+
+		    // Implementation of ICanBeModulated
+			this.modulateIn = this.input.gain;
+
+			// Implementation of iCanBeTriggered
+			this.triggerIn = this.input.gain;
+			this.triggerInValue = this.triggerIn.value;
+			this.triggerInMaxValue = 1;
+			this.triggerInMinValue = 0;
 		};
 
-		// private
 		GainFacade.prototype.setDefaultValues = function() {
 		};
 
-		// private
 		GainFacade.prototype.wireUp = function() {
 			this.input.connect(this.output);
 		};
+		// End Implementation of FacadeBase
 
 		GainFacade.prototype.setGain = function(value) {
 			this.input.gain.value = value;
-			// this.output.gain.value = value;
+			this.triggerInValue = value;
+			this.triggerInMaxValue = value;
 			return this;
 		};
 

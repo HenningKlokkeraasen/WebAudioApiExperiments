@@ -65,6 +65,7 @@ define([
 			self.outputForNoteNode.textContent = note.substr(0, 1)
 				+ self.getQHOctaveQualifiedByCurrentOctave(note.substr(1,1)); // dirty DOM hack, TODO facade should not know about DOM
 
+			// BUG not possible to have an ADSR envelope generator trigger an OSC and at the same time setFrequency. One cancels out the other (cancelScheduledValuesAtTime)
 			var audioTime = self.audioContext.currentTime;
 			this.setFrequency(frequency, audioTime + this.glideTime);
 			this.trigger(audioTime);

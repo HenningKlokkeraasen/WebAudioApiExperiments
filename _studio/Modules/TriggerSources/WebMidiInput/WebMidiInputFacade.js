@@ -65,6 +65,7 @@ define([
 			this._setIsOn(note);
 			// console.debug('currently playing'); console.group(); this._notesCurrentlyOn.forEach(function(note) { console.debug(note); }); console.groupEnd();
 
+			// BUG not possible to have an ADSR envelope generator trigger an OSC and at the same time setFrequency. One cancels out the other (cancelScheduledValuesAtTime)
 			var audioTime = self.audioContext.currentTime;
 			this.setFrequency(frequency, audioTime + this.glideTime);
 			this.trigger(audioTime);

@@ -54,7 +54,7 @@ define([
 					{ from : 'qwerty1', to : 'eg3', type: 'trigger' },
 					{ from : 'qwerty1', to : 'eg4', type: 'trigger' },
 					// { from : 'eg2', to : 'osc5', type: 'trigger' },
-					// { from : 'eg3', to : 'resonantvcf1', type: 'trigger' },
+					{ from : 'eg3', to : 'resonantvcf1', type: 'trigger' },
 					{ from : 'eg4', to : 'gain5', type: 'trigger' },
 					
 					// Pitch / control / noteOn, noteOff

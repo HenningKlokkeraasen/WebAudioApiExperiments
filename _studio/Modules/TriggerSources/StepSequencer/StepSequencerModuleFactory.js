@@ -58,7 +58,7 @@ define([
 		        sections : [ {
 		    		sectionName: 'Master',
 		    		buttons: [
-		    			this.getStartStopButtonControl(moduleData.shortName)
+		    			this.getStartStopButtonControl(moduleData.shortName, 'Start', 'Start / Stop')
 		    		],
 					ranges : [ 
 						{ label : 'Tempo (BPM)',	type : 'tempoInBpm',	min : moduleData.tempoInBpm.min, max : moduleData.tempoInBpm.max, value: moduleData.tempoInBpm.val, step : moduleData.tempoInBpm.stp, name : moduleData.shortName + '_tempoInBpm'	},

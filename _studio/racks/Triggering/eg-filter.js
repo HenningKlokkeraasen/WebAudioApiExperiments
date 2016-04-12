@@ -21,7 +21,7 @@ define([
 						modules: [
 							{ moduleMother: EnvelopeGenerator, id: 'eg1' },
 							{ moduleMother: Oscillator, id: 'osc5' },
-							{ moduleMother: Filter, id: 'filter5' },
+							{ moduleMother: Filter, id: 'resonantvcf1' },
 							{ moduleMother: Gain, id: 'gain5' }
 						]
 					},
@@ -37,11 +37,11 @@ define([
 				],
 				patches : [
 					// Main audio route
-					{ from : 'osc5', to : 'filter5', type : 'audio' },
-					{ from : 'filter5', to : 'gain5', type : 'audio' },
+					{ from : 'osc5', to : 'resonantvcf1', type : 'audio' },
+					{ from : 'resonantvcf1', to : 'gain5', type : 'audio' },
 					
 					// Triggering
-					{ from: 'eg1', to: 'filter5', type: 'trigger' },
+					{ from: 'eg1', to: 'resonantvcf1', type: 'trigger' },
 				],
 				moduleToGearPatches: [
 					{ gear: 'finalStage1', from: 'gain5', to: 'gain6', type: 'audio' },

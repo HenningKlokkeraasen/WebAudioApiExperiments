@@ -17,30 +17,26 @@ define([
 			return this;
 		}
 
-		// private
+		// Implementation of FacadeBase
 		FilterFacade.prototype.initNodes = function() {
 		    this.input = this.audioContext.createBiquadFilter();
-		    this.output = this.input; // TODO verify
+		    this.output = this.input;
+
+		    // Implementation of ICanBeModulated
 			this.modulateIn = this.input.frequency;
 
+			// Implementation of iCanBeTriggered
+			this.triggerIn = this.input.frequency;
+			this.depthPercentage = -0.4; // set to positive for attack rise, negative for attack fall
+			this.setEnvelopeValues(this.triggerIn.value);
 		};
 
-		// private
 		FilterFacade.prototype.setDefaultValues = function() {
-
-
-
 		};
 
-		// private
 		FilterFacade.prototype.wireUp = function() {
-
-
-
-
-
-
 		};
+		// End Implementation of FacadeBase
 
 		FilterFacade.prototype.qualityMultiplier = 30; // todo parameterize
 
@@ -75,6 +71,7 @@ define([
 			var freq = maxValue * multiplier;
 			//console.log("Filter: scaler " + scalerValue + ", gives frequency " + freq);
 			this.input.frequency.value = freq;
+			this.setEnvelopeValues(freq);
 			return this;
 		};
 
@@ -92,15 +89,12 @@ define([
 			return this;
 		};
 
-		//region iCanBeTriggered
-		FilterFacade.prototype.gateOn = function(callback, originator) {
-			callback.call(originator, this.input.frequency, this.input.frequency.value, 40);
+		FilterFacade.prototype.setEnvelopeValues = function(cutoffFrequency) {
+			var depth = cutoffFrequency * this.depthPercentage;
+			this.triggerInValue = cutoffFrequency + depth; // sustainToCalculatePercentageOf.
+			this.triggerInMaxValue = cutoffFrequency + depth; // Attack to this
+			this.triggerInMinValue = cutoffFrequency; // Release to the cutoff frequency
 		};
-
-		FilterFacade.prototype.gateOff = function(callback, originator) {
-			callback.call(originator, this.input.frequency, 40);
-		};
-		//endregion iCanBeTriggered
 
 		return FilterFacade;
 	}
