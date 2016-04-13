@@ -2,7 +2,6 @@ define([
     '/_studio/Modules/_ModuleFactoryBase.js',
     '/_studio/Modules/BasicWaa/Gain/GainFacade.js'
     ], function(ModuleFactoryBase, GainFacade) {
-        //////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
         GainModuleFactory.prototype = new ModuleFactoryBase();
         GainModuleFactory.prototype.constructor = GainModuleFactory;
 
@@ -12,30 +11,17 @@ define([
             this.hasTriggerIn = true;
             this.hasModulateIn = true;
         }
+        
         GainModuleFactory.prototype.getModuleDefinition = function() {
             return {    
                 handlebarsTemplateSelector : this.handlebarsTemplateSelector,
                 facade : GainFacade,
                 parameters : [
                     { func : GainFacade.prototype.setGain,              selector : 'webaudio-knob[data-parameterType="gain"]',          ev : 'change'   }
-                
-
-                    
-
-
                 ]
             };
         };
-        // moduleData
-        //      name
-        //      shortName
-        //      g_params
-        //          min
-        //          max
-        //          val
-        //          stp
-        // 
-        //  
+
         GainModuleFactory.prototype.getModule = function(moduleData) {
 			if (moduleData.hasModulateIn != undefined)
 				this.hasModulateIn = moduleData.hasModulateIn;
@@ -50,17 +36,11 @@ define([
                 sections : [ {
                     ranges : [
                         this.getRangeControlData({ label : 'Gain',     type : 'gain',      params : moduleData.g_params,  name : moduleData.shortName + '_gain' })
-                        
-
-
                     ],
                     rangeDisplayMode : 'webaudio-controls-color_knob'
-
-
-
             }]});
         };
-        //////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
+
         return GainModuleFactory;
     }
 );

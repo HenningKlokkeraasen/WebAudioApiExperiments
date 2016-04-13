@@ -1,8 +1,7 @@
 define([
-    '/_studio/Modules/_ModuleFactoryBase.js',
-    '/_studio/Modules/AudioBuses/PatchBay/PatchBayFacade.js'
+    'Modules/_ModuleFactoryBase',
+    'Modules/AudioBuses/PatchBay/PatchBayFacade'
     ], function(ModuleFactoryBase, PatchBayFacade) {
-        //////////////////////////////////////////////////////    PROTOTYPE DEFINITION //////////////////////////////////////////////////////
         PatchBayModuleFactory.prototype = new ModuleFactoryBase();
         PatchBayModuleFactory.prototype.constructor = PatchBayModuleFactory;
 
@@ -19,24 +18,10 @@ define([
                 facade : PatchBayFacade,
                 parameters : [
                     // { func : GainFacade.prototype.setGain,              selector : 'input[data-parameterType="gain"]',          ev : 'input'   }
-                
-
-                    
-
-
                 ]
             };
         };
-        // moduleData
-        //      name
-        //      shortName
-        //      g_params
-        //          min
-        //          max
-        //          val
-        //          stp
-        // 
-        //  
+
         PatchBayModuleFactory.prototype.getModule = function(moduleData) {
             return this.getModuleBase({
                 name : moduleData.name, 
@@ -44,17 +29,11 @@ define([
                 sections : [ {
                     ranges : [
                         // this.getRangeControlData({ label : 'Gain',     type : 'gain',      params : moduleData.g_params,  name : moduleData.shortName + '_gain' })
-                        
-
-
                     ],
                     // rangeDisplayMode : 'knob'
-
-
-
             }]});
         };
-        //////////////////////////////////////////////////////END PROTOTYPE DEFINITION //////////////////////////////////////////////////////
+
         return PatchBayModuleFactory;
     }
 );

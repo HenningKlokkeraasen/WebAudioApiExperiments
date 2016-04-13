@@ -48,12 +48,12 @@ define([
 						buttonDisplayMode : 'webaudio-controls-switchtoggle', 
 						renderSectionsNarrowly: true},
 					{ranges: [
-						{ label : i+1,	type : 'step_lengths_'+i,	min :0.1, max : 1, value: 0.2, step : 0.1, name : moduleData.shortName + '_step_notelength' + i	}
+						{ type : 'step_lengths_'+i,	min :0.1, max : 1, value: 0.2, step : 0.1, name : moduleData.shortName + '_step_notelength' + i	}
 						],
 						rangeDisplayMode : 'webaudio-controls-color_knob',
 						renderSectionsNarrowly: true},
 					{ranges: [
-						{ label : i+1,	type : 'step_frequencies_'+i,	min :-100, max : 100, value: 0, step : 0.1, name : moduleData.shortName + '_step_frequency' + i	}
+						{ type : 'step_frequencies_'+i,	min :-100, max : 100, value: 0, step : 0.1, name : moduleData.shortName + '_step_frequency' + i	}
 						],
 						rangeDisplayMode : 'webaudio-controls-color_knob',
 						renderSectionsNarrowly: true}
