@@ -66,6 +66,9 @@ define([
 			
 			if (this.steps[stepNumber].isOn)
 				this.noteOn(stepNumber, f, nextNoteTime);
+
+			if (this.steps[stepNumber].isOn)
+				$('#step_leds_'+stepNumber).attr('color', 'red');// dirty DOM hack - TODO fix facades should not know about presentation
 		}
 		
 		scheduleNoteOff(stepNumber, nextNoteTime) {
@@ -73,6 +76,11 @@ define([
 				return;
 			//console.log('noteoff at ' + nextNoteTime);
 			this.noteOff(stepNumber, nextNoteTime + this.steps[stepNumber].noteLength);
+
+			// TODO use requestAnimationFrame instead?
+			setTimeout(function() {
+				$('#step_leds_'+stepNumber).attr('color', 'white');// dirty DOM hack - TODO fix facades should not know about presentation
+			}, (nextNoteTime + this.steps[stepNumber].noteLength)*10);
 		}
 		
 		advanceToNextNote() {

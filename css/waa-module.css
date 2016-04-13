@@ -63,6 +63,12 @@
 					vertical-align: top;
 				}
 
+				.module fieldset.narrow {
+					border: none;
+					margin: 0;
+					padding: 0;
+				}
+
 				/* Style similar to the Schmidt analog synthesizer 
 					work in progress
 				*/

@@ -1,15 +1,28 @@
 <!--Handlebars.js partial template for sections-->
 <script id="partial-sections" type="text/x-handlebars-template">
-	<fieldset {{#if ../renderSectionsVertically}}class="verticalAligned"{{/if}}>
+	<fieldset class="{{#if renderSectionsVertically}}verticalAligned{{/if}} {{#if renderSectionsNarrowly}}narrow{{/if}}">
 
 		{{#if sectionName}}
+			{{#if renderSectionsNarrowly}}
+			<div>{{sectionName}}</div>
+			{{else}}
 			<legend>{{sectionName}}</legend>
+			{{/if}}
 		{{/if}}
 
+		{{#each steps}}
+			{{>partial-sections}}
+		{{/each}}
+
+		{{#each leds}}
+		<div style="margin-top:3px;">
+			<led-atom id="{{ledId}}" color="{{color}}" blinkrate="{{blinkrate}}" label="{{label}}" alignment="{{alignment}}"></led-atom>
+		</div>
+		{{/each}}
+		
 		{{#each buttons}}
 			{{#ifCond ../buttonDisplayMode "webaudio-controls-switchtoggle"}}
-				<div class="webaudio-controls-switchtoggle" style="width:46px">
-							<!-- inlinestyle dirty hack to get same width as knob -->
+				<div class="webaudio-controls-switchtoggle">
 				<span title="{{buttonName}}" class="parameterLabel ">{{buttonName}}</span>
 				<webaudio-switch id="{{buttonId}}" 
 					src="/_thirdparty/webaudio-controls/img/switch_toggle.png" 
@@ -26,10 +39,6 @@
 					<button name="{{buttonId}}" class="{{buttonCssClass}}" data-parameterType="{{type}}" >{{buttonName}}</button>
 				</div>
 			{{/ifCond}}
-		{{/each}}
-		
-		{{#each leds}}
-			<led-atom color="{{color}}" blinkrate="{{blinkrate}}" label="{{label}}"></led-atom>
 		{{/each}}
 		
 		{{#each checkBoxes}}

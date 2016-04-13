@@ -40,16 +40,24 @@ define([
 		};
 
 		StepSequencerModuleFactory.prototype.getModule = function(moduleData) {
-			var stepsToggles = [];
-			var stepsNoteLengths = [];
-			var stepsFrequencies = [];
+			var steps = [];
 			for (var i = 0; i < 16; i++) {
-				stepsToggles.push(
-					{ buttonName : i+1,	type : 'step_toggles_'+i,	buttonId : moduleData.shortName + '_step_toggles'+i });
-				stepsFrequencies.push(
-					{ label : i+1,	type : 'step_frequencies_'+i,	min :-100, max : 100, value: 0, step : 0.1, name : moduleData.shortName + '_step_frequency' + i	});
-				stepsNoteLengths.push(
-					{ label : i+1,	type : 'step_lengths_'+i,	min :0.1, max : 1, value: 0.2, step : 0.1, name : moduleData.shortName + '_step_notelength' + i	});
+				steps.push({ renderSectionsVertically: true, renderSectionsNarrowly: true, sectionName: i+1, steps: [
+					{ leds: [ { ledId: 'step_leds_'+i, color: 'white', alignment: 'center' } ], renderSectionsNarrowly: true },
+					{ buttons: [ { buttonName : '',	type : 'step_toggles_'+i,	buttonId : moduleData.shortName + '_step_toggles'+i }],
+						buttonDisplayMode : 'webaudio-controls-switchtoggle', 
+						renderSectionsNarrowly: true},
+					{ranges: [
+						{ label : i+1,	type : 'step_lengths_'+i,	min :0.1, max : 1, value: 0.2, step : 0.1, name : moduleData.shortName + '_step_notelength' + i	}
+						],
+						rangeDisplayMode : 'webaudio-controls-color_knob',
+						renderSectionsNarrowly: true},
+					{ranges: [
+						{ label : i+1,	type : 'step_frequencies_'+i,	min :-100, max : 100, value: 0, step : 0.1, name : moduleData.shortName + '_step_frequency' + i	}
+						],
+						rangeDisplayMode : 'webaudio-controls-color_knob',
+						renderSectionsNarrowly: true}
+				]});
 			}
 
 			return this.getModuleBase({
@@ -65,17 +73,8 @@ define([
 						{ label: 'Freuquency', type: 'masterFrequency', min: 20, max: 3000, value: 440, step: 1, name: moduleData.shortName + '_masterFrequency'}],
 					rangeDisplayMode : 'webaudio-controls-color_knob'
 		    }, {
-		    	sectionName: 'On / Off',
-		    	buttons : stepsToggles,
-					buttonDisplayMode : 'webaudio-controls-switchtoggle'
-		    }, {
-		    	sectionName: 'Note length',
-		    	ranges : stepsNoteLengths,
-					rangeDisplayMode : 'webaudio-controls-color_knob'
-		    }, {
-		    	sectionName: 'Frequency',
-		    	ranges : stepsFrequencies,
-					rangeDisplayMode : 'webaudio-controls-color_knob'
+		    	sectionName: 'Steps',
+		    	steps: steps
 		    }]});
 		};
 
