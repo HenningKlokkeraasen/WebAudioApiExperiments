@@ -7,48 +7,27 @@ define([
         ConvolverModuleFactory.prototype.constructor = ConvolverModuleFactory;
 
         function ConvolverModuleFactory() {
-            this.headerCssClass = 'convolver';
-            
-            
+            this.headerCssClass = 'convolver';    
         }
+
         ConvolverModuleFactory.prototype.getModuleDefinition = function() {
             return {    
                 handlebarsTemplateSelector : this.handlebarsTemplateSelector,
                 facade : ConvolverFacade,
                 parameters : [
-        			{ func: ConvolverFacade.prototype.setImpulse,		selector: 'select[data-parametertype="impulse"]',		ev: 'change'	}
-
-
-
-
-
+        			{ func: ConvolverFacade.prototype.setImpulse,		selector: 'input[data-parametertype="impulse"]',		ev: 'change'	}
                 ]
             };
         };
-        // moduleData
-        //      name
-        //      shortName
-        //		impulseOptions
-        //
-        //
-        //
-        //
-        //
-        //
+
         ConvolverModuleFactory.prototype.getModule = function(moduleData) {
             var module =  this.getModuleBase({
                 name : moduleData.name, 
 				shortName : moduleData.shortName,
                 sections : [ {
-                    
-
-
-
-
-
-
-                    selectLists : [
-                        { label : 'Impulse file',	type : 'impulse', 		options: this.getKeyValuePairsForSelectListOptions(moduleData.audioFilePaths) }
+                    radioButtonLists: [
+                        {label : 'Impulse file',    type : 'impulse', rdoName: moduleData.shortName + '_impulse', 
+                            radioButtons: this.getKeyValuePairsForSelectListOptions(moduleData.audioFilePaths) }
                     ]
             }]});
             module.audioFilePaths = moduleData.audioFilePaths;
@@ -61,7 +40,7 @@ define([
                 var s = filePath.split('/');
                 var name = s[s.length - 1];
                 // console.debug(filePath);
-                impulseOptions.push( { value : filePath, name : name } );
+                impulseOptions.push( { value : filePath, name : name, selected: audioFilePaths.indexOf(filePath) == 0 } );
             });
             return impulseOptions;
         };

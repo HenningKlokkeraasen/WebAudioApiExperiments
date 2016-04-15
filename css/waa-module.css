@@ -27,8 +27,8 @@
 			width: 204px;
 			overflow: hidden;
 			font-size: 0.8em;
-			color: black;
-			background-color : #E4E4E4;
+			color: #F7F7F7;
+			background-color : #272727;
 		}
 
 			/* flex - align to bottom */
@@ -39,6 +39,7 @@
 			.module header {
 				text-align: center;
 				font-size: 1.2em;
+				color: black;
 			}
 
 			.module output,
@@ -204,7 +205,7 @@
 
 			.stepsequencer {
 				background-color: #712094;
-				color: honeydew;
+				color: #F95CBC;
 			}
 			
 			/*Width of units, inspired by Eurorack HP (horizontal pitch)*/
